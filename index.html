@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinMind Antigravity 儀表板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .card.database { border-top: 5px solid #3498db; }
+        .card.market { border-top: 5px solid #e74c3c; }
+        .card.portfolio { border-top: 5px solid #2ecc71; }
+        .card.whale { border-top: 5px solid #f39c12; }
+
+        .footer {
+            margin-top: 50px;
+            color: white;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 FinMind Antigravity</h1>
+        <p>量化交易監控儀表板</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="card database" onclick="location.href='database.html'">
+            <div class="card-icon">📊</div>
+            <h2>資料庫狀態</h2>
+            <p>查看資料表更新狀態</p>
+        </div>
+
+        <div class="card market" onclick="location.href='market.html'">
+            <div class="card-icon">🎯</div>
+            <h2>市場戰情室</h2>
+            <p>市場統計與法人動向</p>
+        </div>
+
+        <div class="card portfolio" onclick="location.href='portfolio.html'">
+            <div class="card-icon">💼</div>
+            <h2>持股健檢</h2>
+            <p>持股狀態與建議</p>
+        </div>
+
+        <div class="card whale" onclick="location.href='whale.html'">
+            <div class="card-icon">🐋</div>
+            <h2>巨鯨狙擊</h2>
+            <p>策略候選股票</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>FinMind Antigravity V2 © 2026</p>
+    </div>
+</body>
+</html>
