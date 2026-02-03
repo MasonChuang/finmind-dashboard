@@ -326,6 +326,28 @@
             報告生成時間: 2026-02-03 11:43:16 | Antigravity V2
         </div>
     </div>
+
+    <script>
+        // 顯示當前時間
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleString('zh-TW', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('updateTime').textContent = timeStr;
+        }
+
+        // 頁面載入時更新時間
+        updateTime();
+        // 每秒更新時間
+        setInterval(updateTime, 1000);
+    </script>
 </body>
 
 </html>
