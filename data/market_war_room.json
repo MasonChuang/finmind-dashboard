@@ -1,0 +1,99 @@
+{
+  "last_update": "2026-02-03 11:23:30",
+  "trading_date": "2026-02-02",
+  "market_statistics": {
+    "up": 8086,
+    "down": 18660,
+    "unchanged": 20393,
+    "total": 47139
+  },
+  "institutional_top5": [
+    {
+      "stock_id": "00937B",
+      "name": "群益ESG投等債20+",
+      "net_buy": 65183330
+    },
+    {
+      "stock_id": "2002",
+      "name": "中鋼",
+      "net_buy": 39064593
+    },
+    {
+      "stock_id": "00687B",
+      "name": "國泰20年美債",
+      "net_buy": 30978000
+    },
+    {
+      "stock_id": "00679B",
+      "name": "元大美債20年",
+      "net_buy": 16297415
+    },
+    {
+      "stock_id": "00953B",
+      "name": "群益優選非投等債",
+      "net_buy": 13323000
+    }
+  ],
+  "top_volume_stocks": [
+    {
+      "stock_id": "TAIEX",
+      "name": "加權指數",
+      "price": 31624.03,
+      "volume": 11735154
+    },
+    {
+      "stock_id": "Electronic",
+      "name": "電子類指數",
+      "price": 1934.41,
+      "volume": 4118139
+    },
+    {
+      "stock_id": "Semiconductor",
+      "name": "半導體類指數",
+      "price": 1054.8,
+      "volume": 1470570
+    },
+    {
+      "stock_id": "Optoelectronic",
+      "name": "光電類指數",
+      "price": 39.39,
+      "volume": 990280
+    },
+    {
+      "stock_id": "TPEx",
+      "name": "櫃買指數",
+      "price": 294.32,
+      "volume": 913909
+    },
+    {
+      "stock_id": "ElectronicPartsComponents",
+      "name": "電子零組件類指數",
+      "price": 474.97,
+      "volume": 729757
+    },
+    {
+      "stock_id": "ComputerPeripheralEquipment",
+      "name": "電腦及週邊設備類指數",
+      "price": 291.17,
+      "volume": 490123
+    },
+    {
+      "stock_id": "FinancialInsurance",
+      "name": "金融保險類指數",
+      "price": 2385.83,
+      "volume": 435215
+    },
+    {
+      "stock_id": "3481",
+      "name": "群創",
+      "price": 21.15,
+      "volume": 421571
+    },
+    {
+      "stock_id": "IronSteel",
+      "name": "鋼鐵類指數",
+      "price": 124.33,
+      "volume": 387343
+    }
+  ]
+}
