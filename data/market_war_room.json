@@ -963,54 +963,54 @@
   ],
   "sectors": [
     {
-      "industry_category": "上櫃ETF",
-      "flow": 5350954100.24,
-      "diff_pct": 129.85
+      "industry_category": "Index",
+      "flow": 1268062346924,
+      "diff_pct": 0
     },
     {
-      "industry_category": "通信網路業",
-      "flow": 2781143789.9,
-      "diff_pct": 585.63
+      "industry_category": "電子工業",
+      "flow": 306795828786,
+      "diff_pct": 0
     },
     {
-      "industry_category": "電機機械",
-      "flow": 2551957195.1,
-      "diff_pct": 281.25
+      "industry_category": "電子零組件業",
+      "flow": 158258954520,
+      "diff_pct": 0
+    },
+    {
+      "industry_category": "大盤",
+      "flow": 148013681000,
+      "diff_pct": 0
+    },
+    {
+      "industry_category": "半導體業",
+      "flow": 145004718525,
+      "diff_pct": 0
+    },
+    {
+      "industry_category": "ETF",
+      "flow": 82611037317,
+      "diff_pct": 0
     },
     {
       "industry_category": "電腦及週邊設備業",
-      "flow": 1699488278.56,
-      "diff_pct": 138.9
+      "flow": 50784495742,
+      "diff_pct": 0
     },
     {
-      "industry_category": "其他電子類",
-      "flow": 1400137146.35,
-      "diff_pct": 179.9
+      "industry_category": "電機機械",
+      "flow": 23952136698,
+      "diff_pct": 0
     },
     {
-      "industry_category": "其他電子業",
-      "flow": 1132650660.0,
-      "diff_pct": 463.37
+      "industry_category": "通信網路業",
+      "flow": 20482757406,
+      "diff_pct": 0
     },
     {
-      "industry_category": "鋼鐵工業",
-      "flow": 378533153.63000005,
-      "diff_pct": 153.85
-    },
-    {
-      "industry_category": "生技醫療業",
-      "flow": 356479361.55,
-      "diff_pct": -62.22
-    },
-    {
-      "industry_category": "居家生活",
-      "flow": 301105336.85,
-      "diff_pct": 246.76
-    },
-    {
-      "industry_category": "化學工業",
-      "flow": 244036424.85,
-      "diff_pct": 207.69
+      "industry_category": "金融保險",
+      "flow": 14593990261,
+      "diff_pct": 0
     }
   ],
   "breadth": [
@@ -2272,8 +2272,60 @@
     ]
   },
   "whale": {
-    "week_increase_top5": [],
-    "biweek_accumulate_top5": []
+    "week_increase_top5": [
+      {
+        "stock_id": "009816",
+        "whale_change": 100.0,
+        "stock_name": "009816"
+      },
+      {
+        "stock_id": "00993A",
+        "whale_change": 100.0,
+        "stock_name": "00993A"
+      },
+      {
+        "stock_id": "8152",
+        "whale_change": 100.0,
+        "stock_name": "8152"
+      },
+      {
+        "stock_id": "YJS2",
+        "whale_change": 100.0,
+        "stock_name": "YJS2"
+      },
+      {
+        "stock_id": "YLP8",
+        "whale_change": 100.0,
+        "stock_name": "YLP8"
+      }
+    ],
+    "biweek_accumulate_top5": [
+      {
+        "stock_id": "009816",
+        "whale_change_2w": 100.0,
+        "stock_name": "009816"
+      },
+      {
+        "stock_id": "00993A",
+        "whale_change_2w": 100.0,
+        "stock_name": "00993A"
+      },
+      {
+        "stock_id": "7906",
+        "whale_change_2w": 100.0,
+        "stock_name": "7906"
+      },
+      {
+        "stock_id": "7907",
+        "whale_change_2w": 100.0,
+        "stock_name": "7907"
+      },
+      {
+        "stock_id": "8152",
+        "whale_change_2w": 100.0,
+        "stock_name": "8152"
+      }
+    ]
   },
   "technical": {
     "high_60d": [
