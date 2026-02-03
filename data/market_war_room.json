@@ -2325,6 +2325,13 @@
       "adl": -21375
     }
   ],
+  "credit": {
+    "date": "2026-02-02",
+    "margin_balance": 8523067,
+    "short_balance": 277677,
+    "margin_change": -133359,
+    "short_change": -7157
+  },
   "institutional": {
     "daily_top5": [
       {
@@ -2495,61 +2502,61 @@
         "stock_id": "076441",
         "price": 33.4,
         "ma60": 0.19193548387096776,
-        "stock_name": "076441"
+        "stock_name": ""
       },
       {
         "stock_id": "086014",
         "price": 0.02,
         "ma60": 0.00016129032258064516,
-        "stock_name": "086014"
+        "stock_name": ""
       },
       {
         "stock_id": "730637",
         "price": 0.9,
         "ma60": 0.009354838709677418,
-        "stock_name": "730637"
+        "stock_name": ""
       },
       {
         "stock_id": "034122",
         "price": 0.4,
         "ma60": 0.00435483870967742,
-        "stock_name": "034122"
+        "stock_name": ""
       },
       {
         "stock_id": "06007U",
         "price": 2.85,
         "ma60": 0.03580645161290323,
-        "stock_name": "06007U"
+        "stock_name": ""
       },
       {
         "stock_id": "04371U",
         "price": 0.13,
         "ma60": 0.0017741935483870969,
-        "stock_name": "04371U"
+        "stock_name": ""
       },
       {
         "stock_id": "070677",
         "price": 0.56,
         "ma60": 0.007903225806451612,
-        "stock_name": "070677"
+        "stock_name": ""
       },
       {
         "stock_id": "070189",
         "price": 0.36,
         "ma60": 0.005483870967741935,
-        "stock_name": "070189"
+        "stock_name": ""
       },
       {
         "stock_id": "080220",
         "price": 11.0,
         "ma60": 0.1774193548387097,
-        "stock_name": "080220"
+        "stock_name": ""
       },
       {
         "stock_id": "07101U",
         "price": 0.6,
         "ma60": 0.010566037735849057,
-        "stock_name": "07101U"
+        "stock_name": ""
       }
     ]
   }

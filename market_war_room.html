@@ -131,6 +131,40 @@
       </div>
     </div>
 
+    <!-- 信用交易 (融資融券) -->
+    <div class="row mt-4 mb-4">
+      <div class="col-12">
+        <h5 class="fw-bold text-muted ps-2 border-start border-4 border-primary mb-3">信用交易 (Credit Transactions)</h5>
+      </div>
+      <div class="col-md-4">
+        <div class="card stat-card">
+          <div class="card-body text-center">
+            <h6 class="text-muted">融資餘額 (億)</h6>
+            <div class="display-6 fw-bold text-primary" id="marginBalance">-</div>
+            <div class="small fw-bold" id="marginChange">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card stat-card">
+          <div class="card-body text-center">
+            <h6 class="text-muted">融券餘額 (萬張)</h6>
+            <div class="display-6 fw-bold text-success" id="shortBalance">-</div>
+            <div class="small fw-bold" id="shortChange">-</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card stat-card">
+          <div class="card-body text-center">
+            <h6 class="text-muted">資券日期</h6>
+            <div class="display-6 fw-bold text-secondary" id="creditDate">-</div>
+            <div class="small text-muted">最新資料</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 產業資金流向 (柱狀圖) -->
     <div class="row mt-4">
       <div class="col-12">
@@ -349,6 +383,44 @@
         document.getElementById('limitDownCount').textContent = latest.limit_down || 0;
         document.getElementById('upCount').textContent = latest.up || 0;
         document.getElementById('downCount').textContent = latest.down || 0;
+      }
+
+      // 更新信用交易數據
+      if (data.credit) {
+        // 融資餘額 (億)
+        const marginVal = data.credit.margin_balance || 0;
+        const marginChgVal = data.credit.margin_change || 0;
+        const marginBal = (marginVal / 100000000).toFixed(2);
+        const marginChg = (Math.abs(marginChgVal) / 100000000).toFixed(2);
+
+        document.getElementById('marginBalance').textContent = marginBal;
+        const marginChgEl = document.getElementById('marginChange');
+        if (marginChgVal > 0) {
+          marginChgEl.innerHTML = `<span class="text-danger">▲ ${marginChg}</span>`;
+        } else if (marginChgVal < 0) {
+          marginChgEl.innerHTML = `<span class="text-success">▼ ${marginChg}</span>`;
+        } else {
+          marginChgEl.textContent = '-';
+        }
+
+        // 融券餘額 (萬張)
+        const shortVal = data.credit.short_balance || 0;
+        const shortChgVal = data.credit.short_change || 0;
+        const shortBal = (shortVal / 1000).toFixed(0);
+        const shortChg = (Math.abs(shortChgVal) / 1000).toFixed(0);
+
+        document.getElementById('shortBalance').textContent = shortBal;
+        const shortChgEl = document.getElementById('shortChange');
+        if (shortChgVal > 0) {
+          shortChgEl.innerHTML = `<span class="text-danger">▲ ${shortChg}</span>`; // 融券增加為紅色? 通常增加代表偏空? 不, 台股慣例紅色代表數值增加
+        } else if (shortChgVal < 0) {
+          shortChgEl.innerHTML = `<span class="text-success">▼ ${shortChg}</span>`;
+        } else {
+          shortChgEl.textContent = '-';
+        }
+
+        // 日期
+        document.getElementById('creditDate').textContent = data.credit.date || '-';
       }
 
       // 繪製整合圖表（加權指數 + 騰落線，雙Y軸）
