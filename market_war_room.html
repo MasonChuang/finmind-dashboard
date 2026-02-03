@@ -347,7 +347,8 @@
     // 載入資料並繪製圖表
     async function loadData() {
       try {
-        const response = await fetch('data/market_war_room.json');
+        // 加入時間戳記避免快取
+        const response = await fetch('data/market_war_room.json?v=' + new Date().getTime());
         if (!response.ok) {
           throw new Error('無法載入資料');
         }
@@ -360,8 +361,21 @@
 
     function renderCharts(data) {
       // 顯示資料產出時間
+      const timeEl = document.getElementById('updateTime');
       if (data.generated_at) {
-        document.getElementById('updateTime').textContent = data.generated_at;
+        timeEl.textContent = data.generated_at;
+      } else {
+        // Fallback: 如果沒有後端時間，顯示當前時間
+        const now = new Date();
+        timeEl.textContent = now.toLocaleString('zh-TW', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }) + ' (用戶端時間)';
       }
 
       // 更新統計卡片 (使用最新一天的資料)
