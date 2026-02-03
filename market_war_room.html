@@ -1,410 +1,2218 @@
-<!DOCTYPE html><html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Dashboard</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    
-    <style>
-        body {
-            font-family: 'IBM Plex Sans', "Microsoft JhengHei", sans-serif;
-            background-color: #f8f9fa;
-            color: #212529;
-            padding-bottom: 60px;
-        }
-        .navbar {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            background-color: #ffffff;
-        }
-        .navbar-brand {
-            font-weight: 600;
-            color: #0d6efd !important;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .card {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-bottom: 20px;
-            background-color: #ffffff;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .card-header {
-            background-color: transparent;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            font-weight: 600;
-            padding: 15px 20px;
-        }
-        .footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        /* Table Enhancements */
-        .table thead th {
-            background-color: #f1f5f9;
-            border-bottom: 2px solid #e2e8f0;
-            color: #475569;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            vertical-align: middle;
-            text-align: center !important;
-        }
-        .table tbody td {
-            text-align: center !important;
-            vertical-align: middle;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f8fafc;
-        }
-        
-        /* Custom Colors */
-        .text-primary { color: #0d6efd !important; }
-        .bg-primary-soft { background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; }
-        
-        /* Utility */
-        .icon-circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-    </style>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light fixed-top mb-4">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="bi bi-graph-up-arrow"></i>
-            <div>
-                <div>Market Dashboard</div>
-                <div style="font-size: 0.75rem; font-weight: 400; color: #6c757d;">Real-time Intelligence</div>
-            </div>
-        </a>
-        <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-02-02</span>
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
-        </div>
-    </div>
-</nav>
-<div style="height: 80px;"></div> <!-- Spacer for fixed navbar -->
-
-<div class="container-fluid px-4">
-<div class="row mb-4">
-
-            <div class="col-lg-8 mb-4">
-                <div class="card h-100">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <div><i class="bi bi-graph-up"></i> 加權指數與騰落線 (TAIEX & ADL)</div>
-                        <div class="d-flex align-items-center gap-3">
-                             <span class="badge bg-light text-dark border"><span style="color: #0d6efd">●</span> TAIEX</span>
-                             <span class="badge bg-light text-dark border"><span style="color: #6610f2">●</span> ADL</span>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div style="height: 350px; width: 100%;">
-                            <canvas id="taiexChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-
-            <div class="col-lg-4 mb-4">
-                <div class="row h-100">
-                    <div class="col-12 mb-4" style="height: 48%;">
-                        <div class="card h-100">
-                            <div class="card-header"><i class="bi bi-pie-chart"></i> 資金流向 (Sector Flow)</div>
-                            <div class="card-body p-2">
-                                <div style="height: 100%; width: 100%;">
-                                    <canvas id="sectorChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12" style="height: 48%;">
-                        <div class="card h-100">
-                            <div class="card-header bg-light border-0"><i class="bi bi-speedometer"></i> 市場漲跌統計 (2026-02-02)</div>
-                            <div class="card-body p-0 d-flex align-items-center">
-                                <table class="table table-sm mb-0 text-center" style="font-size: 0.9rem;">
-                                    <tbody>
-                                        <tr><td class="text-muted text-start ps-4">漲停 Limit Up</td><td class="fw-bold text-danger fs-5">21</td></tr>
-                                        <tr><td class="text-muted text-start ps-4">跌停 Limit Down</td><td class="fw-bold text-success fs-5">17</td></tr>
-                                        <tr><td class="text-muted text-start ps-4">上漲 Up</td><td class="fw-bold text-danger">542</td></tr>
-                                        <tr><td class="text-muted text-start ps-4">下跌 Down</td><td class="fw-bold text-success">1765</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            
-<h4 class="mb-3 text-secondary border-start border-4 border-primary ps-2">籌碼與主力分析</h4>
-<div class="row">
-
-                <div class='col-md-6 col-lg-3 mb-4'>
-                    <div class='card h-100'>
-                        <div class='card-header d-flex justify-content-between align-items-center'>
-                            <span>三大法人當日買超 (前五名)</span>
-                            <span class='badge bg-light text-dark rounded-pill' style='font-size:0.6em;'>Top 5</span>
-                        </div>
-                        <div class='card-body p-0'>
-                            <div class='table-responsive'>
-                                <table class='table table-hover table-striped mb-0' style='font-size: 0.85rem;'>
-                                    <thead>
-                                        <tr><th class='ps-3'>股票</th><th class='text-end pe-3'>買賣超金額</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td class='ps-3'><span class='fw-bold text-dark'>群益ESG投等債20+</span> <span class='text-muted small'>(00937B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>87,071,277</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>中鋼</span> <span class='text-muted small'>(2002)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>41,054,953</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>元大美債20年</span> <span class='text-muted small'>(00679B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>37,065,010</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>國泰20年美債</span> <span class='text-muted small'>(00687B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>33,734,650</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>元大美債20正2</span> <span class='text-muted small'>(00680L)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>16,807,068</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div class='col-md-6 col-lg-3 mb-4'>
-                    <div class='card h-100'>
-                        <div class='card-header d-flex justify-content-between align-items-center'>
-                            <span>三大法人近十日買超 (前五名)</span>
-                            <span class='badge bg-light text-dark rounded-pill' style='font-size:0.6em;'>Top 5</span>
-                        </div>
-                        <div class='card-body p-0'>
-                            <div class='table-responsive'>
-                                <table class='table table-hover table-striped mb-0' style='font-size: 0.85rem;'>
-                                    <thead>
-                                        <tr><th class='ps-3'>股票</th><th class='text-end pe-3'>買賣超金額</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td class='ps-3'><span class='fw-bold text-dark'>元大台灣價值高息</span> <span class='text-muted small'>(00940)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>453,843,754</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>復華台灣科技優息</span> <span class='text-muted small'>(00929)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>376,015,844</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>群益台灣精選高息</span> <span class='text-muted small'>(00919)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>360,624,834</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>國泰20年美債</span> <span class='text-muted small'>(00687B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>221,201,339</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>群益ESG投等債20+</span> <span class='text-muted small'>(00937B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>197,440,502</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div class='col-md-6 col-lg-3 mb-4'>
-                    <div class='card h-100'>
-                        <div class='card-header d-flex justify-content-between align-items-center'>
-                            <span>千張大戶近一週增持 (前五名)</span>
-                            <span class='badge bg-light text-dark rounded-pill' style='font-size:0.6em;'>Top 5</span>
-                        </div>
-                        <div class='card-body p-0'>
-                            <div class='table-responsive'>
-                                <table class='table table-hover table-striped mb-0' style='font-size: 0.85rem;'>
-                                    <thead>
-                                        <tr><th class='ps-3'>股票</th><th class='text-end pe-3'>增減比例 (%)</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td class='ps-3'><span class='fw-bold text-dark'>6611</span> <span class='text-muted small'>(6611)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>17.03</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>擎亞</span> <span class='text-muted small'>(8096)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>7.83</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>雍智科技</span> <span class='text-muted small'>(6683)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>7.28</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>華星光</span> <span class='text-muted small'>(4979)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>7.07</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>一詮</span> <span class='text-muted small'>(2486)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>5.90</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div class='col-md-6 col-lg-3 mb-4'>
-                    <div class='card h-100'>
-                        <div class='card-header d-flex justify-content-between align-items-center'>
-                            <span>千張大戶近兩週增持 (前五名)</span>
-                            <span class='badge bg-light text-dark rounded-pill' style='font-size:0.6em;'>Top 5</span>
-                        </div>
-                        <div class='card-body p-0'>
-                            <div class='table-responsive'>
-                                <table class='table table-hover table-striped mb-0' style='font-size: 0.85rem;'>
-                                    <thead>
-                                        <tr><th class='ps-3'>股票</th><th class='text-end pe-3'>增減比例 (%)</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td class='ps-3'><span class='fw-bold text-dark'>6611</span> <span class='text-muted small'>(6611)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>17.03</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>富邦摩台</span> <span class='text-muted small'>(0057)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>13.45</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>擎亞</span> <span class='text-muted small'>(8096)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>7.76</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>中信特選金融</span> <span class='text-muted small'>(00917)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>7.38</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>一詮</span> <span class='text-muted small'>(2486)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>7.26</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-</div>
-<h4 class="mb-3 mt-4 text-secondary border-start border-4 border-danger ps-2">技術面訊號</h4>
-<div class="row">
-
-                <div class='col-md-6 col-lg-3 mb-4'>
-                    <div class='card h-100'>
-                        <div class='card-header d-flex justify-content-between align-items-center'>
-                            <span>股價突破區間 (60日新高)</span>
-                            <span class='badge bg-light text-dark rounded-pill' style='font-size:0.6em;'>Top 5</span>
-                        </div>
-                        <div class='card-body p-0'>
-                            <div class='table-responsive'>
-                                <table class='table table-hover table-striped mb-0' style='font-size: 0.85rem;'>
-                                    <thead>
-                                        <tr><th class='ps-3'>股票</th><th class='text-end pe-3'>收盤價</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td class='ps-3'><span class='fw-bold text-dark'>中鋼</span> <span class='text-muted small'>(2002)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>21.10</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>中鴻</span> <span class='text-muted small'>(2014)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>19.95</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>群益ESG投等債0-5</span> <span class='text-muted small'>(00985B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>10.40</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>統新</span> <span class='text-muted small'>(6426)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>124.00</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>東典光電</span> <span class='text-muted small'>(6588)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>68.70</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div class='col-md-6 col-lg-3 mb-4'>
-                    <div class='card h-100'>
-                        <div class='card-header d-flex justify-content-between align-items-center'>
-                            <span>股價突破季線 (60MA)</span>
-                            <span class='badge bg-light text-dark rounded-pill' style='font-size:0.6em;'>Top 5</span>
-                        </div>
-                        <div class='card-body p-0'>
-                            <div class='table-responsive'>
-                                <table class='table table-hover table-striped mb-0' style='font-size: 0.85rem;'>
-                                    <thead>
-                                        <tr><th class='ps-3'>股票</th><th class='text-end pe-3'>收盤價</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td class='ps-3'><span class='fw-bold text-dark'>宏碁</span> <span class='text-muted small'>(2353)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>27.20</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>群益ESG投等債20+</span> <span class='text-muted small'>(00937B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>15.18</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>元大美債20年</span> <span class='text-muted small'>(00679B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>27.37</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>國泰10Y+金融債</span> <span class='text-muted small'>(00933B)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>16.48</td></tr><tr><td class='ps-3'><span class='fw-bold text-dark'>系統電</span> <span class='text-muted small'>(5309)</span></td><td class='text-end pe-3 font-monospace fw-bold text-danger'>66.80</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-</div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="mb-0">© 2026 FinMind Antigravity. Generated by Automated Analysis System.</p>
-    </div>
-</footer>
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-            <script>
-                const data = {"taiex": [{"date": "2025-08-11", "open": 23980.39, "max": 24249.05, "min": 23887.25, "close": 24135.5, "Trading_Volume": 7230198655}, {"date": "2025-08-12", "open": 24182.84, "max": 24263.92, "min": 24065.43, "close": 24158.36, "Trading_Volume": 7513604403}, {"date": "2025-08-13", "open": 24232.04, "max": 24406.94, "min": 24172.19, "close": 24370.02, "Trading_Volume": 8864976375}, {"date": "2025-08-14", "open": 24258.5, "max": 24389.51, "min": 24198.88, "close": 24238.1, "Trading_Volume": 7941972349}, {"date": "2025-08-15", "open": 24266.23, "max": 24385.56, "min": 24164.43, "close": 24334.48, "Trading_Volume": 7913302231}, {"date": "2025-08-18", "open": 24272.55, "max": 24515.65, "min": 24257.3, "close": 24482.52, "Trading_Volume": 8459665044}, {"date": "2025-08-19", "open": 24493.92, "max": 24551.42, "min": 24324.29, "close": 24353.5, "Trading_Volume": 8279842992}, {"date": "2025-08-20", "open": 24309.27, "max": 24309.27, "min": 23620.24, "close": 23625.44, "Trading_Volume": 8611743600}, {"date": "2025-08-21", "open": 23739.83, "max": 24011.5, "min": 23739.83, "close": 23962.13, "Trading_Volume": 6990398614}, {"date": "2025-08-22", "open": 24033.02, "max": 24071.65, "min": 23764.47, "close": 23764.47, "Trading_Volume": 6571719689}, {"date": "2025-08-25", "open": 24108.81, "max": 24362.02, "min": 24108.75, "close": 24277.38, "Trading_Volume": 7201907890}, {"date": "2025-08-26", "open": 24237.36, "max": 24382.42, "min": 24113.03, "close": 24305.1, "Trading_Volume": 8259451660}, {"date": "2025-08-27", "open": 24449.81, "max": 24539.88, "min": 24410.08, "close": 24519.9, "Trading_Volume": 7675360712}, {"date": "2025-08-28", "open": 24468.12, "max": 24502.37, "min": 24236.45, "close": 24236.45, "Trading_Volume": 7619400963}, {"date": "2025-08-29", "open": 24438.03, "max": 24570.15, "min": 24233.1, "close": 24233.1, "Trading_Volume": 7716714041}, {"date": "2025-09-01", "open": 24143.37, "max": 24312.83, "min": 23885.41, "close": 24071.73, "Trading_Volume": 7882519521}, {"date": "2025-09-02", "open": 24113.9, "max": 24295.03, "min": 23890.33, "close": 24016.78, "Trading_Volume": 6868073676}, {"date": "2025-09-03", "open": 24036.88, "max": 24103.23, "min": 23925.49, "close": 24100.3, "Trading_Volume": 6215237843}, {"date": "2025-09-04", "open": 24235.27, "max": 24389.35, "min": 24168.16, "close": 24179.85, "Trading_Volume": 7455297262}, {"date": "2025-09-05", "open": 24244.26, "max": 24494.58, "min": 24244.26, "close": 24494.58, "Trading_Volume": 6973379276}, {"date": "2025-09-08", "open": 24610.85, "max": 24729.96, "min": 24547.38, "close": 24547.38, "Trading_Volume": 7768998687}, {"date": "2025-09-09", "open": 24650.46, "max": 24880.07, "min": 24650.46, "close": 24855.18, "Trading_Volume": 8091742979}, {"date": "2025-09-10", "open": 25032.88, "max": 25272.23, "min": 25032.88, "close": 25192.59, "Trading_Volume": 8693632992}, {"date": "2025-09-11", "open": 25509.3, "max": 25541.44, "min": 25174.13, "close": 25215.71, "Trading_Volume": 9553641157}, {"date": "2025-09-12", "open": 25349.7, "max": 25492.28, "min": 25349.7, "close": 25474.64, "Trading_Volume": 7830621434}, {"date": "2025-09-15", "open": 25494.1, "max": 25519.94, "min": 25284.17, "close": 25357.16, "Trading_Volume": 6958333955}, {"date": "2025-09-16", "open": 25335.46, "max": 25664.81, "min": 25335.46, "close": 25629.64, "Trading_Volume": 7560459055}, {"date": "2025-09-17", "open": 25543.91, "max": 25632.07, "min": 25422.96, "close": 25438.25, "Trading_Volume": 7849906030}, {"date": "2025-09-18", "open": 25543.17, "max": 25769.36, "min": 25475.25, "close": 25769.36, "Trading_Volume": 8339290249}, {"date": "2025-09-19", "open": 25794.66, "max": 25864.01, "min": 25578.37, "close": 25578.37, "Trading_Volume": 9787714693}, {"date": "2025-09-22", "open": 25599.6, "max": 25887.69, "min": 25599.6, "close": 25880.6, "Trading_Volume": 7847993700}, {"date": "2025-09-23", "open": 26121.0, "max": 26307.3, "min": 26041.69, "close": 26247.37, "Trading_Volume": 8950246446}, {"date": "2025-09-24", "open": 26389.16, "max": 26394.03, "min": 26045.47, "close": 26196.73, "Trading_Volume": 7897848080}, {"date": "2025-09-25", "open": 26067.97, "max": 26247.85, "min": 26023.85, "close": 26023.85, "Trading_Volume": 8846470892}, {"date": "2025-09-26", "open": 25998.28, "max": 25998.28, "min": 25469.04, "close": 25580.32, "Trading_Volume": 8334201118}, {"date": "2025-09-30", "open": 25738.31, "max": 25975.84, "min": 25738.31, "close": 25820.54, "Trading_Volume": 6699602406}, {"date": "2025-10-01", "open": 26078.29, "max": 26325.79, "min": 25982.91, "close": 25982.91, "Trading_Volume": 7679791251}, {"date": "2025-10-02", "open": 26392.31, "max": 26489.79, "min": 26330.25, "close": 26378.39, "Trading_Volume": 8085314896}, {"date": "2025-10-03", "open": 26435.1, "max": 26761.06, "min": 26410.03, "close": 26761.06, "Trading_Volume": 7784825692}, {"date": "2025-10-07", "open": 27029.28, "max": 27301.42, "min": 27017.08, "close": 27211.95, "Trading_Volume": 9348656371}, {"date": "2025-10-08", "open": 26999.82, "max": 27110.43, "min": 26883.99, "close": 27063.68, "Trading_Volume": 8261189883}, {"date": "2025-10-09", "open": 27301.61, "max": 27463.12, "min": 27253.07, "close": 27301.92, "Trading_Volume": 9444331803}, {"date": "2025-10-13", "open": 26762.6, "max": 26965.72, "min": 26470.44, "close": 26923.42, "Trading_Volume": 10191083804}, {"date": "2025-10-14", "open": 27282.1, "max": 27507.16, "min": 26764.06, "close": 26793.15, "Trading_Volume": 12066540173}, {"date": "2025-10-15", "open": 26911.05, "max": 27275.71, "min": 26773.15, "close": 27275.71, "Trading_Volume": 8387861014}, {"date": "2025-10-16", "open": 27337.32, "max": 27732.78, "min": 27337.32, "close": 27647.87, "Trading_Volume": 9035460141}, {"date": "2025-10-17", "open": 27399.91, "max": 27513.09, "min": 27302.37, "close": 27302.37, "Trading_Volume": 8962849575}, {"date": "2025-10-20", "open": 27480.44, "max": 27768.27, "min": 27412.45, "close": 27688.63, "Trading_Volume": 8045886081}, {"date": "2025-10-21", "open": 27742.55, "max": 27969.05, "min": 27742.55, "close": 27752.41, "Trading_Volume": 8507303277}, {"date": "2025-10-22", "open": 27614.11, "max": 27725.83, "min": 27490.89, "close": 27648.91, "Trading_Volume": 7835590935}, {"date": "2025-10-23", "open": 27457.07, "max": 27586.85, "min": 27371.67, "close": 27532.26, "Trading_Volume": 7318554768}, {"date": "2025-10-27", "open": 28029.88, "max": 28196.33, "min": 27993.63, "close": 27993.63, "Trading_Volume": 9337097751}, {"date": "2025-10-28", "open": 28041.01, "max": 28087.93, "min": 27885.62, "close": 27949.11, "Trading_Volume": 8579810711}, {"date": "2025-10-29", "open": 28157.91, "max": 28395.31, "min": 28139.65, "close": 28294.74, "Trading_Volume": 9076231278}, {"date": "2025-10-30", "open": 28350.24, "max": 28527.68, "min": 28116.6, "close": 28287.53, "Trading_Volume": 9446378341}, {"date": "2025-10-31", "open": 28280.47, "max": 28489.76, "min": 28233.35, "close": 28233.35, "Trading_Volume": 8339995492}, {"date": "2025-11-03", "open": 28253.53, "max": 28494.99, "min": 28150.45, "close": 28334.59, "Trading_Volume": 8299689369}, {"date": "2025-11-04", "open": 28364.76, "max": 28554.61, "min": 28033.62, "close": 28116.56, "Trading_Volume": 8404740088}, {"date": "2025-11-05", "open": 27785.91, "max": 27799.09, "min": 27373.05, "close": 27717.06, "Trading_Volume": 8989778518}, {"date": "2025-11-06", "open": 27906.44, "max": 28061.53, "min": 27879.7, "close": 27899.45, "Trading_Volume": 7863001986}, {"date": "2025-11-07", "open": 27818.54, "max": 27818.54, "min": 27621.48, "close": 27651.41, "Trading_Volume": 7878592276}, {"date": "2025-11-10", "open": 27805.47, "max": 27976.89, "min": 27680.51, "close": 27869.51, "Trading_Volume": 7491028505}, {"date": "2025-11-11", "open": 28031.54, "max": 28187.7, "min": 27784.95, "close": 27784.95, "Trading_Volume": 8924063428}, {"date": "2025-11-12", "open": 27853.47, "max": 28071.76, "min": 27799.92, "close": 27947.09, "Trading_Volume": 8954069218}, {"date": "2025-11-13", "open": 27867.59, "max": 28038.24, "min": 27811.81, "close": 27903.56, "Trading_Volume": 10545273898}, {"date": "2025-11-14", "open": 27816.45, "max": 27816.45, "min": 27383.34, "close": 27397.5, "Trading_Volume": 9939352945}, {"date": "2025-11-17", "open": 27600.74, "max": 27723.77, "min": 27447.31, "close": 27447.31, "Trading_Volume": 8604107358}, {"date": "2025-11-18", "open": 27310.4, "max": 27310.4, "min": 26756.12, "close": 26756.12, "Trading_Volume": 10450443082}, {"date": "2025-11-19", "open": 26708.28, "max": 26902.97, "min": 26580.12, "close": 26580.12, "Trading_Volume": 8069342681}, {"date": "2025-11-20", "open": 27212.91, "max": 27493.63, "min": 27183.03, "close": 27426.36, "Trading_Volume": 8497528679}, {"date": "2025-11-21", "open": 26821.97, "max": 26821.97, "min": 26395.98, "close": 26434.94, "Trading_Volume": 8853582470}, {"date": "2025-11-24", "open": 26596.03, "max": 26764.13, "min": 26482.33, "close": 26504.24, "Trading_Volume": 9236525911}, {"date": "2025-11-25", "open": 26995.9, "max": 27118.02, "min": 26793.71, "close": 26912.17, "Trading_Volume": 6714625759}, {"date": "2025-11-26", "open": 27063.17, "max": 27409.54, "min": 27063.17, "close": 27409.54, "Trading_Volume": 7902773415}, {"date": "2025-11-27", "open": 27517.24, "max": 27659.06, "min": 27436.59, "close": 27554.53, "Trading_Volume": 7539156843}, {"date": "2025-11-28", "open": 27566.12, "max": 27796.9, "min": 27566.12, "close": 27626.48, "Trading_Volume": 7671742311}, {"date": "2025-12-01", "open": 27674.16, "max": 27697.06, "min": 27342.53, "close": 27342.53, "Trading_Volume": 7418235597}, {"date": "2025-12-02", "open": 27550.35, "max": 27741.89, "min": 27477.1, "close": 27564.27, "Trading_Volume": 7321099919}, {"date": "2025-12-03", "open": 27605.63, "max": 27847.67, "min": 27605.63, "close": 27793.04, "Trading_Volume": 6838633055}, {"date": "2025-12-04", "open": 27773.42, "max": 27880.23, "min": 27636.63, "close": 27795.71, "Trading_Volume": 6475222009}, {"date": "2025-12-05", "open": 27796.43, "max": 27980.89, "min": 27738.5, "close": 27980.89, "Trading_Volume": 6781520261}, {"date": "2025-12-08", "open": 28034.0, "max": 28303.78, "min": 28026.39, "close": 28303.78, "Trading_Volume": 7603908443}, {"date": "2025-12-09", "open": 28364.04, "max": 28390.24, "min": 28157.27, "close": 28182.6, "Trading_Volume": 8116345692}, {"date": "2025-12-10", "open": 28190.76, "max": 28417.09, "min": 28190.76, "close": 28400.73, "Trading_Volume": 8239950462}, {"date": "2025-12-11", "open": 28385.23, "max": 28568.02, "min": 27984.19, "close": 28024.75, "Trading_Volume": 8087246896}, {"date": "2025-12-12", "open": 28097.54, "max": 28272.06, "min": 28071.34, "close": 28198.02, "Trading_Volume": 8508400161}, {"date": "2025-12-15", "open": 28119.79, "max": 28119.79, "min": 27684.87, "close": 27866.94, "Trading_Volume": 7855274707}, {"date": "2025-12-16", "open": 27721.1, "max": 27740.66, "min": 27355.67, "close": 27536.66, "Trading_Volume": 9586999810}, {"date": "2025-12-17", "open": 27596.18, "max": 27780.69, "min": 27469.6, "close": 27525.17, "Trading_Volume": 9020647323}, {"date": "2025-12-18", "open": 27447.45, "max": 27569.44, "min": 27350.77, "close": 27468.53, "Trading_Volume": 8450315748}, {"date": "2025-12-19", "open": 27685.74, "max": 27869.78, "min": 27672.05, "close": 27696.35, "Trading_Volume": 9145168124}, {"date": "2025-12-22", "open": 27986.66, "max": 28168.75, "min": 27986.66, "close": 28149.64, "Trading_Volume": 8984157012}, {"date": "2025-12-23", "open": 28253.14, "max": 28350.37, "min": 28212.84, "close": 28310.47, "Trading_Volume": 7965662925}, {"date": "2025-12-24", "open": 28383.61, "max": 28486.38, "min": 28280.59, "close": 28371.98, "Trading_Volume": 7899870510}, {"date": "2025-12-26", "open": 28443.48, "max": 28590.91, "min": 28404.34, "close": 28556.02, "Trading_Volume": 8084220373}, {"date": "2025-12-29", "open": 28662.79, "max": 28841.64, "min": 28595.35, "close": 28810.89, "Trading_Volume": 8569606301}, {"date": "2025-12-30", "open": 28723.82, "max": 28833.03, "min": 28553.64, "close": 28707.13, "Trading_Volume": 8876360103}, {"date": "2025-12-31", "open": 28723.49, "max": 29009.81, "min": 28687.9, "close": 28963.6, "Trading_Volume": 9768832777}, {"date": "2026-01-02", "open": 29016.68, "max": 29363.43, "min": 29007.75, "close": 29349.81, "Trading_Volume": 10724729528}, {"date": "2026-01-05", "open": 29779.7, "max": 30339.32, "min": 29779.7, "close": 30105.04, "Trading_Volume": 12257092861}, {"date": "2026-01-06", "open": 29933.65, "max": 30576.3, "min": 29933.65, "close": 30576.3, "Trading_Volume": 12040596292}, {"date": "2026-01-07", "open": 30412.32, "max": 30570.26, "min": 30306.16, "close": 30435.47, "Trading_Volume": 14251362877}, {"date": "2026-01-08", "open": 30330.58, "max": 30593.49, "min": 30268.36, "close": 30360.55, "Trading_Volume": 13237635957}, {"date": "2026-01-09", "open": 30370.45, "max": 30500.42, "min": 29925.49, "close": 30288.96, "Trading_Volume": 11350115100}, {"date": "2026-01-12", "open": 30472.7, "max": 30681.99, "min": 30472.7, "close": 30567.29, "Trading_Volume": 10706885024}, {"date": "2026-01-13", "open": 30630.86, "max": 30973.85, "min": 30529.33, "close": 30707.22, "Trading_Volume": 12095287473}, {"date": "2026-01-14", "open": 30742.53, "max": 30994.81, "min": 30742.53, "close": 30941.78, "Trading_Volume": 11337766253}, {"date": "2026-01-15", "open": 30746.98, "max": 30877.31, "min": 30663.87, "close": 30810.58, "Trading_Volume": 11502671786}, {"date": "2026-01-16", "open": 30844.63, "max": 31475.22, "min": 30844.63, "close": 31408.7, "Trading_Volume": 12754630286}, {"date": "2026-01-19", "open": 31336.77, "max": 31827.39, "min": 31285.53, "close": 31639.29, "Trading_Volume": 13668186807}, {"date": "2026-01-20", "open": 31584.34, "max": 31759.99, "min": 31340.1, "close": 31759.99, "Trading_Volume": 13170800649}, {"date": "2026-01-21", "open": 31749.14, "max": 31749.14, "min": 31200.76, "close": 31246.37, "Trading_Volume": 14446040108}, {"date": "2026-01-22", "open": 31371.13, "max": 31890.62, "min": 31371.13, "close": 31746.08, "Trading_Volume": 13104288592}, {"date": "2026-01-23", "open": 31788.77, "max": 32042.44, "min": 31693.15, "close": 31961.51, "Trading_Volume": 12098195650}, {"date": "2026-01-26", "open": 32002.56, "max": 32196.75, "min": 31989.86, "close": 32064.52, "Trading_Volume": 11574650763}, {"date": "2026-01-27", "open": 32095.08, "max": 32428.17, "min": 32095.08, "close": 32317.92, "Trading_Volume": 12767369519}, {"date": "2026-01-28", "open": 32381.76, "max": 32803.82, "min": 32381.76, "close": 32803.82, "Trading_Volume": 12947973323}, {"date": "2026-01-29", "open": 32828.02, "max": 32996.03, "min": 32472.45, "close": 32536.27, "Trading_Volume": 13552952931}, {"date": "2026-01-30", "open": 32555.52, "max": 32555.52, "min": 32004.96, "close": 32063.75, "Trading_Volume": 13417799586}, {"date": "2026-02-02", "open": 32008.46, "max": 32008.46, "min": 31359.95, "close": 31624.03, "Trading_Volume": 11735154321}], "sectors": [{"industry_category": "\u96fb\u5b50\u5de5\u696d", "flow": 306795828786, "diff_pct": -27.8}, {"industry_category": "\u96fb\u5b50\u96f6\u7d44\u4ef6\u696d", "flow": 158258954520, "diff_pct": 7.54}, {"industry_category": "\u534a\u5c0e\u9ad4\u696d", "flow": 145004718525, "diff_pct": -24.73}, {"industry_category": "\u96fb\u8166\u53ca\u9031\u908a\u8a2d\u5099\u696d", "flow": 50784495742, "diff_pct": -4.85}, {"industry_category": "\u96fb\u6a5f\u6a5f\u68b0", "flow": 23952136698, "diff_pct": -12.9}, {"industry_category": "\u901a\u4fe1\u7db2\u8def\u696d", "flow": 20482757406, "diff_pct": -23.58}, {"industry_category": "\u91d1\u878d\u4fdd\u96aa", "flow": 14593990261, "diff_pct": -24.82}, {"industry_category": "\u751f\u6280\u91ab\u7642\u696d", "flow": 12153821962, "diff_pct": -21.1}, {"industry_category": "\u96fb\u5b50\u901a\u8def\u696d", "flow": 10859349904, "diff_pct": -26.17}, {"industry_category": "\u5176\u4ed6\u96fb\u5b50\u985e", "flow": 10751808355, "diff_pct": -10.09}], "breadth": [{"date": "2025-08-11", "up": 891, "down": 1328, "flat": 206, "limit_up": 42, "limit_down": 4, "net_up": -437, "adl": -437}, {"date": "2025-08-12", "up": 1282, "down": 894, "flat": 249, "limit_up": 42, "limit_down": 4, "net_up": 388, "adl": -49}, {"date": "2025-08-13", "up": 1094, "down": 1064, "flat": 267, "limit_up": 42, "limit_down": 3, "net_up": 30, "adl": -19}, {"date": "2025-08-14", "up": 1312, "down": 852, "flat": 259, "limit_up": 40, "limit_down": 3, "net_up": 460, "adl": 441}, {"date": "2025-08-15", "up": 1116, "down": 1058, "flat": 251, "limit_up": 50, "limit_down": 2, "net_up": 58, "adl": 499}, {"date": "2025-08-18", "up": 1165, "down": 999, "flat": 261, "limit_up": 72, "limit_down": 0, "net_up": 166, "adl": 665}, {"date": "2025-08-19", "up": 777, "down": 1417, "flat": 231, "limit_up": 39, "limit_down": 4, "net_up": -640, "adl": 25}, {"date": "2025-08-20", "up": 502, "down": 1722, "flat": 200, "limit_up": 24, "limit_down": 11, "net_up": -1220, "adl": -1195}, {"date": "2025-08-21", "up": 1702, "down": 488, "flat": 234, "limit_up": 43, "limit_down": 1, "net_up": 1214, "adl": 19}, {"date": "2025-08-22", "up": 842, "down": 1324, "flat": 257, "limit_up": 20, "limit_down": 2, "net_up": -482, "adl": -463}, {"date": "2025-08-25", "up": 1438, "down": 717, "flat": 270, "limit_up": 50, "limit_down": 0, "net_up": 721, "adl": 258}, {"date": "2025-08-26", "up": 1006, "down": 1139, "flat": 280, "limit_up": 40, "limit_down": 0, "net_up": -133, "adl": 125}, {"date": "2025-08-27", "up": 1395, "down": 765, "flat": 265, "limit_up": 49, "limit_down": 0, "net_up": 630, "adl": 755}, {"date": "2025-08-28", "up": 1066, "down": 1053, "flat": 306, "limit_up": 46, "limit_down": 0, "net_up": 13, "adl": 768}, {"date": "2025-08-29", "up": 998, "down": 1161, "flat": 266, "limit_up": 51, "limit_down": 1, "net_up": -163, "adl": 605}, {"date": "2025-09-01", "up": 589, "down": 1645, "flat": 191, "limit_up": 23, "limit_down": 7, "net_up": -1056, "adl": -451}, {"date": "2025-09-02", "up": 856, "down": 1274, "flat": 294, "limit_up": 24, "limit_down": 5, "net_up": -418, "adl": -869}, {"date": "2025-09-03", "up": 1302, "down": 822, "flat": 300, "limit_up": 50, "limit_down": 2, "net_up": 480, "adl": -389}, {"date": "2025-09-04", "up": 1334, "down": 856, "flat": 233, "limit_up": 56, "limit_down": 4, "net_up": 478, "adl": 89}, {"date": "2025-09-05", "up": 1220, "down": 936, "flat": 267, "limit_up": 38, "limit_down": 0, "net_up": 284, "adl": 373}, {"date": "2025-09-08", "up": 1186, "down": 982, "flat": 255, "limit_up": 39, "limit_down": 2, "net_up": 204, "adl": 577}, {"date": "2025-09-09", "up": 947, "down": 1210, "flat": 267, "limit_up": 21, "limit_down": 1, "net_up": -263, "adl": 314}, {"date": "2025-09-10", "up": 939, "down": 1245, "flat": 240, "limit_up": 44, "limit_down": 2, "net_up": -306, "adl": 8}, {"date": "2025-09-11", "up": 555, "down": 1713, "flat": 156, "limit_up": 21, "limit_down": 7, "net_up": -1158, "adl": -1150}, {"date": "2025-09-12", "up": 1291, "down": 888, "flat": 245, "limit_up": 22, "limit_down": 3, "net_up": 403, "adl": -747}, {"date": "2025-09-15", "up": 742, "down": 1417, "flat": 267, "limit_up": 24, "limit_down": 7, "net_up": -675, "adl": -1422}, {"date": "2025-09-16", "up": 1162, "down": 967, "flat": 298, "limit_up": 33, "limit_down": 2, "net_up": 195, "adl": -1227}, {"date": "2025-09-17", "up": 919, "down": 1226, "flat": 283, "limit_up": 23, "limit_down": 1, "net_up": -307, "adl": -1534}, {"date": "2025-09-18", "up": 1373, "down": 779, "flat": 275, "limit_up": 35, "limit_down": 2, "net_up": 594, "adl": -940}, {"date": "2025-09-19", "up": 960, "down": 1196, "flat": 272, "limit_up": 25, "limit_down": 4, "net_up": -236, "adl": -1176}, {"date": "2025-09-22", "up": 1101, "down": 1045, "flat": 282, "limit_up": 31, "limit_down": 2, "net_up": 56, "adl": -1120}, {"date": "2025-09-23", "up": 717, "down": 1457, "flat": 254, "limit_up": 21, "limit_down": 5, "net_up": -740, "adl": -1860}, {"date": "2025-09-24", "up": 1008, "down": 1118, "flat": 301, "limit_up": 24, "limit_down": 0, "net_up": -110, "adl": -1970}, {"date": "2025-09-25", "up": 974, "down": 1126, "flat": 321, "limit_up": 14, "limit_down": 1, "net_up": -152, "adl": -2122}, {"date": "2025-09-26", "up": 355, "down": 1857, "flat": 211, "limit_up": 12, "limit_down": 4, "net_up": -1502, "adl": -3624}, {"date": "2025-09-30", "up": 1608, "down": 582, "flat": 236, "limit_up": 34, "limit_down": 2, "net_up": 1026, "adl": -2598}, {"date": "2025-10-01", "up": 841, "down": 1306, "flat": 279, "limit_up": 21, "limit_down": 0, "net_up": -465, "adl": -3063}, {"date": "2025-10-02", "up": 871, "down": 1261, "flat": 295, "limit_up": 24, "limit_down": 2, "net_up": -390, "adl": -3453}, {"date": "2025-10-03", "up": 953, "down": 1180, "flat": 296, "limit_up": 22, "limit_down": 1, "net_up": -227, "adl": -3680}, {"date": "2025-10-07", "up": 1124, "down": 1045, "flat": 265, "limit_up": 29, "limit_down": 2, "net_up": 79, "adl": -3601}, {"date": "2025-10-08", "up": 1005, "down": 1148, "flat": 279, "limit_up": 20, "limit_down": 2, "net_up": -143, "adl": -3744}, {"date": "2025-10-09", "up": 944, "down": 1231, "flat": 257, "limit_up": 30, "limit_down": 3, "net_up": -287, "adl": -4031}, {"date": "2025-10-13", "up": 627, "down": 1638, "flat": 167, "limit_up": 30, "limit_down": 5, "net_up": -1011, "adl": -5042}, {"date": "2025-10-14", "up": 697, "down": 1549, "flat": 186, "limit_up": 17, "limit_down": 6, "net_up": -852, "adl": -5894}, {"date": "2025-10-15", "up": 1193, "down": 987, "flat": 252, "limit_up": 31, "limit_down": 1, "net_up": 206, "adl": -5688}, {"date": "2025-10-16", "up": 1504, "down": 683, "flat": 247, "limit_up": 19, "limit_down": 2, "net_up": 821, "adl": -4867}, {"date": "2025-10-17", "up": 852, "down": 1304, "flat": 278, "limit_up": 22, "limit_down": 1, "net_up": -452, "adl": -5319}, {"date": "2025-10-20", "up": 974, "down": 1165, "flat": 297, "limit_up": 43, "limit_down": 0, "net_up": -191, "adl": -5510}, {"date": "2025-10-21", "up": 1279, "down": 884, "flat": 275, "limit_up": 37, "limit_down": 1, "net_up": 395, "adl": -5115}, {"date": "2025-10-22", "up": 1333, "down": 829, "flat": 276, "limit_up": 28, "limit_down": 4, "net_up": 504, "adl": -4611}, {"date": "2025-10-23", "up": 817, "down": 1346, "flat": 275, "limit_up": 17, "limit_down": 2, "net_up": -529, "adl": -5140}, {"date": "2025-10-27", "up": 1053, "down": 1166, "flat": 219, "limit_up": 34, "limit_down": 1, "net_up": -113, "adl": -5253}, {"date": "2025-10-28", "up": 651, "down": 1553, "flat": 236, "limit_up": 16, "limit_down": 2, "net_up": -902, "adl": -6155}, {"date": "2025-10-29", "up": 921, "down": 1232, "flat": 287, "limit_up": 24, "limit_down": 7, "net_up": -311, "adl": -6466}, {"date": "2025-10-30", "up": 675, "down": 1507, "flat": 259, "limit_up": 18, "limit_down": 5, "net_up": -832, "adl": -7298}, {"date": "2025-10-31", "up": 974, "down": 1215, "flat": 252, "limit_up": 15, "limit_down": 1, "net_up": -241, "adl": -7539}, {"date": "2025-11-03", "up": 968, "down": 1212, "flat": 262, "limit_up": 29, "limit_down": 2, "net_up": -244, "adl": -7783}, {"date": "2025-11-04", "up": 568, "down": 1639, "flat": 234, "limit_up": 13, "limit_down": 8, "net_up": -1071, "adl": -8854}, {"date": "2025-11-05", "up": 824, "down": 1350, "flat": 266, "limit_up": 19, "limit_down": 2, "net_up": -526, "adl": -9380}, {"date": "2025-11-06", "up": 1490, "down": 724, "flat": 225, "limit_up": 30, "limit_down": 0, "net_up": 766, "adl": -8614}, {"date": "2025-11-07", "up": 749, "down": 1456, "flat": 234, "limit_up": 24, "limit_down": 6, "net_up": -707, "adl": -9321}, {"date": "2025-11-10", "up": 798, "down": 1399, "flat": 242, "limit_up": 27, "limit_down": 5, "net_up": -601, "adl": -9922}, {"date": "2025-11-11", "up": 1049, "down": 1163, "flat": 228, "limit_up": 31, "limit_down": 11, "net_up": -114, "adl": -10036}, {"date": "2025-11-12", "up": 1498, "down": 722, "flat": 223, "limit_up": 31, "limit_down": 7, "net_up": 776, "adl": -9260}, {"date": "2025-11-13", "up": 1048, "down": 1124, "flat": 267, "limit_up": 34, "limit_down": 3, "net_up": -76, "adl": -9336}, {"date": "2025-11-14", "up": 594, "down": 1620, "flat": 225, "limit_up": 21, "limit_down": 4, "net_up": -1026, "adl": -10362}, {"date": "2025-11-17", "up": 647, "down": 1594, "flat": 200, "limit_up": 17, "limit_down": 5, "net_up": -947, "adl": -11309}, {"date": "2025-11-18", "up": 364, "down": 1877, "flat": 200, "limit_up": 5, "limit_down": 9, "net_up": -1513, "adl": -12822}, {"date": "2025-11-19", "up": 632, "down": 1543, "flat": 267, "limit_up": 6, "limit_down": 5, "net_up": -911, "adl": -13733}, {"date": "2025-11-20", "up": 1718, "down": 491, "flat": 232, "limit_up": 18, "limit_down": 5, "net_up": 1227, "adl": -12506}, {"date": "2025-11-21", "up": 440, "down": 1788, "flat": 215, "limit_up": 7, "limit_down": 15, "net_up": -1348, "adl": -13854}, {"date": "2025-11-24", "up": 1568, "down": 633, "flat": 246, "limit_up": 28, "limit_down": 1, "net_up": 935, "adl": -12919}, {"date": "2025-11-25", "up": 1529, "down": 646, "flat": 272, "limit_up": 33, "limit_down": 2, "net_up": 883, "adl": -12036}, {"date": "2025-11-26", "up": 1710, "down": 529, "flat": 210, "limit_up": 38, "limit_down": 2, "net_up": 1181, "adl": -10855}, {"date": "2025-11-27", "up": 1278, "down": 899, "flat": 273, "limit_up": 23, "limit_down": 0, "net_up": 379, "adl": -10476}, {"date": "2025-11-28", "up": 1333, "down": 791, "flat": 326, "limit_up": 22, "limit_down": 0, "net_up": 542, "adl": -9934}, {"date": "2025-12-01", "up": 767, "down": 1419, "flat": 265, "limit_up": 20, "limit_down": 1, "net_up": -652, "adl": -10586}, {"date": "2025-12-02", "up": 1085, "down": 1060, "flat": 305, "limit_up": 26, "limit_down": 2, "net_up": 25, "adl": -10561}, {"date": "2025-12-03", "up": 1326, "down": 818, "flat": 305, "limit_up": 28, "limit_down": 0, "net_up": 508, "adl": -10053}, {"date": "2025-12-04", "up": 1107, "down": 1028, "flat": 314, "limit_up": 28, "limit_down": 1, "net_up": 79, "adl": -9974}, {"date": "2025-12-05", "up": 831, "down": 1320, "flat": 297, "limit_up": 20, "limit_down": 2, "net_up": -489, "adl": -10463}, {"date": "2025-12-08", "up": 993, "down": 1153, "flat": 303, "limit_up": 32, "limit_down": 3, "net_up": -160, "adl": -10623}, {"date": "2025-12-09", "up": 947, "down": 1214, "flat": 290, "limit_up": 32, "limit_down": 3, "net_up": -267, "adl": -10890}, {"date": "2025-12-10", "up": 912, "down": 1268, "flat": 271, "limit_up": 27, "limit_down": 0, "net_up": -356, "adl": -11246}, {"date": "2025-12-11", "up": 980, "down": 1180, "flat": 290, "limit_up": 33, "limit_down": 2, "net_up": -200, "adl": -11446}, {"date": "2025-12-12", "up": 1133, "down": 988, "flat": 329, "limit_up": 23, "limit_down": 1, "net_up": 145, "adl": -11301}, {"date": "2025-12-15", "up": 1064, "down": 1084, "flat": 302, "limit_up": 39, "limit_down": 2, "net_up": -20, "adl": -11321}, {"date": "2025-12-16", "up": 614, "down": 1585, "flat": 251, "limit_up": 28, "limit_down": 4, "net_up": -971, "adl": -12292}, {"date": "2025-12-17", "up": 1130, "down": 1025, "flat": 295, "limit_up": 31, "limit_down": 3, "net_up": 105, "adl": -12187}, {"date": "2025-12-18", "up": 861, "down": 1279, "flat": 309, "limit_up": 10, "limit_down": 2, "net_up": -418, "adl": -12605}, {"date": "2025-12-19", "up": 1489, "down": 644, "flat": 317, "limit_up": 18, "limit_down": 1, "net_up": 845, "adl": -11760}, {"date": "2025-12-22", "up": 1431, "down": 738, "flat": 285, "limit_up": 37, "limit_down": 1, "net_up": 693, "adl": -11067}, {"date": "2025-12-23", "up": 915, "down": 1193, "flat": 347, "limit_up": 27, "limit_down": 1, "net_up": -278, "adl": -11345}, {"date": "2025-12-24", "up": 837, "down": 1283, "flat": 335, "limit_up": 15, "limit_down": 1, "net_up": -446, "adl": -11791}, {"date": "2025-12-26", "up": 1075, "down": 1056, "flat": 323, "limit_up": 32, "limit_down": 0, "net_up": 19, "adl": -11772}, {"date": "2025-12-29", "up": 1136, "down": 1012, "flat": 307, "limit_up": 38, "limit_down": 4, "net_up": 124, "adl": -11648}, {"date": "2025-12-30", "up": 797, "down": 1361, "flat": 297, "limit_up": 29, "limit_down": 1, "net_up": -564, "adl": -12212}, {"date": "2025-12-31", "up": 990, "down": 1201, "flat": 262, "limit_up": 28, "limit_down": 1, "net_up": -211, "adl": -12423}, {"date": "2026-01-02", "up": 1155, "down": 1049, "flat": 249, "limit_up": 49, "limit_down": 1, "net_up": 106, "adl": -12317}, {"date": "2026-01-05", "up": 581, "down": 1694, "flat": 178, "limit_up": 38, "limit_down": 8, "net_up": -1113, "adl": -13430}, {"date": "2026-01-06", "up": 1235, "down": 961, "flat": 257, "limit_up": 37, "limit_down": 0, "net_up": 274, "adl": -13156}, {"date": "2026-01-07", "up": 1310, "down": 896, "flat": 246, "limit_up": 52, "limit_down": 1, "net_up": 414, "adl": -12742}, {"date": "2026-01-08", "up": 914, "down": 1305, "flat": 233, "limit_up": 38, "limit_down": 1, "net_up": -391, "adl": -13133}, {"date": "2026-01-09", "up": 1138, "down": 1046, "flat": 267, "limit_up": 39, "limit_down": 3, "net_up": 92, "adl": -13041}, {"date": "2026-01-12", "up": 1392, "down": 833, "flat": 228, "limit_up": 69, "limit_down": 1, "net_up": 559, "adl": -12482}, {"date": "2026-01-13", "up": 944, "down": 1314, "flat": 195, "limit_up": 44, "limit_down": 3, "net_up": -370, "adl": -12852}, {"date": "2026-01-14", "up": 1678, "down": 561, "flat": 214, "limit_up": 78, "limit_down": 0, "net_up": 1117, "adl": -11735}, {"date": "2026-01-15", "up": 1181, "down": 1038, "flat": 234, "limit_up": 44, "limit_down": 1, "net_up": 143, "adl": -11592}, {"date": "2026-01-16", "up": 967, "down": 1261, "flat": 225, "limit_up": 59, "limit_down": 5, "net_up": -294, "adl": -11886}, {"date": "2026-01-19", "up": 1174, "down": 1071, "flat": 209, "limit_up": 73, "limit_down": 1, "net_up": 103, "adl": -11783}, {"date": "2026-01-20", "up": 926, "down": 1255, "flat": 273, "limit_up": 54, "limit_down": 2, "net_up": -329, "adl": -12112}, {"date": "2026-01-21", "up": 583, "down": 1659, "flat": 212, "limit_up": 39, "limit_down": 5, "net_up": -1076, "adl": -13188}, {"date": "2026-01-22", "up": 1304, "down": 883, "flat": 267, "limit_up": 47, "limit_down": 1, "net_up": 421, "adl": -12767}, {"date": "2026-01-23", "up": 978, "down": 972, "flat": 223, "limit_up": 45, "limit_down": 5, "net_up": 6, "adl": -12761}, {"date": "2026-01-26", "up": 1231, "down": 995, "flat": 228, "limit_up": 66, "limit_down": 1, "net_up": 236, "adl": -12525}, {"date": "2026-01-27", "up": 989, "down": 1241, "flat": 223, "limit_up": 50, "limit_down": 2, "net_up": -252, "adl": -12777}, {"date": "2026-01-28", "up": 999, "down": 1226, "flat": 228, "limit_up": 50, "limit_down": 0, "net_up": -227, "adl": -13004}, {"date": "2026-01-29", "up": 599, "down": 1637, "flat": 217, "limit_up": 23, "limit_down": 8, "net_up": -1038, "adl": -14042}, {"date": "2026-01-30", "up": 514, "down": 1765, "flat": 174, "limit_up": 19, "limit_down": 4, "net_up": -1251, "adl": -15293}, {"date": "2026-02-02", "up": 542, "down": 1765, "flat": 146, "limit_up": 21, "limit_down": 17, "net_up": -1223, "adl": -16516}]};
-                
-                Chart.defaults.color = '#64748b';
-                Chart.defaults.borderColor = '#e2e8f0';
-                Chart.defaults.font.family = "'IBM Plex Sans', sans-serif";
-
-                // TAIEX Chart
-                const ctx = document.getElementById('taiexChart').getContext('2d');
-                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                gradient.addColorStop(0, 'rgba(13, 110, 253, 0.2)'); 
-                gradient.addColorStop(1, 'rgba(13, 110, 253, 0)');
-
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: data.taiex.map(d => d.date),
-                        datasets: [
-                            {
-                                label: '加權指數',
-                                data: data.taiex.map(d => d.close),
-                                borderColor: '#0d6efd',
-                                backgroundColor: gradient,
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                pointHoverRadius: 4,
-                                fill: true,
-                                tension: 0.1,
-                                yAxisID: 'y'
-                            },
-                            {
-                                label: '騰落線 (ADL)',
-                                data: data.breadth.map(d => d.adl),
-                                borderColor: '#6610f2',
-                                borderWidth: 2,
-                                pointRadius: 0,
-                                pointHoverRadius: 4,
-                                borderDash: [5, 5],
-                                fill: false,
-                                tension: 0.1,
-                                yAxisID: 'y1'
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        interaction: { intersect: false, mode: 'index' },
-                        scales: { 
-                            x: { display: true, grid: { display: false }, ticks: { maxTicksLimit: 10 } }, 
-                            y: { 
-                                type: 'linear',
-                                display: true,
-                                position: 'left',
-                                grid: { color: '#e2e8f0' },
-                                title: { display: true, text: 'Index Price' }
-                            },
-                            y1: {
-                                type: 'linear',
-                                display: true,
-                                position: 'right',
-                                grid: { display: false },
-                                title: { display: true, text: 'ADL Value' }
-                            }
-                        },
-                        plugins: { legend: { display: false } }
-                    }
-                });
-
-                // Sector Chart
-                const ctx2 = document.getElementById('sectorChart').getContext('2d');
-                    new Chart(ctx2, {
-                        type: 'bar',
-                        data: {
-                            labels: data.sectors.map(d => d.industry_category + ' (' + (d.diff_pct > 0 ? '+' : '') + d.diff_pct + '%)'),
-                            datasets: [{
-                                label: '成交金額',
-                                data: data.sectors.map(d => d.flow),
-                                backgroundColor: data.sectors.map(d => d.diff_pct > 0 ? '#dc3545' : (d.diff_pct < 0 ? '#198754' : '#6c757d')), 
-                                borderRadius: 4
-                            }]
-                        },
-                        options: {
-                        indexAxis: 'y',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: {
-                            x: { display: false },
-                            y: { grid: { display: false }, ticks: { color: '#475569', font: {weight: 'bold'} } }
-                        }
-                    }
-                });
-            </script>
-            </body>
-            </html>
-            
+{
+  "taiex": [
+    {
+      "date": "2025-06-09",
+      "open": 21773.45,
+      "max": 21866.27,
+      "min": 21717.52,
+      "close": 21790.29,
+      "Trading_Volume": 5424065394
+    },
+    {
+      "date": "2025-06-10",
+      "open": 21921.24,
+      "max": 22294.86,
+      "min": 21921.24,
+      "close": 22242.14,
+      "Trading_Volume": 6797923817
+    },
+    {
+      "date": "2025-06-11",
+      "open": 22376.37,
+      "max": 22470.1,
+      "min": 22294.6,
+      "close": 22470.1,
+      "Trading_Volume": 6677404614
+    },
+    {
+      "date": "2025-06-12",
+      "open": 22362.67,
+      "max": 22390.17,
+      "min": 22253.64,
+      "close": 22287.82,
+      "Trading_Volume": 5845048888
+    },
+    {
+      "date": "2025-06-13",
+      "open": 22215.5,
+      "max": 22228.01,
+      "min": 21984.36,
+      "close": 22072.95,
+      "Trading_Volume": 6908522212
+    },
+    {
+      "date": "2025-06-16",
+      "open": 22058.57,
+      "max": 22094.6,
+      "min": 21936.38,
+      "close": 22049.9,
+      "Trading_Volume": 5524506597
+    },
+    {
+      "date": "2025-06-17",
+      "open": 22172.59,
+      "max": 22331.69,
+      "min": 22118.46,
+      "close": 22211.59,
+      "Trading_Volume": 6125208525
+    },
+    {
+      "date": "2025-06-18",
+      "open": 22135.83,
+      "max": 22370.25,
+      "min": 22104.68,
+      "close": 22356.73,
+      "Trading_Volume": 6399812298
+    },
+    {
+      "date": "2025-06-19",
+      "open": 22238.1,
+      "max": 22249.4,
+      "min": 21973.04,
+      "close": 22003.5,
+      "Trading_Volume": 5689009009
+    },
+    {
+      "date": "2025-06-20",
+      "open": 21960.51,
+      "max": 22089.48,
+      "min": 21779.55,
+      "close": 22045.74,
+      "Trading_Volume": 6862237230
+    },
+    {
+      "date": "2025-06-23",
+      "open": 21750.7,
+      "max": 21801.32,
+      "min": 21551.58,
+      "close": 21732.02,
+      "Trading_Volume": 5617706428
+    },
+    {
+      "date": "2025-06-24",
+      "open": 22001.48,
+      "max": 22201.05,
+      "min": 22001.48,
+      "close": 22188.76,
+      "Trading_Volume": 7011455635
+    },
+    {
+      "date": "2025-06-25",
+      "open": 22341.87,
+      "max": 22444.51,
+      "min": 22284.52,
+      "close": 22430.61,
+      "Trading_Volume": 6335015793
+    },
+    {
+      "date": "2025-06-26",
+      "open": 22425.39,
+      "max": 22587.67,
+      "min": 22391.27,
+      "close": 22492.34,
+      "Trading_Volume": 6410607751
+    },
+    {
+      "date": "2025-06-27",
+      "open": 22503.85,
+      "max": 22580.08,
+      "min": 22388.59,
+      "close": 22580.08,
+      "Trading_Volume": 6064087692
+    },
+    {
+      "date": "2025-06-30",
+      "open": 22508.33,
+      "max": 22558.95,
+      "min": 22256.02,
+      "close": 22256.02,
+      "Trading_Volume": 5791190538
+    },
+    {
+      "date": "2025-07-01",
+      "open": 22419.74,
+      "max": 22730.76,
+      "min": 22401.58,
+      "close": 22553.72,
+      "Trading_Volume": 6415082209
+    },
+    {
+      "date": "2025-07-02",
+      "open": 22463.55,
+      "max": 22577.74,
+      "min": 22396.26,
+      "close": 22577.74,
+      "Trading_Volume": 5101662453
+    },
+    {
+      "date": "2025-07-03",
+      "open": 22707.41,
+      "max": 22816.2,
+      "min": 22700.86,
+      "close": 22712.97,
+      "Trading_Volume": 6029111627
+    },
+    {
+      "date": "2025-07-04",
+      "open": 22756.55,
+      "max": 22842.75,
+      "min": 22500.97,
+      "close": 22547.5,
+      "Trading_Volume": 5632671624
+    },
+    {
+      "date": "2025-07-07",
+      "open": 22550.14,
+      "max": 22550.5,
+      "min": 22294.11,
+      "close": 22428.72,
+      "Trading_Volume": 4962856527
+    },
+    {
+      "date": "2025-07-08",
+      "open": 22375.65,
+      "max": 22375.65,
+      "min": 22190.46,
+      "close": 22362.27,
+      "Trading_Volume": 5407011400
+    },
+    {
+      "date": "2025-07-09",
+      "open": 22253.17,
+      "max": 22527.01,
+      "min": 22211.1,
+      "close": 22527.01,
+      "Trading_Volume": 5646619850
+    },
+    {
+      "date": "2025-07-10",
+      "open": 22566.51,
+      "max": 22699.29,
+      "min": 22513.35,
+      "close": 22693.25,
+      "Trading_Volume": 5553213493
+    },
+    {
+      "date": "2025-07-11",
+      "open": 22602.81,
+      "max": 22770.01,
+      "min": 22601.95,
+      "close": 22751.03,
+      "Trading_Volume": 7092180625
+    },
+    {
+      "date": "2025-07-14",
+      "open": 22679.18,
+      "max": 22735.23,
+      "min": 22525.66,
+      "close": 22614.97,
+      "Trading_Volume": 4853105700
+    },
+    {
+      "date": "2025-07-15",
+      "open": 22618.43,
+      "max": 22888.23,
+      "min": 22588.26,
+      "close": 22835.94,
+      "Trading_Volume": 5429807871
+    },
+    {
+      "date": "2025-07-16",
+      "open": 22967.51,
+      "max": 23106.43,
+      "min": 22923.12,
+      "close": 23042.9,
+      "Trading_Volume": 6375009305
+    },
+    {
+      "date": "2025-07-17",
+      "open": 23042.97,
+      "max": 23159.54,
+      "min": 22923.37,
+      "close": 23113.28,
+      "Trading_Volume": 5826064387
+    },
+    {
+      "date": "2025-07-18",
+      "open": 23345.72,
+      "max": 23468.21,
+      "min": 23276.02,
+      "close": 23383.13,
+      "Trading_Volume": 6130525974
+    },
+    {
+      "date": "2025-07-21",
+      "open": 23314.29,
+      "max": 23403.83,
+      "min": 23243.79,
+      "close": 23340.56,
+      "Trading_Volume": 5279612934
+    },
+    {
+      "date": "2025-07-22",
+      "open": 23301.66,
+      "max": 23486.08,
+      "min": 22985.9,
+      "close": 22987.92,
+      "Trading_Volume": 6889507061
+    },
+    {
+      "date": "2025-07-23",
+      "open": 23063.57,
+      "max": 23318.67,
+      "min": 23063.57,
+      "close": 23318.67,
+      "Trading_Volume": 6238239859
+    },
+    {
+      "date": "2025-07-24",
+      "open": 23373.67,
+      "max": 23455.09,
+      "min": 23295.31,
+      "close": 23373.73,
+      "Trading_Volume": 6322628546
+    },
+    {
+      "date": "2025-07-25",
+      "open": 23454.59,
+      "max": 23485.56,
+      "min": 23308.45,
+      "close": 23364.38,
+      "Trading_Volume": 5964609783
+    },
+    {
+      "date": "2025-07-28",
+      "open": 23477.1,
+      "max": 23564.44,
+      "min": 23350.73,
+      "close": 23412.98,
+      "Trading_Volume": 5994460798
+    },
+    {
+      "date": "2025-07-29",
+      "open": 23414.36,
+      "max": 23422.17,
+      "min": 23094.67,
+      "close": 23201.52,
+      "Trading_Volume": 6685041420
+    },
+    {
+      "date": "2025-07-30",
+      "open": 23288.72,
+      "max": 23461.72,
+      "min": 23264.64,
+      "close": 23461.72,
+      "Trading_Volume": 6095108673
+    },
+    {
+      "date": "2025-07-31",
+      "open": 23523.59,
+      "max": 23631.11,
+      "min": 23454.44,
+      "close": 23542.52,
+      "Trading_Volume": 7079439551
+    },
+    {
+      "date": "2025-08-01",
+      "open": 23318.37,
+      "max": 23484.21,
+      "min": 23168.27,
+      "close": 23434.38,
+      "Trading_Volume": 6950284768
+    },
+    {
+      "date": "2025-08-04",
+      "open": 23260.18,
+      "max": 23378.94,
+      "min": 23151.65,
+      "close": 23378.94,
+      "Trading_Volume": 6547254437
+    },
+    {
+      "date": "2025-08-05",
+      "open": 23498.4,
+      "max": 23671.84,
+      "min": 23498.4,
+      "close": 23660.59,
+      "Trading_Volume": 6610002920
+    },
+    {
+      "date": "2025-08-06",
+      "open": 23443.36,
+      "max": 23557.49,
+      "min": 23433.53,
+      "close": 23447.36,
+      "Trading_Volume": 6009196963
+    },
+    {
+      "date": "2025-08-07",
+      "open": 23717.35,
+      "max": 24050.54,
+      "min": 23717.35,
+      "close": 24003.77,
+      "Trading_Volume": 7106666762
+    },
+    {
+      "date": "2025-08-08",
+      "open": 24026.65,
+      "max": 24131.46,
+      "min": 23967.99,
+      "close": 24021.26,
+      "Trading_Volume": 7010275195
+    },
+    {
+      "date": "2025-08-11",
+      "open": 23980.39,
+      "max": 24249.05,
+      "min": 23887.25,
+      "close": 24135.5,
+      "Trading_Volume": 7230198655
+    },
+    {
+      "date": "2025-08-12",
+      "open": 24182.84,
+      "max": 24263.92,
+      "min": 24065.43,
+      "close": 24158.36,
+      "Trading_Volume": 7513604403
+    },
+    {
+      "date": "2025-08-13",
+      "open": 24232.04,
+      "max": 24406.94,
+      "min": 24172.19,
+      "close": 24370.02,
+      "Trading_Volume": 8864976375
+    },
+    {
+      "date": "2025-08-14",
+      "open": 24258.5,
+      "max": 24389.51,
+      "min": 24198.88,
+      "close": 24238.1,
+      "Trading_Volume": 7941972349
+    },
+    {
+      "date": "2025-08-15",
+      "open": 24266.23,
+      "max": 24385.56,
+      "min": 24164.43,
+      "close": 24334.48,
+      "Trading_Volume": 7913302231
+    },
+    {
+      "date": "2025-08-18",
+      "open": 24272.55,
+      "max": 24515.65,
+      "min": 24257.3,
+      "close": 24482.52,
+      "Trading_Volume": 8459665044
+    },
+    {
+      "date": "2025-08-19",
+      "open": 24493.92,
+      "max": 24551.42,
+      "min": 24324.29,
+      "close": 24353.5,
+      "Trading_Volume": 8279842992
+    },
+    {
+      "date": "2025-08-20",
+      "open": 24309.27,
+      "max": 24309.27,
+      "min": 23620.24,
+      "close": 23625.44,
+      "Trading_Volume": 8611743600
+    },
+    {
+      "date": "2025-08-21",
+      "open": 23739.83,
+      "max": 24011.5,
+      "min": 23739.83,
+      "close": 23962.13,
+      "Trading_Volume": 6990398614
+    },
+    {
+      "date": "2025-08-22",
+      "open": 24033.02,
+      "max": 24071.65,
+      "min": 23764.47,
+      "close": 23764.47,
+      "Trading_Volume": 6571719689
+    },
+    {
+      "date": "2025-08-25",
+      "open": 24108.81,
+      "max": 24362.02,
+      "min": 24108.75,
+      "close": 24277.38,
+      "Trading_Volume": 7201907890
+    },
+    {
+      "date": "2025-08-26",
+      "open": 24237.36,
+      "max": 24382.42,
+      "min": 24113.03,
+      "close": 24305.1,
+      "Trading_Volume": 8259451660
+    },
+    {
+      "date": "2025-08-27",
+      "open": 24449.81,
+      "max": 24539.88,
+      "min": 24410.08,
+      "close": 24519.9,
+      "Trading_Volume": 7675360712
+    },
+    {
+      "date": "2025-08-28",
+      "open": 24468.12,
+      "max": 24502.37,
+      "min": 24236.45,
+      "close": 24236.45,
+      "Trading_Volume": 7619400963
+    },
+    {
+      "date": "2025-08-29",
+      "open": 24438.03,
+      "max": 24570.15,
+      "min": 24233.1,
+      "close": 24233.1,
+      "Trading_Volume": 7716714041
+    },
+    {
+      "date": "2025-09-01",
+      "open": 24143.37,
+      "max": 24312.83,
+      "min": 23885.41,
+      "close": 24071.73,
+      "Trading_Volume": 7882519521
+    },
+    {
+      "date": "2025-09-02",
+      "open": 24113.9,
+      "max": 24295.03,
+      "min": 23890.33,
+      "close": 24016.78,
+      "Trading_Volume": 6868073676
+    },
+    {
+      "date": "2025-09-03",
+      "open": 24036.88,
+      "max": 24103.23,
+      "min": 23925.49,
+      "close": 24100.3,
+      "Trading_Volume": 6215237843
+    },
+    {
+      "date": "2025-09-04",
+      "open": 24235.27,
+      "max": 24389.35,
+      "min": 24168.16,
+      "close": 24179.85,
+      "Trading_Volume": 7455297262
+    },
+    {
+      "date": "2025-09-05",
+      "open": 24244.26,
+      "max": 24494.58,
+      "min": 24244.26,
+      "close": 24494.58,
+      "Trading_Volume": 6973379276
+    },
+    {
+      "date": "2025-09-08",
+      "open": 24610.85,
+      "max": 24729.96,
+      "min": 24547.38,
+      "close": 24547.38,
+      "Trading_Volume": 7768998687
+    },
+    {
+      "date": "2025-09-09",
+      "open": 24650.46,
+      "max": 24880.07,
+      "min": 24650.46,
+      "close": 24855.18,
+      "Trading_Volume": 8091742979
+    },
+    {
+      "date": "2025-09-10",
+      "open": 25032.88,
+      "max": 25272.23,
+      "min": 25032.88,
+      "close": 25192.59,
+      "Trading_Volume": 8693632992
+    },
+    {
+      "date": "2025-09-11",
+      "open": 25509.3,
+      "max": 25541.44,
+      "min": 25174.13,
+      "close": 25215.71,
+      "Trading_Volume": 9553641157
+    },
+    {
+      "date": "2025-09-12",
+      "open": 25349.7,
+      "max": 25492.28,
+      "min": 25349.7,
+      "close": 25474.64,
+      "Trading_Volume": 7830621434
+    },
+    {
+      "date": "2025-09-15",
+      "open": 25494.1,
+      "max": 25519.94,
+      "min": 25284.17,
+      "close": 25357.16,
+      "Trading_Volume": 6958333955
+    },
+    {
+      "date": "2025-09-16",
+      "open": 25335.46,
+      "max": 25664.81,
+      "min": 25335.46,
+      "close": 25629.64,
+      "Trading_Volume": 7560459055
+    },
+    {
+      "date": "2025-09-17",
+      "open": 25543.91,
+      "max": 25632.07,
+      "min": 25422.96,
+      "close": 25438.25,
+      "Trading_Volume": 7849906030
+    },
+    {
+      "date": "2025-09-18",
+      "open": 25543.17,
+      "max": 25769.36,
+      "min": 25475.25,
+      "close": 25769.36,
+      "Trading_Volume": 8339290249
+    },
+    {
+      "date": "2025-09-19",
+      "open": 25794.66,
+      "max": 25864.01,
+      "min": 25578.37,
+      "close": 25578.37,
+      "Trading_Volume": 9787714693
+    },
+    {
+      "date": "2025-09-22",
+      "open": 25599.6,
+      "max": 25887.69,
+      "min": 25599.6,
+      "close": 25880.6,
+      "Trading_Volume": 7847993700
+    },
+    {
+      "date": "2025-09-23",
+      "open": 26121.0,
+      "max": 26307.3,
+      "min": 26041.69,
+      "close": 26247.37,
+      "Trading_Volume": 8950246446
+    },
+    {
+      "date": "2025-09-24",
+      "open": 26389.16,
+      "max": 26394.03,
+      "min": 26045.47,
+      "close": 26196.73,
+      "Trading_Volume": 7897848080
+    },
+    {
+      "date": "2025-09-25",
+      "open": 26067.97,
+      "max": 26247.85,
+      "min": 26023.85,
+      "close": 26023.85,
+      "Trading_Volume": 8846470892
+    },
+    {
+      "date": "2025-09-26",
+      "open": 25998.28,
+      "max": 25998.28,
+      "min": 25469.04,
+      "close": 25580.32,
+      "Trading_Volume": 8334201118
+    },
+    {
+      "date": "2025-09-30",
+      "open": 25738.31,
+      "max": 25975.84,
+      "min": 25738.31,
+      "close": 25820.54,
+      "Trading_Volume": 6699602406
+    },
+    {
+      "date": "2025-10-01",
+      "open": 26078.29,
+      "max": 26325.79,
+      "min": 25982.91,
+      "close": 25982.91,
+      "Trading_Volume": 7679791251
+    },
+    {
+      "date": "2025-10-02",
+      "open": 26392.31,
+      "max": 26489.79,
+      "min": 26330.25,
+      "close": 26378.39,
+      "Trading_Volume": 8085314896
+    },
+    {
+      "date": "2025-10-03",
+      "open": 26435.1,
+      "max": 26761.06,
+      "min": 26410.03,
+      "close": 26761.06,
+      "Trading_Volume": 7784825692
+    },
+    {
+      "date": "2025-10-07",
+      "open": 27029.28,
+      "max": 27301.42,
+      "min": 27017.08,
+      "close": 27211.95,
+      "Trading_Volume": 9348656371
+    },
+    {
+      "date": "2025-10-08",
+      "open": 26999.82,
+      "max": 27110.43,
+      "min": 26883.99,
+      "close": 27063.68,
+      "Trading_Volume": 8261189883
+    },
+    {
+      "date": "2025-10-09",
+      "open": 27301.61,
+      "max": 27463.12,
+      "min": 27253.07,
+      "close": 27301.92,
+      "Trading_Volume": 9444331803
+    },
+    {
+      "date": "2025-10-13",
+      "open": 26762.6,
+      "max": 26965.72,
+      "min": 26470.44,
+      "close": 26923.42,
+      "Trading_Volume": 10191083804
+    },
+    {
+      "date": "2025-10-14",
+      "open": 27282.1,
+      "max": 27507.16,
+      "min": 26764.06,
+      "close": 26793.15,
+      "Trading_Volume": 12066540173
+    },
+    {
+      "date": "2025-10-15",
+      "open": 26911.05,
+      "max": 27275.71,
+      "min": 26773.15,
+      "close": 27275.71,
+      "Trading_Volume": 8387861014
+    },
+    {
+      "date": "2025-10-16",
+      "open": 27337.32,
+      "max": 27732.78,
+      "min": 27337.32,
+      "close": 27647.87,
+      "Trading_Volume": 9035460141
+    },
+    {
+      "date": "2025-10-17",
+      "open": 27399.91,
+      "max": 27513.09,
+      "min": 27302.37,
+      "close": 27302.37,
+      "Trading_Volume": 8962849575
+    },
+    {
+      "date": "2025-10-20",
+      "open": 27480.44,
+      "max": 27768.27,
+      "min": 27412.45,
+      "close": 27688.63,
+      "Trading_Volume": 8045886081
+    },
+    {
+      "date": "2025-10-21",
+      "open": 27742.55,
+      "max": 27969.05,
+      "min": 27742.55,
+      "close": 27752.41,
+      "Trading_Volume": 8507303277
+    },
+    {
+      "date": "2025-10-22",
+      "open": 27614.11,
+      "max": 27725.83,
+      "min": 27490.89,
+      "close": 27648.91,
+      "Trading_Volume": 7835590935
+    },
+    {
+      "date": "2025-10-23",
+      "open": 27457.07,
+      "max": 27586.85,
+      "min": 27371.67,
+      "close": 27532.26,
+      "Trading_Volume": 7318554768
+    },
+    {
+      "date": "2025-10-27",
+      "open": 28029.88,
+      "max": 28196.33,
+      "min": 27993.63,
+      "close": 27993.63,
+      "Trading_Volume": 9337097751
+    },
+    {
+      "date": "2025-10-28",
+      "open": 28041.01,
+      "max": 28087.93,
+      "min": 27885.62,
+      "close": 27949.11,
+      "Trading_Volume": 8579810711
+    },
+    {
+      "date": "2025-10-29",
+      "open": 28157.91,
+      "max": 28395.31,
+      "min": 28139.65,
+      "close": 28294.74,
+      "Trading_Volume": 9076231278
+    },
+    {
+      "date": "2025-10-30",
+      "open": 28350.24,
+      "max": 28527.68,
+      "min": 28116.6,
+      "close": 28287.53,
+      "Trading_Volume": 9446378341
+    },
+    {
+      "date": "2025-10-31",
+      "open": 28280.47,
+      "max": 28489.76,
+      "min": 28233.35,
+      "close": 28233.35,
+      "Trading_Volume": 8339995492
+    },
+    {
+      "date": "2025-11-03",
+      "open": 28253.53,
+      "max": 28494.99,
+      "min": 28150.45,
+      "close": 28334.59,
+      "Trading_Volume": 8299689369
+    },
+    {
+      "date": "2025-11-04",
+      "open": 28364.76,
+      "max": 28554.61,
+      "min": 28033.62,
+      "close": 28116.56,
+      "Trading_Volume": 8404740088
+    },
+    {
+      "date": "2025-11-05",
+      "open": 27785.91,
+      "max": 27799.09,
+      "min": 27373.05,
+      "close": 27717.06,
+      "Trading_Volume": 8989778518
+    },
+    {
+      "date": "2025-11-06",
+      "open": 27906.44,
+      "max": 28061.53,
+      "min": 27879.7,
+      "close": 27899.45,
+      "Trading_Volume": 7863001986
+    },
+    {
+      "date": "2025-11-07",
+      "open": 27818.54,
+      "max": 27818.54,
+      "min": 27621.48,
+      "close": 27651.41,
+      "Trading_Volume": 7878592276
+    },
+    {
+      "date": "2025-11-10",
+      "open": 27805.47,
+      "max": 27976.89,
+      "min": 27680.51,
+      "close": 27869.51,
+      "Trading_Volume": 7491028505
+    },
+    {
+      "date": "2025-11-11",
+      "open": 28031.54,
+      "max": 28187.7,
+      "min": 27784.95,
+      "close": 27784.95,
+      "Trading_Volume": 8924063428
+    },
+    {
+      "date": "2025-11-12",
+      "open": 27853.47,
+      "max": 28071.76,
+      "min": 27799.92,
+      "close": 27947.09,
+      "Trading_Volume": 8954069218
+    },
+    {
+      "date": "2025-11-13",
+      "open": 27867.59,
+      "max": 28038.24,
+      "min": 27811.81,
+      "close": 27903.56,
+      "Trading_Volume": 10545273898
+    },
+    {
+      "date": "2025-11-14",
+      "open": 27816.45,
+      "max": 27816.45,
+      "min": 27383.34,
+      "close": 27397.5,
+      "Trading_Volume": 9939352945
+    },
+    {
+      "date": "2025-11-17",
+      "open": 27600.74,
+      "max": 27723.77,
+      "min": 27447.31,
+      "close": 27447.31,
+      "Trading_Volume": 8604107358
+    },
+    {
+      "date": "2025-11-18",
+      "open": 27310.4,
+      "max": 27310.4,
+      "min": 26756.12,
+      "close": 26756.12,
+      "Trading_Volume": 10450443082
+    },
+    {
+      "date": "2025-11-19",
+      "open": 26708.28,
+      "max": 26902.97,
+      "min": 26580.12,
+      "close": 26580.12,
+      "Trading_Volume": 8069342681
+    },
+    {
+      "date": "2025-11-20",
+      "open": 27212.91,
+      "max": 27493.63,
+      "min": 27183.03,
+      "close": 27426.36,
+      "Trading_Volume": 8497528679
+    },
+    {
+      "date": "2025-11-21",
+      "open": 26821.97,
+      "max": 26821.97,
+      "min": 26395.98,
+      "close": 26434.94,
+      "Trading_Volume": 8853582470
+    },
+    {
+      "date": "2025-11-24",
+      "open": 26596.03,
+      "max": 26764.13,
+      "min": 26482.33,
+      "close": 26504.24,
+      "Trading_Volume": 9236525911
+    },
+    {
+      "date": "2025-11-25",
+      "open": 26995.9,
+      "max": 27118.02,
+      "min": 26793.71,
+      "close": 26912.17,
+      "Trading_Volume": 6714625759
+    },
+    {
+      "date": "2025-11-26",
+      "open": 27063.17,
+      "max": 27409.54,
+      "min": 27063.17,
+      "close": 27409.54,
+      "Trading_Volume": 7902773415
+    },
+    {
+      "date": "2025-11-27",
+      "open": 27517.24,
+      "max": 27659.06,
+      "min": 27436.59,
+      "close": 27554.53,
+      "Trading_Volume": 7539156843
+    }
+  ],
+  "sectors": [
+    {
+      "industry_category": "上櫃ETF",
+      "flow": 5350954100.24,
+      "diff_pct": 129.85
+    },
+    {
+      "industry_category": "通信網路業",
+      "flow": 2781143789.9,
+      "diff_pct": 585.63
+    },
+    {
+      "industry_category": "電機機械",
+      "flow": 2551957195.1,
+      "diff_pct": 281.25
+    },
+    {
+      "industry_category": "電腦及週邊設備業",
+      "flow": 1699488278.56,
+      "diff_pct": 138.9
+    },
+    {
+      "industry_category": "其他電子類",
+      "flow": 1400137146.35,
+      "diff_pct": 179.9
+    },
+    {
+      "industry_category": "其他電子業",
+      "flow": 1132650660.0,
+      "diff_pct": 463.37
+    },
+    {
+      "industry_category": "鋼鐵工業",
+      "flow": 378533153.63000005,
+      "diff_pct": 153.85
+    },
+    {
+      "industry_category": "生技醫療業",
+      "flow": 356479361.55,
+      "diff_pct": -62.22
+    },
+    {
+      "industry_category": "居家生活",
+      "flow": 301105336.85,
+      "diff_pct": 246.76
+    },
+    {
+      "industry_category": "化學工業",
+      "flow": 244036424.85,
+      "diff_pct": 207.69
+    }
+  ],
+  "breadth": [
+    {
+      "date": "2025-08-11",
+      "up": 12081,
+      "down": 12351,
+      "flat": 19778,
+      "limit_up": 2939,
+      "limit_down": 6021,
+      "net_up": -270,
+      "adl": -270
+    },
+    {
+      "date": "2025-08-12",
+      "up": 12530,
+      "down": 11688,
+      "flat": 20075,
+      "limit_up": 2988,
+      "limit_down": 5336,
+      "net_up": 842,
+      "adl": 572
+    },
+    {
+      "date": "2025-08-13",
+      "up": 14067,
+      "down": 10833,
+      "flat": 19610,
+      "limit_up": 3142,
+      "limit_down": 5302,
+      "net_up": 3234,
+      "adl": 3806
+    },
+    {
+      "date": "2025-08-14",
+      "up": 12591,
+      "down": 12181,
+      "flat": 19785,
+      "limit_up": 3231,
+      "limit_down": 6060,
+      "net_up": 410,
+      "adl": 4216
+    },
+    {
+      "date": "2025-08-15",
+      "up": 10810,
+      "down": 13280,
+      "flat": 19932,
+      "limit_up": 2611,
+      "limit_down": 6047,
+      "net_up": -2470,
+      "adl": 1746
+    },
+    {
+      "date": "2025-08-18",
+      "up": 14321,
+      "down": 10093,
+      "flat": 19591,
+      "limit_up": 4085,
+      "limit_down": 4999,
+      "net_up": 4228,
+      "adl": 5974
+    },
+    {
+      "date": "2025-08-19",
+      "up": 9627,
+      "down": 14304,
+      "flat": 20074,
+      "limit_up": 1916,
+      "limit_down": 6696,
+      "net_up": -4677,
+      "adl": 1297
+    },
+    {
+      "date": "2025-08-20",
+      "up": 6743,
+      "down": 18099,
+      "flat": 19350,
+      "limit_up": 1294,
+      "limit_down": 12471,
+      "net_up": -11356,
+      "adl": -10059
+    },
+    {
+      "date": "2025-08-21",
+      "up": 14772,
+      "down": 9325,
+      "flat": 20259,
+      "limit_up": 3991,
+      "limit_down": 5506,
+      "net_up": 5447,
+      "adl": -4612
+    },
+    {
+      "date": "2025-08-22",
+      "up": 8889,
+      "down": 13899,
+      "flat": 21182,
+      "limit_up": 1342,
+      "limit_down": 6248,
+      "net_up": -5010,
+      "adl": -9622
+    },
+    {
+      "date": "2025-08-25",
+      "up": 16531,
+      "down": 7475,
+      "flat": 20119,
+      "limit_up": 5804,
+      "limit_down": 4692,
+      "net_up": 9056,
+      "adl": -566
+    },
+    {
+      "date": "2025-08-26",
+      "up": 12152,
+      "down": 11385,
+      "flat": 20767,
+      "limit_up": 2828,
+      "limit_down": 4970,
+      "net_up": 767,
+      "adl": 201
+    },
+    {
+      "date": "2025-08-27",
+      "up": 16066,
+      "down": 8133,
+      "flat": 20394,
+      "limit_up": 4520,
+      "limit_down": 4148,
+      "net_up": 7933,
+      "adl": 8134
+    },
+    {
+      "date": "2025-08-28",
+      "up": 11367,
+      "down": 12930,
+      "flat": 20552,
+      "limit_up": 2455,
+      "limit_down": 5509,
+      "net_up": -1563,
+      "adl": 6571
+    },
+    {
+      "date": "2025-08-29",
+      "up": 12081,
+      "down": 12051,
+      "flat": 20912,
+      "limit_up": 3208,
+      "limit_down": 5478,
+      "net_up": 30,
+      "adl": 6601
+    },
+    {
+      "date": "2025-09-01",
+      "up": 8289,
+      "down": 16714,
+      "flat": 20078,
+      "limit_up": 1873,
+      "limit_down": 10782,
+      "net_up": -8425,
+      "adl": -1824
+    },
+    {
+      "date": "2025-09-02",
+      "up": 9112,
+      "down": 14820,
+      "flat": 21174,
+      "limit_up": 1495,
+      "limit_down": 8165,
+      "net_up": -5708,
+      "adl": -7532
+    },
+    {
+      "date": "2025-09-03",
+      "up": 12912,
+      "down": 10419,
+      "flat": 21822,
+      "limit_up": 2996,
+      "limit_down": 5374,
+      "net_up": 2493,
+      "adl": -5039
+    },
+    {
+      "date": "2025-09-04",
+      "up": 12824,
+      "down": 10824,
+      "flat": 21331,
+      "limit_up": 2514,
+      "limit_down": 5218,
+      "net_up": 2000,
+      "adl": -3039
+    },
+    {
+      "date": "2025-09-05",
+      "up": 13134,
+      "down": 10970,
+      "flat": 20734,
+      "limit_up": 3384,
+      "limit_down": 5478,
+      "net_up": 2164,
+      "adl": -875
+    },
+    {
+      "date": "2025-09-08",
+      "up": 13900,
+      "down": 10125,
+      "flat": 20861,
+      "limit_up": 3499,
+      "limit_down": 4978,
+      "net_up": 3775,
+      "adl": 2900
+    },
+    {
+      "date": "2025-09-09",
+      "up": 12130,
+      "down": 12225,
+      "flat": 20610,
+      "limit_up": 2842,
+      "limit_down": 5918,
+      "net_up": -95,
+      "adl": 2805
+    },
+    {
+      "date": "2025-09-10",
+      "up": 13318,
+      "down": 11425,
+      "flat": 20264,
+      "limit_up": 3730,
+      "limit_down": 5509,
+      "net_up": 1893,
+      "adl": 4698
+    },
+    {
+      "date": "2025-09-11",
+      "up": 9846,
+      "down": 15096,
+      "flat": 20080,
+      "limit_up": 2217,
+      "limit_down": 7683,
+      "net_up": -5250,
+      "adl": -552
+    },
+    {
+      "date": "2025-09-12",
+      "up": 11087,
+      "down": 13280,
+      "flat": 20584,
+      "limit_up": 2037,
+      "limit_down": 7269,
+      "net_up": -2193,
+      "adl": -2745
+    },
+    {
+      "date": "2025-09-15",
+      "up": 8121,
+      "down": 14686,
+      "flat": 22203,
+      "limit_up": 1465,
+      "limit_down": 7743,
+      "net_up": -6565,
+      "adl": -9310
+    },
+    {
+      "date": "2025-09-16",
+      "up": 12661,
+      "down": 10568,
+      "flat": 21732,
+      "limit_up": 2958,
+      "limit_down": 5236,
+      "net_up": 2093,
+      "adl": -7217
+    },
+    {
+      "date": "2025-09-17",
+      "up": 9963,
+      "down": 12912,
+      "flat": 22107,
+      "limit_up": 1925,
+      "limit_down": 5689,
+      "net_up": -2949,
+      "adl": -10166
+    },
+    {
+      "date": "2025-09-18",
+      "up": 14112,
+      "down": 9713,
+      "flat": 21141,
+      "limit_up": 3366,
+      "limit_down": 4855,
+      "net_up": 4399,
+      "adl": -5767
+    },
+    {
+      "date": "2025-09-19",
+      "up": 12202,
+      "down": 11564,
+      "flat": 21233,
+      "limit_up": 2719,
+      "limit_down": 5058,
+      "net_up": 638,
+      "adl": -5129
+    },
+    {
+      "date": "2025-09-22",
+      "up": 13535,
+      "down": 11156,
+      "flat": 20458,
+      "limit_up": 3468,
+      "limit_down": 5868,
+      "net_up": 2379,
+      "adl": -2750
+    },
+    {
+      "date": "2025-09-23",
+      "up": 11430,
+      "down": 13360,
+      "flat": 20356,
+      "limit_up": 2635,
+      "limit_down": 6055,
+      "net_up": -1930,
+      "adl": -4680
+    },
+    {
+      "date": "2025-09-24",
+      "up": 9659,
+      "down": 14774,
+      "flat": 20816,
+      "limit_up": 1720,
+      "limit_down": 7764,
+      "net_up": -5115,
+      "adl": -9795
+    },
+    {
+      "date": "2025-09-25",
+      "up": 10526,
+      "down": 13490,
+      "flat": 21279,
+      "limit_up": 2229,
+      "limit_down": 6850,
+      "net_up": -2964,
+      "adl": -12759
+    },
+    {
+      "date": "2025-09-26",
+      "up": 6364,
+      "down": 18104,
+      "flat": 20551,
+      "limit_up": 1088,
+      "limit_down": 12529,
+      "net_up": -11740,
+      "adl": -24499
+    },
+    {
+      "date": "2025-09-30",
+      "up": 15682,
+      "down": 9147,
+      "flat": 20303,
+      "limit_up": 5033,
+      "limit_down": 5933,
+      "net_up": 6535,
+      "adl": -17964
+    },
+    {
+      "date": "2025-10-01",
+      "up": 12363,
+      "down": 11225,
+      "flat": 21652,
+      "limit_up": 2361,
+      "limit_down": 4605,
+      "net_up": 1138,
+      "adl": -16826
+    },
+    {
+      "date": "2025-10-02",
+      "up": 11522,
+      "down": 12701,
+      "flat": 21180,
+      "limit_up": 3129,
+      "limit_down": 6518,
+      "net_up": -1179,
+      "adl": -18005
+    },
+    {
+      "date": "2025-10-03",
+      "up": 12196,
+      "down": 11638,
+      "flat": 21075,
+      "limit_up": 2985,
+      "limit_down": 5769,
+      "net_up": 558,
+      "adl": -17447
+    },
+    {
+      "date": "2025-10-07",
+      "up": 15639,
+      "down": 9237,
+      "flat": 20253,
+      "limit_up": 4535,
+      "limit_down": 4907,
+      "net_up": 6402,
+      "adl": -11045
+    },
+    {
+      "date": "2025-10-08",
+      "up": 10474,
+      "down": 14451,
+      "flat": 20533,
+      "limit_up": 2035,
+      "limit_down": 7031,
+      "net_up": -3977,
+      "adl": -15022
+    },
+    {
+      "date": "2025-10-09",
+      "up": 12954,
+      "down": 11700,
+      "flat": 20405,
+      "limit_up": 3440,
+      "limit_down": 5421,
+      "net_up": 1254,
+      "adl": -13768
+    },
+    {
+      "date": "2025-10-13",
+      "up": 8186,
+      "down": 17863,
+      "flat": 19250,
+      "limit_up": 1335,
+      "limit_down": 11851,
+      "net_up": -9677,
+      "adl": -23445
+    },
+    {
+      "date": "2025-10-14",
+      "up": 12794,
+      "down": 13374,
+      "flat": 19292,
+      "limit_up": 3840,
+      "limit_down": 7919,
+      "net_up": -580,
+      "adl": -24025
+    },
+    {
+      "date": "2025-10-15",
+      "up": 11726,
+      "down": 14234,
+      "flat": 19457,
+      "limit_up": 3152,
+      "limit_down": 8804,
+      "net_up": -2508,
+      "adl": -26533
+    },
+    {
+      "date": "2025-10-16",
+      "up": 17058,
+      "down": 8225,
+      "flat": 20147,
+      "limit_up": 5517,
+      "limit_down": 4504,
+      "net_up": 8833,
+      "adl": -17700
+    },
+    {
+      "date": "2025-10-17",
+      "up": 8896,
+      "down": 16411,
+      "flat": 19972,
+      "limit_up": 1988,
+      "limit_down": 8914,
+      "net_up": -7515,
+      "adl": -25215
+    },
+    {
+      "date": "2025-10-20",
+      "up": 12132,
+      "down": 12247,
+      "flat": 21095,
+      "limit_up": 3321,
+      "limit_down": 6356,
+      "net_up": -115,
+      "adl": -25330
+    },
+    {
+      "date": "2025-10-21",
+      "up": 15456,
+      "down": 9086,
+      "flat": 21134,
+      "limit_up": 3944,
+      "limit_down": 4451,
+      "net_up": 6370,
+      "adl": -18960
+    },
+    {
+      "date": "2025-10-22",
+      "up": 10565,
+      "down": 13865,
+      "flat": 21433,
+      "limit_up": 1625,
+      "limit_down": 6441,
+      "net_up": -3300,
+      "adl": -22260
+    },
+    {
+      "date": "2025-10-23",
+      "up": 8341,
+      "down": 15618,
+      "flat": 21599,
+      "limit_up": 1381,
+      "limit_down": 7539,
+      "net_up": -7277,
+      "adl": -29537
+    },
+    {
+      "date": "2025-10-27",
+      "up": 14531,
+      "down": 9639,
+      "flat": 21561,
+      "limit_up": 4863,
+      "limit_down": 5316,
+      "net_up": 4892,
+      "adl": -24645
+    },
+    {
+      "date": "2025-10-28",
+      "up": 10986,
+      "down": 13398,
+      "flat": 21594,
+      "limit_up": 2547,
+      "limit_down": 6843,
+      "net_up": -2412,
+      "adl": -27057
+    },
+    {
+      "date": "2025-10-29",
+      "up": 13785,
+      "down": 10914,
+      "flat": 21475,
+      "limit_up": 3801,
+      "limit_down": 5411,
+      "net_up": 2871,
+      "adl": -24186
+    },
+    {
+      "date": "2025-10-30",
+      "up": 10793,
+      "down": 14121,
+      "flat": 21462,
+      "limit_up": 2364,
+      "limit_down": 7373,
+      "net_up": -3328,
+      "adl": -27514
+    },
+    {
+      "date": "2025-10-31",
+      "up": 13820,
+      "down": 11419,
+      "flat": 21112,
+      "limit_up": 4118,
+      "limit_down": 5979,
+      "net_up": 2401,
+      "adl": -25113
+    },
+    {
+      "date": "2025-11-03",
+      "up": 12755,
+      "down": 12627,
+      "flat": 21043,
+      "limit_up": 3488,
+      "limit_down": 6165,
+      "net_up": 128,
+      "adl": -24985
+    },
+    {
+      "date": "2025-11-04",
+      "up": 8938,
+      "down": 16459,
+      "flat": 21134,
+      "limit_up": 1876,
+      "limit_down": 9206,
+      "net_up": -7521,
+      "adl": -32506
+    },
+    {
+      "date": "2025-11-05",
+      "up": 8879,
+      "down": 17030,
+      "flat": 20666,
+      "limit_up": 1429,
+      "limit_down": 10700,
+      "net_up": -8151,
+      "adl": -40657
+    },
+    {
+      "date": "2025-11-06",
+      "up": 15786,
+      "down": 9261,
+      "flat": 21562,
+      "limit_up": 5213,
+      "limit_down": 5370,
+      "net_up": 6525,
+      "adl": -34132
+    },
+    {
+      "date": "2025-11-07",
+      "up": 7841,
+      "down": 16860,
+      "flat": 21853,
+      "limit_up": 1205,
+      "limit_down": 9500,
+      "net_up": -9019,
+      "adl": -43151
+    },
+    {
+      "date": "2025-11-10",
+      "up": 11881,
+      "down": 12540,
+      "flat": 22227,
+      "limit_up": 3237,
+      "limit_down": 7454,
+      "net_up": -659,
+      "adl": -43810
+    },
+    {
+      "date": "2025-11-11",
+      "up": 13176,
+      "down": 11181,
+      "flat": 22411,
+      "limit_up": 3508,
+      "limit_down": 5636,
+      "net_up": 1995,
+      "adl": -41815
+    },
+    {
+      "date": "2025-11-12",
+      "up": 12577,
+      "down": 12205,
+      "flat": 22057,
+      "limit_up": 2911,
+      "limit_down": 6531,
+      "net_up": 372,
+      "adl": -41443
+    },
+    {
+      "date": "2025-11-13",
+      "up": 12611,
+      "down": 12176,
+      "flat": 22173,
+      "limit_up": 3550,
+      "limit_down": 5858,
+      "net_up": 435,
+      "adl": -41008
+    },
+    {
+      "date": "2025-11-14",
+      "up": 7858,
+      "down": 17465,
+      "flat": 21583,
+      "limit_up": 1465,
+      "limit_down": 10254,
+      "net_up": -9607,
+      "adl": -50615
+    },
+    {
+      "date": "2025-11-17",
+      "up": 10037,
+      "down": 14555,
+      "flat": 22396,
+      "limit_up": 2308,
+      "limit_down": 8115,
+      "net_up": -4518,
+      "adl": -55133
+    },
+    {
+      "date": "2025-11-18",
+      "up": 8279,
+      "down": 16676,
+      "flat": 22119,
+      "limit_up": 1613,
+      "limit_down": 11023,
+      "net_up": -8397,
+      "adl": -63530
+    },
+    {
+      "date": "2025-11-19",
+      "up": 7827,
+      "down": 16192,
+      "flat": 23069,
+      "limit_up": 1354,
+      "limit_down": 9732,
+      "net_up": -8365,
+      "adl": -71895
+    },
+    {
+      "date": "2025-11-20",
+      "up": 16301,
+      "down": 7632,
+      "flat": 23277,
+      "limit_up": 6542,
+      "limit_down": 5335,
+      "net_up": 8669,
+      "adl": -63226
+    },
+    {
+      "date": "2025-11-21",
+      "up": 6609,
+      "down": 17635,
+      "flat": 22844,
+      "limit_up": 1688,
+      "limit_down": 13067,
+      "net_up": -11026,
+      "adl": -74252
+    },
+    {
+      "date": "2025-11-24",
+      "up": 11436,
+      "down": 11558,
+      "flat": 24191,
+      "limit_up": 2497,
+      "limit_down": 6831,
+      "net_up": -122,
+      "adl": -74374
+    },
+    {
+      "date": "2025-11-25",
+      "up": 15037,
+      "down": 7812,
+      "flat": 24424,
+      "limit_up": 5299,
+      "limit_down": 4769,
+      "net_up": 7225,
+      "adl": -67149
+    },
+    {
+      "date": "2025-11-26",
+      "up": 16904,
+      "down": 7653,
+      "flat": 22762,
+      "limit_up": 5263,
+      "limit_down": 4836,
+      "net_up": 9251,
+      "adl": -57898
+    },
+    {
+      "date": "2025-11-27",
+      "up": 14321,
+      "down": 10283,
+      "flat": 22795,
+      "limit_up": 3886,
+      "limit_down": 5250,
+      "net_up": 4038,
+      "adl": -53860
+    },
+    {
+      "date": "2025-11-28",
+      "up": 13848,
+      "down": 10726,
+      "flat": 22750,
+      "limit_up": 3715,
+      "limit_down": 5473,
+      "net_up": 3122,
+      "adl": -50738
+    },
+    {
+      "date": "2025-12-01",
+      "up": 9435,
+      "down": 14628,
+      "flat": 23410,
+      "limit_up": 2361,
+      "limit_down": 7971,
+      "net_up": -5193,
+      "adl": -55931
+    },
+    {
+      "date": "2025-12-02",
+      "up": 10288,
+      "down": 12800,
+      "flat": 24493,
+      "limit_up": 1857,
+      "limit_down": 6593,
+      "net_up": -2512,
+      "adl": -58443
+    },
+    {
+      "date": "2025-12-03",
+      "up": 12354,
+      "down": 10538,
+      "flat": 24697,
+      "limit_up": 2236,
+      "limit_down": 5377,
+      "net_up": 1816,
+      "adl": -56627
+    },
+    {
+      "date": "2025-12-04",
+      "up": 9935,
+      "down": 12560,
+      "flat": 25163,
+      "limit_up": 1344,
+      "limit_down": 5805,
+      "net_up": -2625,
+      "adl": -59252
+    },
+    {
+      "date": "2025-12-05",
+      "up": 11011,
+      "down": 11838,
+      "flat": 24656,
+      "limit_up": 1917,
+      "limit_down": 5851,
+      "net_up": -827,
+      "adl": -60079
+    },
+    {
+      "date": "2025-12-08",
+      "up": 12836,
+      "down": 10491,
+      "flat": 24269,
+      "limit_up": 3320,
+      "limit_down": 5104,
+      "net_up": 2345,
+      "adl": -57734
+    },
+    {
+      "date": "2025-12-09",
+      "up": 12523,
+      "down": 11344,
+      "flat": 23830,
+      "limit_up": 2496,
+      "limit_down": 5365,
+      "net_up": 1179,
+      "adl": -56555
+    },
+    {
+      "date": "2025-12-10",
+      "up": 12004,
+      "down": 12286,
+      "flat": 23536,
+      "limit_up": 2738,
+      "limit_down": 6260,
+      "net_up": -282,
+      "adl": -56837
+    },
+    {
+      "date": "2025-12-11",
+      "up": 11755,
+      "down": 12462,
+      "flat": 23607,
+      "limit_up": 2477,
+      "limit_down": 6578,
+      "net_up": -707,
+      "adl": -57544
+    },
+    {
+      "date": "2025-12-12",
+      "up": 11488,
+      "down": 12771,
+      "flat": 23418,
+      "limit_up": 2381,
+      "limit_down": 6749,
+      "net_up": -1283,
+      "adl": -58827
+    },
+    {
+      "date": "2025-12-15",
+      "up": 9638,
+      "down": 14823,
+      "flat": 23250,
+      "limit_up": 1702,
+      "limit_down": 8393,
+      "net_up": -5185,
+      "adl": -64012
+    },
+    {
+      "date": "2025-12-16",
+      "up": 7232,
+      "down": 16940,
+      "flat": 23657,
+      "limit_up": 985,
+      "limit_down": 9565,
+      "net_up": -9708,
+      "adl": -73720
+    },
+    {
+      "date": "2025-12-17",
+      "up": 11931,
+      "down": 12045,
+      "flat": 23871,
+      "limit_up": 2763,
+      "limit_down": 6790,
+      "net_up": -114,
+      "adl": -73834
+    },
+    {
+      "date": "2025-12-18",
+      "up": 7999,
+      "down": 14977,
+      "flat": 24915,
+      "limit_up": 732,
+      "limit_down": 7474,
+      "net_up": -6978,
+      "adl": -80812
+    },
+    {
+      "date": "2025-12-19",
+      "up": 15181,
+      "down": 8610,
+      "flat": 23907,
+      "limit_up": 3855,
+      "limit_down": 5005,
+      "net_up": 6571,
+      "adl": -74241
+    },
+    {
+      "date": "2025-12-22",
+      "up": 17058,
+      "down": 7708,
+      "flat": 23012,
+      "limit_up": 5499,
+      "limit_down": 4546,
+      "net_up": 9350,
+      "adl": -64891
+    },
+    {
+      "date": "2025-12-23",
+      "up": 11393,
+      "down": 13005,
+      "flat": 23498,
+      "limit_up": 2436,
+      "limit_down": 6056,
+      "net_up": -1612,
+      "adl": -66503
+    },
+    {
+      "date": "2025-12-24",
+      "up": 10915,
+      "down": 12691,
+      "flat": 24075,
+      "limit_up": 2081,
+      "limit_down": 5894,
+      "net_up": -1776,
+      "adl": -68279
+    },
+    {
+      "date": "2025-12-26",
+      "up": 12979,
+      "down": 10570,
+      "flat": 24056,
+      "limit_up": 2732,
+      "limit_down": 5044,
+      "net_up": 2409,
+      "adl": -65870
+    },
+    {
+      "date": "2025-12-29",
+      "up": 13160,
+      "down": 11637,
+      "flat": 22996,
+      "limit_up": 2903,
+      "limit_down": 5805,
+      "net_up": 1523,
+      "adl": -64347
+    },
+    {
+      "date": "2025-12-30",
+      "up": 10306,
+      "down": 14315,
+      "flat": 23251,
+      "limit_up": 1981,
+      "limit_down": 6522,
+      "net_up": -4009,
+      "adl": -68356
+    },
+    {
+      "date": "2025-12-31",
+      "up": 13581,
+      "down": 11239,
+      "flat": 22881,
+      "limit_up": 3007,
+      "limit_down": 5167,
+      "net_up": 2342,
+      "adl": -66014
+    },
+    {
+      "date": "2026-01-02",
+      "up": 16226,
+      "down": 9787,
+      "flat": 21444,
+      "limit_up": 5594,
+      "limit_down": 5312,
+      "net_up": 6439,
+      "adl": -59575
+    },
+    {
+      "date": "2026-01-05",
+      "up": 13709,
+      "down": 13287,
+      "flat": 20553,
+      "limit_up": 4902,
+      "limit_down": 7090,
+      "net_up": 422,
+      "adl": -59153
+    },
+    {
+      "date": "2026-01-06",
+      "up": 15645,
+      "down": 11652,
+      "flat": 20343,
+      "limit_up": 5214,
+      "limit_down": 6093,
+      "net_up": 3993,
+      "adl": -55160
+    },
+    {
+      "date": "2026-01-07",
+      "up": 14408,
+      "down": 12852,
+      "flat": 20430,
+      "limit_up": 4310,
+      "limit_down": 6711,
+      "net_up": 1556,
+      "adl": -53604
+    },
+    {
+      "date": "2026-01-08",
+      "up": 10268,
+      "down": 16983,
+      "flat": 20486,
+      "limit_up": 2443,
+      "limit_down": 9710,
+      "net_up": -6715,
+      "adl": -60319
+    },
+    {
+      "date": "2026-01-09",
+      "up": 11402,
+      "down": 14973,
+      "flat": 21020,
+      "limit_up": 2693,
+      "limit_down": 8258,
+      "net_up": -3571,
+      "adl": -63890
+    },
+    {
+      "date": "2026-01-12",
+      "up": 16339,
+      "down": 10059,
+      "flat": 20954,
+      "limit_up": 5882,
+      "limit_down": 5522,
+      "net_up": 6280,
+      "adl": -57610
+    },
+    {
+      "date": "2026-01-13",
+      "up": 12365,
+      "down": 14308,
+      "flat": 20642,
+      "limit_up": 3401,
+      "limit_down": 7620,
+      "net_up": -1943,
+      "adl": -59553
+    },
+    {
+      "date": "2026-01-14",
+      "up": 17017,
+      "down": 10031,
+      "flat": 20325,
+      "limit_up": 5260,
+      "limit_down": 5436,
+      "net_up": 6986,
+      "adl": -52567
+    },
+    {
+      "date": "2026-01-15",
+      "up": 10640,
+      "down": 15792,
+      "flat": 21014,
+      "limit_up": 2561,
+      "limit_down": 7541,
+      "net_up": -5152,
+      "adl": -57719
+    },
+    {
+      "date": "2026-01-16",
+      "up": 14409,
+      "down": 12556,
+      "flat": 20262,
+      "limit_up": 4753,
+      "limit_down": 6718,
+      "net_up": 1853,
+      "adl": -55866
+    },
+    {
+      "date": "2026-01-19",
+      "up": 14320,
+      "down": 13175,
+      "flat": 19810,
+      "limit_up": 5136,
+      "limit_down": 7602,
+      "net_up": 1145,
+      "adl": -54721
+    },
+    {
+      "date": "2026-01-20",
+      "up": 13257,
+      "down": 14063,
+      "flat": 20117,
+      "limit_up": 3858,
+      "limit_down": 7144,
+      "net_up": -806,
+      "adl": -55527
+    },
+    {
+      "date": "2026-01-21",
+      "up": 10177,
+      "down": 17426,
+      "flat": 19870,
+      "limit_up": 2585,
+      "limit_down": 9451,
+      "net_up": -7249,
+      "adl": -62776
+    },
+    {
+      "date": "2026-01-22",
+      "up": 16800,
+      "down": 10980,
+      "flat": 19723,
+      "limit_up": 6248,
+      "limit_down": 6330,
+      "net_up": 5820,
+      "adl": -56956
+    },
+    {
+      "date": "2026-01-23",
+      "up": 12989,
+      "down": 14126,
+      "flat": 19840,
+      "limit_up": 3926,
+      "limit_down": 7928,
+      "net_up": -1137,
+      "adl": -58093
+    },
+    {
+      "date": "2026-01-26",
+      "up": 14665,
+      "down": 12758,
+      "flat": 19845,
+      "limit_up": 4764,
+      "limit_down": 6836,
+      "net_up": 1907,
+      "adl": -56186
+    },
+    {
+      "date": "2026-01-27",
+      "up": 14275,
+      "down": 12955,
+      "flat": 20124,
+      "limit_up": 3858,
+      "limit_down": 6679,
+      "net_up": 1320,
+      "adl": -54866
+    },
+    {
+      "date": "2026-01-28",
+      "up": 15362,
+      "down": 12312,
+      "flat": 19778,
+      "limit_up": 5078,
+      "limit_down": 6295,
+      "net_up": 3050,
+      "adl": -51816
+    },
+    {
+      "date": "2026-01-29",
+      "up": 10289,
+      "down": 17301,
+      "flat": 19928,
+      "limit_up": 2750,
+      "limit_down": 10097,
+      "net_up": -7012,
+      "adl": -58828
+    },
+    {
+      "date": "2026-01-30",
+      "up": 7999,
+      "down": 19369,
+      "flat": 19903,
+      "limit_up": 1924,
+      "limit_down": 12893,
+      "net_up": -11370,
+      "adl": -70198
+    },
+    {
+      "date": "2026-02-02",
+      "up": 8102,
+      "down": 18659,
+      "flat": 20426,
+      "limit_up": 1881,
+      "limit_down": 13007,
+      "net_up": -10557,
+      "adl": -80755
+    }
+  ]
+}
