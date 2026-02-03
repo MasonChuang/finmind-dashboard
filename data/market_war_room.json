@@ -963,14 +963,44 @@
   ],
   "sectors": [
     {
-      "industry_category": "指數投資證券(ETN)",
-      "flow": 22092600,
-      "diff_pct": 100
+      "industry_category": "其他",
+      "flow": 2250910056662,
+      "diff_pct": -19.67
     },
     {
-      "industry_category": "ETN",
-      "flow": 12079440,
-      "diff_pct": 200
+      "industry_category": "電子",
+      "flow": 543893806022,
+      "diff_pct": -17.81
+    },
+    {
+      "industry_category": "半導體",
+      "flow": 145004718525,
+      "diff_pct": -24.73
+    },
+    {
+      "industry_category": "傳統產業",
+      "flow": 54806243152,
+      "diff_pct": -16.45
+    },
+    {
+      "industry_category": "金融",
+      "flow": 14616082861,
+      "diff_pct": -24.74
+    },
+    {
+      "industry_category": "生技醫療",
+      "flow": 12153821962,
+      "diff_pct": -21.1
+    },
+    {
+      "industry_category": "零售百貨",
+      "flow": 1915012164,
+      "diff_pct": -32.05
+    },
+    {
+      "industry_category": "食品餐飲",
+      "flow": 1587806485,
+      "diff_pct": -21.15
     }
   ],
   "breadth": [
@@ -2234,56 +2264,56 @@
   "whale": {
     "week_increase_top5": [
       {
-        "stock_id": "009816",
-        "whale_change": 100.0,
-        "stock_name": "009816"
+        "stock_id": "8096",
+        "whale_change": 16.99,
+        "stock_name": "擎亞"
       },
       {
-        "stock_id": "00993A",
-        "whale_change": 100.0,
-        "stock_name": "00993A"
+        "stock_id": "2486",
+        "whale_change": 9.36,
+        "stock_name": "一詮"
       },
       {
-        "stock_id": "8152",
-        "whale_change": 100.0,
-        "stock_name": "8152"
+        "stock_id": "6813",
+        "whale_change": 8.850000000000001,
+        "stock_name": "富動科"
       },
       {
-        "stock_id": "YJS2",
-        "whale_change": 100.0,
-        "stock_name": "YJS2"
+        "stock_id": "6934",
+        "whale_change": 6.949999999999996,
+        "stock_name": "心誠鎂"
       },
       {
-        "stock_id": "YLP8",
-        "whale_change": 100.0,
-        "stock_name": "YLP8"
+        "stock_id": "3163",
+        "whale_change": 6.300000000000001,
+        "stock_name": "波若威"
       }
     ],
     "biweek_accumulate_top5": [
       {
-        "stock_id": "009816",
-        "whale_change_2w": 100.0,
-        "stock_name": "009816"
+        "stock_id": "8096",
+        "whale_change_2w": 17.63,
+        "stock_name": "擎亞"
       },
       {
-        "stock_id": "00993A",
-        "whale_change_2w": 100.0,
-        "stock_name": "00993A"
+        "stock_id": "2486",
+        "whale_change_2w": 12.71,
+        "stock_name": "一詮"
       },
       {
-        "stock_id": "7906",
-        "whale_change_2w": 100.0,
-        "stock_name": "7906"
+        "stock_id": "6285",
+        "whale_change_2w": 9.960000000000008,
+        "stock_name": "啟碁"
       },
       {
-        "stock_id": "7907",
-        "whale_change_2w": 100.0,
-        "stock_name": "7907"
+        "stock_id": "2374",
+        "whale_change_2w": 8.909999999999997,
+        "stock_name": "佳能"
       },
       {
-        "stock_id": "8152",
-        "whale_change_2w": 100.0,
-        "stock_name": "8152"
+        "stock_id": "6813",
+        "whale_change_2w": 8.850000000000001,
+        "stock_name": "富動科"
       }
     ]
   },
