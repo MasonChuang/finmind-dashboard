@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-03 21:46:09",
+  "last_update": "2026-02-03 22:30:15",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -52,8 +52,8 @@
     },
     {
       "name": "TaiwanStockInfo",
-      "latest_date": "N/A",
-      "record_count": 2932,
+      "latest_date": "None",
+      "record_count": 3062,
       "status": "✅ 正常"
     },
     {
@@ -118,14 +118,14 @@
     },
     {
       "name": "TaiwanTotalExchangeMarginMaintenance",
-      "latest_date": "2026-02-02",
-      "record_count": 187,
+      "latest_date": "2026-02-03",
+      "record_count": 188,
       "status": "✅ 正常"
     },
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 522,
+      "record_count": 539,
       "status": "✅ 正常"
     },
     {

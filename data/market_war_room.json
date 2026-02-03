@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-03 21:46:06",
+  "generated_at": "2026-02-03 22:30:09",
   "taiex": [
     {
       "date": "2025-08-12",
@@ -965,39 +965,39 @@
   "sectors": [
     {
       "industry_category": "其他",
-      "flow": 2511032294588,
-      "diff_val": 260122237926,
-      "diff_pct": 11.56
+      "flow": 2503923206697,
+      "diff_val": 258012804287,
+      "diff_pct": 11.49
     },
     {
       "industry_category": "電子",
-      "flow": 651538453110,
-      "diff_val": 107644647088,
-      "diff_pct": 19.79
+      "flow": 707894628904,
+      "diff_val": 105198252254,
+      "diff_pct": 17.45
     },
     {
       "industry_category": "半導體",
-      "flow": 169448791314,
-      "diff_val": 24444072789,
-      "diff_pct": 16.86
+      "flow": 120891365972,
+      "diff_val": 28999350734,
+      "diff_pct": 31.56
     },
     {
       "industry_category": "傳統產業",
-      "flow": 45269001118,
-      "diff_val": -9537242034,
-      "diff_pct": -17.4
+      "flow": 46338853849,
+      "diff_val": -10849297027,
+      "diff_pct": -18.97
     },
     {
       "industry_category": "金融",
-      "flow": 10828647332,
-      "diff_val": -3787435529,
+      "flow": 10832909221,
+      "diff_val": -3789297686,
       "diff_pct": -25.91
     },
     {
       "industry_category": "生技醫療",
-      "flow": 8962021360,
-      "diff_val": -3191800602,
-      "diff_pct": -26.26
+      "flow": 8079918335,
+      "diff_val": -1918983549,
+      "diff_pct": -19.19
     },
     {
       "industry_category": "零售百貨",
@@ -1007,9 +1007,9 @@
     },
     {
       "industry_category": "食品餐飲",
-      "flow": 1219373006,
-      "diff_val": -368433479,
-      "diff_pct": -23.2
+      "flow": 1250858413,
+      "diff_val": -382994592,
+      "diff_pct": -23.44
     }
   ],
   "breadth": [
@@ -2427,6 +2427,21 @@
     ],
     "biweek_accumulate_top5": [
       {
+        "stock_id": "7897",
+        "whale_change_2w": 98.32,
+        "stock_name": "禾迅綠電"
+      },
+      {
+        "stock_id": "7904",
+        "whale_change_2w": 95.99,
+        "stock_name": "任開數位"
+      },
+      {
+        "stock_id": "7895",
+        "whale_change_2w": 72.77,
+        "stock_name": "元進莊"
+      },
+      {
         "stock_id": "8096",
         "whale_change_2w": 17.63,
         "stock_name": "擎亞"
@@ -2435,21 +2450,6 @@
         "stock_id": "2486",
         "whale_change_2w": 12.71,
         "stock_name": "一詮"
-      },
-      {
-        "stock_id": "6285",
-        "whale_change_2w": 9.960000000000008,
-        "stock_name": "啟碁"
-      },
-      {
-        "stock_id": "2374",
-        "whale_change_2w": 8.909999999999997,
-        "stock_name": "佳能"
-      },
-      {
-        "stock_id": "6813",
-        "whale_change_2w": 8.850000000000001,
-        "stock_name": "富動科"
       }
     ]
   },

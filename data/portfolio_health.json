@@ -1,6 +1,184 @@
 {
-  "last_update": "2026-02-03 11:23:31",
-  "report_file": "N/A",
-  "holdings": [],
-  "status": "no_report"
+  "last_update": "2026-02-03 22:29:39",
+  "report_file": "持股健檢_統一報告_20260203_2229.csv",
+  "holdings": [
+    {
+      "stock_id": "50",
+      "name": "元大台灣50",
+      "strategy": "ETF",
+      "cost_price": 58.11,
+      "current_price": 0.0,
+      "profit_loss_pct": 0.0,
+      "action": "⏸️ 不檢查",
+      "reason": "策略 'ETF' 無健檢邏輯"
+    },
+    {
+      "stock_id": "3551",
+      "name": "世禾",
+      "strategy": "高殖利率",
+      "cost_price": 130.0,
+      "current_price": 181.0,
+      "profit_loss_pct": 39.23,
+      "action": "🔴 避險停損",
+      "reason": "殖利率過低(0.55%); 股利縮水或停發"
+    },
+    {
+      "stock_id": "2412",
+      "name": "中華電",
+      "strategy": "高殖利率",
+      "cost_price": 130.0,
+      "current_price": 133.5,
+      "profit_loss_pct": 2.69,
+      "action": "✅ 續抱",
+      "reason": "無異常"
+    },
+    {
+      "stock_id": "2002",
+      "name": "中鋼",
+      "strategy": "高殖利率",
+      "cost_price": 20.18,
+      "current_price": 20.65,
+      "profit_loss_pct": 2.33,
+      "action": "✅ 續抱",
+      "reason": "無異常"
+    },
+    {
+      "stock_id": "2393",
+      "name": "億光",
+      "strategy": "高殖利率",
+      "cost_price": 51.07,
+      "current_price": 57.2,
+      "profit_loss_pct": 12.0,
+      "action": "✅ 續抱",
+      "reason": "無異常"
+    },
+    {
+      "stock_id": "9904",
+      "name": "寶成",
+      "strategy": "巨鯨狙擊",
+      "cost_price": 28.9,
+      "current_price": 30.4,
+      "profit_loss_pct": 5.19,
+      "action": "✅ 續抱",
+      "reason": "需完整 AFASS 評分（待整合）"
+    },
+    {
+      "stock_id": "4417",
+      "name": "金洲",
+      "strategy": "高殖利率",
+      "cost_price": 54.1,
+      "current_price": 51.9,
+      "profit_loss_pct": -4.07,
+      "action": "✅ 續抱",
+      "reason": "無異常"
+    },
+    {
+      "stock_id": "5212",
+      "name": "凌網",
+      "strategy": "高殖利率",
+      "cost_price": 54.5,
+      "current_price": 52.0,
+      "profit_loss_pct": -4.59,
+      "action": "🔴 避險停損",
+      "reason": "股利縮水或停發"
+    },
+    {
+      "stock_id": "5315",
+      "name": "光聯",
+      "strategy": "高殖利率",
+      "cost_price": 23.95,
+      "current_price": 25.0,
+      "profit_loss_pct": 4.38,
+      "action": "🔴 避險停損",
+      "reason": "EPS虧損(-0.47); 股利縮水或停發"
+    },
+    {
+      "stock_id": "5511",
+      "name": "德昌",
+      "strategy": "高殖利率",
+      "cost_price": 64.5,
+      "current_price": 67.6,
+      "profit_loss_pct": 4.81,
+      "action": "🔴 避險停損",
+      "reason": "股利縮水或停發"
+    },
+    {
+      "stock_id": "5519",
+      "name": "隆大",
+      "strategy": "高殖利率",
+      "cost_price": 32.23,
+      "current_price": 30.25,
+      "profit_loss_pct": -6.14,
+      "action": "✅ 續抱",
+      "reason": "無異常"
+    },
+    {
+      "stock_id": "2385",
+      "name": "群光",
+      "strategy": "高殖利率",
+      "cost_price": 115.0,
+      "current_price": 117.0,
+      "profit_loss_pct": 1.74,
+      "action": "✅ 續抱",
+      "reason": "無異常"
+    },
+    {
+      "stock_id": "3217",
+      "name": "優群",
+      "strategy": "高殖利率",
+      "cost_price": 169.0,
+      "current_price": 157.0,
+      "profit_loss_pct": -7.1,
+      "action": "🔴 避險停損",
+      "reason": "股利縮水或停發"
+    },
+    {
+      "stock_id": "2883",
+      "name": "凱基金",
+      "strategy": "巨鯨狙擊",
+      "cost_price": 18.1,
+      "current_price": 18.25,
+      "profit_loss_pct": 0.83,
+      "action": "✅ 續抱",
+      "reason": "需完整 AFASS 評分（待整合）"
+    },
+    {
+      "stock_id": "6147",
+      "name": "頎邦",
+      "strategy": "巨鯨狙擊",
+      "cost_price": 58.5,
+      "current_price": 54.3,
+      "profit_loss_pct": -7.18,
+      "action": "✅ 續抱",
+      "reason": "需完整 AFASS 評分（待整合）"
+    },
+    {
+      "stock_id": "4123",
+      "name": "晟德",
+      "strategy": "巨鯨狙擊",
+      "cost_price": 43.2,
+      "current_price": 39.45,
+      "profit_loss_pct": -8.68,
+      "action": "✅ 續抱",
+      "reason": "需完整 AFASS 評分（待整合）"
+    },
+    {
+      "stock_id": "1313",
+      "name": "聯成",
+      "strategy": "巨鯨狙擊",
+      "cost_price": 11.4,
+      "current_price": 10.2,
+      "profit_loss_pct": -10.53,
+      "action": "✅ 續抱",
+      "reason": "需完整 AFASS 評分（待整合）"
+    }
+  ],
+  "stats": {
+    "total": 17,
+    "stop_loss": 5,
+    "take_profit": 0,
+    "hold": 11,
+    "no_check": 1
+  },
+  "status": "ok"
 }
