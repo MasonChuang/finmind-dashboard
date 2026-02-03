@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>市場戰情室 - FinMind Antigravity</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
@@ -53,6 +52,11 @@
     .table-sm th {
       padding: 0.5rem;
     }
+
+    .bar-chart-container {
+      position: relative;
+      height: 400px;
+    }
   </style>
 </head>
 
@@ -72,11 +76,27 @@
       </div>
     </div>
   </nav>
-  <div style="height: 80px;"></div> <!-- Spacer for fixed navbar -->
+  <div style="height: 80px;"></div>
 
   <div class="container-fluid mt-4">
+    <!-- 整合圖表：加權指數 + 騰落線 (雙Y軸) -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header bg-light fw-bold">
+            📊 加權指數 & 騰落線（近 120 日）
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="combinedChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 市場概況統計卡片 -->
-    <div class="row mb-4">
+    <div class="row mt-4 mb-4">
       <div class="col-md-3">
         <div class="card stat-card border-danger">
           <div class="card-body text-center">
@@ -111,16 +131,16 @@
       </div>
     </div>
 
-    <!-- 整合圖表：加權指數 + 騰落線 (雙Y軸) -->
-    <div class="row">
+    <!-- 產業資金流向 (柱狀圖) -->
+    <div class="row mt-4">
       <div class="col-12">
         <div class="card">
           <div class="card-header bg-light fw-bold">
-            📊 加權指數 & 騰落線（近 120 日）
+            💰 產業資金流向（前 10 大）
           </div>
           <div class="card-body">
-            <div class="chart-container">
-              <canvas id="combinedChart"></canvas>
+            <div class="bar-chart-container">
+              <canvas id="sectorFlowChart"></canvas>
             </div>
           </div>
         </div>
@@ -139,7 +159,7 @@
               <thead class="table-light">
                 <tr>
                   <th>排名</th>
-                  <th>股票代號</th>
+                  <th>股票</th>
                   <th class="text-end">買超張數</th>
                 </tr>
               </thead>
@@ -162,7 +182,7 @@
               <thead class="table-light">
                 <tr>
                   <th>排名</th>
-                  <th>股票代號</th>
+                  <th>股票</th>
                   <th class="text-end">累積張數</th>
                 </tr>
               </thead>
@@ -189,7 +209,7 @@
               <thead class="table-light">
                 <tr>
                   <th>排名</th>
-                  <th>股票代號</th>
+                  <th>股票</th>
                   <th class="text-end">持股增加(%)</th>
                 </tr>
               </thead>
@@ -212,7 +232,7 @@
               <thead class="table-light">
                 <tr>
                   <th>排名</th>
-                  <th>股票代號</th>
+                  <th>股票</th>
                   <th class="text-end">持股增加(%)</th>
                 </tr>
               </thead>
@@ -239,7 +259,7 @@
               <thead class="table-light">
                 <tr>
                   <th>排名</th>
-                  <th>股票代號</th>
+                  <th>股票</th>
                   <th class="text-end">股價</th>
                 </tr>
               </thead>
@@ -262,7 +282,7 @@
               <thead class="table-light">
                 <tr>
                   <th>排名</th>
-                  <th>股票代號</th>
+                  <th>股票</th>
                   <th class="text-end">股價</th>
                   <th class="text-end">季線</th>
                 </tr>
@@ -273,36 +293,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 產業資金流向 -->
-    <div class="row mt-4">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header bg-light fw-bold">
-            💰 產業資金流向（前 10 大）
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-hover">
-                <thead class="table-light">
-                  <tr>
-                    <th>排名</th>
-                    <th>產業類別</th>
-                    <th class="text-end">資金流向（億）</th>
-                    <th class="text-end">較前日變化</th>
-                  </tr>
-                </thead>
-                <tbody id="sectorTable">
-                  <tr>
-                    <td colspan="4" class="text-center text-muted">載入中...</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
           </div>
         </div>
       </div>
@@ -348,13 +338,11 @@
         renderCharts(data);
       } catch (error) {
         console.error('載入資料失敗:', error);
-        document.getElementById('sectorTable').innerHTML =
-          '<tr><td colspan="4" class="text-center text-danger">資料載入失敗</td></tr>';
       }
     }
 
     function renderCharts(data) {
-      // 更新統計卡片
+      // 更新統計卡片 (使用最新一天的資料)
       if (data.breadth && data.breadth.length > 0) {
         const latest = data.breadth[data.breadth.length - 1];
         document.getElementById('limitUpCount').textContent = latest.limit_up || 0;
@@ -367,7 +355,6 @@
       const dates = data.taiex.map(d => d.date);
       const taiexClose = data.taiex.map(d => d.close);
 
-      // 對齊騰落線資料
       const adlMap = new Map(data.breadth.map(d => [d.date, d.adl]));
       const adlValues = dates.map(date => adlMap.get(date) || null);
 
@@ -440,15 +427,55 @@
         }
       });
 
+      // 繪製產業資金流向柱狀圖
+      if (data.sectors && data.sectors.length > 0) {
+        const sectorLabels = data.sectors.map(s => s.industry_category);
+        const sectorFlows = data.sectors.map(s => s.flow / 100000000); // 轉換為億
+        const sectorColors = sectorFlows.map(f => f > 0 ? 'rgba(220, 53, 69, 0.8)' : 'rgba(25, 135, 84, 0.8)');
+
+        new Chart(document.getElementById('sectorFlowChart'), {
+          type: 'bar',
+          data: {
+            labels: sectorLabels,
+            datasets: [{
+              label: '資金流向（億）',
+              data: sectorFlows,
+              backgroundColor: sectorColors,
+              borderColor: sectorColors.map(c => c.replace('0.8', '1')),
+              borderWidth: 1
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false
+              }
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: '資金流向（億元）'
+                }
+              }
+            }
+          }
+        });
+      }
+
       // 渲染法人動向 - 單日買超
       const institutionalDailyTable = document.getElementById('institutionalDailyTable');
       if (data.institutional && data.institutional.daily_top5 && data.institutional.daily_top5.length > 0) {
         institutionalDailyTable.innerHTML = data.institutional.daily_top5.map((item, index) => {
-          const shares = (item.net_buy / 1000).toFixed(0); // 轉換為張數
+          const shares = (item.net_buy / 1000).toFixed(0);
           return `
             <tr>
               <td>${index + 1}</td>
-              <td class="fw-bold">${item.stock_id}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
               <td class="text-end font-monospace positive">${shares}</td>
             </tr>
           `;
@@ -465,7 +492,7 @@
           return `
             <tr>
               <td>${index + 1}</td>
-              <td class="fw-bold">${item.stock_id}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
               <td class="text-end font-monospace positive">${shares}</td>
             </tr>
           `;
@@ -481,7 +508,7 @@
           return `
             <tr>
               <td>${index + 1}</td>
-              <td class="fw-bold">${item.stock_id}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
               <td class="text-end font-monospace positive">${item.whale_change.toFixed(2)}</td>
             </tr>
           `;
@@ -497,7 +524,7 @@
           return `
             <tr>
               <td>${index + 1}</td>
-              <td class="fw-bold">${item.stock_id}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
               <td class="text-end font-monospace positive">${item.whale_change_2w.toFixed(2)}</td>
             </tr>
           `;
@@ -513,7 +540,7 @@
           return `
             <tr>
               <td>${index + 1}</td>
-              <td class="fw-bold">${item.stock_id}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
               <td class="text-end font-monospace">${item.price.toFixed(2)}</td>
             </tr>
           `;
@@ -529,7 +556,7 @@
           return `
             <tr>
               <td>${index + 1}</td>
-              <td class="fw-bold">${item.stock_id}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
               <td class="text-end font-monospace">${item.price.toFixed(2)}</td>
               <td class="text-end font-monospace text-muted">${item.ma60.toFixed(2)}</td>
             </tr>
@@ -537,30 +564,6 @@
         }).join('');
       } else {
         ma60BreakoutTable.innerHTML = '<tr><td colspan="4" class="text-center text-muted">無資料</td></tr>';
-      }
-
-      // 更新產業資金流向表格
-      const sectorTable = document.getElementById('sectorTable');
-      if (data.sectors && data.sectors.length > 0) {
-        sectorTable.innerHTML = data.sectors.map((sector, index) => {
-          const flowBillion = (sector.flow / 100000000).toFixed(2);
-          const flowClass = sector.flow > 0 ? 'positive' : 'negative';
-          const diffClass = sector.diff_pct > 0 ? 'positive' : 'negative';
-          const diffIcon = sector.diff_pct > 0 ? '▲' : '▼';
-
-          return `
-            <tr>
-              <td>${index + 1}</td>
-              <td>${sector.industry_category}</td>
-              <td class="text-end font-monospace ${flowClass}">${flowBillion}</td>
-              <td class="text-end font-monospace ${diffClass}">
-                ${diffIcon} ${Math.abs(sector.diff_pct).toFixed(2)}%
-              </td>
-            </tr>
-          `;
-        }).join('');
-      } else {
-        sectorTable.innerHTML = '<tr><td colspan="4" class="text-center text-muted">無資料</td></tr>';
       }
     }
 
