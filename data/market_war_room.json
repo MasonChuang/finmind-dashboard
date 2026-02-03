@@ -965,41 +965,49 @@
     {
       "industry_category": "其他",
       "flow": 2250910056662,
+      "diff_val": -551126929329,
       "diff_pct": -19.67
     },
     {
       "industry_category": "電子",
       "flow": 543893806022,
+      "diff_val": -117893984538,
       "diff_pct": -17.81
     },
     {
       "industry_category": "半導體",
       "flow": 145004718525,
+      "diff_val": -47648761462,
       "diff_pct": -24.73
     },
     {
       "industry_category": "傳統產業",
       "flow": 54806243152,
+      "diff_val": -10788691805,
       "diff_pct": -16.45
     },
     {
       "industry_category": "金融",
       "flow": 14616082861,
+      "diff_val": -4803593172,
       "diff_pct": -24.74
     },
     {
       "industry_category": "生技醫療",
       "flow": 12153821962,
+      "diff_val": -3250010070,
       "diff_pct": -21.1
     },
     {
       "industry_category": "零售百貨",
       "flow": 1915012164,
+      "diff_val": -903215805,
       "diff_pct": -32.05
     },
     {
       "industry_category": "食品餐飲",
       "flow": 1587806485,
+      "diff_val": -425927598,
       "diff_pct": -21.15
     }
   ],
