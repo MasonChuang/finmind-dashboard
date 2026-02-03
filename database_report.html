@@ -1,51 +1,90 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinMind 資料庫健康報告</title>
+    <title>資料庫狀態 - FinMind Antigravity</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+        }
+        .navbar-brand {
+            font-weight: 600;
+            color: #0d6efd !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .stat-card {
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
 </head>
-
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">FinMind 資料庫健康報告</span>
-            <span class="navbar-text text-white-50">
-                <small>更新時間: <span id="updateTime">載入中...</span></small>
-            </span>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-database-fill-check"></i>
+                <div>
+                    <div>資料庫狀態</div>
+                    <div style="font-size: 0.75rem; font-weight: 400; color: #6c757d;">Database Status</div>
+                </div>
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-muted small d-none d-md-block">Report Date: 2026-02-03</span>
+                <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
+            </div>
         </div>
     </nav>
-
-    <div class="container mt-4">
+    <div style="height: 80px;"></div> <!-- Spacer for fixed navbar -->
+    
+    <div class="container-fluid mt-4">
         <div class="row mb-4">
-            <div class="col-md-4">
-                <div class="card border-primary">
+            <div class="col-md-3">
+                <div class="card stat-card border-primary">
                     <div class="card-body text-center">
                         <h6 class="text-muted">總表數</h6>
-                        <div class="display-4 fw-bold">17</div>
+                        <div class="display-4 fw-bold text-primary">17</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card border-success">
+            <div class="col-md-3">
+                <div class="card stat-card border-success">
                     <div class="card-body text-center">
                         <h6 class="text-muted">總筆數</h6>
-                        <div class="display-4 fw-bold">157,831,972</div>
+                        <div class="display-4 fw-bold text-success">157,831,972</div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card border-info">
+            <div class="col-md-3">
+                <div class="card stat-card border-info">
                     <div class="card-body text-center">
                         <h6 class="text-muted">本次更新</h6>
-                        <div class="display-4 fw-bold text-success">+2,139</div>
+                        <div class="display-4 fw-bold text-info">+0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card border-secondary">
+                    <div class="card-body text-center">
+                        <h6 class="text-muted">報告時間</h6>
+                        <div class="h5 fw-bold text-secondary">2026-02-03</div>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="card">
             <div class="card-header bg-light fw-bold">資料表狀態</div>
             <div class="card-body p-0">
@@ -53,280 +92,574 @@
                     <table class="table table-hover mb-0">
                         <thead class="table-light">
                             <tr>
-                                <th width="30%">資料表 / 說明</th>
-                                <th width="15%" class="text-end">總筆數</th>
-                                <th width="10%" class="text-end">變化</th>
-                                <th width="45%">日期範圍</th>
+                                <th width="25%">資料表 / 說明</th>
+                                <th width="12%" class="text-end">總筆數</th>
+                                <th width="8%" class="text-end">變化</th>
+                                <th width="35%">日期範圍</th>
+                                <th width="20%">前三次更新記錄</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockTotalInstitutionalInvestors</div>
-                                    <div class="text-muted small">三大法人買賣超 (大盤)</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">26,260</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2004-04-07 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockTotalMarginPurchaseShortSale</div>
-                                    <div class="text-muted small">融資融券 (大盤)</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">18,558</td>
-                                <td class="text-end font-monospace text-success">+3</td>
-                                <td>
-                                    <div class="font-monospace">2001-01-03 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanTotalExchangeMarginMaintenance</div>
-                                    <div class="text-muted small">融資維持率</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">187</td>
-                                <td class="text-end font-monospace text-success">+1</td>
-                                <td>
-                                    <div class="font-monospace">2020-11-16 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockDelisting</div>
-                                    <div class="text-muted small">下市櫃清單</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">11</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2024-11-29 ~ <span
-                                            class="text-warning fw-bold">2026-01-22</span></div>
-                                    <div class="small text-warning">資料過期 (12 天,限制 2 天)</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockDispositionSecuritiesPeriod</div>
-                                    <div class="text-muted small">處置股資訊</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">36</td>
-                                <td class="text-end font-monospace text-success">+1</td>
-                                <td>
-                                    <div class="font-monospace">2025-12-31 ~ <span
-                                            class="text-warning fw-bold">2026-01-30</span></div>
-                                    <div class="small text-warning">資料過期 (4 天,限制 2 天)</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockPrice</div>
-                                    <div class="text-muted small">個股日成交資訊</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">60,190,381</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">1998-01-03 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockInstitutionalInvestorsBuySell</div>
-                                    <div class="text-muted small">三大法人買賣超 (個股)</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">33,353,507</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2005-01-03 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockMarginPurchaseShortSale</div>
-                                    <div class="text-muted small">融資融券 (個股)</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">7,918,651</td>
-                                <td class="text-end font-monospace text-success">+2,133</td>
-                                <td>
-                                    <div class="font-monospace">2001-01-05 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockPER</div>
-                                    <div class="text-muted small">本益比與殖利率</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">7,504,375</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2005-09-02 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockDividend</div>
-                                    <div class="text-muted small">股利政策</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">29,064</td>
-                                <td class="text-end font-monospace text-success">+1</td>
-                                <td>
-                                    <div class="font-monospace">2005-05-23 ~ <span
-                                            class="text-success fw-bold">2026-02-03</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockSecuritiesLending</div>
-                                    <div class="text-muted small">借券賣出餘額</div>
-                                    <span class="badge bg-secondary">daily</span>
-                                </td>
-                                <td class="text-end font-monospace">529,471</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2016-01-01 ~ <span
-                                            class="text-success fw-bold">2026-02-02</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockMonthRevenue</div>
-                                    <div class="text-muted small">月營收</div>
-                                    <span class="badge bg-secondary">monthly</span>
-                                </td>
-                                <td class="text-end font-monospace">437,659</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2002-02-01 ~ <span
-                                            class="text-success fw-bold">2026-02-01</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockFinancialStatements</div>
-                                    <div class="text-muted small">綜合損益表</div>
-                                    <span class="badge bg-secondary">quarterly</span>
-                                </td>
-                                <td class="text-end font-monospace">1,318,657</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">1998-03-31 ~ <span
-                                            class="text-success fw-bold">2025-12-31</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockBalanceSheet</div>
-                                    <div class="text-muted small">資產負債表</div>
-                                    <span class="badge bg-secondary">quarterly</span>
-                                </td>
-                                <td class="text-end font-monospace">6,244,713</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2011-12-31 ~ <span
-                                            class="text-success fw-bold">2025-12-31</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockCashFlowsStatement</div>
-                                    <div class="text-muted small">現金流量表</div>
-                                    <span class="badge bg-secondary">quarterly</span>
-                                </td>
-                                <td class="text-end font-monospace">2,253,522</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2008-06-30 ~ <span
-                                            class="text-success fw-bold">2025-12-31</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockShareholding</div>
-                                    <div class="text-muted small">股權分散表</div>
-                                    <span class="badge bg-secondary">weekly</span>
-                                </td>
-                                <td class="text-end font-monospace">16,450,328</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2016-01-08 ~ <span
-                                            class="text-success fw-bold">2026-01-30</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    <div class="fw-bold">TaiwanStockHoldingSharesPer</div>
-                                    <div class="text-muted small">股權分散表 (週/月)</div>
-                                    <span class="badge bg-secondary">weekly</span>
-                                </td>
-                                <td class="text-end font-monospace">21,556,592</td>
-                                <td class="text-end font-monospace text-success">+0</td>
-                                <td>
-                                    <div class="font-monospace">2010-01-29 ~ <span
-                                            class="text-success fw-bold">2026-01-30</span></div>
-                                    <div class="small text-success">正常</div>
-                                </td>
-                            </tr>
-
+                            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockTotalInstitutionalInvestors</div>
+                    <div class="text-muted small">三大法人買賣超 (大盤)</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">26,260</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2004-04-07 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockTotalMarginPurchaseShortSale</div>
+                    <div class="text-muted small">融資融券 (大盤)</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">18,558</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2001-01-03 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-success font-monospace">+3</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanTotalExchangeMarginMaintenance</div>
+                    <div class="text-muted small">融資維持率</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">187</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2020-11-16 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-success font-monospace">+1</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockDelisting</div>
+                    <div class="text-muted small">下市櫃清單</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">11</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2024-11-29 ~ <span class="text-warning fw-bold">2026-01-22</span></div>
+                    <div class="small text-warning">資料過期 (12 天,限制 2 天)</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockDispositionSecuritiesPeriod</div>
+                    <div class="text-muted small">處置股資訊</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">36</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2025-12-31 ~ <span class="text-warning fw-bold">2026-01-30</span></div>
+                    <div class="small text-warning">資料過期 (4 天,限制 2 天)</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-success font-monospace">+1</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockPrice</div>
+                    <div class="text-muted small">個股日成交資訊</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">60,190,381</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">1998-01-03 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockInstitutionalInvestorsBuySell</div>
+                    <div class="text-muted small">三大法人買賣超 (個股)</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">33,353,507</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2005-01-03 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockMarginPurchaseShortSale</div>
+                    <div class="text-muted small">融資融券 (個股)</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">7,918,651</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2001-01-05 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-success font-monospace">+2,133</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockPER</div>
+                    <div class="text-muted small">本益比與殖利率</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">7,504,375</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2005-09-02 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockDividend</div>
+                    <div class="text-muted small">股利政策</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">29,064</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2005-05-23 ~ <span class="text-success fw-bold">2026-02-03</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-success font-monospace">+1</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockSecuritiesLending</div>
+                    <div class="text-muted small">借券賣出餘額</div>
+                    <span class="badge bg-secondary">daily</span>
+                </td>
+                <td class="text-end font-monospace">529,471</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2016-01-01 ~ <span class="text-success fw-bold">2026-02-02</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockMonthRevenue</div>
+                    <div class="text-muted small">月營收</div>
+                    <span class="badge bg-secondary">monthly</span>
+                </td>
+                <td class="text-end font-monospace">437,659</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2002-02-01 ~ <span class="text-success fw-bold">2026-02-01</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockFinancialStatements</div>
+                    <div class="text-muted small">綜合損益表</div>
+                    <span class="badge bg-secondary">quarterly</span>
+                </td>
+                <td class="text-end font-monospace">1,318,657</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">1998-03-31 ~ <span class="text-success fw-bold">2025-12-31</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockBalanceSheet</div>
+                    <div class="text-muted small">資產負債表</div>
+                    <span class="badge bg-secondary">quarterly</span>
+                </td>
+                <td class="text-end font-monospace">6,244,713</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2011-12-31 ~ <span class="text-success fw-bold">2025-12-31</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockCashFlowsStatement</div>
+                    <div class="text-muted small">現金流量表</div>
+                    <span class="badge bg-secondary">quarterly</span>
+                </td>
+                <td class="text-end font-monospace">2,253,522</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2008-06-30 ~ <span class="text-success fw-bold">2025-12-31</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockShareholding</div>
+                    <div class="text-muted small">股權分散表</div>
+                    <span class="badge bg-secondary">weekly</span>
+                </td>
+                <td class="text-end font-monospace">16,450,328</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2016-01-08 ~ <span class="text-success fw-bold">2026-01-30</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <div class="fw-bold">TaiwanStockHoldingSharesPer</div>
+                    <div class="text-muted small">股權分散表 (週/月)</div>
+                    <span class="badge bg-secondary">weekly</span>
+                </td>
+                <td class="text-end font-monospace">21,556,592</td>
+                <td class="text-end font-monospace text-success">+0</td>
+                <td>
+                    <div class="font-monospace">2010-01-29 ~ <span class="text-success fw-bold">2026-01-30</span></div>
+                    <div class="small text-success">正常</div>
+                </td>
+                <td>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                    <div class="small">
+                        <span class="text-muted">2026-02-03</span>: 
+                        <span class="text-muted font-monospace">+0</span>
+                    </div>
+                    
+                </td>
+            </tr>
+            
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
-        <div class="mt-3 text-center text-muted small">
-            報告生成時間: 2026-02-03 11:43:16 | Antigravity V2
+        
+        <div class="row mt-4 mb-4">
+            <div class="col-12 text-center">
+                <a href="index.html" class="btn btn-primary btn-lg">
+                    🏠 返回首頁
+                </a>
+            </div>
         </div>
     </div>
-
+    
     <script>
         // 顯示當前時間
         function updateTime() {
@@ -342,12 +675,10 @@
             });
             document.getElementById('updateTime').textContent = timeStr;
         }
-
-        // 頁面載入時更新時間
+        
         updateTime();
-        // 每秒更新時間
         setInterval(updateTime, 1000);
     </script>
 </body>
-
 </html>
+        
