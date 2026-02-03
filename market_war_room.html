@@ -503,17 +503,21 @@
       if (data.sectors && data.sectors.length > 0) {
         const sectorLabels = data.sectors.map(s => s.industry_category);
         const sectorFlows = data.sectors.map(s => s.flow / 100000000); // 轉換為億
-        const sectorColors = sectorFlows.map(f => f > 0 ? 'rgba(220, 53, 69, 0.8)' : 'rgba(25, 135, 84, 0.8)');
+
+        // 顏色邏輯：根據「變動量」決定 (增加為紅, 減少為綠)
+        // 注意：data.sectors 必須包含 diff_val 欄位
+        const sectorColors = data.sectors.map(s => (s.diff_val || 0) > 0 ? 'rgba(220, 53, 69, 0.8)' : 'rgba(25, 135, 84, 0.8)');
+        const borderColors = sectorColors.map(c => c.replace('0.8', '1'));
 
         new Chart(document.getElementById('sectorFlowChart'), {
           type: 'bar',
           data: {
             labels: sectorLabels,
             datasets: [{
-              label: '資金流向（億）',
+              label: '成交金額（億）',
               data: sectorFlows,
               backgroundColor: sectorColors,
-              borderColor: sectorColors.map(c => c.replace('0.8', '1')),
+              borderColor: borderColors,
               borderWidth: 1
             }]
           },
@@ -524,6 +528,27 @@
             plugins: {
               legend: {
                 display: false
+              },
+              title: {
+                display: true,
+                text: '及較前日變動 (紅:增加 / 綠:減少)',
+                font: {
+                  size: 14,
+                  weight: 'normal'
+                },
+                color: '#666'
+              },
+              tooltip: {
+                callbacks: {
+                  afterLabel: function (context) {
+                    const idx = context.dataIndex;
+                    // 安全獲取 diff_val
+                    const diffVal = data.sectors[idx].diff_val || 0;
+                    const diff = diffVal / 100000000;
+                    const sign = diff > 0 ? '+' : '';
+                    return `變動: ${sign}${diff.toFixed(2)} 億`;
+                  }
+                }
               }
             },
             scales: {
@@ -531,7 +556,7 @@
                 beginAtZero: true,
                 title: {
                   display: true,
-                  text: '資金流向（億元）'
+                  text: '成交金額（億元）'
                 }
               }
             }
