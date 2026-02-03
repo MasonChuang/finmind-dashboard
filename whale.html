@@ -174,7 +174,7 @@
     <script>
         async function loadData() {
             try {
-                const response = await fetch('../Data/whale_sniper.json');
+                const response = await fetch('data/whale_sniper.json');
                 const data = await response.json();
 
                 document.getElementById('updateTime').textContent = `最後更新：${data.last_update}`;

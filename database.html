@@ -172,7 +172,7 @@
     <script>
         async function loadData() {
             try {
-                const response = await fetch('../Data/database_status.json');
+                const response = await fetch('data/database_status.json');
                 const data = await response.json();
 
                 document.getElementById('updateTime').textContent = `最後更新：${data.last_update}`;
