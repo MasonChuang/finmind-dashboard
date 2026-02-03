@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +31,7 @@
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
@@ -53,12 +54,12 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
         .card-icon {
@@ -77,10 +78,21 @@
             font-size: 0.95em;
         }
 
-        .card.database { border-top: 5px solid #3498db; }
-        .card.market { border-top: 5px solid #e74c3c; }
-        .card.portfolio { border-top: 5px solid #2ecc71; }
-        .card.whale { border-top: 5px solid #f39c12; }
+        .card.database {
+            border-top: 5px solid #3498db;
+        }
+
+        .card.market {
+            border-top: 5px solid #e74c3c;
+        }
+
+        .card.portfolio {
+            border-top: 5px solid #2ecc71;
+        }
+
+        .card.whale {
+            border-top: 5px solid #f39c12;
+        }
 
         .footer {
             margin-top: 50px;
@@ -93,13 +105,14 @@
             .header h1 {
                 font-size: 2em;
             }
-            
+
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="header">
         <h1>📊 FinMind Antigravity</h1>
@@ -107,7 +120,7 @@
     </div>
 
     <div class="dashboard-grid">
-        <div class="card database" onclick="location.href='database.html'">
+        <div class="card database" onclick="location.href='database_report.html'">
             <div class="card-icon">📊</div>
             <h2>資料庫狀態</h2>
             <p>查看資料表更新狀態</p>
@@ -136,4 +149,5 @@
         <p>FinMind Antigravity V2 © 2026</p>
     </div>
 </body>
+
 </html>
