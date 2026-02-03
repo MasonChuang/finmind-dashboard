@@ -343,23 +343,6 @@
   </div>
 
   <script>
-    // 顯示當前時間
-    function updateTime() {
-      const now = new Date();
-      const timeStr = now.toLocaleString('zh-TW', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      });
-      document.getElementById('updateTime').textContent = timeStr;
-    }
-
-    updateTime();
-    setInterval(updateTime, 1000);
 
     // 載入資料並繪製圖表
     async function loadData() {
@@ -376,6 +359,11 @@
     }
 
     function renderCharts(data) {
+      // 顯示資料產出時間
+      if (data.generated_at) {
+        document.getElementById('updateTime').textContent = data.generated_at;
+      }
+
       // 更新統計卡片 (使用最新一天的資料)
       if (data.breadth && data.breadth.length > 0) {
         const latest = data.breadth[data.breadth.length - 1];
