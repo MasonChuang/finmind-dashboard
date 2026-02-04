@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-04 20:41:00",
+  "last_update": "2026-02-04 20:55:46",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -52,7 +52,7 @@
     },
     {
       "name": "TaiwanStockInfo",
-      "latest_date": "None",
+      "latest_date": "N/A",
       "record_count": 3062,
       "status": "✅ 正常"
     },
