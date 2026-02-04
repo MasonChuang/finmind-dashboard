@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-02-03 22:38:00",
-  "report_file": "持股健檢_統一報告_20260203_2238.csv",
+  "last_update": "2026-02-04 13:41:38",
+  "report_file": "持股健檢_統一報告_20260204_1341.csv",
   "holdings": [
     {
       "stock_id": "50",
@@ -9,6 +9,10 @@
       "cost_price": 58.11,
       "current_price": 0.0,
       "profit_loss_pct": 0.0,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "⏸️ 不檢查",
       "reason": "策略 'ETF' 無健檢邏輯"
     },
@@ -19,6 +23,10 @@
       "cost_price": 130.0,
       "current_price": 181.0,
       "profit_loss_pct": 39.23,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "🔴 避險停損",
       "reason": "殖利率過低(0.55%); 股利縮水或停發"
     },
@@ -29,6 +37,10 @@
       "cost_price": 130.0,
       "current_price": 133.5,
       "profit_loss_pct": 2.69,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "✅ 續抱",
       "reason": "無異常"
     },
@@ -39,6 +51,10 @@
       "cost_price": 20.18,
       "current_price": 20.65,
       "profit_loss_pct": 2.33,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "✅ 續抱",
       "reason": "無異常"
     },
@@ -49,6 +65,10 @@
       "cost_price": 51.07,
       "current_price": 57.2,
       "profit_loss_pct": 12.0,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "✅ 續抱",
       "reason": "無異常"
     },
@@ -59,8 +79,12 @@
       "cost_price": 28.9,
       "current_price": 30.4,
       "profit_loss_pct": 5.19,
-      "action": "✅ 續抱",
-      "reason": "需完整 AFASS 評分（待整合）"
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
+      "action": "⚠️ 資料不足",
+      "reason": "無法取得 AFASS 評分"
     },
     {
       "stock_id": "4417",
@@ -69,6 +93,10 @@
       "cost_price": 54.1,
       "current_price": 51.9,
       "profit_loss_pct": -4.07,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "✅ 續抱",
       "reason": "無異常"
     },
@@ -79,6 +107,10 @@
       "cost_price": 54.5,
       "current_price": 52.0,
       "profit_loss_pct": -4.59,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "🔴 避險停損",
       "reason": "股利縮水或停發"
     },
@@ -89,6 +121,10 @@
       "cost_price": 23.95,
       "current_price": 25.0,
       "profit_loss_pct": 4.38,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "🔴 避險停損",
       "reason": "EPS虧損(-0.47); 股利縮水或停發"
     },
@@ -99,6 +135,10 @@
       "cost_price": 64.5,
       "current_price": 67.6,
       "profit_loss_pct": 4.81,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "🔴 避險停損",
       "reason": "股利縮水或停發"
     },
@@ -109,6 +149,10 @@
       "cost_price": 32.23,
       "current_price": 30.25,
       "profit_loss_pct": -6.14,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "✅ 續抱",
       "reason": "無異常"
     },
@@ -119,6 +163,10 @@
       "cost_price": 115.0,
       "current_price": 117.0,
       "profit_loss_pct": 1.74,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "✅ 續抱",
       "reason": "無異常"
     },
@@ -129,6 +177,10 @@
       "cost_price": 169.0,
       "current_price": 157.0,
       "profit_loss_pct": -7.1,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
       "action": "🔴 避險停損",
       "reason": "股利縮水或停發"
     },
@@ -139,8 +191,12 @@
       "cost_price": 18.1,
       "current_price": 18.25,
       "profit_loss_pct": 0.83,
-      "action": "✅ 續抱",
-      "reason": "需完整 AFASS 評分（待整合）"
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
+      "action": "⚠️ 資料不足",
+      "reason": "無法取得 AFASS 評分"
     },
     {
       "stock_id": "6147",
@@ -149,8 +205,12 @@
       "cost_price": 58.5,
       "current_price": 54.3,
       "profit_loss_pct": -7.18,
-      "action": "✅ 續抱",
-      "reason": "需完整 AFASS 評分（待整合）"
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
+      "action": "⚠️ 資料不足",
+      "reason": "無法取得 AFASS 評分"
     },
     {
       "stock_id": "4123",
@@ -159,8 +219,12 @@
       "cost_price": 43.2,
       "current_price": 39.45,
       "profit_loss_pct": -8.68,
-      "action": "✅ 續抱",
-      "reason": "需完整 AFASS 評分（待整合）"
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
+      "action": "⚠️ 資料不足",
+      "reason": "無法取得 AFASS 評分"
     },
     {
       "stock_id": "1313",
@@ -169,15 +233,19 @@
       "cost_price": 11.4,
       "current_price": 10.2,
       "profit_loss_pct": -10.53,
-      "action": "✅ 續抱",
-      "reason": "需完整 AFASS 評分（待整合）"
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
+      "action": "⚠️ 資料不足",
+      "reason": "無法取得 AFASS 評分"
     }
   ],
   "stats": {
     "total": 17,
     "stop_loss": 5,
     "take_profit": 0,
-    "hold": 11,
+    "hold": 6,
     "no_check": 1
   },
   "status": "ok"

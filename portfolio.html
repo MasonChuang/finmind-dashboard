@@ -226,13 +226,16 @@
                         <th onclick="sortTable(3)">成本價</th>
                         <th onclick="sortTable(4)">現價</th>
                         <th onclick="sortTable(5)">損益率(%)</th>
-                        <th onclick="sortTable(6)">建議</th>
-                        <th onclick="sortTable(7)">原因</th>
+                        <th onclick="sortTable(6)">AFASS_1Q</th>
+                        <th onclick="sortTable(7)">AFASS_1Y</th>
+                        <th onclick="sortTable(8)">趨勢</th>
+                        <th onclick="sortTable(9)">建議</th>
+                        <th onclick="sortTable(10)">原因</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
                     <tr>
-                        <td colspan="8" class="loading">載入中...</td>
+                        <td colspan="11" class="loading">載入中...</td>
                     </tr>
                 </tbody>
             </table>
@@ -283,6 +286,23 @@
                         profitClass = 'score low';
                     }
 
+                    // AFASS 評分顏色
+                    let afass1qClass = '';
+                    const score1q = item.afass_score_1q || 0;
+                    if (score1q >= 70) afass1qClass = 'score high';
+                    else if (score1q >= 50) afass1qClass = 'score medium';
+                    else if (score1q > 0) afass1qClass = 'score low';
+
+                    let afass1yClass = '';
+                    const score1y = item.afass_score_1y || 0;
+                    if (score1y >= 70) afass1yClass = 'score high';
+                    else if (score1y >= 50) afass1yClass = 'score medium';
+                    else if (score1y > 0) afass1yClass = 'score low';
+
+                    // 趨勢圖示
+                    const trend = item.afass_trend || '無資料';
+                    const trendIcon = trend.includes('上升') ? '↗' : trend.includes('下降') ? '↘' : '→';
+
                     return `
                         <tr>
                             <td>${item.stock_id}</td>
@@ -291,6 +311,9 @@
                             <td>${item.cost_price.toFixed(2)}</td>
                             <td>${item.current_price.toFixed(2)}</td>
                             <td class="${profitClass}">${item.profit_loss_pct.toFixed(2)}%</td>
+                            <td class="${afass1qClass}">${score1q > 0 ? score1q.toFixed(1) : '-'}</td>
+                            <td class="${afass1yClass}">${score1y > 0 ? score1y.toFixed(1) : '-'}</td>
+                            <td style="font-size: 1.2em;">${trendIcon}</td>
                             <td><span class="status ${statusClass}">${item.action}</span></td>
                             <td style="font-size: 0.85em; color: #666;">${item.reason}</td>
                         </tr>
