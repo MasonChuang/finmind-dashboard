@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-04 20:16:15",
+  "last_update": "2026-02-04 20:28:41",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -125,7 +125,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 590,
+      "record_count": 607,
       "status": "✅ 正常"
     },
     {
