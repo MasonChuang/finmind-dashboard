@@ -263,19 +263,29 @@
                 const tbody = document.getElementById('tableBody');
 
                 if (data.status === 'no_report' || data.holdings.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="8" class="no-data">尚無持股資料<br>請先執行 Portfolio Check</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="11" class="no-data">尚無持股資料<br>請先執行 Portfolio Check</td></tr>';
                     return;
                 }
 
                 tbody.innerHTML = data.holdings.map(item => {
-                    // 根據建議動作決定樣式
-                    let statusClass = 'hold';
-                    if (item.action.includes('避險停損') || item.action.includes('🔴')) {
-                        statusClass = 'sell';
-                    } else if (item.action.includes('獲利了結') || item.action.includes('⚠️')) {
-                        statusClass = 'watch';
-                    } else if (item.action.includes('不檢查') || item.action.includes('⏸️')) {
-                        statusClass = 'watch';
+                    // 根據財報建議決定樣式
+                    let reportStatusClass = 'hold';
+                    if (item.report_action.includes('避險停損') || item.report_action.includes('🔴')) {
+                        reportStatusClass = 'sell';
+                    } else if (item.report_action.includes('獲利了結') || item.report_action.includes('觀察') || item.report_action.includes('⚠️')) {
+                        reportStatusClass = 'watch';
+                    } else if (item.report_action.includes('不檢查') || item.report_action.includes('⏸️')) {
+                        reportStatusClass = 'watch';
+                    }
+
+                    // 根據策略建議決定樣式
+                    let strategyStatusClass = 'hold';
+                    if (item.strategy_action.includes('避險停損') || item.strategy_action.includes('🔴')) {
+                        strategyStatusClass = 'sell';
+                    } else if (item.strategy_action.includes('獲利了結') || item.strategy_action.includes('觀察') || item.strategy_action.includes('⚠️')) {
+                        strategyStatusClass = 'watch';
+                    } else if (item.strategy_action.includes('不檢查') || item.strategy_action.includes('⏸️')) {
+                        strategyStatusClass = 'watch';
                     }
 
                     // 根據損益率決定顏色
@@ -314,8 +324,8 @@
                             <td class="${afass1qClass}">${score1q > 0 ? score1q.toFixed(1) : '-'}</td>
                             <td class="${afass1yClass}">${score1y > 0 ? score1y.toFixed(1) : '-'}</td>
                             <td style="font-size: 1.2em;">${trendIcon}</td>
-                            <td><span class="status ${statusClass}">${item.action}</span></td>
-                            <td style="font-size: 0.85em; color: #666;">${item.reason}</td>
+                            <td><span class="status ${strategyStatusClass}" title="${item.strategy_reason}">${item.strategy_action}</span></td>
+                            <td><span class="status ${reportStatusClass}" title="${item.report_reason}">${item.report_action}</span></td>
                         </tr>
                     `;
                 }).join('');
