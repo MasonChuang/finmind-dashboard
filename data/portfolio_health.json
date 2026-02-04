@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-02-04 14:43:57",
-  "report_file": "持股健檢_統一報告_20260204_1443.csv",
+  "last_update": "2026-02-04 14:52:52",
+  "report_file": "持股健檢_統一報告_20260204_1452.csv",
   "holdings": [
     {
       "stock_id": "50",
@@ -29,8 +29,8 @@
       "afass_score_1y": 82.0,
       "afass_trend": "上升↗",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "🔴 避險停損",
+      "strategy_reason": "殖利率過低(0.55%); 股利縮水或停發",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(92.8分), 極穩定⭐⭐⭐"
     },
@@ -45,8 +45,8 @@
       "afass_score_1y": 81.2,
       "afass_trend": "穩定→",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(79.3分), 極穩定⭐⭐⭐"
     },
@@ -61,8 +61,8 @@
       "afass_score_1y": 6.5,
       "afass_trend": "上升↗",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
       "report_action": "🔴 避險停損",
       "report_reason": "AFASS評分過低(3.1分)"
     },
@@ -77,8 +77,8 @@
       "afass_score_1y": 64.3,
       "afass_trend": "上升↗",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(78.6分), 極穩定⭐⭐⭐"
     },
@@ -109,8 +109,8 @@
       "afass_score_1y": 86.3,
       "afass_trend": "上升↗",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐"
     },
@@ -125,8 +125,8 @@
       "afass_score_1y": 75.6,
       "afass_trend": "穩定→",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "🔴 避險停損",
+      "strategy_reason": "股利縮水或停發",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐"
     },
@@ -141,8 +141,8 @@
       "afass_score_1y": 50.2,
       "afass_trend": "穩定→",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "🔴 避險停損",
+      "strategy_reason": "EPS虧損(-0.47); 股利縮水或停發",
       "report_action": "✅ 續抱",
       "report_reason": "評分中等(63.9分)但趨勢穩定"
     },
@@ -157,8 +157,8 @@
       "afass_score_1y": 73.1,
       "afass_trend": "下降↘",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "🔴 避險停損",
+      "strategy_reason": "股利縮水或停發",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(87.7分), 極穩定⭐⭐⭐"
     },
@@ -173,8 +173,8 @@
       "afass_score_1y": 84.2,
       "afass_trend": "上升↗",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐"
     },
@@ -189,8 +189,8 @@
       "afass_score_1y": 55.9,
       "afass_trend": "上升↗",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
       "report_reason": "評分中等(69.0分)但趨勢穩定"
     },
@@ -205,8 +205,8 @@
       "afass_score_1y": 86.1,
       "afass_trend": "上升↗",
       "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "⚠️ 資料不足",
-      "strategy_reason": "檢查失敗: Cannot operate on a closed database.",
+      "strategy_action": "🔴 避險停損",
+      "strategy_reason": "股利縮水或停發",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐"
     },
