@@ -230,12 +230,14 @@
                         <th onclick="sortTable(7)">AFASS_1Y</th>
                         <th onclick="sortTable(8)">趨勢</th>
                         <th onclick="sortTable(9)">策略建議</th>
-                        <th onclick="sortTable(10)">財報建議</th>
+                        <th onclick="sortTable(10)">策略原因</th>
+                        <th onclick="sortTable(11)">財報建議</th>
+                        <th onclick="sortTable(12)">財報原因</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
                     <tr>
-                        <td colspan="11" class="loading">載入中...</td>
+                        <td colspan="13" class="loading">載入中...</td>
                     </tr>
                 </tbody>
             </table>
@@ -263,7 +265,7 @@
                 const tbody = document.getElementById('tableBody');
 
                 if (data.status === 'no_report' || data.holdings.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="11" class="no-data">尚無持股資料<br>請先執行 Portfolio Check</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="13" class="no-data">尚無持股資料<br>請先執行 Portfolio Check</td></tr>';
                     return;
                 }
 
@@ -324,8 +326,10 @@
                             <td class="${afass1qClass}">${score1q > 0 ? score1q.toFixed(1) : '-'}</td>
                             <td class="${afass1yClass}">${score1y > 0 ? score1y.toFixed(1) : '-'}</td>
                             <td style="font-size: 1.2em;">${trendIcon}</td>
-                            <td><span class="status ${strategyStatusClass}" title="${item.strategy_reason}">${item.strategy_action}</span></td>
-                            <td><span class="status ${reportStatusClass}" title="${item.report_reason}">${item.report_action}</span></td>
+                            <td><span class="status ${strategyStatusClass}">${item.strategy_action}</span></td>
+                            <td style="font-size: 0.85em; color: #666;">${item.strategy_reason}</td>
+                            <td><span class="status ${reportStatusClass}">${item.report_action}</span></td>
+                            <td style="font-size: 0.85em; color: #666;">${item.report_reason}</td>
                         </tr>
                     `;
                 }).join('');
