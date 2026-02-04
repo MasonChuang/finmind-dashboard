@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-04 19:22:17",
+  "last_update": "2026-02-04 20:16:15",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -22,8 +22,8 @@
     },
     {
       "name": "TaiwanStockDispositionSecuritiesPeriod",
-      "latest_date": "2026-02-02",
-      "record_count": 38,
+      "latest_date": "2026-02-03",
+      "record_count": 39,
       "status": "✅ 正常"
     },
     {
@@ -125,7 +125,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 573,
+      "record_count": 590,
       "status": "✅ 正常"
     },
     {
