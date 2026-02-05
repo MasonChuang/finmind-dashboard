@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-02-04 20:40:09",
-  "report_file": "持股健檢_統一報告_20260204_2040.csv",
+  "last_update": "2026-02-05 11:40:14",
+  "report_file": "持股健檢_統一報告_20260205_1140.csv",
   "holdings": [
     {
       "stock_id": "50",
@@ -213,18 +213,18 @@
     {
       "stock_id": "2883",
       "name": "凱基金",
-      "strategy": "巨鯨狙擊",
+      "strategy": "海龜法則",
       "cost_price": 18.1,
       "current_price": 18.4,
       "profit_loss_pct": 1.66,
-      "afass_score_1q": 40.0,
-      "afass_score_1y": 22.2,
-      "afass_trend": "下降↘",
-      "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "✅ 續抱",
-      "strategy_reason": "無觸發停損（報酬 +1.66%）",
-      "report_action": "🔴 避險停損",
-      "report_reason": "AFASS評分過低(40.0分)"
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
+      "strategy_action": "⏸️ 不檢查",
+      "strategy_reason": "策略 '海龜法則' 無健檢邏輯",
+      "report_action": "⏸️ 不檢查",
+      "report_reason": "非股票標的"
     },
     {
       "stock_id": "6147",
@@ -277,10 +277,10 @@
   ],
   "stats": {
     "total": 17,
-    "stop_loss": 3,
+    "stop_loss": 2,
     "take_profit": 0,
     "hold": 13,
-    "no_check": 1
+    "no_check": 2
   },
   "status": "ok"
 }

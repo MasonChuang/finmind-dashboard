@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-04 20:40:57",
+  "generated_at": "2026-02-05 11:40:43",
   "taiex": [
     {
       "date": "2025-08-13",
@@ -2335,11 +2335,11 @@
     }
   ],
   "credit": {
-    "date": "2026-02-03",
-    "margin_balance": 8520714,
-    "short_balance": 266149,
-    "margin_change": -2353,
-    "short_change": -11528
+    "date": "2026-02-04",
+    "margin_balance": 8580538,
+    "short_balance": 279673,
+    "margin_change": 59824,
+    "short_change": 13524
   },
   "institutional": {
     "daily_top5": [
