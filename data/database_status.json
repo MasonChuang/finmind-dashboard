@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-05 19:07:43",
+  "last_update": "2026-02-05 22:18:16",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -22,8 +22,8 @@
     },
     {
       "name": "TaiwanStockDispositionSecuritiesPeriod",
-      "latest_date": "2026-02-03",
-      "record_count": 39,
+      "latest_date": "2026-02-04",
+      "record_count": 40,
       "status": "✅ 正常"
     },
     {
@@ -64,8 +64,8 @@
     },
     {
       "name": "TaiwanStockMarginPurchaseShortSale",
-      "latest_date": "2026-02-04",
-      "record_count": 7922920,
+      "latest_date": "2026-02-05",
+      "record_count": 7925056,
       "status": "✅ 正常"
     },
     {
@@ -112,20 +112,20 @@
     },
     {
       "name": "TaiwanStockTotalMarginPurchaseShortSale",
-      "latest_date": "2026-02-04",
-      "record_count": 18564,
+      "latest_date": "2026-02-05",
+      "record_count": 18567,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanTotalExchangeMarginMaintenance",
-      "latest_date": "2026-02-04",
-      "record_count": 189,
+      "latest_date": "2026-02-05",
+      "record_count": 190,
       "status": "✅ 正常"
     },
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 743,
+      "record_count": 760,
       "status": "✅ 正常"
     },
     {
