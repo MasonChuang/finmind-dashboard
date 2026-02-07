@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinMind 動態策略篩選器</title>
+    <!-- Vue.js 3 (CDN for simplicity) -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Tailwind CSS (CDN for styling) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.5s ease;
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">⚡</span>
+                    <h1 class="text-xl font-bold text-gray-800">FinMind 動態策略篩選器 <span
+                            class="text-xs text-gray-500 font-normal ml-2">v1.0 (Phase 1)</span></h1>
+                </div>
+                <!-- Loading State -->
+                <div v-if="loading" class="text-blue-600 font-semibold flex items-center">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>
+                    載入中...
+                </div>
+                <div v-else class="text-sm text-gray-500">
+                    資料來源: {{ lastUpdated }} | 共 {{ filteredCount }} / {{ totalCount }} 檔
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-6">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+                <!-- Filters Panel -->
+                <div class="lg:col-span-1 bg-white rounded-xl shadow-sm p-6 h-fit sticky top-24">
+                    <h2 class="text-lg font-bold mb-4 text-gray-700 border-b pb-2">🔍 篩選條件</h2>
+
+                    <!-- Yield Filter -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between items-center">
+                            <span>殖利率 > {{ filters.minYield }}%</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictYield" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-2 text-xs font-medium text-gray-500"
+                                    :class="{'text-blue-600 font-bold': filters.strictYield}">嚴格</span>
+                            </label>
+                        </label>
+                        <input type="range" v-model.number="filters.minYield" min="0" max="10" step="0.5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1">
+                            <span v-if="filters.strictYield" class="text-blue-500">每年 > {{ filters.minYield }}%</span>
+                            <span v-else>平均 > {{ filters.minYield }}%</span>
+                        </div>
+                    </div>
+
+                    <!-- Fill Days Filter -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between items-center">
+                            <span>填息天數 < {{ filters.maxFillDays }} 天</span>
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" v-model="filters.strictFill" class="sr-only peer">
+                                        <div
+                                            class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                        </div>
+                                        <span class="ms-2 text-xs font-medium text-gray-500"
+                                            :class="{'text-blue-600 font-bold': filters.strictFill}">嚴格</span>
+                                    </label>
+                        </label>
+                        <input type="range" v-model.number="filters.maxFillDays" min="0" max="365" step="5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1">
+                            <span v-if="filters.strictFill" class="text-blue-500">每年 < {{ filters.maxFillDays }}
+                                    天</span>
+                                    <span v-else>平均 < {{ filters.maxFillDays }} 天</span>
+                        </div>
+                    </div>
+
+                    <!-- Div Freq Filter -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">配息頻率</label>
+                        <select v-model="filters.divFreq"
+                            class="w-full p-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="all">全部</option>
+                            <option value="季配">季配</option>
+                            <option value="半年配">半年配</option>
+                            <option value="年配">年配</option>
+                        </select>
+                    </div>
+
+                    <!-- Industry Filter -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">產業類別</label>
+                        <select v-model="filters.industry"
+                            class="w-full p-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="all">全部產業</option>
+                            <option v-for="ind in uniqueIndustries" :key="ind" :value="ind">{{ ind }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Reset Button -->
+                    <button @click="resetFilters"
+                        class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg font-medium transition-colors">
+                        重置條件
+                    </button>
+
+                    <div class="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                        <h3 class="text-sm font-bold text-blue-800 mb-1">💡 小撇步</h3>
+                        <p class="text-xs text-blue-600">
+                            同時設定「殖利率 > 5%」且「填息 < 30天」可以找出真正的定存好股喔！ </p>
+                    </div>
+                </div>
+
+                <!-- Results Table -->
+                <div class="lg:col-span-3 bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
+                    <!-- Table Header Controls -->
+                    <div class="p-4 border-b flex justify-between items-center bg-gray-50">
+                        <div class="flex items-center space-x-2">
+                            <input type="text" v-model="filters.search" placeholder="搜尋代號或名稱..."
+                                class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm w-64">
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            排序依據: <span class="font-semibold text-gray-700">{{ sortLabel }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Table -->
+                    <div class="overflow-x-auto flex-grow relative">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-600 text-xs uppercase tracking-wide">
+                                    <th @click="setSort('id')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">代號
+                                    </th>
+                                    <th @click="setSort('name')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">名稱
+                                    </th>
+                                    <th @click="setSort('industry')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">產業
+                                    </th>
+                                    <th @click="setSort('price')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        股價</th>
+                                    <th @click="setSort('hy_yield_avg_5y')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right bg-blue-50">
+                                        殖利率(5y)</th>
+                                    <th @click="setSort('hy_fill_days_avg')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right bg-green-50">
+                                        填息天數</th>
+                                    <th class="p-4 font-semibold text-center">頻率</th>
+                                    <th @click="setSort('rev_yoy')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        營收 YoY</th>
+                                    <th @click="setSort('rev_mom')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        營收 MoM</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr v-for="stock in sortedStocks" :key="stock.id"
+                                    class="hover:bg-gray-50 transition-colors group">
+                                    <td class="p-4 font-medium text-blue-600">
+                                        <a :href="'https://www.cmoney.tw/finance/f00025.aspx?s=' + stock.id"
+                                            target="_blank" class="hover:underline">{{ stock.id }}</a>
+                                    </td>
+                                    <td class="p-4 font-semibold text-gray-800">{{ stock.name }}</td>
+                                    <td class="p-4 text-gray-500 text-sm">{{ stock.industry }}</td>
+                                    <td class="p-4 text-right font-mono text-gray-700">{{ stock.price }}</td>
+
+                                    <!-- Yield -->
+                                    <td class="p-4 text-right font-mono font-bold bg-blue-50/30 group-hover:bg-blue-50 transition-colors"
+                                        :class="{'text-red-600': stock.hy_yield_avg_5y >= 5}">
+                                        {{ stock.hy_yield_avg_5y }}%
+                                    </td>
+
+                                    <!-- Fill Days -->
+                                    <td class="p-4 text-right font-mono bg-green-50/30 group-hover:bg-green-50 transition-colors"
+                                        :class="{'text-green-600 font-bold': stock.hy_fill_days_avg <= 30}">
+                                        {{ stock.hy_fill_days_avg == 999 ? '未填息' : stock.hy_fill_days_avg }}
+                                    </td>
+
+                                    <td class="p-4 text-center">
+                                        <span class="px-2 py-1 text-xs rounded-full border" :class="{
+                                                  'bg-purple-100 text-purple-700 border-purple-200': stock.hy_div_freq === '季配',
+                                                  'bg-indigo-100 text-indigo-700 border-indigo-200': stock.hy_div_freq === '半年配',
+                                                  'bg-gray-100 text-gray-600 border-gray-200': stock.hy_div_freq === '年配'
+                                              }">
+                                            {{ stock.hy_div_freq }}
+                                        </span>
+                                    </td>
+
+                                    <!-- Revenue -->
+                                    <td class="p-4 text-right font-mono text-sm" :class="getColorClass(stock.rev_yoy)">
+                                        {{ formatNumber(stock.rev_yoy) }}%
+                                    </td>
+                                    <td class="p-4 text-right font-mono text-sm" :class="getColorClass(stock.rev_mom)">
+                                        {{ formatNumber(stock.rev_mom) }}%
+                                    </td>
+                                </tr>
+                                <tr v-if="sortedStocks.length === 0 && !loading"
+                                    class="text-center py-12 text-gray-400">
+                                    <td colspan="9" class="p-12">
+                                        沒有符合條件的股票 🐢
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                const stocks = ref([]);
+                const loading = ref(true);
+                const lastUpdated = ref('更新中...');
+
+                // Filters
+                const filters = ref({
+                    minYield: 4,
+                    strictYield: false,
+                    maxFillDays: 60,
+                    strictFill: false,
+                    divFreq: 'all',
+                    industry: 'all',
+                    search: ''
+                });
+
+                // Sorting
+                const sortKey = ref('hy_yield_avg_5y');
+                const sortDesc = ref(true);
+
+                // Load Data
+                const loadData = async () => {
+                    try {
+                        const response = await fetch('../Data/market_metrics_latest.json');
+                        if (!response.ok) throw new Error('Failed to load data');
+                        const data = await response.json();
+                        stocks.value = data;
+                        lastUpdated.value = new Date().toLocaleDateString();
+                    } catch (error) {
+                        console.error("Error loading JSON:", error);
+                        // Mock data for offline testing if needed
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+
+                onMounted(() => {
+                    loadData();
+                });
+
+                // Computed
+                const uniqueIndustries = computed(() => {
+                    const industries = new Set(stocks.value.map(s => s.industry));
+                    return Array.from(industries).sort();
+                });
+
+                const filteredStocks = computed(() => {
+                    return stocks.value.filter(s => {
+                        // Yield Logic
+                        const yieldVal = filters.value.strictYield ? s.hy_yield_min_5y : s.hy_yield_avg_5y;
+                        if (yieldVal < filters.value.minYield) return false;
+
+                        // Fill Days Logic
+                        const fillVal = filters.value.strictFill ? s.hy_fill_days_max : s.hy_fill_days_avg;
+                        if (fillVal > filters.value.maxFillDays) return false;
+
+                        // Div Freq
+                        if (filters.value.divFreq !== 'all' && s.hy_div_freq !== filters.value.divFreq) return false;
+
+                        // Industry
+                        if (filters.value.industry !== 'all' && s.industry !== filters.value.industry) return false;
+
+                        // Search
+                        if (filters.value.search) {
+                            const term = filters.value.search.toLowerCase();
+                            return s.id.includes(term) || s.name.toLowerCase().includes(term);
+                        }
+
+                        return true;
+                    });
+                });
+
+                const sortedStocks = computed(() => {
+                    return [...filteredStocks.value].sort((a, b) => {
+                        let va = a[sortKey.value];
+                        let vb = b[sortKey.value];
+
+                        // Handle N/A or nulls
+                        if (va == null || va === "N/A" || va === 999) va = sortDesc.value ? -Infinity : Infinity;
+                        if (vb == null || vb === "N/A" || vb === 999) vb = sortDesc.value ? -Infinity : Infinity;
+
+                        if (va < vb) return sortDesc.value ? 1 : -1;
+                        if (va > vb) return sortDesc.value ? -1 : 1;
+                        return 0;
+                    });
+                });
+
+                // Methods
+                const setSort = (key) => {
+                    if (sortKey.value === key) {
+                        sortDesc.value = !sortDesc.value;
+                    } else {
+                        sortKey.value = key;
+                        sortDesc.value = true; // Default desc for new numeric cols usually better
+                        if (key === 'id' || key === 'industry') sortDesc.value = false;
+                    }
+                };
+
+                const resetFilters = () => {
+                    filters.value.minYield = 0;
+                    filters.value.maxFillDays = 365;
+                    filters.value.divFreq = 'all';
+                    filters.value.industry = 'all';
+                    filters.value.search = '';
+                };
+
+                const getColorClass = (val) => {
+                    if (val == null) return 'text-gray-400';
+                    if (val > 0) return 'text-red-600 font-bold';
+                    if (val < 0) return 'text-green-600 font-bold';
+                    return 'text-gray-600';
+                };
+
+                const formatNumber = (val) => {
+                    if (val == null) return '-';
+                    return val;
+                }
+
+                const sortLabel = computed(() => {
+                    const labels = {
+                        'id': '代號',
+                        'name': '名稱',
+                        'industry': '產業',
+                        'price': '股價',
+                        'hy_yield_avg_5y': '殖利率',
+                        'hy_fill_days_avg': '填息天數',
+                        'rev_yoy': '營收 YoY',
+                        'rev_mom': '營收 MoM'
+                    };
+                    return (labels[sortKey.value] || sortKey.value) + (sortDesc.value ? ' (↓)' : ' (↑)');
+                });
+
+                return {
+                    loading,
+                    stocks,
+                    lastUpdated,
+                    filters,
+                    sortedStocks,
+                    uniqueIndustries,
+
+                    // Counts
+                    totalCount: computed(() => stocks.value.length),
+                    filteredCount: computed(() => filteredStocks.value.length),
+
+                    // Methods
+                    setSort,
+                    resetFilters,
+                    getColorClass,
+                    formatNumber,
+                    sortLabel
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
