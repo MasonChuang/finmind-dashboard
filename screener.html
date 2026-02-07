@@ -9,6 +9,8 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- Tailwind CSS (CDN for styling) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Market Data (Local JS file to bypass CORS) -->
+    <script src="../Data/market_metrics_latest.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
@@ -289,14 +291,16 @@
                 // Load Data
                 const loadData = async () => {
                     try {
-                        const response = await fetch('../Data/market_metrics_latest.json');
-                        if (!response.ok) throw new Error('Failed to load data');
-                        const data = await response.json();
-                        stocks.value = data;
-                        lastUpdated.value = new Date().toLocaleDateString();
+                        // Use global variable injected by market_metrics_latest.js
+                        if (window.MARKET_DATA) {
+                            stocks.value = window.MARKET_DATA;
+                            lastUpdated.value = new Date().toLocaleDateString();
+                        } else {
+                            throw new Error('Data not found in window.MARKET_DATA');
+                        }
                     } catch (error) {
-                        console.error("Error loading JSON:", error);
-                        // Mock data for offline testing if needed
+                        console.error("Error loading Data:", error);
+                        alert("無法讀取資料。請確認是否已執行 003_高殖利率.bat 產生 market_metrics_latest.js");
                     } finally {
                         loading.value = false;
                     }
