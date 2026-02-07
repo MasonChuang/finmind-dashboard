@@ -79,8 +79,24 @@
   <div style="height: 80px;"></div>
 
   <div class="container-fluid mt-4">
-    <!-- 整合圖表：加權指數 + 騰落線 (雙Y軸) -->
+    <!-- TAIEX Technical Chart (New) -->
     <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header bg-light fw-bold">
+            📈 加權指數技術分析 (Price + MA20/60/100)
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="taiexTechnicalChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 整合圖表：加權指數 + 騰落線 (雙Y軸) -->
+    <div class="row mt-4">
       <div class="col-12">
         <div class="card">
           <div class="card-header bg-light fw-bold">
@@ -495,6 +511,96 @@
               },
               grid: {
                 drawOnChartArea: false
+              }
+            }
+          }
+        }
+      });
+
+      // 繪製 TAIEX 技術分析圖 (Price + MAs)
+      const ma20 = data.taiex.map(d => d.ma20);
+      const ma60 = data.taiex.map(d => d.ma60);
+      const ma100 = data.taiex.map(d => d.ma100);
+
+      new Chart(document.getElementById('taiexTechnicalChart'), {
+        type: 'line',
+        data: {
+          labels: dates,
+          datasets: [
+            {
+              label: '加權指數',
+              data: taiexClose,
+              borderColor: 'rgb(0, 0, 0)', // Black for price
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.1
+            },
+            {
+              label: 'MA20 (月線)',
+              data: ma20,
+              borderColor: 'rgb(255, 193, 7)', // Yellow
+              borderWidth: 1.5,
+              pointRadius: 0,
+              borderDash: [5, 5],
+              tension: 0.1
+            },
+            {
+              label: 'MA60 (季線)',
+              data: ma60,
+              borderColor: 'rgb(25, 135, 84)', // Green
+              borderWidth: 1.5,
+              pointRadius: 0,
+              tension: 0.1
+            },
+            {
+              label: 'MA100 (半年線)',
+              data: ma100,
+              borderColor: 'rgb(111, 66, 193)', // Purple
+              borderWidth: 1.5,
+              pointRadius: 0,
+              tension: 0.1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: {
+            mode: 'index',
+            intersect: false
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top'
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.parsed.y !== null) {
+                    label += context.parsed.y.toFixed(2);
+                  }
+                  return label;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                maxTicksLimit: 10
+              }
+            },
+            y: {
+              type: 'linear',
+              position: 'left',
+              title: {
+                display: true,
+                text: '指數'
               }
             }
           }

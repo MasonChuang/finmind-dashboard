@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-02-07 19:12:50",
-  "report_file": "持股健檢_統一報告_20260207_1912.csv",
+  "last_update": "2026-02-07 20:41:20",
+  "report_file": "持股健檢_統一報告_20260207_2041.csv",
   "holdings": [
     {
       "stock_id": "50",
@@ -301,8 +301,8 @@
       "afass_score_1y": 0.0,
       "afass_trend": "無資料",
       "afass_stability": "無資料",
-      "strategy_action": "⚠️ 需人工檢查",
-      "strategy_reason": "海龜自動檢查尚未整合",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "股價在停損與離場價之上",
       "report_action": "⚠️ 資料不足",
       "report_reason": "無法取得 AFASS 評分",
       "rsi": 0.0,
