@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-02-07 20:41:20",
-  "report_file": "持股健檢_統一報告_20260207_2041.csv",
+  "last_update": "2026-02-07 20:58:41",
+  "report_file": "持股健檢_統一報告_20260207_2058.csv",
   "holdings": [
     {
       "stock_id": "50",
@@ -34,7 +34,7 @@
       "strategy_action": "🔴 避險停損",
       "strategy_reason": "殖利率過低(0.57%); 股利縮水或停發",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(92.8分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(92.8分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -52,7 +52,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(78.6分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(78.6分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -70,7 +70,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -88,7 +88,7 @@
       "strategy_action": "🔴 避險停損",
       "strategy_reason": "股利縮水或停發",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -106,7 +106,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -124,7 +124,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
-      "report_reason": "評分中等(69.0分)但趨勢穩定",
+      "report_reason": "評分中等(69.0分, 1Q)但趨勢穩定",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -142,7 +142,7 @@
       "strategy_action": "🔴 避險停損",
       "strategy_reason": "股利縮水或停發",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(100.0分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -160,7 +160,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(93.7分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(93.7分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -178,7 +178,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無異常",
       "report_action": "🔴 避險停損",
-      "report_reason": "AFASS評分過低(3.1分)",
+      "report_reason": "AFASS評分過低(3.1分, 1Q)",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -196,7 +196,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無異常",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(79.3分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(79.3分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -214,7 +214,7 @@
       "strategy_action": "🟡 追蹤停損",
       "strategy_reason": "從最高價回落 -11.09% ≤ -7%",
       "report_action": "🔴 避險停損",
-      "report_reason": "AFASS評分過低(21.3分)",
+      "report_reason": "AFASS評分過低(21.3分, 1Q)",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -232,7 +232,7 @@
       "strategy_action": "🟡 追蹤停損",
       "strategy_reason": "從最高價回落 -9.01% ≤ -7%",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(73.7分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(73.7分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -250,7 +250,7 @@
       "strategy_action": "🔴 避險停損",
       "strategy_reason": "硬停損 -10.96% ≤ -10%",
       "report_action": "✅ 續抱",
-      "report_reason": "評分中等(51.0分)但趨勢穩定",
+      "report_reason": "評分中等(51.0分, 1Q)但趨勢穩定",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -268,7 +268,7 @@
       "strategy_action": "🟡 追蹤停損",
       "strategy_reason": "從最高價回落 -7.95% ≤ -7%",
       "report_action": "🔴 避險停損",
-      "report_reason": "AFASS評分過低(49.2分)",
+      "report_reason": "AFASS評分過低(49.2分, 1Q)",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -286,7 +286,7 @@
       "strategy_action": "✅ 續抱",
       "strategy_reason": "無觸發停損（報酬 +6.57%）",
       "report_action": "✅ 續抱",
-      "report_reason": "AFASS評分優良(79.8分), 極穩定⭐⭐⭐",
+      "report_reason": "AFASS評分優良(79.8分, 1Q), 極穩定⭐⭐⭐",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -297,21 +297,21 @@
       "cost_price": 15.7,
       "current_price": 15.9,
       "profit_loss_pct": 1.27,
-      "afass_score_1q": 0.0,
-      "afass_score_1y": 0.0,
-      "afass_trend": "無資料",
+      "afass_score_1q": 45.2,
+      "afass_score_1y": 45.2,
+      "afass_trend": "穩定→",
       "afass_stability": "無資料",
       "strategy_action": "✅ 續抱",
       "strategy_reason": "股價在停損與離場價之上",
-      "report_action": "⚠️ 資料不足",
-      "report_reason": "無法取得 AFASS 評分",
+      "report_action": "🔴 避險停損",
+      "report_reason": "AFASS評分過低(45.2分, 1Y)",
       "rsi": 0.0,
       "k": 0.0
     }
   ],
   "stats": {
     "total": 17,
-    "stop_loss": 3,
+    "stop_loss": 4,
     "take_profit": 0,
     "hold": 12,
     "no_check": 1
