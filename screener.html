@@ -54,7 +54,7 @@
     <div id="app" class="min-h-screen flex flex-col">
         <!-- Header -->
         <header class="bg-white shadow-sm sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="max-w-full mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
                     <span class="text-2xl">⚡</span>
                     <h1 class="text-xl font-bold text-gray-800">FinMind 動態策略篩選器 <span
@@ -80,11 +80,23 @@
 
         <!-- Main Content -->
         <main class="flex-grow p-6">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <div class="max-w-full mx-auto grid grid-cols-1 lg:grid-cols-5 gap-6">
 
-                <!-- Filters Panel -->
+                <!-- Filters Panel (Sidebar) -->
                 <div class="lg:col-span-1 bg-white rounded-xl shadow-sm p-6 h-fit sticky top-24">
                     <h2 class="text-lg font-bold mb-4 text-gray-700 border-b pb-2">🔍 篩選條件</h2>
+
+                    <!-- Price Filter -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">股價範圍 (元)</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="number" v-model.number="filters.minPrice" placeholder="Min"
+                                class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                            <span class="text-gray-400">~</span>
+                            <input type="number" v-model.number="filters.maxPrice" placeholder="Max"
+                                class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                        </div>
+                    </div>
 
                     <!-- Yield Filter -->
                     <div class="mb-6">
@@ -123,9 +135,119 @@
                         <input type="range" v-model.number="filters.maxFillDays" min="0" max="365" step="5"
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                         <div class="flex justify-between text-xs text-gray-400 mt-1">
-                            <span v-if="filters.strictFill" class="text-blue-500">每年 < {{ filters.maxFillDays }}
-                                    天</span>
-                                    <span v-else>平均 < {{ filters.maxFillDays }} 天</span>
+                            <span v-if="filters.strictFill" class="text-blue-500">
+                                {{ filters.maxFillDays >= 365 ? '每年不限天數' : '每年 < ' + filters.maxFillDays + ' 天' }}
+                                    </span>
+                                    <span v-else>
+                                        {{ filters.maxFillDays >= 365 ? '平均不限天數' : '平均 < ' + filters.maxFillDays + ' 天'
+                                            }} </span>
+                        </div>
+                    </div>
+
+                    <!-- Cash Dividend Filter -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between items-center">
+                            <span>現金股利 > {{ filters.minDiv }}元</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictDiv" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-2 text-xs font-medium text-gray-500"
+                                    :class="{'text-blue-600 font-bold': filters.strictDiv}">嚴格</span>
+                            </label>
+                        </label>
+                        <input type="range" v-model.number="filters.minDiv" min="0" max="100" step="0.5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1">
+                            <span v-if="filters.strictDiv" class="text-blue-500">5年皆 > {{ filters.minDiv }}元</span>
+                            <span v-else>最新 > {{ filters.minDiv }}元</span>
+                        </div>
+                    </div>
+
+                    <!-- Consecutive Dividend -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">連續配息 > {{ filters.minConsDiv }}
+                            年</label>
+                        <input type="range" v-model.number="filters.minConsDiv" min="0" max="10" step="1"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Listing Years -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">上市年數 > {{ filters.minListingYears
+                            }} 年</label>
+                        <input type="range" v-model.number="filters.minListingYears" min="0" max="20" step="1"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+
+
+                    <!-- Consecutive Profit -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">連續獲利 > {{ filters.minConsProfit }}
+                            年</label>
+                        <input type="range" v-model.number="filters.minConsProfit" min="0" max="10" step="1"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- ROA Filter -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between items-center">
+                            <span>ROA > {{ filters.minROA }}%</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictROA" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-2 text-xs font-medium text-gray-500"
+                                    :class="{'text-blue-600 font-bold': filters.strictROA}">嚴格</span>
+                            </label>
+                        </label>
+                        <input type="range" v-model.number="filters.minROA" min="0" max="15" step="0.5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1">
+                            <span v-if="filters.strictROA" class="text-blue-500">每年 > {{ filters.minROA }}%</span>
+                            <span v-else>平均 > {{ filters.minROA }}%</span>
+                        </div>
+                    </div>
+
+                    <!-- Core Ratio Filter (Range) -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between items-center">
+                            <span>本業比範圍</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictCore" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-2 text-xs font-medium text-gray-500"
+                                    :class="{'text-blue-600 font-bold': filters.strictCore}">嚴格</span>
+                            </label>
+                        </label>
+
+                        <!-- Min Core -->
+                        <div class="mb-2">
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>最小值: {{ filters.minCore }}%</span>
+                            </div>
+                            <input type="range" v-model.number="filters.minCore" min="0" max="100" step="5"
+                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <!-- Max Core -->
+                        <div>
+                            <div class="flex justify-between text-xs text-gray-500 mb-1">
+                                <span>最大值: {{ filters.maxCore }}%</span>
+                            </div>
+                            <input type="range" v-model.number="filters.maxCore" min="0" max="200" step="10"
+                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <div class="flex justify-between text-xs text-gray-400 mt-1">
+                            <span v-if="filters.strictCore" class="text-blue-500">每年介於 {{ filters.minCore }}% ~ {{
+                                filters.maxCore }}%</span>
+                            <span v-else>平均介於 {{ filters.minCore }}% ~ {{ filters.maxCore }}%</span>
                         </div>
                     </div>
 
@@ -165,7 +287,7 @@
                 </div>
 
                 <!-- Results Table -->
-                <div class="lg:col-span-3 bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
+                <div class="lg:col-span-4 bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
                     <!-- Table Header Controls -->
                     <div class="p-4 border-b flex justify-between items-center bg-gray-50">
                         <div class="flex items-center space-x-2">
@@ -183,23 +305,56 @@
                             <thead>
                                 <tr class="bg-gray-100 text-gray-600 text-xs uppercase tracking-wide">
                                     <th @click="setSort('id')"
-                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">代號
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">
+                                        代號
                                     </th>
                                     <th @click="setSort('name')"
-                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">名稱
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">
+                                        名稱
                                     </th>
                                     <th @click="setSort('industry')"
-                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">產業
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors">
+                                        產業
                                     </th>
                                     <th @click="setSort('price')"
                                         class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
                                         股價</th>
-                                    <th @click="setSort('hy_yield_avg_5y')"
+                                    <th @click="setSort('hy_yield_avg_5y')" <th @click="setSort('hy_yield_avg_5y')"
                                         class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right bg-blue-50">
                                         殖利率(5y)</th>
+                                    <th @click="setSort('latest_div')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right bg-blue-50">
+                                        股利($)</th>
+                                    <th @click="setSort('est_yield')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right bg-blue-100 group relative">
+                                        預估殖利率
+                                        <span
+                                            class="invisible group-hover:visible absolute bottom-full left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-800 text-white text-xs rounded shadow-lg whitespace-nowrap mb-1 z-10">
+                                            基於最新一期股利推算 (最新股息 x 頻率 / 股價)
+                                        </span>
+                                    </th>
                                     <th @click="setSort('hy_fill_days_avg')"
                                         class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right bg-green-50">
                                         填息天數</th>
+                                    <th @click="setSort('cons_div_years')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        連配</th>
+
+                                    <!-- New Columns -->
+                                    <th @click="setSort('listing_years')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        上市年</th>
+
+                                    <th @click="setSort('consecutive_profit_years')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        連利</th>
+                                    <th @click="setSort('roa_avg_5y')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        ROA</th>
+                                    <th @click="setSort('core_ratio_avg_5y')"
+                                        class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
+                                        本業比</th>
+
                                     <th class="p-4 font-semibold text-center">頻率</th>
                                     <th @click="setSort('rev_yoy')"
                                         class="p-4 font-semibold cursor-pointer hover:bg-gray-200 transition-colors text-right">
@@ -225,11 +380,37 @@
                                         :class="{'text-red-600': stock.hy_yield_avg_5y >= 5}">
                                         {{ stock.hy_yield_avg_5y }}%
                                     </td>
+                                    <td
+                                        class="p-4 text-right font-mono font-bold bg-blue-50/30 group-hover:bg-blue-50 transition-colors">
+                                        {{ stock.latest_div }}
+                                    </td>
+                                    <td class="p-4 text-right font-mono font-bold bg-blue-100/30 group-hover:bg-blue-100 transition-colors cursor-help"
+                                        :class="{'text-red-600': stock.est_yield >= 5}"
+                                        :title="`最新股利: ${stock.latest_div} \n頻率: ${stock.hy_div_freq} \n股價: ${stock.price} \n推算: (${stock.latest_div} x ${stock.hy_div_freq === '季配' ? 4 : (stock.hy_div_freq === '半年配' ? 2 : 1)}) / ${stock.price} = ${stock.est_yield}%`">
+                                        {{ stock.est_yield }}%
+                                    </td>
 
                                     <!-- Fill Days -->
                                     <td class="p-4 text-right font-mono bg-green-50/30 group-hover:bg-green-50 transition-colors"
                                         :class="{'text-green-600 font-bold': stock.hy_fill_days_avg <= 30}">
                                         {{ stock.hy_fill_days_avg == 999 ? '未填息' : stock.hy_fill_days_avg }}
+                                    </td>
+                                    <td class="p-4 text-right font-mono text-gray-600">{{ stock.cons_div_years }}
+                                    </td>
+
+                                    <!-- New Data Columns -->
+                                    <td class="p-4 text-right font-mono text-gray-600">{{ stock.listing_years }}
+                                    </td>
+
+                                    <td class="p-4 text-right font-mono text-gray-600">{{
+                                        stock.consecutive_profit_years
+                                        }}</td>
+                                    <td class="p-4 text-right font-mono"
+                                        :class="{'text-red-500 font-bold': stock.roa_avg_5y >= 5}">{{
+                                        stock.roa_avg_5y
+                                        }}%</td>
+                                    <td class="p-4 text-right font-mono text-gray-600">{{ stock.core_ratio_avg_5y
+                                        }}%
                                     </td>
 
                                     <td class="p-4 text-center">
@@ -252,7 +433,7 @@
                                 </tr>
                                 <tr v-if="sortedStocks.length === 0 && !loading"
                                     class="text-center py-12 text-gray-400">
-                                    <td colspan="9" class="p-12">
+                                    <td colspan="16" class="p-12">
                                         沒有符合條件的股票 🐢
                                     </td>
                                 </tr>
@@ -275,10 +456,22 @@
 
                 // Filters
                 const filters = ref({
+                    minPrice: null,
+                    maxPrice: null,
                     minYield: 4,
                     strictYield: false,
+                    minDiv: 0,
+                    strictDiv: false,
                     maxFillDays: 60,
                     strictFill: false,
+                    minListingYears: 0,
+                    minConsDiv: 0,
+                    minConsProfit: 0,
+                    minROA: 0,
+                    strictROA: false,
+                    minCore: 0,
+                    maxCore: 200,
+                    strictCore: false,
                     divFreq: 'all',
                     industry: 'all',
                     search: ''
@@ -318,13 +511,43 @@
 
                 const filteredStocks = computed(() => {
                     return stocks.value.filter(s => {
+                        // Price Filter
+                        if (filters.value.minPrice && s.price < filters.value.minPrice) return false;
+                        if (filters.value.maxPrice && s.price > filters.value.maxPrice) return false;
+
                         // Yield Logic
                         const yieldVal = filters.value.strictYield ? s.hy_yield_min_5y : s.hy_yield_avg_5y;
                         if (yieldVal < filters.value.minYield) return false;
 
+                        // Div Amount Logic
+                        const divVal = filters.value.strictDiv ? s.hy_div_min_5y : s.latest_div;
+                        if (divVal < filters.value.minDiv) return false;
+
                         // Fill Days Logic
+                        // If maxFillDays is 365+, treat as unlimited (show all, including 999)
                         const fillVal = filters.value.strictFill ? s.hy_fill_days_max : s.hy_fill_days_avg;
-                        if (fillVal > filters.value.maxFillDays) return false;
+                        if (filters.value.maxFillDays < 365 && fillVal > filters.value.maxFillDays) return false;
+
+                        // Listing Years
+                        if (s.listing_years < filters.value.minListingYears) return false;
+
+                        // Consecutive Dividend
+                        if (s.cons_div_years < filters.value.minConsDiv) return false;
+
+                        // Consecutive Profit
+                        if (s.consecutive_profit_years < filters.value.minConsProfit) return false;
+
+                        // ROA Logic
+                        const roaVal = filters.value.strictROA ? s.roa_min_5y : s.roa_avg_5y;
+                        if (filters.value.minROA > 0 && roaVal < filters.value.minROA) return false;
+
+                        // Core Ratio Logic (Range)
+                        // Allow filtering, but if at boundaries, we might want lax logic?
+                        // Current range: 0 ~ 200
+                        const coreVal = filters.value.strictCore ? s.core_ratio_min_5y : s.core_ratio_avg_5y;
+                        if (filters.value.minCore > 0 && coreVal < filters.value.minCore) return false;
+                        // If maxCore is at UI max (200), treat as no upper limit
+                        if (filters.value.maxCore < 200 && coreVal > filters.value.maxCore) return false;
 
                         // Div Freq
                         if (filters.value.divFreq !== 'all' && s.hy_div_freq !== filters.value.divFreq) return false;
@@ -369,8 +592,22 @@
                 };
 
                 const resetFilters = () => {
+                    filters.value.minPrice = null;
+                    filters.value.maxPrice = null;
                     filters.value.minYield = 0;
+                    filters.value.strictYield = false;
+                    filters.value.minDiv = 0;
+                    filters.value.strictDiv = false;
                     filters.value.maxFillDays = 365;
+                    filters.value.strictFill = false;
+                    filters.value.minListingYears = 0;
+                    filters.value.minConsDiv = 0;
+                    filters.value.minConsProfit = 0;
+                    filters.value.minROA = 0;
+                    filters.value.strictROA = false;
+                    filters.value.minCore = 0;
+                    filters.value.maxCore = 200;
+                    filters.value.strictCore = false;
                     filters.value.divFreq = 'all';
                     filters.value.industry = 'all';
                     filters.value.search = '';
@@ -395,7 +632,13 @@
                         'industry': '產業',
                         'price': '股價',
                         'hy_yield_avg_5y': '殖利率',
+                        'latest_div': '股利',
                         'hy_fill_days_avg': '填息天數',
+                        'listing_years': '上市年',
+                        'cons_div_years': '連配',
+                        'consecutive_profit_years': '連利',
+                        'roa_avg_5y': 'ROA',
+                        'core_ratio_avg_5y': '本業比',
                         'rev_yoy': '營收 YoY',
                         'rev_mom': '營收 MoM'
                     };
