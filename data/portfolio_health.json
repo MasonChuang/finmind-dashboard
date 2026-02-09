@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-02-09 19:11:15",
-  "report_file": "持股健檢_統一報告_20260209_1911.csv",
+  "last_update": "2026-02-09 20:55:16",
+  "report_file": "持股健檢_統一報告_20260209_2055.csv",
   "holdings": [
     {
       "stock_id": "50",
@@ -201,24 +201,6 @@
       "k": 0.0
     },
     {
-      "stock_id": "6147",
-      "name": "頎邦",
-      "strategy": "巨鯨狙擊",
-      "cost_price": 58.5,
-      "current_price": 53.1,
-      "profit_loss_pct": -9.23,
-      "afass_score_1q": 21.3,
-      "afass_score_1y": 35.6,
-      "afass_trend": "穩定→",
-      "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "🟡 追蹤停損",
-      "strategy_reason": "從最高價回落 -10.76% ≤ -7%",
-      "report_action": "🔴 避險停損",
-      "report_reason": "AFASS評分過低(21.3分, 1Q)",
-      "rsi": 0.0,
-      "k": 0.0
-    },
-    {
       "stock_id": "4123",
       "name": "晟德",
       "strategy": "巨鯨狙擊",
@@ -233,24 +215,6 @@
       "strategy_reason": "從最高價回落 -9.82% ≤ -7%",
       "report_action": "✅ 續抱",
       "report_reason": "AFASS評分優良(73.7分, 1Q), 極穩定⭐⭐⭐",
-      "rsi": 0.0,
-      "k": 0.0
-    },
-    {
-      "stock_id": "1313",
-      "name": "聯成",
-      "strategy": "巨鯨狙擊",
-      "cost_price": 11.4,
-      "current_price": 10.65,
-      "profit_loss_pct": -6.58,
-      "afass_score_1q": 51.0,
-      "afass_score_1y": 25.0,
-      "afass_trend": "下降↘",
-      "afass_stability": "極穩定⭐⭐⭐",
-      "strategy_action": "✅ 續抱",
-      "strategy_reason": "無觸發停損（報酬 -6.58%）",
-      "report_action": "✅ 續抱",
-      "report_reason": "評分中等(51.0分, 1Q)但趨勢穩定",
       "rsi": 0.0,
       "k": 0.0
     },
@@ -310,10 +274,10 @@
     }
   ],
   "stats": {
-    "total": 17,
-    "stop_loss": 4,
+    "total": 15,
+    "stop_loss": 3,
     "take_profit": 0,
-    "hold": 12,
+    "hold": 11,
     "no_check": 1
   },
   "status": "ok"
