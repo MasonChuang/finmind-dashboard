@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-09 12:29:35",
+  "last_update": "2026-02-09 15:16:51",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -82,8 +82,8 @@
     },
     {
       "name": "TaiwanStockPrice",
-      "latest_date": "2026-02-06",
-      "record_count": 60379391,
+      "latest_date": "2026-02-09",
+      "record_count": 60426101,
       "status": "✅ 正常"
     },
     {
@@ -106,8 +106,8 @@
     },
     {
       "name": "TaiwanStockTotalInstitutionalInvestors",
-      "latest_date": "2026-02-06",
-      "record_count": 26284,
+      "latest_date": "2026-02-09",
+      "record_count": 26290,
       "status": "✅ 正常"
     },
     {
@@ -125,7 +125,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 1020,
+      "record_count": 1036,
       "status": "✅ 正常"
     },
     {
