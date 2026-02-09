@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-08 19:15:54",
+  "last_update": "2026-02-09 11:55:29",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -28,8 +28,8 @@
     },
     {
       "name": "TaiwanStockDividend",
-      "latest_date": "2026-02-06",
-      "record_count": 29065,
+      "latest_date": "2026-02-09",
+      "record_count": 29068,
       "status": "✅ 正常"
     },
     {
@@ -72,7 +72,7 @@
       "name": "TaiwanStockMonthRevenue",
       "latest_date": "2026-02-01",
       "record_count": 437659,
-      "status": "✅ 正常"
+      "status": "⚠️ 資料過舊"
     },
     {
       "name": "TaiwanStockPER",
@@ -125,7 +125,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 988,
+      "record_count": 1004,
       "status": "✅ 正常"
     },
     {
