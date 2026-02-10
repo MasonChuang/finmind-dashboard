@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-10 19:20:21",
+  "generated_at": "2026-02-10 20:00:46",
   "taiex": [
     {
       "date": "2025-08-18",
@@ -2760,56 +2760,56 @@
   "whale": {
     "week_increase_top5": [
       {
-        "stock_id": "8096",
-        "whale_change": 16.99,
-        "stock_name": "擎亞"
+        "stock_id": "4174",
+        "whale_change": 35.22,
+        "stock_name": "浩鼎"
       },
       {
-        "stock_id": "2486",
-        "whale_change": 9.36,
-        "stock_name": "一詮"
+        "stock_id": "4987",
+        "whale_change": 11.780000000000001,
+        "stock_name": "科誠"
       },
       {
-        "stock_id": "6813",
-        "whale_change": 8.850000000000001,
-        "stock_name": "富動科"
+        "stock_id": "2758",
+        "whale_change": 9.759999999999998,
+        "stock_name": "路易莎咖啡"
       },
       {
-        "stock_id": "6934",
-        "whale_change": 6.949999999999996,
-        "stock_name": "心誠鎂"
+        "stock_id": "6244",
+        "whale_change": 7.129999999999999,
+        "stock_name": "茂迪"
       },
       {
-        "stock_id": "3163",
-        "whale_change": 6.300000000000001,
-        "stock_name": "波若威"
+        "stock_id": "6705",
+        "whale_change": 6.169999999999995,
+        "stock_name": "振躍精密"
       }
     ],
     "biweek_accumulate_top5": [
       {
-        "stock_id": "7897",
-        "whale_change_2w": 98.32,
-        "stock_name": "禾迅綠電"
-      },
-      {
-        "stock_id": "7904",
-        "whale_change_2w": 95.99,
-        "stock_name": "任開數位"
-      },
-      {
-        "stock_id": "7895",
-        "whale_change_2w": 72.77,
-        "stock_name": "元進莊"
-      },
-      {
         "stock_id": "8096",
-        "whale_change_2w": 17.63,
+        "whale_change_2w": 21.05,
         "stock_name": "擎亞"
       },
       {
+        "stock_id": "4987",
+        "whale_change_2w": 14.670000000000002,
+        "stock_name": "科誠"
+      },
+      {
         "stock_id": "2486",
-        "whale_change_2w": 12.71,
+        "whale_change_2w": 10.29,
         "stock_name": "一詮"
+      },
+      {
+        "stock_id": "2758",
+        "whale_change_2w": 9.759999999999998,
+        "stock_name": "路易莎咖啡"
+      },
+      {
+        "stock_id": "6813",
+        "whale_change_2w": 8.850000000000001,
+        "stock_name": "富動科"
       }
     ]
   },
