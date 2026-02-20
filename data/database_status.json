@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-19 19:20:40",
+  "last_update": "2026-02-20 19:14:37",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -96,7 +96,7 @@
       "name": "TaiwanStockSecuritiesLending",
       "latest_date": "2026-02-12",
       "record_count": 534534,
-      "status": "✅ 正常"
+      "status": "⚠️ 資料過舊"
     },
     {
       "name": "TaiwanStockShareholding",
@@ -125,7 +125,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 1270,
+      "record_count": 1287,
       "status": "✅ 正常"
     },
     {
