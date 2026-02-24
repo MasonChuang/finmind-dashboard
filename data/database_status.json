@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-02-23 19:16:13",
+  "last_update": "2026-02-24 19:22:04",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -64,15 +64,15 @@
     },
     {
       "name": "TaiwanStockInstitutionalInvestorsBuySell",
-      "latest_date": "2026-02-23",
-      "record_count": 34096927,
+      "latest_date": "2026-02-24",
+      "record_count": 34213782,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockMarginPurchaseShortSale",
-      "latest_date": "2026-02-11",
-      "record_count": 7933604,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-02-23",
+      "record_count": 7935741,
+      "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockMonthRevenue",
@@ -82,14 +82,14 @@
     },
     {
       "name": "TaiwanStockPER",
-      "latest_date": "2026-02-23",
-      "record_count": 7519941,
+      "latest_date": "2026-02-24",
+      "record_count": 7521887,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPrice",
-      "latest_date": "2026-02-23",
-      "record_count": 60564965,
+      "latest_date": "2026-02-24",
+      "record_count": 60610990,
       "status": "✅ 正常"
     },
     {
@@ -100,8 +100,8 @@
     },
     {
       "name": "TaiwanStockSecuritiesLending",
-      "latest_date": "2026-02-23",
-      "record_count": 535008,
+      "latest_date": "2026-02-24",
+      "record_count": 535704,
       "status": "✅ 正常"
     },
     {
@@ -112,26 +112,26 @@
     },
     {
       "name": "TaiwanStockTotalInstitutionalInvestors",
-      "latest_date": "2026-02-23",
-      "record_count": 26308,
+      "latest_date": "2026-02-24",
+      "record_count": 26314,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockTotalMarginPurchaseShortSale",
-      "latest_date": "2026-02-11",
-      "record_count": 18579,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-02-23",
+      "record_count": 18582,
+      "status": "✅ 正常"
     },
     {
       "name": "TaiwanTotalExchangeMarginMaintenance",
-      "latest_date": "2026-02-11",
-      "record_count": 194,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-02-23",
+      "record_count": 195,
+      "status": "✅ 正常"
     },
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 1338,
+      "record_count": 1355,
       "status": "✅ 正常"
     },
     {
