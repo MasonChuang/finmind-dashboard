@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-27 15:05:52",
+  "generated_at": "2026-02-27 15:26:29",
   "taiex": [
     {
       "date": "2025-08-25",
@@ -2760,7 +2760,58 @@
         "score": 85.0
       }
     ],
-    "new_signals": []
+    "new_signals": [
+      {
+        "stock_id": "2609",
+        "stock_name": "陽明",
+        "score": 93.3
+      },
+      {
+        "stock_id": "2603",
+        "stock_name": "長榮",
+        "score": 93.3
+      },
+      {
+        "stock_id": "4904",
+        "stock_name": "遠傳",
+        "score": 93.3
+      },
+      {
+        "stock_id": "2836",
+        "stock_name": "高雄銀",
+        "score": 93.3
+      },
+      {
+        "stock_id": "2412",
+        "stock_name": "中華電",
+        "score": 91.7
+      },
+      {
+        "stock_id": "2834",
+        "stock_name": "臺企銀",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2892",
+        "stock_name": "第一金",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2886",
+        "stock_name": "兆豐金",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2323",
+        "stock_name": "中環",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2356",
+        "stock_name": "英業達",
+        "score": 85.0
+      }
+    ]
   },
   "institutional": {
     "daily_top5": [
