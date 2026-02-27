@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-27 15:26:29",
+  "generated_at": "2026-02-27 18:49:00",
   "taiex": [
     {
       "date": "2025-08-25",
@@ -2701,11 +2701,11 @@
     }
   ],
   "credit": {
-    "date": "2026-02-25",
-    "margin_balance": 8403604,
-    "short_balance": 268723,
-    "margin_change": 67583,
-    "short_change": -6994
+    "date": "2026-02-26",
+    "margin_balance": 8500734,
+    "short_balance": 280796,
+    "margin_change": 97130,
+    "short_change": 12073
   },
   "mainforce": {
     "top_score": [
@@ -2717,6 +2717,16 @@
       {
         "stock_id": "2603",
         "stock_name": "長榮",
+        "score": 93.3
+      },
+      {
+        "stock_id": "4938",
+        "stock_name": "和碩",
+        "score": 93.3
+      },
+      {
+        "stock_id": "3702",
+        "stock_name": "大聯大",
         "score": 93.3
       },
       {
@@ -2735,28 +2745,18 @@
         "score": 91.7
       },
       {
+        "stock_id": "3374",
+        "stock_name": "精材",
+        "score": 90.8
+      },
+      {
+        "stock_id": "2884",
+        "stock_name": "玉山金",
+        "score": 86.7
+      },
+      {
         "stock_id": "2834",
         "stock_name": "臺企銀",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2892",
-        "stock_name": "第一金",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2886",
-        "stock_name": "兆豐金",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2323",
-        "stock_name": "中環",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2356",
-        "stock_name": "英業達",
         "score": 85.0
       }
     ],
@@ -2772,6 +2772,16 @@
         "score": 93.3
       },
       {
+        "stock_id": "4938",
+        "stock_name": "和碩",
+        "score": 93.3
+      },
+      {
+        "stock_id": "3702",
+        "stock_name": "大聯大",
+        "score": 93.3
+      },
+      {
         "stock_id": "4904",
         "stock_name": "遠傳",
         "score": 93.3
@@ -2787,28 +2797,18 @@
         "score": 91.7
       },
       {
+        "stock_id": "3374",
+        "stock_name": "精材",
+        "score": 90.8
+      },
+      {
+        "stock_id": "2884",
+        "stock_name": "玉山金",
+        "score": 86.7
+      },
+      {
         "stock_id": "2834",
         "stock_name": "臺企銀",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2892",
-        "stock_name": "第一金",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2886",
-        "stock_name": "兆豐金",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2323",
-        "stock_name": "中環",
-        "score": 85.0
-      },
-      {
-        "stock_id": "2356",
-        "stock_name": "英業達",
         "score": 85.0
       }
     ]
