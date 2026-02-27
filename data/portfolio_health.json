@@ -1,479 +1,254 @@
 {
-  "last_update": "2026-02-27 10:55:30",
-  "report_file": "MainForce_scan_20260227.csv",
+  "last_update": "2026-02-27 11:31:55",
+  "report_file": "持股健檢_統一報告_20260227_1131.csv",
   "holdings": [
     {
-      "stock_id": "2603",
-      "name": "長榮",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 50.0
+      "stock_id": "0050",
+      "name": "元大台灣50",
+      "strategy": "ETF",
+      "cost_price": 60.04,
+      "current_price": 81.15,
+      "profit_loss_pct": 35.16,
+      "afass_score_1q": 0.0,
+      "afass_score_1y": 0.0,
+      "afass_trend": "無資料",
+      "afass_stability": "無資料",
+      "strategy_action": "ℹ️ 定期定額/觀察",
+      "strategy_reason": "被動投資: ETF",
+      "report_action": "⏸️ 不檢查",
+      "report_reason": "找不到股票財報資料"
     },
     {
-      "stock_id": "2609",
-      "name": "陽明",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 44.93
+      "stock_id": "3551",
+      "name": "世禾",
+      "strategy": "高殖利率",
+      "cost_price": 130.0,
+      "current_price": 193.0,
+      "profit_loss_pct": 48.46,
+      "afass_score_1q": 92.8,
+      "afass_score_1y": 82.0,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "⚠️ 獲利了結",
+      "strategy_reason": "殖利率過低(0.73%)",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(92.8分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "2836",
-      "name": "高雄銀",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.0
+      "stock_id": "2393",
+      "name": "億光",
+      "strategy": "高殖利率",
+      "cost_price": 51.07,
+      "current_price": 58.7,
+      "profit_loss_pct": 14.94,
+      "afass_score_1q": 78.6,
+      "afass_score_1y": 64.3,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(78.6分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "4904",
-      "name": "遠傳",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 31.35
+      "stock_id": "4417",
+      "name": "金洲",
+      "strategy": "高殖利率",
+      "cost_price": 54.1,
+      "current_price": 53.1,
+      "profit_loss_pct": -1.85,
+      "afass_score_1q": 100.0,
+      "afass_score_1y": 86.3,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "2412",
-      "name": "中華電",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 49.41
+      "stock_id": "5212",
+      "name": "凌網",
+      "strategy": "高殖利率",
+      "cost_price": 54.5,
+      "current_price": 51.8,
+      "profit_loss_pct": -4.95,
+      "afass_score_1q": 100.0,
+      "afass_score_1y": 75.6,
+      "afass_trend": "穩定→",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "1402",
-      "name": "遠東新",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 40.83
-    },
-    {
-      "stock_id": "1409",
-      "name": "新纖",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 21.54
-    },
-    {
-      "stock_id": "2323",
-      "name": "中環",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 13.75
-    },
-    {
-      "stock_id": "2347",
-      "name": "聯強",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 6.74
-    },
-    {
-      "stock_id": "2355",
-      "name": "敬鵬",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 18.47
-    },
-    {
-      "stock_id": "2356",
-      "name": "英業達",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 27.27
-    },
-    {
-      "stock_id": "2606",
-      "name": "裕民",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 85.17
-    },
-    {
-      "stock_id": "2834",
-      "name": "臺企銀",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.0
-    },
-    {
-      "stock_id": "2886",
-      "name": "兆豐金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 44.27
-    },
-    {
-      "stock_id": "2892",
-      "name": "第一金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 50.01
-    },
-    {
-      "stock_id": "3033",
-      "name": "威健",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 26.13
-    },
-    {
-      "stock_id": "3702",
-      "name": "大聯大",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 36.45
-    },
-    {
-      "stock_id": "4938",
-      "name": "和碩",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 23.78
-    },
-    {
-      "stock_id": "6005",
-      "name": "群益證",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 62.21
-    },
-    {
-      "stock_id": "9945",
-      "name": "潤泰新",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 97.14
-    },
-    {
-      "stock_id": "2406",
-      "name": "國碩",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 6.25
-    },
-    {
-      "stock_id": "2855",
-      "name": "統一證",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.0
-    },
-    {
-      "stock_id": "5876",
-      "name": "上海商銀",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.0
-    },
-    {
-      "stock_id": "6187",
-      "name": "萬潤",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 86.55
-    },
-    {
-      "stock_id": "3374",
-      "name": "精材",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 56.23
-    },
-    {
-      "stock_id": "2492",
-      "name": "華新科",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 42.18
-    },
-    {
-      "stock_id": "3450",
-      "name": "聯鈞",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 21.89
-    },
-    {
-      "stock_id": "2605",
-      "name": "新興",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 73.3
-    },
-    {
-      "stock_id": "2867",
-      "name": "三商壽",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.0
-    },
-    {
-      "stock_id": "3045",
-      "name": "台灣大",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 34.0
-    },
-    {
-      "stock_id": "3543",
-      "name": "州巧",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 3.86
-    },
-    {
-      "stock_id": "2353",
-      "name": "宏碁",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 29.64
-    },
-    {
-      "stock_id": "2317",
-      "name": "鴻海",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 35.93
-    },
-    {
-      "stock_id": "2884",
-      "name": "玉山金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 34.03
-    },
-    {
-      "stock_id": "2891",
-      "name": "中信金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 72.0
-    },
-    {
-      "stock_id": "8028",
-      "name": "昇陽半導體",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 50.8
+      "stock_id": "5519",
+      "name": "隆大",
+      "strategy": "高殖利率",
+      "cost_price": 32.23,
+      "current_price": 32.35,
+      "profit_loss_pct": 0.37,
+      "afass_score_1q": 100.0,
+      "afass_score_1y": 84.2,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐"
     },
     {
       "stock_id": "2385",
       "name": "群光",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 54.65
+      "strategy": "高殖利率",
+      "cost_price": 115.0,
+      "current_price": 125.0,
+      "profit_loss_pct": 8.7,
+      "afass_score_1q": 69.0,
+      "afass_score_1y": 55.9,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "評分中等(69.0分, 1Q)但趨勢穩定"
     },
     {
-      "stock_id": "2882",
-      "name": "國泰金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 95.53
+      "stock_id": "3217",
+      "name": "優群",
+      "strategy": "高殖利率",
+      "cost_price": 169.0,
+      "current_price": 156.0,
+      "profit_loss_pct": -7.69,
+      "afass_score_1q": 100.0,
+      "afass_score_1y": 86.1,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(100.0分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "2887",
-      "name": "台新新光金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 56.94
-    },
-    {
-      "stock_id": "6116",
-      "name": "彩晶",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.0
-    },
-    {
-      "stock_id": "6278",
-      "name": "台表科",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 30.23
-    },
-    {
-      "stock_id": "3711",
-      "name": "日月光投控",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 37.21
-    },
-    {
-      "stock_id": "1101",
-      "name": "台泥",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 46.75
-    },
-    {
-      "stock_id": "1326",
-      "name": "台化",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 42.44
+      "stock_id": "9911",
+      "name": "櫻花",
+      "strategy": "高殖利率",
+      "cost_price": 85.5,
+      "current_price": 86.4,
+      "profit_loss_pct": 1.05,
+      "afass_score_1q": 93.7,
+      "afass_score_1y": 93.4,
+      "afass_trend": "穩定→",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(93.7分, 1Q), 極穩定⭐⭐⭐"
     },
     {
       "stock_id": "2002",
       "name": "中鋼",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.98
+      "strategy": "高殖利率",
+      "cost_price": 20.18,
+      "current_price": 20.75,
+      "profit_loss_pct": 2.82,
+      "afass_score_1q": 3.1,
+      "afass_score_1y": 6.5,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "⚠️ 獲利了結",
+      "strategy_reason": "殖利率過低(1.59%)",
+      "report_action": "🔴 避險停損",
+      "report_reason": "AFASS評分過低(3.1分, 1Q)"
     },
     {
-      "stock_id": "2880",
-      "name": "華南金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 40.04
+      "stock_id": "2412",
+      "name": "中華電",
+      "strategy": "高殖利率",
+      "cost_price": 130.0,
+      "current_price": 134.0,
+      "profit_loss_pct": 3.08,
+      "afass_score_1q": 79.3,
+      "afass_score_1y": 81.2,
+      "afass_trend": "穩定→",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(79.3分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "2890",
-      "name": "永豐金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 38.24
+      "stock_id": "3526",
+      "name": "凡甲",
+      "strategy": "高殖利率",
+      "cost_price": 300.0,
+      "current_price": 295.5,
+      "profit_loss_pct": -1.5,
+      "afass_score_1q": 99.7,
+      "afass_score_1y": 87.4,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無異常",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(99.7分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "5880",
-      "name": "合庫金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 40.73
+      "stock_id": "4123",
+      "name": "晟德",
+      "strategy": "巨鯨狙擊",
+      "cost_price": 43.2,
+      "current_price": 43.8,
+      "profit_loss_pct": 1.39,
+      "afass_score_1q": 73.7,
+      "afass_score_1y": 51.6,
+      "afass_trend": "下降↘",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無觸發停損（報酬 +1.39%）",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(73.7分, 1Q), 極穩定⭐⭐⭐"
     },
     {
-      "stock_id": "8261",
-      "name": "富鼎",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 60.79
-    },
-    {
-      "stock_id": "2637",
-      "name": "慧洋-KY",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 71.49
-    },
-    {
-      "stock_id": "2881",
-      "name": "富邦金",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 100.0
-    },
-    {
-      "stock_id": "2897",
-      "name": "王道銀行",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 0.0
-    },
-    {
-      "stock_id": "3481",
-      "name": "群創",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 11.86
-    },
-    {
-      "stock_id": "8213",
-      "name": "志超",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 31.24
+      "stock_id": "2324",
+      "name": "仁寶",
+      "strategy": "巨鯨狙擊",
+      "cost_price": 33.58,
+      "current_price": 31.65,
+      "profit_loss_pct": -5.75,
+      "afass_score_1q": 49.2,
+      "afass_score_1y": 27.9,
+      "afass_trend": "穩定→",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無觸發停損（報酬 -5.75%）",
+      "report_action": "🔴 避險停損",
+      "report_reason": "AFASS評分過低(49.2分, 1Q)"
     },
     {
       "stock_id": "9904",
       "name": "寶成",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 79.83
-    },
-    {
-      "stock_id": "2618",
-      "name": "長榮航",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 56.07
-    },
-    {
-      "stock_id": "1313",
-      "name": "聯成",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 50.96
-    },
-    {
-      "stock_id": "6120",
-      "name": "達運",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 2.74
-    },
-    {
-      "stock_id": "8069",
-      "name": "元太",
-      "strategy": "主力追蹤",
-      "current_price": 0,
-      "status": "持有",
-      "afass_score": 88.51
+      "strategy": "巨鯨狙擊",
+      "cost_price": 28.9,
+      "current_price": 31.05,
+      "profit_loss_pct": 7.44,
+      "afass_score_1q": 79.8,
+      "afass_score_1y": 62.4,
+      "afass_trend": "上升↗",
+      "afass_stability": "極穩定⭐⭐⭐",
+      "strategy_action": "✅ 續抱",
+      "strategy_reason": "無觸發停損（報酬 +7.44%）",
+      "report_action": "✅ 續抱",
+      "report_reason": "AFASS評分優良(79.8分, 1Q), 極穩定⭐⭐⭐"
     }
   ],
+  "stats": {
+    "total": 15,
+    "stop_loss": 2,
+    "take_profit": 0,
+    "hold": 12,
+    "no_check": 1
+  },
   "status": "ok"
 }
