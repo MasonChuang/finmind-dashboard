@@ -197,12 +197,62 @@
       </div>
     </div>
 
+    <!-- 主力動向 (MainForce) -->
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-light fw-bold">
+            🥇 主力動向最高分 Top 10
+          </div>
+          <div class="card-body">
+            <table class="table table-hover table-sm">
+              <thead class="table-light">
+                <tr>
+                  <th>排名</th>
+                  <th>股票</th>
+                  <th class="text-end">綜合得分</th>
+                </tr>
+              </thead>
+              <tbody id="mainforceTopScoreTable">
+                <tr>
+                  <td colspan="3" class="text-center text-muted">載入中...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header bg-light fw-bold">
+            🚀 主力佈局新訊號 Top 10
+          </div>
+          <div class="card-body">
+            <table class="table table-hover table-sm">
+              <thead class="table-light">
+                <tr>
+                  <th>排名</th>
+                  <th>股票</th>
+                  <th class="text-end">綜合得分</th>
+                </tr>
+              </thead>
+              <tbody id="mainforceNewSignalTable">
+                <tr>
+                  <td colspan="3" class="text-center text-muted">載入中...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 法人動向 -->
     <div class="row mt-4">
       <div class="col-md-6">
         <div class="card">
           <div class="card-header bg-light fw-bold">
-            🏦 法人單日買超 Top 5
+            🏦 法人單日買超 Top 10
           </div>
           <div class="card-body">
             <table class="table table-hover table-sm">
@@ -225,7 +275,7 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header bg-light fw-bold">
-            📈 法人10日累積買超 Top 5
+            📈 法人10日累積買超 Top 10
           </div>
           <div class="card-body">
             <table class="table table-hover table-sm">
@@ -252,7 +302,7 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header bg-light fw-bold">
-            🐋 巨鯨1週持股增加 Top 5
+            🐋 巨鯨1週持股增加 Top 10
           </div>
           <div class="card-body">
             <table class="table table-hover table-sm">
@@ -275,7 +325,7 @@
       <div class="col-md-6">
         <div class="card">
           <div class="card-header bg-light fw-bold">
-            🦈 巨鯨2週持續累積 Top 5
+            🦈 巨鯨2週持續累積 Top 10
           </div>
           <div class="card-body">
             <table class="table table-hover table-sm">
@@ -670,6 +720,38 @@
             }
           }
         });
+      }
+
+      // 渲染主力動向 - 最高分
+      const mainforceTopScoreTable = document.getElementById('mainforceTopScoreTable');
+      if (data.mainforce && data.mainforce.top_score && data.mainforce.top_score.length > 0) {
+        mainforceTopScoreTable.innerHTML = data.mainforce.top_score.map((item, index) => {
+          return `
+            <tr>
+              <td>${index + 1}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
+              <td class="text-end font-monospace positive">${item.score.toFixed(1)}</td>
+            </tr>
+          `;
+        }).join('');
+      } else {
+        mainforceTopScoreTable.innerHTML = '<tr><td colspan="3" class="text-center text-muted">無資料</td></tr>';
+      }
+
+      // 渲染主力動向 - 新訊號
+      const mainforceNewSignalTable = document.getElementById('mainforceNewSignalTable');
+      if (data.mainforce && data.mainforce.new_signals && data.mainforce.new_signals.length > 0) {
+        mainforceNewSignalTable.innerHTML = data.mainforce.new_signals.map((item, index) => {
+          return `
+            <tr>
+              <td>${index + 1}</td>
+              <td><span class="fw-bold">${item.stock_id}</span> ${item.stock_name}</td>
+              <td class="text-end font-monospace positive">${item.score.toFixed(1)}</td>
+            </tr>
+          `;
+        }).join('');
+      } else {
+        mainforceNewSignalTable.innerHTML = '<tr><td colspan="3" class="text-center text-muted">無資料</td></tr>';
       }
 
       // 渲染法人動向 - 單日買超

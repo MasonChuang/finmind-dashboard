@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-26 19:23:24",
+  "generated_at": "2026-02-27 15:05:52",
   "taiex": [
     {
       "date": "2025-08-25",
@@ -1325,9 +1325,9 @@
   "sectors": [
     {
       "industry_category": "其他",
-      "flow": 3589712570536,
-      "diff_val": 557231606449,
-      "diff_pct": 18.38
+      "flow": 3574418213558,
+      "diff_val": 552437748824,
+      "diff_pct": 18.28
     },
     {
       "industry_category": "電子",
@@ -1352,6 +1352,12 @@
       "flow": 41176707536,
       "diff_val": 19389508932,
       "diff_pct": 88.99
+    },
+    {
+      "industry_category": "航運業",
+      "flow": 15294356978,
+      "diff_val": 4793857625,
+      "diff_pct": 45.65
     },
     {
       "industry_category": "生技醫療",
@@ -2701,6 +2707,61 @@
     "margin_change": 67583,
     "short_change": -6994
   },
+  "mainforce": {
+    "top_score": [
+      {
+        "stock_id": "2609",
+        "stock_name": "陽明",
+        "score": 93.3
+      },
+      {
+        "stock_id": "2603",
+        "stock_name": "長榮",
+        "score": 93.3
+      },
+      {
+        "stock_id": "4904",
+        "stock_name": "遠傳",
+        "score": 93.3
+      },
+      {
+        "stock_id": "2836",
+        "stock_name": "高雄銀",
+        "score": 93.3
+      },
+      {
+        "stock_id": "2412",
+        "stock_name": "中華電",
+        "score": 91.7
+      },
+      {
+        "stock_id": "2834",
+        "stock_name": "臺企銀",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2892",
+        "stock_name": "第一金",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2886",
+        "stock_name": "兆豐金",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2323",
+        "stock_name": "中環",
+        "score": 85.0
+      },
+      {
+        "stock_id": "2356",
+        "stock_name": "英業達",
+        "score": 85.0
+      }
+    ],
+    "new_signals": []
+  },
   "institutional": {
     "daily_top5": [
       {
@@ -2727,6 +2788,31 @@
         "stock_id": "2409",
         "net_buy": 72912839,
         "stock_name": "友達"
+      },
+      {
+        "stock_id": "2887",
+        "net_buy": 47252304,
+        "stock_name": "台新新光金"
+      },
+      {
+        "stock_id": "2883",
+        "net_buy": 47061585,
+        "stock_name": "凱基金"
+      },
+      {
+        "stock_id": "2344",
+        "net_buy": 34330003,
+        "stock_name": "華邦電"
+      },
+      {
+        "stock_id": "00680L",
+        "net_buy": 31639001,
+        "stock_name": "元大美債20正2"
+      },
+      {
+        "stock_id": "3576",
+        "net_buy": 29912632,
+        "stock_name": "聯合再生"
       }
     ],
     "accumulate_10d_top5": [
@@ -2754,6 +2840,31 @@
         "stock_id": "0056",
         "net_buy_10d": 343656363,
         "stock_name": "元大高股息"
+      },
+      {
+        "stock_id": "00929",
+        "net_buy_10d": 301988043,
+        "stock_name": "復華台灣科技優息"
+      },
+      {
+        "stock_id": "2883",
+        "net_buy_10d": 253724258,
+        "stock_name": "凱基金"
+      },
+      {
+        "stock_id": "00680L",
+        "net_buy_10d": 252732103,
+        "stock_name": "元大美債20正2"
+      },
+      {
+        "stock_id": "2409",
+        "net_buy_10d": 204180758,
+        "stock_name": "友達"
+      },
+      {
+        "stock_id": "00679B",
+        "net_buy_10d": 185771518,
+        "stock_name": "元大美債20年"
       }
     ]
   },
@@ -2783,6 +2894,31 @@
         "stock_id": "6130",
         "whale_change": 4.969999999999999,
         "stock_name": "上亞科技"
+      },
+      {
+        "stock_id": "910322",
+        "whale_change": 4.869999999999997,
+        "stock_name": "康師傅-DR"
+      },
+      {
+        "stock_id": "7729",
+        "whale_change": 4.790000000000006,
+        "stock_name": "仲恩生醫"
+      },
+      {
+        "stock_id": "6651",
+        "whale_change": 4.699999999999999,
+        "stock_name": "全宇昕"
+      },
+      {
+        "stock_id": "2489",
+        "whale_change": 4.619999999999997,
+        "stock_name": "瑞軒"
+      },
+      {
+        "stock_id": "3466",
+        "whale_change": 4.559999999999999,
+        "stock_name": "德晉"
       }
     ],
     "biweek_accumulate_top5": [
@@ -2810,6 +2946,31 @@
         "stock_id": "3163",
         "whale_change_2w": 6.93,
         "stock_name": "波若威"
+      },
+      {
+        "stock_id": "6705",
+        "whale_change_2w": 6.399999999999999,
+        "stock_name": "振躍精密"
+      },
+      {
+        "stock_id": "3466",
+        "whale_change_2w": 5.949999999999999,
+        "stock_name": "德晉"
+      },
+      {
+        "stock_id": "7790",
+        "whale_change_2w": 5.759999999999998,
+        "stock_name": "思必瑞特"
+      },
+      {
+        "stock_id": "3522",
+        "whale_change_2w": 5.229999999999997,
+        "stock_name": "御嵿"
+      },
+      {
+        "stock_id": "6130",
+        "whale_change_2w": 5.119999999999997,
+        "stock_name": "上亞科技"
       }
     ]
   },
