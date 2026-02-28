@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-02-27 18:49:00",
+  "generated_at": "2026-02-28 11:01:14",
   "taiex": [
     {
       "date": "2025-08-25",
@@ -2710,106 +2710,16 @@
   "mainforce": {
     "top_score": [
       {
-        "stock_id": "2609",
-        "stock_name": "陽明",
-        "score": 93.3
-      },
-      {
-        "stock_id": "2603",
-        "stock_name": "長榮",
-        "score": 93.3
-      },
-      {
-        "stock_id": "4938",
-        "stock_name": "和碩",
-        "score": 93.3
-      },
-      {
-        "stock_id": "3702",
-        "stock_name": "大聯大",
-        "score": 93.3
-      },
-      {
-        "stock_id": "4904",
-        "stock_name": "遠傳",
-        "score": 93.3
-      },
-      {
-        "stock_id": "2836",
-        "stock_name": "高雄銀",
-        "score": 93.3
-      },
-      {
-        "stock_id": "2412",
-        "stock_name": "中華電",
-        "score": 91.7
-      },
-      {
-        "stock_id": "3374",
-        "stock_name": "精材",
-        "score": 90.8
-      },
-      {
-        "stock_id": "2884",
-        "stock_name": "玉山金",
-        "score": 86.7
-      },
-      {
-        "stock_id": "2834",
-        "stock_name": "臺企銀",
-        "score": 85.0
+        "stock_id": "3152",
+        "stock_name": "璟德",
+        "score": 45.0
       }
     ],
     "new_signals": [
       {
-        "stock_id": "2609",
-        "stock_name": "陽明",
-        "score": 93.3
-      },
-      {
-        "stock_id": "2603",
-        "stock_name": "長榮",
-        "score": 93.3
-      },
-      {
-        "stock_id": "4938",
-        "stock_name": "和碩",
-        "score": 93.3
-      },
-      {
-        "stock_id": "3702",
-        "stock_name": "大聯大",
-        "score": 93.3
-      },
-      {
-        "stock_id": "4904",
-        "stock_name": "遠傳",
-        "score": 93.3
-      },
-      {
-        "stock_id": "2836",
-        "stock_name": "高雄銀",
-        "score": 93.3
-      },
-      {
-        "stock_id": "2412",
-        "stock_name": "中華電",
-        "score": 91.7
-      },
-      {
-        "stock_id": "3374",
-        "stock_name": "精材",
-        "score": 90.8
-      },
-      {
-        "stock_id": "2884",
-        "stock_name": "玉山金",
-        "score": 86.7
-      },
-      {
-        "stock_id": "2834",
-        "stock_name": "臺企銀",
-        "score": 85.0
+        "stock_id": "3152",
+        "stock_name": "璟德",
+        "score": 45.0
       }
     ]
   },
