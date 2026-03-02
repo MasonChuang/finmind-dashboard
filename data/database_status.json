@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-01 18:49:42",
+  "last_update": "2026-03-02 19:19:04",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -34,9 +34,9 @@
     },
     {
       "name": "TaiwanStockDividend",
-      "latest_date": "2026-02-11",
-      "record_count": 29074,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-03-02",
+      "record_count": 29075,
+      "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockDividendResult",
@@ -64,8 +64,8 @@
     },
     {
       "name": "TaiwanStockInstitutionalInvestorsBuySell",
-      "latest_date": "2026-02-26",
-      "record_count": 65047667,
+      "latest_date": "2026-03-02",
+      "record_count": 65161372,
       "status": "✅ 正常"
     },
     {
@@ -76,20 +76,20 @@
     },
     {
       "name": "TaiwanStockMonthRevenue",
-      "latest_date": "2026-02-01",
-      "record_count": 437659,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-03-01",
+      "record_count": 437666,
+      "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPER",
-      "latest_date": "2026-02-26",
-      "record_count": 7525779,
+      "latest_date": "2026-03-02",
+      "record_count": 7527725,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPrice",
-      "latest_date": "2026-02-26",
-      "record_count": 60702666,
+      "latest_date": "2026-03-02",
+      "record_count": 60748419,
       "status": "✅ 正常"
     },
     {
@@ -100,8 +100,8 @@
     },
     {
       "name": "TaiwanStockSecuritiesLending",
-      "latest_date": "2026-02-26",
-      "record_count": 537253,
+      "latest_date": "2026-03-02",
+      "record_count": 537994,
       "status": "✅ 正常"
     },
     {
@@ -112,8 +112,8 @@
     },
     {
       "name": "TaiwanStockTotalInstitutionalInvestors",
-      "latest_date": "2026-02-26",
-      "record_count": 26326,
+      "latest_date": "2026-03-02",
+      "record_count": 26332,
       "status": "✅ 正常"
     },
     {
@@ -131,7 +131,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 1457,
+      "record_count": 1474,
       "status": "✅ 正常"
     },
     {
