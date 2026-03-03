@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinMind 動態策略篩選(高殖利率)</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- HighYield 專屬資料（window.HY_DATA / window.HY_META） -->
+    <script src="data/hy_metrics_latest.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.5s ease;
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .rating-elite {
+            background: #fef08a;
+            color: #713f12;
+            border: 1px solid #fde047;
+        }
+
+        .rating-premium {
+            background: #ddd6fe;
+            color: #4c1d95;
+            border: 1px solid #c4b5fd;
+        }
+
+        .rating-basic {
+            background: #bbf7d0;
+            color: #14532d;
+            border: 1px solid #86efac;
+        }
+
+        .rating-none {
+            background: #f3f4f6;
+            color: #6b7280;
+            border: 1px solid #e5e7eb;
+        }
+
+        .bias-neg {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        .bias-pos {
+            color: #dc2626;
+        }
+
+        .bias-zero {
+            color: #9ca3af;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="max-w-full mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl">💰</span>
+                    <h1 class="text-xl font-bold text-gray-800">FinMind 動態策略篩選
+                        <span class="text-yellow-600">（高殖利率）</span>
+                        <span class="text-xs text-gray-400 font-normal ml-2">v1.0</span>
+                    </h1>
+                </div>
+                <div v-if="loading" class="text-blue-600 font-semibold flex items-center">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-blue-600" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>載入中...
+                </div>
+                <div v-else class="text-sm text-gray-500 text-right">
+                    <div>{{ lastUpdated }} | 共 {{ filteredCount }} / {{ totalCount }} 檔</div>
+                    <div v-if="metaNote" class="text-xs text-amber-500">⚠️ {{ metaNote }}</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="flex-grow p-6">
+            <div class="max-w-full mx-auto grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+                <!-- ===== Filters Panel ===== -->
+                <div class="lg:col-span-1 bg-white rounded-xl shadow-sm p-6 h-fit sticky top-24">
+                    <h2 class="text-lg font-bold mb-4 text-gray-700 border-b pb-2">🔍 篩選條件</h2>
+
+                    <!-- ★ 高殖利率評級（新增） -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-yellow-700 mb-2">👑 高殖利率評級</label>
+                        <div class="space-y-1">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" value="精選" v-model="filters.ratings" class="rounded">
+                                <span class="text-xs px-2 py-0.5 rounded rating-elite">⭐ 精選</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" value="優選" v-model="filters.ratings" class="rounded">
+                                <span class="text-xs px-2 py-0.5 rounded rating-premium">✨ 優選</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" value="入選" v-model="filters.ratings" class="rounded">
+                                <span class="text-xs px-2 py-0.5 rounded rating-basic">✅ 入選</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" value="未入選" v-model="filters.ratings" class="rounded">
+                                <span class="text-xs px-2 py-0.5 rounded rating-none">— 未入選</span>
+                            </label>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">不勾選＝顯示全部</p>
+                    </div>
+
+                    <!-- ★ MA240 乖離率（新增） -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-600 mb-1">
+                            📉 MA240 乖離率範圍
+                        </label>
+                        <div class="flex items-center space-x-1 mb-2">
+                            <input type="number" v-model.number="filters.biasMin" placeholder="-15"
+                                class="w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-yellow-400 outline-none">
+                            <span class="text-gray-400 text-xs">~</span>
+                            <input type="number" v-model.number="filters.biasMax" placeholder="+15"
+                                class="w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-yellow-400 outline-none">
+                        </div>
+                        <div class="flex space-x-1 mt-1">
+                            <button @click="filters.biasMin=-10; filters.biasMax=0"
+                                class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200">負乖離</button>
+                            <button @click="filters.biasMin=0; filters.biasMax=10"
+                                class="text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200">正乖離</button>
+                            <button @click="filters.biasMin=null; filters.biasMax=null"
+                                class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded hover:bg-gray-200">全部</button>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">股價範圍 (元)</label>
+                        <div class="flex items-center space-x-2">
+                            <input type="number" v-model.number="filters.minPrice" placeholder="Min"
+                                class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                            <span class="text-gray-400">~</span>
+                            <input type="number" v-model.number="filters.maxPrice" placeholder="Max"
+                                class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Yield -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between">
+                            <span>殖利率 &gt; {{ filters.minYield }}%</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictYield" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-1 text-xs text-gray-500"
+                                    :class="{'text-blue-600': filters.strictYield}">嚴格</span>
+                            </label>
+                        </label>
+                        <input type="range" v-model.number="filters.minYield" min="0" max="10" step="0.5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Fill Days -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between">
+                            <span>填息天數 &lt; {{ filters.maxFillDays >= 365 ? '不限' : filters.maxFillDays + ' 天' }}</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictFill" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-1 text-xs text-gray-500"
+                                    :class="{'text-blue-600': filters.strictFill}">嚴格</span>
+                            </label>
+                        </label>
+                        <input type="range" v-model.number="filters.maxFillDays" min="0" max="365" step="5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Consecutive Div -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">連續配息 &gt; {{ filters.minConsDiv }}
+                            年</label>
+                        <input type="range" v-model.number="filters.minConsDiv" min="0" max="10" step="1"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Listing years -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">上市年數 &gt; {{
+                            filters.minListingYears }} 年</label>
+                        <input type="range" v-model.number="filters.minListingYears" min="0" max="20" step="1"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- ROA -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">ROA &gt; {{ filters.minROA
+                            }}%</label>
+                        <input type="range" v-model.number="filters.minROA" min="0" max="15" step="0.5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Div Freq -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">配息頻率</label>
+                        <select v-model="filters.divFreq"
+                            class="w-full p-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="all">全部</option>
+                            <option value="季配">季配</option>
+                            <option value="半年配">半年配</option>
+                            <option value="年配">年配</option>
+                        </select>
+                    </div>
+
+                    <!-- Industry -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">產業類別</label>
+                        <select v-model="filters.industry"
+                            class="w-full p-2 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="all">全部產業</option>
+                            <option v-for="ind in uniqueIndustries" :key="ind" :value="ind">{{ ind }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Reset -->
+                    <button @click="resetFilters"
+                        class="w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg font-medium transition-colors">重置條件</button>
+
+                    <div class="mt-6 p-3 bg-yellow-50 rounded-lg border border-yellow-100">
+                        <h3 class="text-xs font-bold text-yellow-800 mb-1">💡 使用建議</h3>
+                        <p class="text-xs text-yellow-700">勾選「入選以上」＋乖離率 -10%~0% 可快速找到負乖離的高殖利標的！</p>
+                    </div>
+                </div>
+
+                <!-- ===== Results Table ===== -->
+                <div class="lg:col-span-4 bg-white rounded-xl shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-4 border-b flex justify-between items-center bg-gray-50">
+                        <input type="text" v-model="filters.search" placeholder="搜尋代號或名稱..."
+                            class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400 outline-none text-sm w-64">
+                        <div class="text-sm text-gray-500">排序: <span class="font-semibold text-gray-700">{{ sortLabel
+                                }}</span></div>
+                    </div>
+
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-600 text-xs uppercase tracking-wide">
+                                    <th @click="setSort('id')" class="p-3 cursor-pointer hover:bg-gray-200">代號</th>
+                                    <th @click="setSort('name')" class="p-3 cursor-pointer hover:bg-gray-200">名稱</th>
+                                    <th @click="setSort('industry')" class="p-3 cursor-pointer hover:bg-gray-200">產業
+                                    </th>
+                                    <!-- ★ 評級（新增，置前） -->
+                                    <th @click="setSort('hy_rating')"
+                                        class="p-3 cursor-pointer hover:bg-yellow-100 bg-yellow-50 text-center">評級</th>
+                                    <th @click="setSort('price')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">股價</th>
+                                    <!-- ★ MA240 + 乖離率（新增） -->
+                                    <th @click="setSort('ma240')"
+                                        class="p-3 cursor-pointer hover:bg-yellow-100 bg-yellow-50 text-right">MA240
+                                    </th>
+                                    <th @click="setSort('ma240_bias')"
+                                        class="p-3 cursor-pointer hover:bg-yellow-100 bg-yellow-50 text-right">乖離率</th>
+                                    <!-- 殖利率相關 -->
+                                    <th @click="setSort('hy_yield_avg_5y')"
+                                        class="p-3 cursor-pointer hover:bg-blue-100 bg-blue-50 text-right">殖利率(5y)</th>
+                                    <th @click="setSort('est_yield')"
+                                        class="p-3 cursor-pointer hover:bg-blue-100 bg-blue-50 text-right">預估殖利率</th>
+                                    <th @click="setSort('latest_div')"
+                                        class="p-3 cursor-pointer hover:bg-blue-100 bg-blue-50 text-right">股利($)</th>
+                                    <th @click="setSort('hy_fill_days_avg')"
+                                        class="p-3 cursor-pointer hover:bg-green-100 bg-green-50 text-right">填息天數</th>
+                                    <th @click="setSort('cons_div_years')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">連配</th>
+                                    <th @click="setSort('listing_years')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">上市年</th>
+                                    <th @click="setSort('consecutive_profit_years')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">連利</th>
+                                    <th @click="setSort('roa_avg_5y')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">ROA</th>
+                                    <th @click="setSort('core_ratio_avg_5y')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">本業比</th>
+                                    <th class="p-3 text-center">頻率</th>
+                                    <th @click="setSort('rev_yoy')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">YoY</th>
+                                    <th @click="setSort('rev_mom')"
+                                        class="p-3 cursor-pointer hover:bg-gray-200 text-right">MoM</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                <tr v-for="stock in sortedStocks" :key="stock.id"
+                                    class="hover:bg-gray-50 transition-colors">
+                                    <td class="p-3 font-medium text-blue-600">
+                                        <a :href="'https://www.cmoney.tw/finance/f00025.aspx?s=' + stock.id"
+                                            target="_blank" class="hover:underline">{{ stock.id }}</a>
+                                    </td>
+                                    <td class="p-3 font-semibold text-gray-800">{{ stock.name }}</td>
+                                    <td class="p-3 text-gray-500 text-xs">{{ stock.industry }}</td>
+                                    <!-- ★ 評級徽章 -->
+                                    <td class="p-3 text-center">
+                                        <span class="text-xs px-2 py-0.5 rounded font-bold" :class="{
+                                                'rating-elite':   stock.hy_rating === '精選',
+                                                'rating-premium': stock.hy_rating === '優選',
+                                                'rating-basic':   stock.hy_rating === '入選',
+                                                'rating-none':    stock.hy_rating === '未入選' || !stock.hy_rating,
+                                            }">
+                                            {{ stock.hy_rating || '-' }}
+                                        </span>
+                                    </td>
+                                    <td class="p-3 text-right font-mono text-gray-700">{{ stock.price }}</td>
+                                    <!-- ★ MA240 -->
+                                    <td class="p-3 text-right font-mono text-gray-500 bg-yellow-50/30">{{ stock.ma240 ??
+                                        '-' }}</td>
+                                    <!-- ★ 乖離率（負=綠，正=紅） -->
+                                    <td class="p-3 text-right font-mono bg-yellow-50/30"
+                                        :class="stock.ma240_bias == null ? 'text-gray-400' : (stock.ma240_bias < 0 ? 'bias-neg' : (stock.ma240_bias > 0 ? 'bias-pos' : 'bias-zero'))">
+                                        {{ stock.ma240_bias != null ? (stock.ma240_bias > 0 ? '+' : '') +
+                                        stock.ma240_bias + '%' : '-' }}
+                                    </td>
+                                    <!-- 殖利率 -->
+                                    <td class="p-3 text-right font-mono font-bold bg-blue-50/30"
+                                        :class="{'text-red-600': stock.hy_yield_avg_5y >= 5}">{{ stock.hy_yield_avg_5y
+                                        }}%</td>
+                                    <td class="p-3 text-right font-mono font-bold bg-blue-50/30"
+                                        :class="{'text-red-600': stock.est_yield >= 5}">{{ stock.est_yield }}%</td>
+                                    <td class="p-3 text-right font-mono bg-blue-50/30">{{ stock.latest_div }}</td>
+                                    <td class="p-3 text-right font-mono bg-green-50/30"
+                                        :class="{'text-green-600 font-bold': stock.hy_fill_days_avg <= 30}">
+                                        {{ stock.hy_fill_days_avg == 999 ? '未填' : stock.hy_fill_days_avg }}
+                                    </td>
+                                    <td class="p-3 text-right font-mono text-gray-600">{{ stock.cons_div_years }}</td>
+                                    <td class="p-3 text-right font-mono text-gray-600">{{ stock.listing_years }}</td>
+                                    <td class="p-3 text-right font-mono text-gray-600">{{ stock.consecutive_profit_years
+                                        }}</td>
+                                    <td class="p-3 text-right font-mono"
+                                        :class="{'text-red-500 font-bold': stock.roa_avg_5y >= 5}">{{ stock.roa_avg_5y
+                                        }}%</td>
+                                    <td class="p-3 text-right font-mono text-gray-600">{{ stock.core_ratio_avg_5y }}%
+                                    </td>
+                                    <td class="p-3 text-center">
+                                        <span class="px-2 py-0.5 text-xs rounded-full border" :class="{
+                                                'bg-purple-100 text-purple-700 border-purple-200': stock.hy_div_freq === '季配',
+                                                'bg-indigo-100 text-indigo-700 border-indigo-200': stock.hy_div_freq === '半年配',
+                                                'bg-gray-100 text-gray-600 border-gray-200': stock.hy_div_freq === '年配'
+                                            }">{{ stock.hy_div_freq }}</span>
+                                    </td>
+                                    <td class="p-3 text-right font-mono text-sm" :class="getColorClass(stock.rev_yoy)">
+                                        {{ formatNum(stock.rev_yoy) }}%</td>
+                                    <td class="p-3 text-right font-mono text-sm" :class="getColorClass(stock.rev_mom)">
+                                        {{ formatNum(stock.rev_mom) }}%</td>
+                                </tr>
+                                <tr v-if="sortedStocks.length === 0 && !loading">
+                                    <td colspan="20" class="p-12 text-center text-gray-400">沒有符合條件的股票 💰</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const { createApp, ref, computed, onMounted } = Vue;
+
+        createApp({
+            setup() {
+                const stocks = ref([]);
+                const loading = ref(true);
+                const lastUpdated = ref('更新中...');
+                const metaNote = ref('');
+
+                const filters = ref({
+                    ratings: [],        // ★ 評級多選
+                    biasMin: null,      // ★ 乖離率下限
+                    biasMax: null,      // ★ 乖離率上限
+                    minPrice: null,
+                    maxPrice: null,
+                    minYield: 4,
+                    strictYield: false,
+                    maxFillDays: 60,
+                    strictFill: false,
+                    minConsDiv: 0,
+                    minListingYears: 0,
+                    minROA: 0,
+                    divFreq: 'all',
+                    industry: 'all',
+                    search: ''
+                });
+
+                const sortKey = ref('hy_rating');
+                const sortDesc = ref(false);
+                const ratingOrder = { '精選': 4, '優選': 3, '入選': 2, '未入選': 1, '': 0 };
+
+                const loadData = () => {
+                    try {
+                        if (window.HY_DATA) {
+                            stocks.value = window.HY_DATA;
+                            if (window.HY_META) {
+                                lastUpdated.value = `${window.HY_META.generated_at} | REF_YEAR=${window.HY_META.ref_year}`;
+                                metaNote.value = window.HY_META.note || '';
+                            }
+                        } else {
+                            throw new Error('HY_DATA not found');
+                        }
+                    } catch (e) {
+                        alert('無法讀取資料。請先執行 004_高殖利率篩選器.bat 產生 hy_metrics_latest.js');
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+
+                onMounted(loadData);
+
+                const uniqueIndustries = computed(() => {
+                    return Array.from(new Set(stocks.value.map(s => s.industry))).sort();
+                });
+
+                const filteredStocks = computed(() => {
+                    return stocks.value.filter(s => {
+                        // 評級篩選（勾選時過濾，未勾選顯示全部）
+                        if (filters.value.ratings.length > 0 && !filters.value.ratings.includes(s.hy_rating)) return false;
+                        // 乖離率範圍
+                        if (filters.value.biasMin !== null && filters.value.biasMin !== '' && (s.ma240_bias == null || s.ma240_bias < filters.value.biasMin)) return false;
+                        if (filters.value.biasMax !== null && filters.value.biasMax !== '' && (s.ma240_bias == null || s.ma240_bias > filters.value.biasMax)) return false;
+                        // 股價
+                        if (filters.value.minPrice && s.price < filters.value.minPrice) return false;
+                        if (filters.value.maxPrice && s.price > filters.value.maxPrice) return false;
+                        // 殖利率
+                        const yv = filters.value.strictYield ? s.hy_yield_min_5y : s.hy_yield_avg_5y;
+                        if (yv < filters.value.minYield) return false;
+                        // 填息天數
+                        const fv = filters.value.strictFill ? s.hy_fill_days_max : s.hy_fill_days_avg;
+                        if (filters.value.maxFillDays < 365 && fv > filters.value.maxFillDays) return false;
+                        // 連配
+                        if (s.cons_div_years < filters.value.minConsDiv) return false;
+                        // 上市年
+                        if (s.listing_years < filters.value.minListingYears) return false;
+                        // ROA
+                        if (filters.value.minROA > 0 && s.roa_avg_5y < filters.value.minROA) return false;
+                        // 頻率 / 產業
+                        if (filters.value.divFreq !== 'all' && s.hy_div_freq !== filters.value.divFreq) return false;
+                        if (filters.value.industry !== 'all' && s.industry !== filters.value.industry) return false;
+                        // 搜尋
+                        if (filters.value.search) {
+                            const t = filters.value.search.toLowerCase();
+                            return s.id.includes(t) || s.name.toLowerCase().includes(t);
+                        }
+                        return true;
+                    });
+                });
+
+                const sortedStocks = computed(() => {
+                    return [...filteredStocks.value].sort((a, b) => {
+                        if (sortKey.value === 'hy_rating') {
+                            const va = ratingOrder[a.hy_rating || ''] ?? 0;
+                            const vb = ratingOrder[b.hy_rating || ''] ?? 0;
+                            return sortDesc.value ? va - vb : vb - va;
+                        }
+                        let va = a[sortKey.value];
+                        let vb = b[sortKey.value];
+                        if (va == null || va === 'N/A' || va === 999) va = sortDesc.value ? -Infinity : Infinity;
+                        if (vb == null || vb === 'N/A' || vb === 999) vb = sortDesc.value ? -Infinity : Infinity;
+                        if (va < vb) return sortDesc.value ? 1 : -1;
+                        if (va > vb) return sortDesc.value ? -1 : 1;
+                        return 0;
+                    });
+                });
+
+                const setSort = (key) => {
+                    if (sortKey.value === key) {
+                        sortDesc.value = !sortDesc.value;
+                    } else {
+                        sortKey.value = key;
+                        sortDesc.value = !['id', 'industry', 'name'].includes(key);
+                    }
+                };
+
+                const resetFilters = () => {
+                    Object.assign(filters.value, {
+                        ratings: [], biasMin: null, biasMax: null,
+                        minPrice: null, maxPrice: null,
+                        minYield: 0, strictYield: false,
+                        maxFillDays: 365, strictFill: false,
+                        minConsDiv: 0, minListingYears: 0, minROA: 0,
+                        divFreq: 'all', industry: 'all', search: ''
+                    });
+                };
+
+                const getColorClass = (v) => {
+                    if (v == null) return 'text-gray-400';
+                    if (v > 0) return 'text-red-600 font-bold';
+                    if (v < 0) return 'text-green-600 font-bold';
+                    return 'text-gray-600';
+                };
+                const formatNum = (v) => v == null ? '-' : v;
+
+                const sortLabels = {
+                    'id': '代號', 'name': '名稱', 'industry': '產業',
+                    'hy_rating': '評級', 'price': '股價',
+                    'ma240': 'MA240', 'ma240_bias': '乖離率',
+                    'hy_yield_avg_5y': '殖利率', 'est_yield': '預估殖利率',
+                    'latest_div': '股利', 'hy_fill_days_avg': '填息天數',
+                    'cons_div_years': '連配', 'listing_years': '上市年',
+                    'consecutive_profit_years': '連利', 'roa_avg_5y': 'ROA',
+                    'core_ratio_avg_5y': '本業比', 'rev_yoy': 'YoY', 'rev_mom': 'MoM'
+                };
+                const sortLabel = computed(() =>
+                    (sortLabels[sortKey.value] || sortKey.value) + (sortDesc.value ? ' (↓)' : ' (↑)')
+                );
+
+                return {
+                    loading, stocks, lastUpdated, metaNote, filters,
+                    sortedStocks, uniqueIndustries,
+                    totalCount: computed(() => stocks.value.length),
+                    filteredCount: computed(() => filteredStocks.value.length),
+                    setSort, resetFilters, getColorClass, formatNum, sortLabel
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
