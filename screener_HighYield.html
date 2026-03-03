@@ -237,6 +237,68 @@
                             class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
                     </div>
 
+                    <!-- 現金股利(新增) -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between">
+                            <span>現金股利 &gt; {{ filters.minDiv }}元</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictDiv" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-1 text-xs text-gray-500"
+                                    :class="{'text-blue-600': filters.strictDiv}">嚴格</span>
+                            </label>
+                        </label>
+                        <input type="range" v-model.number="filters.minDiv" min="0" max="10" step="0.5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        <div class="text-xs text-gray-400 mt-1">
+                            <span v-if="filters.strictDiv" class="text-blue-500">5年平均 &gt; {{ filters.minDiv }}元</span>
+                            <span v-else>最新一期 &gt; {{ filters.minDiv }}元</span>
+                        </div>
+                    </div>
+
+                    <!-- 連續獲利年數(新增) -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2">連續獲利 &gt; {{ filters.minConsProfit
+                            }} 年</label>
+                        <input type="range" v-model.number="filters.minConsProfit" min="0" max="10" step="1"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- 本業比範圍(新增) -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-semibold text-gray-600 mb-2 flex justify-between">
+                            <span>本業比範圍</span>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" v-model="filters.strictCore" class="sr-only peer">
+                                <div
+                                    class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600">
+                                </div>
+                                <span class="ms-1 text-xs text-gray-500"
+                                    :class="{'text-blue-600': filters.strictCore}">嚴格</span>
+                            </label>
+                        </label>
+                        <div class="mb-2">
+                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>最小: {{ filters.minCore
+                                    }}%</span></div>
+                            <input type="range" v-model.number="filters.minCore" min="0" max="100" step="5"
+                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs text-gray-400 mb-1"><span>最大: {{ filters.maxCore >=
+                                    200 ? '不限' : filters.maxCore + '%' }}</span></div>
+                            <input type="range" v-model.number="filters.maxCore" min="0" max="200" step="10"
+                                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">
+                            <span v-if="filters.strictCore" class="text-blue-500">每年介於 {{ filters.minCore }}%~{{
+                                filters.maxCore >= 200 ? '不限' : filters.maxCore + '%' }}</span>
+                            <span v-else>平均介於 {{ filters.minCore }}%~{{ filters.maxCore >= 200 ? '不限' : filters.maxCore
+                                + '%' }}</span>
+                        </div>
+                    </div>
+
                     <!-- Div Freq -->
                     <div class="mb-5">
                         <label class="block text-sm font-semibold text-gray-600 mb-2">配息頻率</label>
@@ -407,9 +469,9 @@
                 const metaNote = ref('');
 
                 const filters = ref({
-                    ratings: [],        // ★ 評級多選
-                    biasMin: null,      // ★ 乖離率下限
-                    biasMax: null,      // ★ 乖離率上限
+                    ratings: [],
+                    biasMin: null,
+                    biasMax: null,
                     minPrice: null,
                     maxPrice: null,
                     minYield: 4,
@@ -419,6 +481,12 @@
                     minConsDiv: 0,
                     minListingYears: 0,
                     minROA: 0,
+                    minDiv: 0,           // 現金股利
+                    strictDiv: false,    // 現金股利嚴格
+                    minConsProfit: 0,    // 連續獲利
+                    minCore: 0,          // 本業比最小
+                    maxCore: 200,        // 本業比最大
+                    strictCore: false,   // 本業比嚴格
                     divFreq: 'all',
                     industry: 'all',
                     search: ''
@@ -474,6 +542,15 @@
                         if (s.listing_years < filters.value.minListingYears) return false;
                         // ROA
                         if (filters.value.minROA > 0 && s.roa_avg_5y < filters.value.minROA) return false;
+                        // 現金股利
+                        const dv = filters.value.strictDiv ? s.hy_div_min_5y : s.latest_div;
+                        if (filters.value.minDiv > 0 && dv < filters.value.minDiv) return false;
+                        // 連續獲利
+                        if (s.consecutive_profit_years < filters.value.minConsProfit) return false;
+                        // 本業比
+                        const cv = filters.value.strictCore ? s.core_ratio_min_5y : s.core_ratio_avg_5y;
+                        if (filters.value.minCore > 0 && cv < filters.value.minCore) return false;
+                        if (filters.value.maxCore < 200 && cv > filters.value.maxCore) return false;
                         // 頻率 / 產業
                         if (filters.value.divFreq !== 'all' && s.hy_div_freq !== filters.value.divFreq) return false;
                         if (filters.value.industry !== 'all' && s.industry !== filters.value.industry) return false;
@@ -519,6 +596,9 @@
                         minYield: 0, strictYield: false,
                         maxFillDays: 365, strictFill: false,
                         minConsDiv: 0, minListingYears: 0, minROA: 0,
+                        minDiv: 0, strictDiv: false,
+                        minConsProfit: 0,
+                        minCore: 0, maxCore: 200, strictCore: false,
                         divFreq: 'all', industry: 'all', search: ''
                     });
                 };
