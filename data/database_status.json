@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-12 10:36:54",
+  "last_update": "2026-03-12 20:00:00",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -64,8 +64,8 @@
     },
     {
       "name": "TaiwanStockInstitutionalInvestorsBuySell",
-      "latest_date": "2026-03-11",
-      "record_count": 65795167,
+      "latest_date": "2026-03-12",
+      "record_count": 65891042,
       "status": "✅ 正常"
     },
     {
@@ -82,26 +82,26 @@
     },
     {
       "name": "TaiwanStockPER",
-      "latest_date": "2026-03-11",
-      "record_count": 7541350,
+      "latest_date": "2026-03-12",
+      "record_count": 7543297,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPrice",
-      "latest_date": "2026-03-11",
-      "record_count": 61071403,
+      "latest_date": "2026-03-12",
+      "record_count": 61118018,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPrice_Adj",
-      "latest_date": "2026-01-30",
-      "record_count": 9466362,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-03-12",
+      "record_count": 9514352,
+      "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockSecuritiesLending",
-      "latest_date": "2026-03-11",
-      "record_count": 545757,
+      "latest_date": "2026-03-12",
+      "record_count": 546875,
       "status": "✅ 正常"
     },
     {
@@ -112,8 +112,8 @@
     },
     {
       "name": "TaiwanStockTotalInstitutionalInvestors",
-      "latest_date": "2026-03-11",
-      "record_count": 26374,
+      "latest_date": "2026-03-12",
+      "record_count": 26380,
       "status": "✅ 正常"
     },
     {
@@ -131,7 +131,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 1645,
+      "record_count": 1679,
       "status": "✅ 正常"
     },
     {
