@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-12 19:57:46",
+  "last_update": "2026-03-12 20:32:45",
   "report_file": "04_Final_Combined_20260312.csv",
   "candidates": [
     {
@@ -15,7 +15,7 @@
       "rank": 2,
       "stock_id": "6596",
       "name": "寬宏藝術",
-      "industry": "其他",
+      "industry": "文化創意",
       "price": 148.0,
       "afass_score": 96.05,
       "chip_score": 0
@@ -51,7 +51,7 @@
       "rank": 6,
       "stock_id": "8390",
       "name": "金益鼎",
-      "industry": "其他",
+      "industry": "綠能環保",
       "price": 100.5,
       "afass_score": 78.13,
       "chip_score": 0
@@ -105,7 +105,7 @@
       "rank": 12,
       "stock_id": "3324",
       "name": "雙鴻",
-      "industry": "其他",
+      "industry": "電子",
       "price": 1050.0,
       "afass_score": 68.96,
       "chip_score": 0
@@ -141,7 +141,7 @@
       "rank": 16,
       "stock_id": "5536",
       "name": "聖暉*",
-      "industry": "其他",
+      "industry": "電子",
       "price": 697.0,
       "afass_score": 66.81,
       "chip_score": 0
@@ -168,7 +168,7 @@
       "rank": 19,
       "stock_id": "6944",
       "name": "兆聯實業",
-      "industry": "其他",
+      "industry": "綠能環保",
       "price": 787.0,
       "afass_score": 63.87,
       "chip_score": 0
@@ -366,7 +366,7 @@
       "rank": 41,
       "stock_id": "5278",
       "name": "尚凡*",
-      "industry": "其他",
+      "industry": "電子",
       "price": 25.0,
       "afass_score": 43.87,
       "chip_score": 0
@@ -447,7 +447,7 @@
       "rank": 50,
       "stock_id": "1611",
       "name": "中電",
-      "industry": "其他",
+      "industry": "電子",
       "price": 13.5,
       "afass_score": 41.29,
       "chip_score": 0
@@ -573,7 +573,7 @@
       "rank": 64,
       "stock_id": "6189",
       "name": "豐藝",
-      "industry": "其他",
+      "industry": "電子",
       "price": 44.5,
       "afass_score": 32.79,
       "chip_score": 0
@@ -672,7 +672,7 @@
       "rank": 75,
       "stock_id": "3033",
       "name": "威健",
-      "industry": "其他",
+      "industry": "電子",
       "price": 30.35,
       "afass_score": 26.13,
       "chip_score": 0
@@ -780,7 +780,7 @@
       "rank": 87,
       "stock_id": "8926",
       "name": "台汽電",
-      "industry": "其他",
+      "industry": "傳統產業",
       "price": 45.9,
       "afass_score": 13.24,
       "chip_score": 0
@@ -798,7 +798,7 @@
       "rank": 89,
       "stock_id": "8096",
       "name": "擎亞",
-      "industry": "其他",
+      "industry": "電子",
       "price": 73.4,
       "afass_score": 10.31,
       "chip_score": 0
@@ -825,7 +825,7 @@
       "rank": 92,
       "stock_id": "9955",
       "name": "佳龍",
-      "industry": "其他",
+      "industry": "綠能環保",
       "price": 35.7,
       "afass_score": 9.27,
       "chip_score": 0

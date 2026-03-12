@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12 19:59:56",
+  "generated_at": "2026-03-12 20:34:12",
   "taiex": [
     {
       "date": "2025-09-05",
@@ -1324,16 +1324,16 @@
   ],
   "sectors": [
     {
-      "industry_category": "其他",
-      "flow": 2361958663937,
-      "diff_val": 282474294594,
-      "diff_pct": 13.58
+      "industry_category": "ETF",
+      "flow": 2306683590733,
+      "diff_val": 281584450078,
+      "diff_pct": 13.9
     },
     {
       "industry_category": "電子",
-      "flow": 654249287043,
-      "diff_val": 79113477900,
-      "diff_pct": 13.76
+      "flow": 690285279118,
+      "diff_val": 77806955140,
+      "diff_pct": 12.7
     },
     {
       "industry_category": "半導體",
@@ -1343,15 +1343,15 @@
     },
     {
       "industry_category": "傳統產業",
-      "flow": 52728955823,
-      "diff_val": 8282578831,
-      "diff_pct": 18.63
+      "flow": 60476563644,
+      "diff_val": 9913149431,
+      "diff_pct": 19.61
     },
     {
       "industry_category": "金融",
-      "flow": 16646236386,
-      "diff_val": 5707838602,
-      "diff_pct": 52.18
+      "flow": 16955197160,
+      "diff_val": 5590376139,
+      "diff_pct": 49.19
     },
     {
       "industry_category": "航運業",
@@ -1366,16 +1366,22 @@
       "diff_pct": 17.56
     },
     {
-      "industry_category": "食品餐飲",
-      "flow": 2462819022,
-      "diff_val": 128218643,
-      "diff_pct": 5.49
+      "industry_category": "其他",
+      "flow": 3917543720,
+      "diff_val": -285264736,
+      "diff_pct": -6.79
+    },
+    {
+      "industry_category": "綠能環保",
+      "flow": 3891861582,
+      "diff_val": 621445044,
+      "diff_pct": 19.0
     },
     {
       "industry_category": "零售百貨",
-      "flow": 2220322969,
-      "diff_val": 15427298,
-      "diff_pct": 0.7
+      "flow": 3286897738,
+      "diff_val": 288464623,
+      "diff_pct": 9.62
     }
   ],
   "breadth": [
