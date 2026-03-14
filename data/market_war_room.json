@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-13 20:20:10",
+  "generated_at": "2026-03-14 18:25:33",
   "taiex": [
     {
       "date": "2025-09-08",
@@ -2707,11 +2707,11 @@
     }
   ],
   "credit": {
-    "date": "2026-03-12",
-    "margin_balance": 8373539,
-    "short_balance": 227307,
-    "margin_change": 62330,
-    "short_change": -6577
+    "date": "2026-03-13",
+    "margin_balance": 8383720,
+    "short_balance": 217879,
+    "margin_change": 10181,
+    "short_change": -9428
   },
   "mainforce": {
     "top_score": [
@@ -2803,6 +2803,11 @@
         "score": 74.0
       },
       {
+        "stock_id": "3030",
+        "stock_name": "德律",
+        "score": 69.0
+      },
+      {
         "stock_id": "2436",
         "stock_name": "偉詮電",
         "score": 69.0
@@ -2810,11 +2815,6 @@
       {
         "stock_id": "5351",
         "stock_name": "鈺創",
-        "score": 69.0
-      },
-      {
-        "stock_id": "1227",
-        "stock_name": "佳格",
         "score": 69.0
       }
     ]
@@ -2928,66 +2928,61 @@
   "whale": {
     "week_increase_top5": [
       {
-        "stock_id": "8932",
-        "whale_change": 34.8,
-        "stock_name": "智通*"
+        "stock_id": "6470",
+        "whale_change": 19.370000000000005,
+        "stock_name": "宇智"
       },
       {
-        "stock_id": "8066",
-        "whale_change": 15.82,
-        "stock_name": "來思達"
+        "stock_id": "8271",
+        "whale_change": 11.850000000000001,
+        "stock_name": "宇瞻"
       },
       {
-        "stock_id": "6187",
-        "whale_change": 13.559999999999999,
-        "stock_name": "萬潤"
+        "stock_id": "8112",
+        "whale_change": 10.280000000000001,
+        "stock_name": "至上"
       },
       {
-        "stock_id": "6217",
-        "whale_change": 11.959999999999997,
-        "stock_name": "中探針"
+        "stock_id": "3645",
+        "whale_change": 9.73,
+        "stock_name": "達邁"
       },
       {
-        "stock_id": "3450",
-        "whale_change": 11.610000000000001,
-        "stock_name": "聯鈞"
+        "stock_id": "1785",
+        "whale_change": 9.630000000000003,
+        "stock_name": "光洋科"
       },
       {
-        "stock_id": "2489",
-        "whale_change": 9.090000000000003,
-        "stock_name": "瑞軒"
+        "stock_id": "2485",
+        "whale_change": 8.780000000000001,
+        "stock_name": "兆赫"
       },
       {
-        "stock_id": "4989",
-        "whale_change": 8.52,
-        "stock_name": "榮科"
+        "stock_id": "2070",
+        "whale_change": 7.6299999999999955,
+        "stock_name": "精湛"
       },
       {
-        "stock_id": "6699",
-        "whale_change": 8.0,
-        "stock_name": "奇邑"
+        "stock_id": "3481",
+        "whale_change": 6.859999999999999,
+        "stock_name": "群創"
       },
       {
-        "stock_id": "4946",
-        "whale_change": 7.649999999999999,
-        "stock_name": "辣椒"
+        "stock_id": "3252",
+        "whale_change": 5.590000000000003,
+        "stock_name": "海灣"
       },
       {
-        "stock_id": "6443",
-        "whale_change": 7.620000000000001,
-        "stock_name": "元晶"
+        "stock_id": "3609",
+        "whale_change": 5.029999999999998,
+        "stock_name": "三一東林"
       }
     ],
     "biweek_accumulate_top5": [
       {
-        "stock_id": "8932",
-        "whale_change_2w": 35.040000000000006,
-        "stock_name": "智通*"
-      },
-      {
-        "stock_id": "3167",
-        "whale_change_2w": 16.07,
-        "stock_name": "大量"
+        "stock_id": "6470",
+        "whale_change_2w": 26.150000000000006,
+        "stock_name": "宇智"
       },
       {
         "stock_id": "8066",
@@ -2996,38 +2991,43 @@
       },
       {
         "stock_id": "6187",
-        "whale_change_2w": 14.729999999999997,
+        "whale_change_2w": 14.459999999999997,
         "stock_name": "萬潤"
       },
       {
-        "stock_id": "2489",
-        "whale_change_2w": 13.71,
-        "stock_name": "瑞軒"
-      },
-      {
         "stock_id": "6217",
-        "whale_change_2w": 12.939999999999998,
+        "whale_change_2w": 12.05,
         "stock_name": "中探針"
       },
       {
-        "stock_id": "6290",
-        "whale_change_2w": 12.490000000000002,
-        "stock_name": "良維"
+        "stock_id": "8271",
+        "whale_change_2w": 11.899999999999999,
+        "stock_name": "宇瞻"
       },
       {
-        "stock_id": "6651",
-        "whale_change_2w": 11.16,
-        "stock_name": "全宇昕"
+        "stock_id": "8112",
+        "whale_change_2w": 10.780000000000001,
+        "stock_name": "至上"
       },
       {
-        "stock_id": "6699",
-        "whale_change_2w": 10.090000000000003,
-        "stock_name": "奇邑"
+        "stock_id": "1785",
+        "whale_change_2w": 10.409999999999997,
+        "stock_name": "光洋科"
       },
       {
-        "stock_id": "1815",
-        "whale_change_2w": 9.68,
-        "stock_name": "富喬"
+        "stock_id": "3481",
+        "whale_change_2w": 10.259999999999998,
+        "stock_name": "群創"
+      },
+      {
+        "stock_id": "2485",
+        "whale_change_2w": 9.990000000000002,
+        "stock_name": "兆赫"
+      },
+      {
+        "stock_id": "3450",
+        "whale_change_2w": 9.6,
+        "stock_name": "聯鈞"
       }
     ]
   },
