@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>巨鯨技術策略 — 2026-03-23</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'IBM Plex Sans', 'Microsoft JhengHei', sans-serif; background: #f8f9fa; }
+    /* ── 頂部橫幅 ── */
+    .page-header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%);
+      color: #fff; padding: 2rem 2rem 1.5rem; margin-bottom: 1.5rem;
+    }
+    .page-header h1 { font-size: 1.9rem; font-weight: 700; margin-bottom: .3rem; }
+    .page-header .subtitle { font-size: .95rem; opacity: .88; margin-bottom: .6rem; }
+    .page-header .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: .5rem; }
+    .badge-stat {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+      border-radius: 6px; padding: .25rem .7rem; font-size: .8rem; font-weight: 600;
+    }
+    /* ── 摘要卡片 ── */
+    .info-cards { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1.5rem; }
+    .info-card {
+      background: #fff; border-radius: 10px; padding: 1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06); min-width: 130px; flex: 1;
+    }
+    .info-card .label { font-size: .75rem; color: #6c757d; text-transform: uppercase;
+      font-weight: 600; margin-bottom: .25rem; }
+    .info-card .value { font-size: 1.4rem; font-weight: 700; color: #1a237e; }
+    /* ── 指標說明 ── */
+    .layer-cards { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5rem; }
+    .layer-card {
+      background: #fff; border-radius: 10px; padding: .9rem 1.1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06); flex: 1; min-width: 170px;
+    }
+    .layer-card .l-title { font-weight: 700; font-size: .88rem; margin-bottom: .3rem; }
+    .layer-card .l-desc  { font-size: .78rem; color: #495057; line-height: 1.5; }
+    .l1 { border-left: 4px solid #6c757d; }
+    .l2 { border-left: 4px solid #0d6efd; }
+    .l3 { border-left: 4px solid #fd7e14; }
+    .l4 { border-left: 4px solid #198754; }
+    .l5 { border-left: 4px solid #6f42c1; }
+    /* ── 表格 ── */
+    .card { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+    table.dataTable td, table.dataTable th { vertical-align: middle; }
+    thead th { background: #f1f5f9; color: #475569;
+      text-transform: uppercase; font-size: .8rem; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ 頂部橫幅 ═══ -->
+<div class="page-header">
+  <div class="container-fluid">
+    <h1>🐋🎯 巨鯨技術策略（WhaleTech）</h1>
+    <p class="subtitle">
+      巨鯨狙擊 V2.1 × 技術動能確認 — 大戶籌碼 + 法人買超 + 技術Gate≥20<br>
+      <small>回測10年CAGR +12.37%（2016-2025）｜獲利因子 2.71 最高｜近期（2022-2025）大幅勝出</small>
+    </p>
+    <div class="badge-row">
+      <span class="badge-stat">RSI &lt; 60</span>
+      <span class="badge-stat">法人淨買 ≥ 100 張</span>
+      <span class="badge-stat">大戶持股 ≥ 15%</span>
+      <span class="badge-stat">ROE &gt; 0</span>
+      <span class="badge-stat">技術分 ≥ 20/55</span>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <!-- 摘要卡片 -->
+  <div class="info-cards">
+    <div class="info-card">
+      <div class="label">📅 掃描日期</div>
+      <div class="value" style="font-size:1.1rem">2026-03-23</div>
+    </div>
+    <div class="info-card">
+      <div class="label">✅ 上榜標的</div>
+      <div class="value">50 支</div>
+    </div>
+    <div class="info-card">
+      <div class="label">🎯 技術分門檻</div>
+      <div class="value">20/55</div>
+    </div>
+    <div class="info-card">
+      <div class="label">🕐 產生時間</div>
+      <div class="value" style="font-size:1rem">2026-03-23 22:38</div>
+    </div>
+  </div>
+
+  <!-- 篩選層說明 -->
+  <div class="layer-cards">
+    <div class="layer-card l1">
+      <div class="l-title" style="color:#6c757d">Layer 1 — 技術初篩</div>
+      <div class="l-desc">RSI &lt; 60｜K &lt; 90｜D &lt; 75｜量 &gt; 1000張</div>
+    </div>
+    <div class="layer-card l2">
+      <div class="l-title" style="color:#0d6efd">Layer 2 — 法人籌碼</div>
+      <div class="l-desc">外資+投信 淨買超 ≥ 100 張（當日）</div>
+    </div>
+    <div class="layer-card l3">
+      <div class="l-title" style="color:#fd7e14">Layer 3 — 千張大戶</div>
+      <div class="l-desc">400張以上大戶持股 ≥ 15%（每週五更新）</div>
+    </div>
+    <div class="layer-card l4">
+      <div class="l-title" style="color:#198754">Layer 4 — 財報 ROE</div>
+      <div class="l-desc">最近一季 ROE &gt; 0（有獲利能力）</div>
+    </div>
+    <div class="layer-card l5">
+      <div class="l-title" style="color:#6f42c1">Layer 5 — 技術Gate ≥ 20/55</div>
+      <div class="l-desc">EMA多排(+15) MACD↑(+10) RSI甜蜜(+10) K線反轉(+5) 週線(+10) 階梯(+5)</div>
+    </div>
+  </div>
+
+  <!-- 下載按鈕 -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="mb-0">📋 候選標的（技術分由高到低）</h5>
+    <a href="whaletch_report.csv" class="btn btn-outline-success btn-sm">
+      <i class="bi bi-file-earmark-spreadsheet"></i> 下載 CSV
+    </a>
+  </div>
+
+  <!-- 主表格 -->
+  <div class="card p-3">
+    <div class="table-responsive">
+      <table id="mainTable" class="table table-striped table-hover text-center align-middle">
+        <thead>
+          <tr>
+            <th>排名</th><th>代號</th><th>名稱</th><th>產業</th><th>收盤</th>
+            <th>RSI</th><th>K值</th>
+            <th>法人合計</th><th>大戶持股%</th><th>大戶資料日</th>
+            <th>ROE%</th><th>技術分</th><th>技術明細</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr>
+          <td><strong>1</strong></td>
+          <td><strong>1307</strong></td>
+          <td style="text-align:left">三芳</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">塑膠工業</td>
+          <td>34.95</td>
+          <td>49.3</td>
+          <td>67.2</td>
+          <td style="color:#0d6efd;font-weight:600">252000 張</td>
+          <td style="color:#e67e22">81.7%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>765.09%</td>
+          <td style="color:#198754;font-weight:700">45</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、MACD↑(+10)、RSI57(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>2</strong></td>
+          <td><strong>7728</strong></td>
+          <td style="text-align:left">光焱科技</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">其他電子類</td>
+          <td>891.0</td>
+          <td>49.7</td>
+          <td>75.1</td>
+          <td style="color:#0d6efd;font-weight:600">63000 張</td>
+          <td style="color:#e67e22">57.2%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>133.39%</td>
+          <td style="color:#198754;font-weight:700">45</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、MACD↑(+10)、RSI63(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>3</strong></td>
+          <td><strong>9918</strong></td>
+          <td style="text-align:left">欣天然</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">油電燃氣業</td>
+          <td>51.3</td>
+          <td>59.5</td>
+          <td>39.3</td>
+          <td style="color:#0d6efd;font-weight:600">117800 張</td>
+          <td style="color:#e67e22">82.7%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>263.92%</td>
+          <td style="color:#198754;font-weight:700">45</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、MACD↑(+10)、RSI59(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>4</strong></td>
+          <td><strong>9931</strong></td>
+          <td style="text-align:left">欣高</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">油電燃氣業</td>
+          <td>43.1</td>
+          <td>58.9</td>
+          <td>41.2</td>
+          <td style="color:#0d6efd;font-weight:600">219000 張</td>
+          <td style="color:#e67e22">78.1%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>517.27%</td>
+          <td style="color:#198754;font-weight:700">45</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、MACD↑(+10)、RSI58(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>5</strong></td>
+          <td><strong>2548</strong></td>
+          <td style="text-align:left">華固</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">建材營造</td>
+          <td>117.5</td>
+          <td>57.4</td>
+          <td>63.4</td>
+          <td style="color:#0d6efd;font-weight:600">110350 張</td>
+          <td style="color:#e67e22">57.2%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>—%</td>
+          <td style="color:#198754;font-weight:700">35</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI58(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>6</strong></td>
+          <td><strong>1904</strong></td>
+          <td style="text-align:left">正隆</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">造紙工業</td>
+          <td>18.35</td>
+          <td>49.4</td>
+          <td>45.3</td>
+          <td style="color:#0d6efd;font-weight:600">688000 張</td>
+          <td style="color:#e67e22">64.7%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>158.18%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI57(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>7</strong></td>
+          <td><strong>1905</strong></td>
+          <td style="text-align:left">華紙</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">造紙工業</td>
+          <td>12.5</td>
+          <td>54.2</td>
+          <td>55.8</td>
+          <td style="color:#0d6efd;font-weight:600">569000 張</td>
+          <td style="color:#e67e22">71.5%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>158.6%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI60(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>8</strong></td>
+          <td><strong>2025</strong></td>
+          <td style="text-align:left">千興</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">鋼鐵工業</td>
+          <td>12.75</td>
+          <td>59.4</td>
+          <td>73.7</td>
+          <td style="color:#0d6efd;font-weight:600">90000 張</td>
+          <td style="color:#e67e22">61.8%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>422.89%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI64(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>9</strong></td>
+          <td><strong>2481</strong></td>
+          <td style="text-align:left">強茂</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>92.0</td>
+          <td>50.0</td>
+          <td>54.2</td>
+          <td style="color:#0d6efd;font-weight:600">1404000 張</td>
+          <td style="color:#e67e22">64.2%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>591.58%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI49(+10)、階梯(+5)</td>
+        </tr>
+
+        <tr>
+          <td><strong>10</strong></td>
+          <td><strong>2486</strong></td>
+          <td style="text-align:left">一詮</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>143.0</td>
+          <td>53.5</td>
+          <td>59.1</td>
+          <td style="color:#0d6efd;font-weight:600">11500 張</td>
+          <td style="color:#e67e22">50.1%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>294.24%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI52(+10)、錘頭(+5)</td>
+        </tr>
+
+        <tr>
+          <td><strong>11</strong></td>
+          <td><strong>3550</strong></td>
+          <td style="text-align:left">聯穎</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>18.35</td>
+          <td>51.7</td>
+          <td>54.2</td>
+          <td style="color:#0d6efd;font-weight:600">180000 張</td>
+          <td style="color:#e67e22">42.3%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>901.76%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI53(+10)、階梯(+5)</td>
+        </tr>
+
+        <tr>
+          <td><strong>12</strong></td>
+          <td><strong>6207</strong></td>
+          <td style="text-align:left">雷科</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>54.7</td>
+          <td>37.6</td>
+          <td>36.7</td>
+          <td style="color:#0d6efd;font-weight:600">999000 張</td>
+          <td style="color:#e67e22">17.7%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>714.35%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI54(+10)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>13</strong></td>
+          <td><strong>6285</strong></td>
+          <td style="text-align:left">啟碁</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">通信網路業</td>
+          <td>166.0</td>
+          <td>42.9</td>
+          <td>58.6</td>
+          <td style="color:#0d6efd;font-weight:600">1632698 張</td>
+          <td style="color:#e67e22">64.5%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>446.22%</td>
+          <td style="color:#198754;font-weight:700">30</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI49(+10)、階梯(+5)</td>
+        </tr>
+
+        <tr>
+          <td><strong>14</strong></td>
+          <td><strong>1582</strong></td>
+          <td style="text-align:left">信錦</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>84.8</td>
+          <td>58.8</td>
+          <td>30.6</td>
+          <td style="color:#0d6efd;font-weight:600">824000 張</td>
+          <td style="color:#e67e22">33.3%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>742.9%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI54(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>15</strong></td>
+          <td><strong>1727</strong></td>
+          <td style="text-align:left">中華化</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">化學生技醫療</td>
+          <td>52.1</td>
+          <td>53.7</td>
+          <td>44.4</td>
+          <td style="color:#0d6efd;font-weight:600">150000 張</td>
+          <td style="color:#e67e22">55.8%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>9.26%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI54(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>16</strong></td>
+          <td><strong>2103</strong></td>
+          <td style="text-align:left">台橡</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">橡膠工業</td>
+          <td>19.95</td>
+          <td>51.5</td>
+          <td>36.6</td>
+          <td style="color:#0d6efd;font-weight:600">409000 張</td>
+          <td style="color:#e67e22">53.0%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>—%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI53(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>17</strong></td>
+          <td><strong>2313</strong></td>
+          <td style="text-align:left">華通</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>216.0</td>
+          <td>46.6</td>
+          <td>53.3</td>
+          <td style="color:#0d6efd;font-weight:600">1041944 張</td>
+          <td style="color:#e67e22">67.4%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>756.31%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI57(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>18</strong></td>
+          <td><strong>2419</strong></td>
+          <td style="text-align:left">仲琦</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>29.3</td>
+          <td>47.0</td>
+          <td>40.9</td>
+          <td style="color:#0d6efd;font-weight:600">124000 張</td>
+          <td style="color:#e67e22">65.4%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>313.34%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI48(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>19</strong></td>
+          <td><strong>2455</strong></td>
+          <td style="text-align:left">全新</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>221.5</td>
+          <td>39.5</td>
+          <td>54.1</td>
+          <td style="color:#0d6efd;font-weight:600">412992 張</td>
+          <td style="color:#e67e22">52.9%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>516.84%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI55(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>20</strong></td>
+          <td><strong>2464</strong></td>
+          <td style="text-align:left">盟立</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>72.5</td>
+          <td>50.8</td>
+          <td>47.2</td>
+          <td style="color:#0d6efd;font-weight:600">227000 張</td>
+          <td style="color:#e67e22">36.4%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>—%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI51(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>21</strong></td>
+          <td><strong>2467</strong></td>
+          <td style="text-align:left">志聖</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>355.5</td>
+          <td>42.2</td>
+          <td>46.1</td>
+          <td style="color:#0d6efd;font-weight:600">287665 張</td>
+          <td style="color:#e67e22">71.2%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>2166.76%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI55(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>22</strong></td>
+          <td><strong>3030</strong></td>
+          <td style="text-align:left">德律</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>241.5</td>
+          <td>51.8</td>
+          <td>37.5</td>
+          <td style="color:#0d6efd;font-weight:600">440030 張</td>
+          <td style="color:#e67e22">62.7%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>833.93%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI54(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>23</strong></td>
+          <td><strong>3090</strong></td>
+          <td style="text-align:left">日電貿</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>93.0</td>
+          <td>48.5</td>
+          <td>54.5</td>
+          <td style="color:#0d6efd;font-weight:600">43558 張</td>
+          <td style="color:#e67e22">61.0%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>868.15%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI47(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>24</strong></td>
+          <td><strong>3338</strong></td>
+          <td style="text-align:left">泰碩</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>61.0</td>
+          <td>58.6</td>
+          <td>56.7</td>
+          <td style="color:#0d6efd;font-weight:600">41001 張</td>
+          <td style="color:#e67e22">30.2%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>513.26%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI58(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>25</strong></td>
+          <td><strong>3532</strong></td>
+          <td style="text-align:left">台勝科</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>135.0</td>
+          <td>56.1</td>
+          <td>56.7</td>
+          <td style="color:#0d6efd;font-weight:600">611027 張</td>
+          <td style="color:#e67e22">88.9%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>92.44%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI51(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>26</strong></td>
+          <td><strong>3701</strong></td>
+          <td style="text-align:left">大眾控</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>59.4</td>
+          <td>37.0</td>
+          <td>59.1</td>
+          <td style="color:#0d6efd;font-weight:600">298010 張</td>
+          <td style="color:#e67e22">73.6%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>515.64%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI50(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>27</strong></td>
+          <td><strong>4576</strong></td>
+          <td style="text-align:left">大銀微系統</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電機機械</td>
+          <td>120.0</td>
+          <td>45.8</td>
+          <td>52.2</td>
+          <td style="color:#0d6efd;font-weight:600">127000 張</td>
+          <td style="color:#e67e22">64.3%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>290.4%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI52(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>28</strong></td>
+          <td><strong>4755</strong></td>
+          <td style="text-align:left">三福化</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">化學生技醫療</td>
+          <td>149.5</td>
+          <td>52.9</td>
+          <td>28.8</td>
+          <td style="color:#0d6efd;font-weight:600">284000 張</td>
+          <td style="color:#e67e22">73.3%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>—%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI56(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>29</strong></td>
+          <td><strong>4908</strong></td>
+          <td style="text-align:left">前鼎</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">通信網路業</td>
+          <td>106.5</td>
+          <td>51.1</td>
+          <td>75.0</td>
+          <td style="color:#0d6efd;font-weight:600">261000 張</td>
+          <td style="color:#e67e22">53.1%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>231.91%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI61(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>30</strong></td>
+          <td><strong>4916</strong></td>
+          <td style="text-align:left">事欣科</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電腦及週邊設備業</td>
+          <td>61.3</td>
+          <td>52.3</td>
+          <td>58.8</td>
+          <td style="color:#0d6efd;font-weight:600">610000 張</td>
+          <td style="color:#e67e22">32.7%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>500.77%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI50(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>31</strong></td>
+          <td><strong>5284</strong></td>
+          <td style="text-align:left">jpp-KY</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">其他</td>
+          <td>278.5</td>
+          <td>53.8</td>
+          <td>71.8</td>
+          <td style="color:#0d6efd;font-weight:600">16100 張</td>
+          <td style="color:#e67e22">51.0%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>1068.17%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">RSI54(+10)、吞噬(+5)、週線共振(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>32</strong></td>
+          <td><strong>5475</strong></td>
+          <td style="text-align:left">德宏</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>197.5</td>
+          <td>51.5</td>
+          <td>38.3</td>
+          <td style="color:#0d6efd;font-weight:600">24362 張</td>
+          <td style="color:#e67e22">42.2%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>437.06%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI56(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>33</strong></td>
+          <td><strong>5864</strong></td>
+          <td style="text-align:left">致和證</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">金融業</td>
+          <td>24.9</td>
+          <td>47.7</td>
+          <td>60.7</td>
+          <td style="color:#0d6efd;font-weight:600">100000 張</td>
+          <td style="color:#e67e22">70.5%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>—%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI55(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>34</strong></td>
+          <td><strong>6015</strong></td>
+          <td style="text-align:left">宏遠證</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">金融業</td>
+          <td>13.45</td>
+          <td>45.0</td>
+          <td>52.0</td>
+          <td style="color:#0d6efd;font-weight:600">19000 張</td>
+          <td style="color:#e67e22">49.4%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>—%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI50(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>35</strong></td>
+          <td><strong>6152</strong></td>
+          <td style="text-align:left">百一</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>18.65</td>
+          <td>36.7</td>
+          <td>48.7</td>
+          <td style="color:#0d6efd;font-weight:600">289000 張</td>
+          <td style="color:#e67e22">23.5%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>—%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI54(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>36</strong></td>
+          <td><strong>6205</strong></td>
+          <td style="text-align:left">詮欣</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子工業</td>
+          <td>58.0</td>
+          <td>53.3</td>
+          <td>67.7</td>
+          <td style="color:#0d6efd;font-weight:600">238000 張</td>
+          <td style="color:#e67e22">44.1%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>362.38%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI58(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>37</strong></td>
+          <td><strong>6290</strong></td>
+          <td style="text-align:left">良維</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>213.0</td>
+          <td>48.9</td>
+          <td>59.7</td>
+          <td style="color:#0d6efd;font-weight:600">26799 張</td>
+          <td style="color:#e67e22">56.6%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>872.84%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI52(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>38</strong></td>
+          <td><strong>6861</strong></td>
+          <td style="text-align:left">睿生光電</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">生技醫療業</td>
+          <td>140.5</td>
+          <td>51.2</td>
+          <td>30.7</td>
+          <td style="color:#0d6efd;font-weight:600">41000 張</td>
+          <td style="color:#e67e22">62.2%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>280.91%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI55(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>39</strong></td>
+          <td><strong>6877</strong></td>
+          <td style="text-align:left">鏵友益</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">其他電子類</td>
+          <td>105.0</td>
+          <td>42.0</td>
+          <td>56.0</td>
+          <td style="color:#0d6efd;font-weight:600">382000 張</td>
+          <td style="color:#e67e22">76.6%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>5.5%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI51(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>40</strong></td>
+          <td><strong>8039</strong></td>
+          <td style="text-align:left">台虹</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>109.5</td>
+          <td>48.0</td>
+          <td>33.9</td>
+          <td style="color:#0d6efd;font-weight:600">1772710 張</td>
+          <td style="color:#e67e22">59.9%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>523.57%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI53(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>41</strong></td>
+          <td><strong>8046</strong></td>
+          <td style="text-align:left">南電</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>534.0</td>
+          <td>55.0</td>
+          <td>67.6</td>
+          <td style="color:#0d6efd;font-weight:600">2047663 張</td>
+          <td style="color:#e67e22">85.0%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>247.31%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI60(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>42</strong></td>
+          <td><strong>8926</strong></td>
+          <td style="text-align:left">台汽電</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">油電燃氣業</td>
+          <td>45.8</td>
+          <td>43.8</td>
+          <td>53.0</td>
+          <td style="color:#0d6efd;font-weight:600">186000 張</td>
+          <td style="color:#e67e22">60.5%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>91.32%</td>
+          <td style="color:#fd7e14;font-weight:700">25</td>
+          <td style="font-size:.8rem;color:#6c757d">EMA多排(+15)、RSI52(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>43</strong></td>
+          <td><strong>2882</strong></td>
+          <td style="text-align:left">國泰金</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">金融保險</td>
+          <td>71.7</td>
+          <td>31.4</td>
+          <td>48.5</td>
+          <td style="color:#0d6efd;font-weight:600">2978784 張</td>
+          <td style="color:#e67e22">85.0%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>1393.6%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI42(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>44</strong></td>
+          <td><strong>3013</strong></td>
+          <td style="text-align:left">晟銘電</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電腦及週邊設備業</td>
+          <td>98.5</td>
+          <td>42.3</td>
+          <td>70.3</td>
+          <td style="color:#0d6efd;font-weight:600">136820 張</td>
+          <td style="color:#e67e22">47.6%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>642.23%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI43(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>45</strong></td>
+          <td><strong>3680</strong></td>
+          <td style="text-align:left">家登</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">半導體業</td>
+          <td>403.0</td>
+          <td>49.6</td>
+          <td>66.3</td>
+          <td style="color:#0d6efd;font-weight:600">338934 張</td>
+          <td style="color:#e67e22">56.1%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>324.89%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI53(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>46</strong></td>
+          <td><strong>4746</strong></td>
+          <td style="text-align:left">台耀</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">生技醫療業</td>
+          <td>55.5</td>
+          <td>53.1</td>
+          <td>67.6</td>
+          <td style="color:#0d6efd;font-weight:600">239636 張</td>
+          <td style="color:#e67e22">42.1%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>394.96%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI51(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>47</strong></td>
+          <td><strong>5536</strong></td>
+          <td style="text-align:left">聖暉*</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">其他電子類</td>
+          <td>723.0</td>
+          <td>56.4</td>
+          <td>76.5</td>
+          <td style="color:#0d6efd;font-weight:600">793245 張</td>
+          <td style="color:#e67e22">49.0%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>1693.75%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI58(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>48</strong></td>
+          <td><strong>6890</strong></td>
+          <td style="text-align:left">來億-KY</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">運動休閒</td>
+          <td>181.5</td>
+          <td>43.1</td>
+          <td>75.0</td>
+          <td style="color:#0d6efd;font-weight:600">328366 張</td>
+          <td style="color:#e67e22">88.8%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>545.35%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI44(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>49</strong></td>
+          <td><strong>7402</strong></td>
+          <td style="text-align:left">邑錡</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">光電業</td>
+          <td>124.0</td>
+          <td>37.7</td>
+          <td>61.3</td>
+          <td style="color:#0d6efd;font-weight:600">128000 張</td>
+          <td style="color:#e67e22">39.3%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>113.39%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">MACD↑(+10)、RSI50(+10)</td>
+        </tr>
+
+        <tr>
+          <td><strong>50</strong></td>
+          <td><strong>8043</strong></td>
+          <td style="text-align:left">蜜望實</td>
+          <td style="text-align:left;font-size:.85rem;color:#6c757d">電子零組件業</td>
+          <td>72.3</td>
+          <td>50.4</td>
+          <td>54.7</td>
+          <td style="color:#0d6efd;font-weight:600">342000 張</td>
+          <td style="color:#e67e22">56.0%</td>
+          <td style="font-size:.8rem;color:#888">2026-03-20</td>
+          <td>360.06%</td>
+          <td style="color:#fd7e14;font-weight:700">20</td>
+          <td style="font-size:.8rem;color:#6c757d">RSI46(+10)、週線共振(+10)</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#mainTable').DataTable({
+      pageLength: 50, order: [],
+      language: {
+        search: '🔍 搜尋:',
+        lengthMenu: '每頁顯示 _MENU_ 筆',
+        info: '顯示 _START_ 到 _END_ 筆（共 _TOTAL_ 筆）',
+        paginate: { first:'首頁', last:'末頁', next:'下一頁', previous:'上一頁' }
+      }
+    });
+  });
+</script>
+</body>
+</html>
