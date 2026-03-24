@@ -522,7 +522,21 @@
             <div style="font-size:1.4rem;font-weight:800;color:#1a237e">${qual}</div>
             <div style="font-size:.72rem;color:#555">📊 品質候選</div>
           </div>
-        </div>`;
+        </div>
+        <hr style="margin:.9rem 0;border-color:#eee">
+        <div style="font-size:.75rem;color:#888;margin-bottom:.4rem">📖 燈號刻度對照</div>
+        <table style="width:100%;font-size:.75rem;border-collapse:collapse">
+          <tr style="background:#f5f5f5">
+            <th style="padding:.25rem .5rem;text-align:left;color:#555">立即入手數</th>
+            <th style="padding:.25rem .5rem;text-align:left;color:#555">燈號</th>
+            <th style="padding:.25rem .5rem;text-align:left;color:#555">市場解讀</th>
+          </tr>
+          <tr><td style="padding:.2rem .5rem">7 檔以上</td><td>🔵</td><td style="color:#0d47a1">修正機會（優質公司普遍低估）</td></tr>
+          <tr style="background:#fafafa"><td style="padding:.2rem .5rem">5–6 檔</td><td>🟢</td><td style="color:#1b5e20">偏涼有機會（可選擇性入手）</td></tr>
+          <tr><td style="padding:.2rem .5rem">4 檔</td><td>🟡</td><td style="color:#e65100">市場中性（等待個股機會）</td></tr>
+          <tr style="background:#fafafa"><td style="padding:.2rem .5rem">2–3 檔</td><td>🟠</td><td style="color:#bf360c">偏熱警戒（暫緩大量加碼）</td></tr>
+          <tr><td style="padding:.2rem .5rem">0–1 檔</td><td>🔴</td><td style="color:#b71c1c">市場過熱（好公司普遍偏貴）</td></tr>
+        </table>`;
     }
 
     function computeSentimentIndex(data) {
