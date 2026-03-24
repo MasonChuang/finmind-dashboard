@@ -95,6 +95,32 @@
       </div>
     </div>
 
+    <!-- 🌡️ 市場溫度計 &amp; 📊 台股情緒指數 (雙欄) -->
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header bg-light fw-bold">
+            🌡️ 市場溫度計
+            <small class="text-muted fw-normal ms-1">— 源自「量化價值投資策略」立即入手訊號數量</small>
+          </div>
+          <div class="card-body" id="thermometerCard">
+            <div class="text-center text-muted py-3">載入中...</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header bg-light fw-bold">
+            📊 台股情緒指數
+            <small class="text-muted fw-normal ms-1">— RSI + 艣跌比 + 融資 + 法人 (4因子)</small>
+          </div>
+          <div class="card-body" id="sentimentCard">
+            <div class="text-center text-muted py-3">載入中...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 整合圖表：加權指數 + 騰落線 (雙Y軸) -->
     <div class="row mt-4">
       <div class="col-12">
@@ -420,10 +446,172 @@
         }
         const data = await response.json();
         renderCharts(data);
+        renderSentimentIndex(data);
       } catch (error) {
         console.error('載入資料失敗:', error);
       }
+      // 小戰情室温度計（独立 JSON）
+      loadThermometerData();
     }
+
+    async function loadThermometerData() {
+      try {
+        const r = await fetch('data/value_market_temp.json?v=' + Date.now());
+        if (!r.ok) throw new Error();
+        const vt = await r.json();
+        renderValueThermometer(vt);
+      } catch(e) {
+        document.getElementById('thermometerCard').innerHTML = `
+          <div class="text-center text-muted py-3">
+            ⚠️ 無市場溫度計資料（請先執行 010_價值投資.bat）
+          </div>`;
+      }
+    }
+
+    function renderValueThermometer(vt) {
+      const opp  = vt.opportunity_score || 0;
+      const clr  = vt.temperature_color || '#555';
+      const lbl  = vt.temperature_label || '—';
+      const desc = vt.description || '';
+      const buy  = vt.buy_count  || 0;
+      const near = vt.near_count || 0;
+      const wait = vt.wait_count || 0;
+      const qual = vt.total_quality || (buy+near+wait);
+      const dt   = vt.scan_date || '';
+
+      // 機會分數為 0～100，越高越低估
+      const barPct = opp;
+      const barGradient = opp >= 80 ? 'linear-gradient(to right,#64b5f6,#0d47a1)'
+                         : opp >= 60 ? 'linear-gradient(to right,#81c784,#1b5e20)'
+                         : opp >= 40 ? 'linear-gradient(to right,#fff176,#f9a825)'
+                         : opp >= 20 ? 'linear-gradient(to right,#ffb74d,#bf360c)'
+                         :             'linear-gradient(to right,#ef9a9a,#b71c1c)';
+
+      document.getElementById('thermometerCard').innerHTML = `
+        <div class="d-flex align-items-center justify-content-center mb-3">
+          <div style="width:90px;height:90px;border-radius:50%;display:flex;align-items:center;
+                      justify-content:center;background:${clr};color:#fff;
+                      font-size:1.8rem;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.2)">
+            ${opp}
+          </div>
+          <div class="ms-3">
+            <div style="font-size:1.2rem;font-weight:700;color:${clr}">${lbl}</div>
+            <div class="text-muted small mt-1">${desc}</div>
+            <div class="text-muted small">📅 ${dt}</div>
+          </div>
+        </div>
+        <div class="mb-2" style="font-size:.8rem;color:#777">機會分數 — 分數越高代表低估越多</div>
+        <div class="progress mb-3" style="height:14px;border-radius:8px;>
+          <div class="progress-bar" role="progressbar"
+               style="width:${barPct}%;background:${barGradient};border-radius:8px;"></div>
+        </div>
+        <div class="row text-center g-2">
+          <div class="col">
+            <div style="font-size:1.4rem;font-weight:800;color:#1b5e20">${buy}</div>
+            <div style="font-size:.72rem;color:#555">🟢 立即入手</div>
+          </div>
+          <div class="col">
+            <div style="font-size:1.4rem;font-weight:800;color:#e65100">${near}</div>
+            <div style="font-size:.72rem;color:#555">🟡 接近買點</div>
+          </div>
+          <div class="col">
+            <div style="font-size:1.4rem;font-weight:800;color:#607d8b">${wait}</div>
+            <div style="font-size:.72rem;color:#555">⏳ 等待機會</div>
+          </div>
+          <div class="col">
+            <div style="font-size:1.4rem;font-weight:800;color:#1a237e">${qual}</div>
+            <div style="font-size:.72rem;color:#555">📊 品質候選</div>
+          </div>
+        </div>`;
+    }
+
+    function computeSentimentIndex(data) {
+      let momentum = 50, breadth = 50, leverage = 50, institutional = 50;
+
+      // 1. 動能 RSI-14 (30%)
+      if (data.taiex && data.taiex.length >= 16) {
+        const closes = data.taiex.slice(-20).map(d => d.close);
+        let gains = [], losses = [];
+        for (let i = 1; i < closes.length; i++) {
+          const d = closes[i] - closes[i-1];
+          gains.push(Math.max(d, 0)); losses.push(Math.max(-d, 0));
+        }
+        const avgG = gains.slice(-14).reduce((a,b)=>a+b,0)/14;
+        const avgL = losses.slice(-14).reduce((a,b)=>a+b,0)/14;
+        momentum = avgL === 0 ? 100 : +(100 - 100/(1+avgG/avgL)).toFixed(1);
+      }
+
+      // 2. 市場廣度 漲跌比 (25%)
+      if (data.breadth && data.breadth.length > 0) {
+        const recent = data.breadth.slice(-5);
+        const ratios = recent.map(d => d.up / Math.max(d.up + d.down, 1) * 100);
+        breadth = +(ratios.reduce((a,b)=>a+b,0)/ratios.length).toFixed(1);
+      }
+
+      // 3. 融資心理 (25%)
+      if (data.credit && data.credit.margin_balance > 0) {
+        const pct = data.credit.margin_change / data.credit.margin_balance * 100;
+        leverage = Math.max(0, Math.min(100, 50 + pct * 10));
+      }
+
+      // 4. 法人信心 (20%)
+      if (data.institutional && data.institutional.accumulate_10d_top5) {
+        const tot = data.institutional.accumulate_10d_top5.reduce((s,i)=>s+(i.net_buy_10d||0),0);
+        institutional = Math.max(0, Math.min(100, 50 + tot/1e6));
+      }
+
+      const score = momentum*0.3 + breadth*0.25 + leverage*0.25 + institutional*0.2;
+      return { score: +score.toFixed(1), momentum, breadth, leverage, institutional };
+    }
+
+    function renderSentimentIndex(data) {
+      const s = computeSentimentIndex(data);
+      const sc = s.score;
+
+      let lbl, clr;
+      if      (sc <= 25) { lbl = '😱 極度恐懼'; clr = '#dc3545'; }
+      else if (sc <= 40) { lbl = '😰 恐懼';     clr = '#fd7e14'; }
+      else if (sc <= 60) { lbl = '😐 中性';     clr = '#ffc107'; }
+      else if (sc <= 75) { lbl = '😁 貪婪';     clr = '#20c997'; }
+      else               { lbl = '🔥 極度貪婪'; clr = '#198754'; }
+
+      const factors = [
+        { name: '加權 RSI 動能', val: s.momentum,     w: '30%' },
+        { name: '市場漲跌廣度',   val: s.breadth,      w: '25%' },
+        { name: '融資心理槽桿',   val: +s.leverage.toFixed(1), w: '25%' },
+        { name: '法人買超信心',   val: +s.institutional.toFixed(1), w: '20%' },
+      ];
+      const rows = factors.map(f => {
+        const fc = f.val >= 60 ? '#198754' : f.val >= 40 ? '#e65100' : '#dc3545';
+        return `<tr><td class="text-muted small">${f.name}</td>
+                   <td class="fw-bold text-end" style="color:${fc}">${f.val.toFixed(1)}</td>
+                   <td class="text-muted small text-end">權 ${f.w}</td></tr>`;
+      }).join('');
+
+      document.getElementById('sentimentCard').innerHTML = `
+        <div class="d-flex align-items-center justify-content-center mb-3">
+          <div style="width:90px;height:90px;border-radius:50%;display:flex;align-items:center;
+                      justify-content:center;background:${clr};color:#fff;
+                      font-size:1.8rem;font-weight:800;box-shadow:0 4px 12px rgba(0,0,0,.2)">
+            ${sc.toFixed(0)}
+          </div>
+          <div class="ms-3">
+            <div style="font-size:1.2rem;font-weight:700;color:${clr}">${lbl}</div>
+            <div class="text-muted small mt-1">綜合指數（0極度恐懼～100極度貪婪）</div>
+          </div>
+        </div>
+        <div class="progress mb-3" style="height:14px;border-radius:8px">
+          <div class="progress-bar" role="progressbar"
+               style="width:${sc}%;background:${clr};border-radius:8px;"></div>
+        </div>
+        <table class="table table-sm table-borderless mb-0">
+          <thead><tr><th class="text-muted small">因子</th><th class="text-end small">分數</th><th class="text-end small">權重</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        <div class="text-muted small mt-2">
+          ⚠️ 台股自建情緒指數，僅供參考，非實際恐懼貪婪指數。</div>`;
+    }
+
 
     function renderCharts(data) {
       // 顯示資料產出時間
