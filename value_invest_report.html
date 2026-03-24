@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>量化價值投資 v2.1 — 2026-03-24</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'IBM Plex Sans','Microsoft JhengHei',sans-serif;background:#f0f2f5;font-size:.86rem}
+    .hero{background:linear-gradient(135deg,#0d1b2a,#1b3a4b,#2c5364);color:#fff;padding:1.8rem 1.5rem 1.3rem}
+    .hero h1{font-size:1.7rem;font-weight:700;margin-bottom:.25rem}
+    .kpi-cards{display:flex;flex-wrap:wrap;gap:12px;margin:.9rem 0}
+    .kpi{border-radius:12px;padding:.9rem 1.4rem;flex:1;min-width:140px;
+      box-shadow:0 4px 12px rgba(0,0,0,.2);text-align:center;color:#fff}
+    .kpi .n{font-size:2.4rem;font-weight:800;line-height:1}
+    .kpi .l{font-size:.82rem;opacity:.9;margin-top:.15rem}
+    .info{background:#fff;border-radius:8px;padding:.7rem 1rem;font-size:.8rem;color:#555;
+      box-shadow:0 2px 6px rgba(0,0,0,.05);margin:.8rem 0}
+    .card-wrap{background:#fff;border-radius:12px;padding:1rem;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+    table.dataTable td,table.dataTable th{vertical-align:middle;padding:.38rem .5rem !important;font-size:.8rem}
+    thead th{background:#f8fafc !important;color:#475569;text-transform:uppercase;
+      font-size:.7rem;font-weight:700;cursor:pointer;user-select:none}
+    thead th:hover{background:#e2e8f0 !important;color:#1a237e}
+    .fw-bold{font-weight:700}
+    .badge{padding:.3em .65em;border-radius:6px;font-size:.75rem;white-space:nowrap}
+  </style>
+</head>
+<body>
+<div class="hero"><div class="container-fluid">
+  <h1>📊💎 量化價值投資掃描 v2.1</h1>
+  <p style="opacity:.82;font-size:.88rem;margin:.15rem 0 .7rem">
+    多年ROE穩定（PBR÷PER推算）× F-Score品質 × 三種目標買入價<br>
+    <small>依「💎價值分」排序 | 點擊任意欄位標頭可重新排序 ↕</small>
+  </p>
+  <div class="kpi-cards">
+    <div class="kpi" style="background:linear-gradient(135deg,#1b5e20,#388e3c)">
+      <div class="n">11</div><div class="l">🟢 立即入手</div></div>
+    <div class="kpi" style="background:linear-gradient(135deg,#bf360c,#ef6c00)">
+      <div class="n">0</div><div class="l">🟡 接近買點</div></div>
+    <div class="kpi" style="background:linear-gradient(135deg,#37474f,#607d8b)">
+      <div class="n">16</div><div class="l">⏳ 等待機會</div></div>
+    <div class="kpi" style="background:linear-gradient(135deg,#1a237e,#1976d2)">
+      <div class="n">27</div><div class="l">📋 品質候選</div></div>
+  </div>
+</div></div>
+
+<div class="container-fluid" style="padding:1rem 1.2rem">
+  <div class="info">
+    📅 <strong>2026-03-24</strong>&nbsp;|&nbsp;🕐 2026-03-24 21:00&nbsp;|&nbsp;
+    ROE穩定(5年均&gt;8.0%) + F≥4 + 推薦買入價(歷史20th PE/PB分位)
+  </div>
+  <div class="info">
+    💡 <strong>折讓%為正（綠色）= 現價低於目標，有安全邊際</strong>&nbsp;|&nbsp;
+    <strong>💎價值分</strong> = ROE均×2 + F分×5 − σ（代表公司整體品質，非股價便宜度）&nbsp;|&nbsp;
+    ROE穩定σ越低代表獲利越穩定
+  </div>
+  <div class="card-wrap">
+    <table id="t" class="table table-hover text-center w-100">
+      <thead><tr>
+        <th>訊號</th><th>代號</th><th>名稱</th><th>產業</th>
+        <th>現價</th><th>目標買入價</th><th>折讓</th><th>Graham值</th>
+        <th>PE今</th><th>PE%位</th><th>PB今</th><th>PB%位</th>
+        <th>殖利率</th><th>ROE即期</th><th>ROE 5Y均</th>
+        <th>ROE最低</th><th>ROEσ</th><th>趨勢</th><th>F分</th><th>負債比</th>
+        <th>💎價值分</th>
+      </tr></thead>
+      <tbody><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">3293</td>
+          <td style="text-align:left">鈊象</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">文化創意業</td>
+          <td class="fw-bold">726.0</td>
+          <td style="color:#757575;font-weight:700">489.6</td>
+          <td style="color:#c62828;font-weight:700">-32.6%</td>
+          <td style="color:#888">242.0</td>
+          <td>18.9</td>
+          <td style="color:#aaa;font-size:.76rem">57%</td>
+          <td>10.74</td>
+          <td style="color:#aaa;font-size:.76rem">69%</td>
+          <td style="color:#2e7d32">4.96%</td>
+          <td>17.5%</td>
+          <td class="fw-bold">62.4%</td>
+          <td>56.4%</td>
+          <td>5.1</td>
+          <td style="color:#c62828">↓ 下滑</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>22.3%</td>
+          <td style="color:#1a237e;font-weight:700">144.7</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">3529</td>
+          <td style="text-align:left">力旺</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">半導體業</td>
+          <td class="fw-bold">2600.0</td>
+          <td style="color:#757575;font-weight:700">1464.8</td>
+          <td style="color:#c62828;font-weight:700">-43.7%</td>
+          <td style="color:#888">172.1</td>
+          <td>101.6</td>
+          <td style="color:#aaa;font-size:.76rem">66%</td>
+          <td>50.54</td>
+          <td style="color:#aaa;font-size:.76rem">64%</td>
+          <td style="color:#2e7d32">0.79%</td>
+          <td>14.9%</td>
+          <td class="fw-bold">53.8%</td>
+          <td>49.2%</td>
+          <td>2.3</td>
+          <td style="color:#555">→ 持平</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>19.1%</td>
+          <td style="color:#1a237e;font-weight:700">125.4</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">5274</td>
+          <td style="text-align:left">信驊</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">半導體業</td>
+          <td class="fw-bold">11465.0</td>
+          <td style="color:#757575;font-weight:700">4129.4</td>
+          <td style="color:#c62828;font-weight:700">-64.0%</td>
+          <td style="color:#888">684.3</td>
+          <td>110.3</td>
+          <td style="color:#aaa;font-size:.76rem">93%</td>
+          <td>57.25</td>
+          <td style="color:#aaa;font-size:.76rem">99%</td>
+          <td style="color:#2e7d32">0.71%</td>
+          <td>19.2%</td>
+          <td class="fw-bold">48.6%</td>
+          <td>34.7%</td>
+          <td>8.0</td>
+          <td style="color:#555">→ 持平</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>31.9%</td>
+          <td style="color:#1a237e;font-weight:700">114.2</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">4728</td>
+          <td style="text-align:left">雙美</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">生技醫療業</td>
+          <td class="fw-bold">391.0</td>
+          <td style="color:#757575;font-weight:700">256.9</td>
+          <td style="color:#c62828;font-weight:700">-34.3%</td>
+          <td style="color:#888">94.4</td>
+          <td>29.3</td>
+          <td style="color:#aaa;font-size:.76rem">62%</td>
+          <td>13.16</td>
+          <td style="color:#aaa;font-size:.76rem">86%</td>
+          <td style="color:#2e7d32">3.09%</td>
+          <td>13.8%</td>
+          <td class="fw-bold">45.6%</td>
+          <td>31.9%</td>
+          <td>7.9</td>
+          <td style="color:#c62828">↓ 下滑</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>23.9%</td>
+          <td style="color:#1a237e;font-weight:700">103.2</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">5314</td>
+          <td style="text-align:left">世紀*</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">其他</td>
+          <td class="fw-bold">72.2</td>
+          <td style="color:#757575;font-weight:700">33.1</td>
+          <td style="color:#c62828;font-weight:700">-54.2%</td>
+          <td style="color:#888">15.3</td>
+          <td>23.2</td>
+          <td style="color:#aaa;font-size:.76rem">36%</td>
+          <td>21.49</td>
+          <td style="color:#aaa;font-size:.76rem">81%</td>
+          <td style="color:#2e7d32">0.01%</td>
+          <td>35.8%</td>
+          <td class="fw-bold">47.4%</td>
+          <td>16.5%</td>
+          <td>30.1</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>33.0%</td>
+          <td style="color:#1a237e;font-weight:700">89.6</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">2330</td>
+          <td style="text-align:left">台積電</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電子工業</td>
+          <td class="fw-bold">1810.0</td>
+          <td style="color:#757575;font-weight:700">1122.3</td>
+          <td style="color:#c62828;font-weight:700">-38.0%</td>
+          <td style="color:#888">558.2</td>
+          <td>27.3</td>
+          <td style="color:#aaa;font-size:.76rem">77%</td>
+          <td>8.66</td>
+          <td style="color:#aaa;font-size:.76rem">96%</td>
+          <td style="color:#2e7d32">1.22%</td>
+          <td>10.9%</td>
+          <td class="fw-bold">29.3%</td>
+          <td>24.7%</td>
+          <td>2.6</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>31.5%</td>
+          <td style="color:#1a237e;font-weight:700">76.0</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">6613</td>
+          <td style="text-align:left">朋億*</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">其他電子類</td>
+          <td class="fw-bold">210.0</td>
+          <td style="color:#757575;font-weight:700">147.5</td>
+          <td style="color:#c62828;font-weight:700">-29.7%</td>
+          <td style="color:#888">143.7</td>
+          <td>15.7</td>
+          <td style="color:#aaa;font-size:.76rem">100%</td>
+          <td>3.06</td>
+          <td style="color:#aaa;font-size:.76rem">83%</td>
+          <td style="color:#2e7d32">4.76%</td>
+          <td>13.2%</td>
+          <td class="fw-bold">26.2%</td>
+          <td>22.9%</td>
+          <td>1.8</td>
+          <td style="color:#c62828">↓ 下滑</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>39.0%</td>
+          <td style="color:#1a237e;font-weight:700">70.5</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">2360</td>
+          <td style="text-align:left">致茂</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電子工業</td>
+          <td class="fw-bold">1520.0</td>
+          <td style="color:#757575;font-weight:700">533.5</td>
+          <td style="color:#c62828;font-weight:700">-64.9%</td>
+          <td style="color:#888">216.2</td>
+          <td>55.1</td>
+          <td style="color:#aaa;font-size:.76rem">100%</td>
+          <td>20.19</td>
+          <td style="color:#aaa;font-size:.76rem">100%</td>
+          <td style="color:#2e7d32">1.28%</td>
+          <td>18.8%</td>
+          <td class="fw-bold">25.4%</td>
+          <td>19.4%</td>
+          <td>5.9</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>30.4%</td>
+          <td style="color:#1a237e;font-weight:700">69.9</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">2059</td>
+          <td style="text-align:left">川湖</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電子零組件業</td>
+          <td class="fw-bold">3400.0</td>
+          <td style="color:#757575;font-weight:700">1797.0</td>
+          <td style="color:#c62828;font-weight:700">-47.1%</td>
+          <td style="color:#888">826.5</td>
+          <td>32.9</td>
+          <td style="color:#aaa;font-size:.76rem">86%</td>
+          <td>11.56</td>
+          <td style="color:#aaa;font-size:.76rem">92%</td>
+          <td style="color:#2e7d32">1.5%</td>
+          <td>13.2%</td>
+          <td class="fw-bold">25.7%</td>
+          <td>20.3%</td>
+          <td>5.7</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>19.6%</td>
+          <td style="color:#1a237e;font-weight:700">65.8</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">6419</td>
+          <td style="text-align:left">京晨科</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">光電業</td>
+          <td class="fw-bold">83.9</td>
+          <td style="color:#757575;font-weight:700">63.4</td>
+          <td style="color:#c62828;font-weight:700">-24.4%</td>
+          <td style="color:#888">86.4</td>
+          <td>8.8</td>
+          <td style="color:#aaa;font-size:.76rem">45%</td>
+          <td>2.42</td>
+          <td style="color:#aaa;font-size:.76rem">78%</td>
+          <td style="color:#2e7d32">3.22%</td>
+          <td>18.1%</td>
+          <td class="fw-bold">21.6%</td>
+          <td>17.2%</td>
+          <td>3.6</td>
+          <td style="color:#c62828">↓ 下滑</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>30.8%</td>
+          <td style="color:#1a237e;font-weight:700">64.6</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">4105</td>
+          <td style="text-align:left">東洋</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">生技醫療業</td>
+          <td class="fw-bold">79.2</td>
+          <td style="color:#2e7d32;font-weight:700">90.3</td>
+          <td style="color:#2e7d32;font-weight:700">+14.0%</td>
+          <td style="color:#888">64.1</td>
+          <td>12.6</td>
+          <td style="color:#aaa;font-size:.76rem">14%</td>
+          <td>2.72</td>
+          <td style="color:#aaa;font-size:.76rem">1%</td>
+          <td style="color:#2e7d32">5.68%</td>
+          <td>10.7%</td>
+          <td class="fw-bold">21.6%</td>
+          <td>18.4%</td>
+          <td>2.5</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>33.6%</td>
+          <td style="color:#1a237e;font-weight:700">60.7</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">1580</td>
+          <td style="text-align:left">新麥</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電機機械</td>
+          <td class="fw-bold">129.5</td>
+          <td style="color:#2e7d32;font-weight:700">130.3</td>
+          <td style="color:#2e7d32;font-weight:700">+0.6%</td>
+          <td style="color:#888">132.0</td>
+          <td>9.9</td>
+          <td style="color:#aaa;font-size:.76rem">19%</td>
+          <td>2.18</td>
+          <td style="color:#aaa;font-size:.76rem">31%</td>
+          <td style="color:#2e7d32">6.56%</td>
+          <td>10.0%</td>
+          <td class="fw-bold">20.7%</td>
+          <td>17.0%</td>
+          <td>2.1</td>
+          <td style="color:#555">→ 持平</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>25.4%</td>
+          <td style="color:#1a237e;font-weight:700">59.4</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">6596</td>
+          <td style="text-align:left">寬宏藝術</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">文化創意業</td>
+          <td class="fw-bold">144.0</td>
+          <td style="color:#2e7d32;font-weight:700">184.5</td>
+          <td style="color:#2e7d32;font-weight:700">+28.1%</td>
+          <td style="color:#888">136.2</td>
+          <td>7.7</td>
+          <td style="color:#aaa;font-size:.76rem">6%</td>
+          <td>3.29</td>
+          <td style="color:#aaa;font-size:.76rem">83%</td>
+          <td style="color:#2e7d32">12.99%</td>
+          <td>26.4%</td>
+          <td class="fw-bold">23.1%</td>
+          <td>6.6%</td>
+          <td>13.6</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>37.6%</td>
+          <td style="color:#1a237e;font-weight:700">57.5</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">3217</td>
+          <td style="text-align:left">優群</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電子零組件業</td>
+          <td class="fw-bold">154.5</td>
+          <td style="color:#2e7d32;font-weight:700">163.6</td>
+          <td style="color:#2e7d32;font-weight:700">+5.9%</td>
+          <td style="color:#888">121.7</td>
+          <td>12.2</td>
+          <td style="color:#aaa;font-size:.76rem">13%</td>
+          <td>2.98</td>
+          <td style="color:#aaa;font-size:.76rem">55%</td>
+          <td style="color:#2e7d32">6.47%</td>
+          <td>10.7%</td>
+          <td class="fw-bold">19.9%</td>
+          <td>14.5%</td>
+          <td>3.9</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>20.8%</td>
+          <td style="color:#1a237e;font-weight:700">55.9</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">4303</td>
+          <td style="text-align:left">信立</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">塑膠工業</td>
+          <td class="fw-bold">55.1</td>
+          <td style="color:#2e7d32;font-weight:700">69.4</td>
+          <td style="color:#2e7d32;font-weight:700">+25.9%</td>
+          <td style="color:#888">96.3</td>
+          <td>4.9</td>
+          <td style="color:#aaa;font-size:.76rem">13%</td>
+          <td>1.49</td>
+          <td style="color:#aaa;font-size:.76rem">30%</td>
+          <td style="color:#2e7d32">9.07%</td>
+          <td>24.1%</td>
+          <td class="fw-bold">26.9%</td>
+          <td>3.9%</td>
+          <td>17.9</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>21.7%</td>
+          <td style="color:#1a237e;font-weight:700">55.8</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">2498</td>
+          <td style="text-align:left">宏達電</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電子工業</td>
+          <td class="fw-bold">40.9</td>
+          <td style="color:#757575;font-weight:700">32.2</td>
+          <td style="color:#c62828;font-weight:700">-21.2%</td>
+          <td style="color:#888">71.7</td>
+          <td>5.7</td>
+          <td style="color:#aaa;font-size:.76rem">29%</td>
+          <td>1.29</td>
+          <td style="color:#aaa;font-size:.76rem">41%</td>
+          <td style="color:#2e7d32">0.0%</td>
+          <td>16.1%</td>
+          <td class="fw-bold">17.1%</td>
+          <td>9.8%</td>
+          <td>5.2</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>30.2%</td>
+          <td style="color:#1a237e;font-weight:700">53.9</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">8069</td>
+          <td style="text-align:left">元太</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">光電業</td>
+          <td class="fw-bold">143.5</td>
+          <td style="color:#757575;font-weight:700">126.3</td>
+          <td style="color:#c62828;font-weight:700">-12.0%</td>
+          <td style="color:#888">110.7</td>
+          <td>15.7</td>
+          <td style="color:#aaa;font-size:.76rem">25%</td>
+          <td>2.41</td>
+          <td style="color:#aaa;font-size:.76rem">33%</td>
+          <td style="color:#2e7d32">4.11%</td>
+          <td>10.8%</td>
+          <td class="fw-bold">18.1%</td>
+          <td>15.0%</td>
+          <td>2.8</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>35.6%</td>
+          <td style="color:#1a237e;font-weight:700">53.4</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">8932</td>
+          <td style="text-align:left">智通*</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">其他</td>
+          <td class="fw-bold">81.7</td>
+          <td style="color:#757575;font-weight:700">8.1</td>
+          <td style="color:#c62828;font-weight:700">-90.1%</td>
+          <td style="color:#888">15.8</td>
+          <td>44.6</td>
+          <td style="color:#aaa;font-size:.76rem">35%</td>
+          <td>13.55</td>
+          <td style="color:#aaa;font-size:.76rem">92%</td>
+          <td style="color:#2e7d32">0.43%</td>
+          <td>12.8%</td>
+          <td class="fw-bold">22.1%</td>
+          <td>3.0%</td>
+          <td>14.5</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>25.4%</td>
+          <td style="color:#1a237e;font-weight:700">49.6</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">2472</td>
+          <td style="text-align:left">立隆電</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電子零組件業</td>
+          <td class="fw-bold">125.5</td>
+          <td style="color:#757575;font-weight:700">81.3</td>
+          <td style="color:#c62828;font-weight:700">-35.2%</td>
+          <td style="color:#888">104.2</td>
+          <td>14.4</td>
+          <td style="color:#aaa;font-size:.76rem">90%</td>
+          <td>2.27</td>
+          <td style="color:#aaa;font-size:.76rem">96%</td>
+          <td style="color:#2e7d32">2.79%</td>
+          <td>12.8%</td>
+          <td class="fw-bold">15.3%</td>
+          <td>13.6%</td>
+          <td>1.3</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>26.1%</td>
+          <td style="color:#1a237e;font-weight:700">49.2</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">6143</td>
+          <td style="text-align:left">振曜</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">通信網路業</td>
+          <td class="fw-bold">99.4</td>
+          <td style="color:#757575;font-weight:700">78.3</td>
+          <td style="color:#c62828;font-weight:700">-21.2%</td>
+          <td style="color:#888">72.1</td>
+          <td>15.4</td>
+          <td style="color:#aaa;font-size:.76rem">37%</td>
+          <td>2.78</td>
+          <td style="color:#aaa;font-size:.76rem">66%</td>
+          <td style="color:#2e7d32">6.04%</td>
+          <td>10.3%</td>
+          <td class="fw-bold">15.8%</td>
+          <td>12.3%</td>
+          <td>2.9</td>
+          <td style="color:#555">→ 持平</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>39.5%</td>
+          <td style="color:#1a237e;font-weight:700">48.7</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">3356</td>
+          <td style="text-align:left">奇偶</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電子工業</td>
+          <td class="fw-bold">49.8</td>
+          <td style="color:#2e7d32;font-weight:700">86.1</td>
+          <td style="color:#2e7d32;font-weight:700">+72.8%</td>
+          <td style="color:#888">65.9</td>
+          <td>8.0</td>
+          <td style="color:#aaa;font-size:.76rem">3%</td>
+          <td>1.6</td>
+          <td style="color:#aaa;font-size:.76rem">31%</td>
+          <td style="color:#2e7d32">8.03%</td>
+          <td>12.5%</td>
+          <td class="fw-bold">14.9%</td>
+          <td>8.8%</td>
+          <td>4.7</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>23.1%</td>
+          <td style="color:#1a237e;font-weight:700">45.1</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">9904</td>
+          <td style="text-align:left">寶成</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">運動休閒</td>
+          <td class="fw-bold">28.4</td>
+          <td style="color:#2e7d32;font-weight:700">34.1</td>
+          <td style="color:#2e7d32;font-weight:700">+20.3%</td>
+          <td style="color:#888">66.6</td>
+          <td>6.9</td>
+          <td style="color:#aaa;font-size:.76rem">26%</td>
+          <td>0.59</td>
+          <td style="color:#aaa;font-size:.76rem">1%</td>
+          <td style="color:#2e7d32">6.0%</td>
+          <td>15.7%</td>
+          <td class="fw-bold">10.8%</td>
+          <td>8.3%</td>
+          <td>2.4</td>
+          <td style="color:#c62828">↓ 下滑</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>38.3%</td>
+          <td style="color:#1a237e;font-weight:700">44.2</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">8415</td>
+          <td style="text-align:left">大國鋼</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">鋼鐵工業</td>
+          <td class="fw-bold">33.5</td>
+          <td style="color:#2e7d32;font-weight:700">37.2</td>
+          <td style="color:#2e7d32;font-weight:700">+11.0%</td>
+          <td style="color:#888">42.6</td>
+          <td>11.0</td>
+          <td style="color:#aaa;font-size:.76rem">26%</td>
+          <td>1.27</td>
+          <td style="color:#aaa;font-size:.76rem">4%</td>
+          <td style="color:#2e7d32">4.48%</td>
+          <td>11.8%</td>
+          <td class="fw-bold">13.7%</td>
+          <td>9.4%</td>
+          <td>4.2</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>37.2%</td>
+          <td style="color:#1a237e;font-weight:700">43.3</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">1229</td>
+          <td style="text-align:left">聯華</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">食品工業</td>
+          <td class="fw-bold">44.0</td>
+          <td style="color:#2e7d32;font-weight:700">48.5</td>
+          <td style="color:#2e7d32;font-weight:700">+10.1%</td>
+          <td style="color:#888">43.0</td>
+          <td>17.1</td>
+          <td style="color:#aaa;font-size:.76rem">32%</td>
+          <td>1.38</td>
+          <td style="color:#aaa;font-size:.76rem">5%</td>
+          <td style="color:#2e7d32">4.54%</td>
+          <td>18.3%</td>
+          <td class="fw-bold">9.2%</td>
+          <td>8.0%</td>
+          <td>1.1</td>
+          <td style="color:#555">→ 持平</td>
+          <td style="color:#e65100;font-weight:700">5</td>
+          <td>19.6%</td>
+          <td style="color:#1a237e;font-weight:700">42.3</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">1608</td>
+          <td style="text-align:left">華榮</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">電器電纜</td>
+          <td class="fw-bold">31.9</td>
+          <td style="color:#2e7d32;font-weight:700">38.8</td>
+          <td style="color:#2e7d32;font-weight:700">+21.3%</td>
+          <td style="color:#888">52.9</td>
+          <td>5.8</td>
+          <td style="color:#aaa;font-size:.76rem">10%</td>
+          <td>1.41</td>
+          <td style="color:#aaa;font-size:.76rem">74%</td>
+          <td style="color:#2e7d32">6.26%</td>
+          <td>18.2%</td>
+          <td class="fw-bold">12.2%</td>
+          <td>7.5%</td>
+          <td>5.5</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>34.9%</td>
+          <td style="color:#1a237e;font-weight:700">38.9</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#757575;color:#fff">⏳ 等待中</span></td>
+          <td class="fw-bold">6574</td>
+          <td style="text-align:left">霈方</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">生技醫療業</td>
+          <td class="fw-bold">136.0</td>
+          <td style="color:#757575;font-weight:700">83.6</td>
+          <td style="color:#c62828;font-weight:700">-38.5%</td>
+          <td style="color:#888">65.9</td>
+          <td>24.6</td>
+          <td style="color:#aaa;font-size:.76rem">70%</td>
+          <td>3.9</td>
+          <td style="color:#aaa;font-size:.76rem">100%</td>
+          <td style="color:#2e7d32">2.21%</td>
+          <td>11.6%</td>
+          <td class="fw-bold">10.7%</td>
+          <td>3.9%</td>
+          <td>4.7</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>25.1%</td>
+          <td style="color:#1a237e;font-weight:700">36.7</td>
+        </tr><tr>
+          <td><span class="badge" style="background:#2e7d32;color:#fff">✅ 立即入手</span></td>
+          <td class="fw-bold">4123</td>
+          <td style="text-align:left">晟德</td>
+          <td style="text-align:left;font-size:.72rem;color:#999">生技醫療業</td>
+          <td class="fw-bold">41.1</td>
+          <td style="color:#2e7d32;font-weight:700">64.3</td>
+          <td style="color:#2e7d32;font-weight:700">+56.5%</td>
+          <td style="color:#888">99.2</td>
+          <td>3.3</td>
+          <td style="color:#aaa;font-size:.76rem">0%</td>
+          <td>1.16</td>
+          <td style="color:#aaa;font-size:.76rem">1%</td>
+          <td style="color:#2e7d32">3.08%</td>
+          <td>14.1%</td>
+          <td class="fw-bold">12.0%</td>
+          <td>0.5%</td>
+          <td>7.4</td>
+          <td style="color:#2e7d32">↑ 成長</td>
+          <td style="color:#e65100;font-weight:700">4</td>
+          <td>23.9%</td>
+          <td style="color:#1a237e;font-weight:700">36.5</td>
+        </tr></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('#t').DataTable({
+    pageLength: 100,
+    order: [[20, 'desc']],
+    columnDefs: [
+      { type: 'num', targets: [4,5,6,7,8,9,10,11,12,13,14,15,16,18,19,20] },
+      { orderable: false, targets: [2,3] }
+    ],
+    language: {
+      search: '🔍 搜尋:', lengthMenu: '每頁 _MENU_ 筆',
+      info: '共 _TOTAL_ 支 | 顯示 _START_-_END_',
+      paginate: {first:'«', last:'»', next:'›', previous:'‹'}
+    }
+  });
+});
+</script>
+</body></html>
