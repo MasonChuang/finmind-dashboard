@@ -1,1617 +1,339 @@
 {
-  "last_update": "2026-03-25 22:30:05",
-  "report_file": "04_Final_Combined_20260325.csv",
+  "last_update": "2026-03-26 23:17:00",
+  "report_file": "BigData_Scanner_20260326.csv",
   "candidates": [
     {
       "rank": 1,
-      "stock_id": "5314",
-      "name": "世紀*",
+      "stock_id": "6179",
+      "name": "亞通",
       "industry": "其他",
-      "price": 76.0,
-      "afass_score": 100.0,
-      "chip_score": 0
+      "price": 25.65,
+      "afass_score": 18.9,
+      "chip_score": 42.28
     },
     {
       "rank": 2,
-      "stock_id": "2883",
-      "name": "凱基金",
-      "industry": "金融",
-      "price": 20.35,
-      "afass_score": 100.0,
-      "chip_score": 0
+      "stock_id": "4967",
+      "name": "十銓",
+      "industry": "電子",
+      "price": 229.5,
+      "afass_score": 28.07,
+      "chip_score": 39.37
     },
     {
       "rank": 3,
-      "stock_id": "2881",
-      "name": "富邦金",
-      "industry": "金融",
-      "price": 88.8,
-      "afass_score": 100.0,
-      "chip_score": 0
+      "stock_id": "2399",
+      "name": "映泰",
+      "industry": "電子",
+      "price": 29.25,
+      "afass_score": 10.03,
+      "chip_score": 31.33
     },
     {
       "rank": 4,
-      "stock_id": "9945",
-      "name": "潤泰新",
-      "industry": "其他",
-      "price": 25.35,
-      "afass_score": 97.14,
-      "chip_score": 0
+      "stock_id": "6451",
+      "name": "訊芯-KY",
+      "industry": "電子",
+      "price": 332.0,
+      "afass_score": 55.08,
+      "chip_score": 75.07
     },
     {
       "rank": 5,
-      "stock_id": "2882",
-      "name": "國泰金",
-      "industry": "金融",
-      "price": 71.4,
-      "afass_score": 95.53,
-      "chip_score": 0
+      "stock_id": "2369",
+      "name": "菱生",
+      "industry": "電子",
+      "price": 31.05,
+      "afass_score": 0.0,
+      "chip_score": 36.23
     },
     {
       "rank": 6,
-      "stock_id": "2915",
-      "name": "潤泰全",
-      "industry": "零售百貨",
-      "price": 47.25,
-      "afass_score": 95.03,
-      "chip_score": 0
+      "stock_id": "1708",
+      "name": "東鹼",
+      "industry": "傳統產業",
+      "price": 42.7,
+      "afass_score": 78.24,
+      "chip_score": 50.6
     },
     {
       "rank": 7,
-      "stock_id": "1519",
-      "name": "華城",
-      "industry": "傳統產業",
-      "price": 926.0,
-      "afass_score": 92.87,
-      "chip_score": 0
+      "stock_id": "8064",
+      "name": "東捷",
+      "industry": "電子",
+      "price": 74.7,
+      "afass_score": 55.58,
+      "chip_score": 49.96
     },
     {
       "rank": 8,
-      "stock_id": "6265",
-      "name": "方土昶",
-      "industry": "電子",
-      "price": 41.45,
-      "afass_score": 91.34,
-      "chip_score": 0
-    },
-    {
-      "rank": 9,
-      "stock_id": "8996",
-      "name": "高力",
-      "industry": "傳統產業",
-      "price": 820.0,
-      "afass_score": 91.21,
-      "chip_score": 0
-    },
-    {
-      "rank": 10,
-      "stock_id": "2330",
-      "name": "台積電",
-      "industry": "電子",
-      "price": 1845.0,
-      "afass_score": 90.48,
-      "chip_score": 0
-    },
-    {
-      "rank": 11,
-      "stock_id": "8069",
-      "name": "元太",
-      "industry": "電子",
-      "price": 147.0,
-      "afass_score": 88.51,
-      "chip_score": 0
-    },
-    {
-      "rank": 12,
-      "stock_id": "2368",
-      "name": "金像電",
-      "industry": "電子",
-      "price": 922.0,
-      "afass_score": 87.29,
-      "chip_score": 0
-    },
-    {
-      "rank": 13,
-      "stock_id": "5284",
-      "name": "jpp-KY",
-      "industry": "其他",
-      "price": 287.5,
-      "afass_score": 86.71,
-      "chip_score": 0
-    },
-    {
-      "rank": 14,
-      "stock_id": "2615",
-      "name": "萬海",
-      "industry": "航運業",
-      "price": 75.5,
-      "afass_score": 86.33,
-      "chip_score": 0
-    },
-    {
-      "rank": 15,
-      "stock_id": "2606",
-      "name": "裕民",
-      "industry": "航運業",
-      "price": 60.4,
-      "afass_score": 85.17,
-      "chip_score": 0
-    },
-    {
-      "rank": 16,
-      "stock_id": "1229",
-      "name": "聯華",
-      "industry": "食品餐飲",
-      "price": 44.75,
-      "afass_score": 83.86,
-      "chip_score": 0
-    },
-    {
-      "rank": 17,
-      "stock_id": "3030",
-      "name": "德律",
-      "industry": "電子",
-      "price": 251.0,
-      "afass_score": 82.93,
-      "chip_score": 0
-    },
-    {
-      "rank": 18,
-      "stock_id": "9910",
-      "name": "豐泰",
-      "industry": "零售百貨",
-      "price": 82.0,
-      "afass_score": 82.08,
-      "chip_score": 0
-    },
-    {
-      "rank": 19,
-      "stock_id": "8210",
-      "name": "勤誠",
-      "industry": "電子",
-      "price": 904.0,
-      "afass_score": 78.45,
-      "chip_score": 0
-    },
-    {
-      "rank": 20,
-      "stock_id": "2641",
-      "name": "正德",
-      "industry": "航運業",
-      "price": 18.35,
-      "afass_score": 77.63,
-      "chip_score": 0
-    },
-    {
-      "rank": 21,
-      "stock_id": "2027",
-      "name": "大成鋼",
-      "industry": "傳統產業",
-      "price": 36.95,
-      "afass_score": 77.05,
-      "chip_score": 0
-    },
-    {
-      "rank": 22,
-      "stock_id": "1477",
-      "name": "聚陽",
-      "industry": "傳統產業",
-      "price": 268.0,
-      "afass_score": 74.98,
-      "chip_score": 0
-    },
-    {
-      "rank": 23,
-      "stock_id": "5439",
-      "name": "高技",
-      "industry": "電子",
-      "price": 287.0,
-      "afass_score": 73.77,
-      "chip_score": 0
-    },
-    {
-      "rank": 24,
-      "stock_id": "6446",
-      "name": "藥華藥",
-      "industry": "傳統產業",
-      "price": 640.0,
-      "afass_score": 72.84,
-      "chip_score": 0
-    },
-    {
-      "rank": 25,
-      "stock_id": "2891",
-      "name": "中信金",
-      "industry": "金融",
-      "price": 52.8,
-      "afass_score": 72.0,
-      "chip_score": 0
-    },
-    {
-      "rank": 26,
-      "stock_id": "2637",
-      "name": "慧洋-KY",
-      "industry": "航運業",
-      "price": 70.4,
-      "afass_score": 71.49,
-      "chip_score": 0
-    },
-    {
-      "rank": 27,
-      "stock_id": "2645",
-      "name": "長榮航太",
-      "industry": "航運業",
-      "price": 155.0,
-      "afass_score": 69.67,
-      "chip_score": 0
-    },
-    {
-      "rank": 28,
-      "stock_id": "1513",
-      "name": "中興電",
-      "industry": "傳統產業",
-      "price": 158.5,
-      "afass_score": 68.37,
-      "chip_score": 0
-    },
-    {
-      "rank": 29,
-      "stock_id": "6757",
-      "name": "台灣虎航",
-      "industry": "航運業",
-      "price": 55.1,
-      "afass_score": 68.03,
-      "chip_score": 0
-    },
-    {
-      "rank": 30,
-      "stock_id": "2498",
-      "name": "宏達電",
-      "industry": "電子",
-      "price": 41.05,
-      "afass_score": 67.6,
-      "chip_score": 0
-    },
-    {
-      "rank": 31,
-      "stock_id": "1608",
-      "name": "華榮",
-      "industry": "電子",
-      "price": 32.3,
-      "afass_score": 67.35,
-      "chip_score": 0
-    },
-    {
-      "rank": 32,
-      "stock_id": "1560",
-      "name": "中砂",
-      "industry": "傳統產業",
-      "price": 459.5,
-      "afass_score": 67.19,
-      "chip_score": 0
-    },
-    {
-      "rank": 33,
-      "stock_id": "2374",
-      "name": "佳能",
-      "industry": "電子",
-      "price": 72.1,
-      "afass_score": 66.82,
-      "chip_score": 0
-    },
-    {
-      "rank": 34,
-      "stock_id": "6415",
-      "name": "矽力*-KY",
-      "industry": "半導體",
-      "price": 293.5,
-      "afass_score": 66.56,
-      "chip_score": 0
-    },
-    {
-      "rank": 35,
-      "stock_id": "1216",
-      "name": "統一",
-      "industry": "食品餐飲",
-      "price": 70.7,
-      "afass_score": 66.53,
-      "chip_score": 0
-    },
-    {
-      "rank": 36,
-      "stock_id": "3044",
-      "name": "健鼎",
-      "industry": "電子",
-      "price": 357.0,
-      "afass_score": 64.96,
-      "chip_score": 0
-    },
-    {
-      "rank": 37,
-      "stock_id": "6548",
-      "name": "長科*",
-      "industry": "半導體",
-      "price": 49.4,
-      "afass_score": 62.6,
-      "chip_score": 0
-    },
-    {
-      "rank": 38,
-      "stock_id": "6005",
-      "name": "群益證",
-      "industry": "金融",
-      "price": 28.2,
-      "afass_score": 62.21,
-      "chip_score": 0
-    },
-    {
-      "rank": 39,
-      "stock_id": "2327",
-      "name": "國巨*",
-      "industry": "電子",
-      "price": 260.0,
-      "afass_score": 61.15,
-      "chip_score": 0
-    },
-    {
-      "rank": 40,
-      "stock_id": "8422",
-      "name": "可寧衛*",
-      "industry": "綠能環保",
-      "price": 30.2,
-      "afass_score": 60.8,
-      "chip_score": 0
-    },
-    {
-      "rank": 41,
-      "stock_id": "6903",
-      "name": "巨漢",
-      "industry": "電子",
-      "price": 319.0,
-      "afass_score": 60.61,
-      "chip_score": 0
-    },
-    {
-      "rank": 42,
-      "stock_id": "3661",
-      "name": "世芯-KY",
-      "industry": "電子",
-      "price": 3150.0,
-      "afass_score": 59.74,
-      "chip_score": 0
-    },
-    {
-      "rank": 43,
-      "stock_id": "2395",
-      "name": "研華",
-      "industry": "電子",
-      "price": 333.5,
-      "afass_score": 59.59,
-      "chip_score": 0
-    },
-    {
-      "rank": 44,
-      "stock_id": "8358",
-      "name": "金居",
-      "industry": "電子",
-      "price": 227.0,
-      "afass_score": 59.39,
-      "chip_score": 0
-    },
-    {
-      "rank": 45,
-      "stock_id": "3264",
-      "name": "欣銓",
-      "industry": "半導體",
-      "price": 154.5,
-      "afass_score": 59.39,
-      "chip_score": 0
-    },
-    {
-      "rank": 46,
-      "stock_id": "5534",
-      "name": "長虹",
-      "industry": "傳統產業",
-      "price": 77.1,
-      "afass_score": 57.77,
-      "chip_score": 0
-    },
-    {
-      "rank": 47,
-      "stock_id": "2303",
-      "name": "聯電",
-      "industry": "半導體",
-      "price": 59.1,
-      "afass_score": 57.75,
-      "chip_score": 0
-    },
-    {
-      "rank": 48,
-      "stock_id": "2887",
-      "name": "台新新光金",
-      "industry": "金融",
-      "price": 24.45,
-      "afass_score": 56.94,
-      "chip_score": 0
-    },
-    {
-      "rank": 49,
-      "stock_id": "3034",
-      "name": "聯詠",
-      "industry": "電子",
-      "price": 377.5,
-      "afass_score": 56.7,
-      "chip_score": 0
-    },
-    {
-      "rank": 50,
-      "stock_id": "7780",
-      "name": "大研生醫*",
-      "industry": "食品餐飲",
-      "price": 18.2,
-      "afass_score": 56.59,
-      "chip_score": 0
-    },
-    {
-      "rank": 51,
-      "stock_id": "3374",
-      "name": "精材",
-      "industry": "半導體",
-      "price": 165.0,
-      "afass_score": 56.23,
-      "chip_score": 0
-    },
-    {
-      "rank": 52,
-      "stock_id": "2618",
-      "name": "長榮航",
-      "industry": "航運業",
-      "price": 35.65,
-      "afass_score": 56.07,
-      "chip_score": 0
-    },
-    {
-      "rank": 53,
-      "stock_id": "6257",
-      "name": "矽格",
-      "industry": "半導體",
-      "price": 137.0,
-      "afass_score": 56.04,
-      "chip_score": 0
-    },
-    {
-      "rank": 54,
-      "stock_id": "8021",
-      "name": "尖點",
-      "industry": "電子",
-      "price": 247.5,
-      "afass_score": 55.99,
-      "chip_score": 0
-    },
-    {
-      "rank": 55,
-      "stock_id": "9958",
-      "name": "世紀鋼",
-      "industry": "傳統產業",
-      "price": 124.0,
-      "afass_score": 55.7,
-      "chip_score": 0
-    },
-    {
-      "rank": 56,
-      "stock_id": "3019",
-      "name": "亞光",
-      "industry": "電子",
-      "price": 128.0,
-      "afass_score": 54.91,
-      "chip_score": 0
-    },
-    {
-      "rank": 57,
-      "stock_id": "1605",
-      "name": "華新",
-      "industry": "電子",
-      "price": 31.9,
-      "afass_score": 54.76,
-      "chip_score": 0
-    },
-    {
-      "rank": 58,
-      "stock_id": "9802",
-      "name": "鈺齊-KY",
-      "industry": "零售百貨",
-      "price": 80.3,
-      "afass_score": 54.69,
-      "chip_score": 0
-    },
-    {
-      "rank": 59,
-      "stock_id": "2385",
-      "name": "群光",
-      "industry": "電子",
-      "price": 123.0,
-      "afass_score": 54.65,
-      "chip_score": 0
-    },
-    {
-      "rank": 60,
-      "stock_id": "1319",
-      "name": "東陽",
-      "industry": "傳統產業",
-      "price": 85.1,
-      "afass_score": 53.69,
-      "chip_score": 0
-    },
-    {
-      "rank": 61,
-      "stock_id": "3357",
-      "name": "臺慶科",
-      "industry": "電子",
-      "price": 154.0,
-      "afass_score": 53.4,
-      "chip_score": 0
-    },
-    {
-      "rank": 62,
-      "stock_id": "5483",
-      "name": "中美晶",
-      "industry": "半導體",
-      "price": 118.0,
-      "afass_score": 53.04,
-      "chip_score": 0
-    },
-    {
-      "rank": 63,
-      "stock_id": "1717",
-      "name": "長興",
-      "industry": "傳統產業",
-      "price": 62.5,
-      "afass_score": 52.78,
-      "chip_score": 0
-    },
-    {
-      "rank": 64,
-      "stock_id": "3689",
-      "name": "湧德",
-      "industry": "電子",
-      "price": 116.0,
-      "afass_score": 52.59,
-      "chip_score": 0
-    },
-    {
-      "rank": 65,
-      "stock_id": "6176",
-      "name": "瑞儀",
-      "industry": "電子",
-      "price": 92.0,
-      "afass_score": 52.3,
-      "chip_score": 0
-    },
-    {
-      "rank": 66,
-      "stock_id": "6191",
-      "name": "精成科",
-      "industry": "電子",
-      "price": 94.1,
-      "afass_score": 51.99,
-      "chip_score": 0
-    },
-    {
-      "rank": 67,
-      "stock_id": "2885",
-      "name": "元大金",
-      "industry": "金融",
-      "price": 45.85,
-      "afass_score": 51.28,
-      "chip_score": 0
-    },
-    {
-      "rank": 68,
-      "stock_id": "1504",
-      "name": "東元",
-      "industry": "傳統產業",
-      "price": 66.3,
-      "afass_score": 51.12,
-      "chip_score": 0
-    },
-    {
-      "rank": 69,
-      "stock_id": "1313",
-      "name": "聯成",
-      "industry": "傳統產業",
-      "price": 12.25,
-      "afass_score": 50.96,
-      "chip_score": 0
-    },
-    {
-      "rank": 70,
-      "stock_id": "4979",
-      "name": "華星光",
-      "industry": "電子",
-      "price": 425.5,
-      "afass_score": 50.83,
-      "chip_score": 0
-    },
-    {
-      "rank": 71,
-      "stock_id": "2301",
-      "name": "光寶科",
-      "industry": "電子",
-      "price": 157.5,
-      "afass_score": 50.82,
-      "chip_score": 0
-    },
-    {
-      "rank": 72,
-      "stock_id": "6505",
-      "name": "台塑化",
-      "industry": "傳統產業",
-      "price": 54.5,
-      "afass_score": 50.73,
-      "chip_score": 0
-    },
-    {
-      "rank": 73,
-      "stock_id": "2892",
-      "name": "第一金",
-      "industry": "金融",
-      "price": 28.7,
-      "afass_score": 50.01,
-      "chip_score": 0
-    },
-    {
-      "rank": 74,
-      "stock_id": "2412",
-      "name": "中華電",
-      "industry": "電子",
-      "price": 135.0,
-      "afass_score": 49.41,
-      "chip_score": 0
-    },
-    {
-      "rank": 75,
-      "stock_id": "3265",
-      "name": "台星科",
-      "industry": "半導體",
-      "price": 142.0,
-      "afass_score": 47.85,
-      "chip_score": 0
-    },
-    {
-      "rank": 76,
-      "stock_id": "2313",
-      "name": "華通",
-      "industry": "電子",
-      "price": 230.0,
-      "afass_score": 47.26,
-      "chip_score": 0
-    },
-    {
-      "rank": 77,
-      "stock_id": "1714",
-      "name": "和桐",
-      "industry": "傳統產業",
-      "price": 9.64,
-      "afass_score": 47.11,
-      "chip_score": 0
-    },
-    {
-      "rank": 78,
-      "stock_id": "3090",
-      "name": "日電貿",
-      "industry": "電子",
-      "price": 93.6,
-      "afass_score": 46.78,
-      "chip_score": 0
-    },
-    {
-      "rank": 79,
-      "stock_id": "1101",
-      "name": "台泥",
-      "industry": "傳統產業",
-      "price": 23.0,
-      "afass_score": 46.75,
-      "chip_score": 0
-    },
-    {
-      "rank": 80,
-      "stock_id": "1514",
-      "name": "亞力",
-      "industry": "傳統產業",
-      "price": 114.5,
-      "afass_score": 46.52,
-      "chip_score": 0
-    },
-    {
-      "rank": 81,
-      "stock_id": "3581",
-      "name": "博磊",
-      "industry": "半導體",
-      "price": 77.9,
-      "afass_score": 45.48,
-      "chip_score": 0
-    },
-    {
-      "rank": 82,
-      "stock_id": "1815",
-      "name": "富喬",
-      "industry": "電子",
-      "price": 108.0,
-      "afass_score": 44.95,
-      "chip_score": 0
-    },
-    {
-      "rank": 83,
-      "stock_id": "2609",
-      "name": "陽明",
-      "industry": "航運業",
-      "price": 53.7,
-      "afass_score": 44.93,
-      "chip_score": 0
-    },
-    {
-      "rank": 84,
-      "stock_id": "8086",
-      "name": "宏捷科",
-      "industry": "半導體",
-      "price": 126.5,
-      "afass_score": 44.79,
-      "chip_score": 0
-    },
-    {
-      "rank": 85,
-      "stock_id": "1582",
-      "name": "信錦",
-      "industry": "電子",
-      "price": 84.6,
-      "afass_score": 44.69,
-      "chip_score": 0
-    },
-    {
-      "rank": 86,
-      "stock_id": "2886",
-      "name": "兆豐金",
-      "industry": "金融",
-      "price": 39.15,
-      "afass_score": 44.27,
-      "chip_score": 0
-    },
-    {
-      "rank": 87,
-      "stock_id": "4532",
-      "name": "瑞智",
-      "industry": "傳統產業",
-      "price": 26.75,
-      "afass_score": 44.08,
-      "chip_score": 0
-    },
-    {
-      "rank": 88,
-      "stock_id": "2049",
-      "name": "上銀",
-      "industry": "傳統產業",
-      "price": 234.5,
-      "afass_score": 42.71,
-      "chip_score": 0
-    },
-    {
-      "rank": 89,
-      "stock_id": "1326",
-      "name": "台化",
-      "industry": "傳統產業",
-      "price": 42.85,
-      "afass_score": 42.44,
-      "chip_score": 0
-    },
-    {
-      "rank": 90,
-      "stock_id": "2006",
-      "name": "東和鋼鐵",
-      "industry": "傳統產業",
-      "price": 72.3,
-      "afass_score": 42.21,
-      "chip_score": 0
-    },
-    {
-      "rank": 91,
-      "stock_id": "2492",
-      "name": "華新科",
-      "industry": "電子",
-      "price": 128.5,
-      "afass_score": 42.18,
-      "chip_score": 0
-    },
-    {
-      "rank": 92,
-      "stock_id": "9921",
-      "name": "巨大",
-      "industry": "零售百貨",
-      "price": 71.0,
-      "afass_score": 42.17,
-      "chip_score": 0
-    },
-    {
-      "rank": 93,
-      "stock_id": "6205",
-      "name": "詮欣",
-      "industry": "電子",
-      "price": 59.6,
-      "afass_score": 42.05,
-      "chip_score": 0
-    },
-    {
-      "rank": 94,
-      "stock_id": "3013",
-      "name": "晟銘電",
-      "industry": "電子",
-      "price": 98.7,
-      "afass_score": 41.67,
-      "chip_score": 0
-    },
-    {
-      "rank": 95,
-      "stock_id": "1301",
-      "name": "台塑",
-      "industry": "傳統產業",
-      "price": 45.65,
-      "afass_score": 40.93,
-      "chip_score": 0
-    },
-    {
-      "rank": 96,
-      "stock_id": "5880",
-      "name": "合庫金",
-      "industry": "金融",
-      "price": 23.35,
-      "afass_score": 40.73,
-      "chip_score": 0
-    },
-    {
-      "rank": 97,
-      "stock_id": "8131",
-      "name": "福懋科",
-      "industry": "電子",
-      "price": 62.9,
-      "afass_score": 40.6,
-      "chip_score": 0
-    },
-    {
-      "rank": 98,
-      "stock_id": "2365",
-      "name": "昆盈",
-      "industry": "電子",
-      "price": 33.35,
-      "afass_score": 40.4,
-      "chip_score": 0
-    },
-    {
-      "rank": 99,
-      "stock_id": "2880",
-      "name": "華南金",
-      "industry": "金融",
-      "price": 34.15,
-      "afass_score": 40.04,
-      "chip_score": 0
-    },
-    {
-      "rank": 100,
-      "stock_id": "2312",
-      "name": "金寶",
-      "industry": "電子",
-      "price": 23.05,
-      "afass_score": 39.45,
-      "chip_score": 0
-    },
-    {
-      "rank": 101,
-      "stock_id": "6909",
-      "name": "創控",
-      "industry": "電子",
-      "price": 48.05,
-      "afass_score": 38.8,
-      "chip_score": 0
-    },
-    {
-      "rank": 102,
-      "stock_id": "3680",
-      "name": "家登",
-      "industry": "半導體",
-      "price": 412.5,
-      "afass_score": 38.7,
-      "chip_score": 0
-    },
-    {
-      "rank": 103,
-      "stock_id": "4939",
-      "name": "亞電",
-      "industry": "電子",
-      "price": 29.7,
-      "afass_score": 38.25,
-      "chip_score": 0
-    },
-    {
-      "rank": 104,
-      "stock_id": "2890",
-      "name": "永豐金",
-      "industry": "金融",
-      "price": 31.85,
-      "afass_score": 38.24,
-      "chip_score": 0
-    },
-    {
-      "rank": 105,
-      "stock_id": "3711",
-      "name": "日月光投控",
-      "industry": "電子",
-      "price": 352.0,
-      "afass_score": 37.21,
-      "chip_score": 0
-    },
-    {
-      "rank": 106,
       "stock_id": "4916",
       "name": "事欣科",
       "industry": "電子",
-      "price": 60.1,
-      "afass_score": 37.11,
-      "chip_score": 0
-    },
-    {
-      "rank": 107,
-      "stock_id": "8111",
-      "name": "立碁",
-      "industry": "電子",
-      "price": 63.6,
-      "afass_score": 37.1,
-      "chip_score": 0
-    },
-    {
-      "rank": 108,
-      "stock_id": "4909",
-      "name": "新復興",
-      "industry": "電子",
       "price": 57.8,
-      "afass_score": 36.97,
-      "chip_score": 0
+      "afass_score": 37.11,
+      "chip_score": 32.72
     },
     {
-      "rank": 109,
-      "stock_id": "6182",
-      "name": "合晶",
+      "rank": 9,
+      "stock_id": "1711",
+      "name": "永光",
+      "industry": "傳統產業",
+      "price": 38.55,
+      "afass_score": 20.62,
+      "chip_score": 53.24
+    },
+    {
+      "rank": 10,
+      "stock_id": "4906",
+      "name": "正文",
+      "industry": "電子",
+      "price": 36.6,
+      "afass_score": 16.77,
+      "chip_score": 34.07
+    },
+    {
+      "rank": 11,
+      "stock_id": "3209",
+      "name": "全科",
+      "industry": "電子",
+      "price": 43.85,
+      "afass_score": 36.75,
+      "chip_score": 43.03
+    },
+    {
+      "rank": 12,
+      "stock_id": "3529",
+      "name": "力旺",
       "industry": "半導體",
-      "price": 34.6,
-      "afass_score": 36.96,
-      "chip_score": 0
+      "price": 2925.0,
+      "afass_score": 99.82,
+      "chip_score": 51.57
     },
     {
-      "rank": 110,
-      "stock_id": "8271",
-      "name": "宇瞻",
+      "rank": 13,
+      "stock_id": "6147",
+      "name": "頎邦",
       "industry": "半導體",
-      "price": 160.0,
-      "afass_score": 36.52,
-      "chip_score": 0
+      "price": 77.8,
+      "afass_score": 21.29,
+      "chip_score": 66.0
     },
     {
-      "rank": 111,
-      "stock_id": "2382",
-      "name": "廣達",
-      "industry": "電子",
-      "price": 285.0,
-      "afass_score": 36.43,
-      "chip_score": 0
-    },
-    {
-      "rank": 112,
-      "stock_id": "1432",
-      "name": "大魯閣",
-      "industry": "零售百貨",
-      "price": 18.35,
-      "afass_score": 36.42,
-      "chip_score": 0
-    },
-    {
-      "rank": 113,
-      "stock_id": "2317",
-      "name": "鴻海",
-      "industry": "電子",
-      "price": 200.0,
-      "afass_score": 35.93,
-      "chip_score": 0
-    },
-    {
-      "rank": 114,
-      "stock_id": "6213",
-      "name": "聯茂",
-      "industry": "電子",
-      "price": 145.5,
-      "afass_score": 35.69,
-      "chip_score": 0
-    },
-    {
-      "rank": 115,
-      "stock_id": "2601",
-      "name": "益航",
-      "industry": "零售百貨",
-      "price": 6.0,
-      "afass_score": 35.54,
-      "chip_score": 0
-    },
-    {
-      "rank": 116,
-      "stock_id": "6789",
-      "name": "采鈺",
-      "industry": "電子",
-      "price": 328.0,
-      "afass_score": 35.49,
-      "chip_score": 0
-    },
-    {
-      "rank": 117,
-      "stock_id": "1609",
-      "name": "大亞",
-      "industry": "電子",
-      "price": 33.25,
-      "afass_score": 35.38,
-      "chip_score": 0
-    },
-    {
-      "rank": 118,
-      "stock_id": "6271",
-      "name": "同欣電",
-      "industry": "半導體",
-      "price": 151.0,
-      "afass_score": 35.1,
-      "chip_score": 0
-    },
-    {
-      "rank": 119,
-      "stock_id": "1503",
-      "name": "士電",
+      "rank": 14,
+      "stock_id": "4739",
+      "name": "康普",
       "industry": "傳統產業",
-      "price": 197.5,
-      "afass_score": 35.06,
-      "chip_score": 0
+      "price": 83.4,
+      "afass_score": 30.59,
+      "chip_score": 46.45
     },
     {
-      "rank": 120,
-      "stock_id": "8074",
-      "name": "鉅橡",
+      "rank": 15,
+      "stock_id": "4919",
+      "name": "新唐",
       "industry": "電子",
-      "price": 58.3,
-      "afass_score": 34.42,
-      "chip_score": 0
+      "price": 93.2,
+      "afass_score": 17.86,
+      "chip_score": 65.52
     },
     {
-      "rank": 121,
-      "stock_id": "6488",
-      "name": "環球晶",
-      "industry": "半導體",
-      "price": 450.0,
-      "afass_score": 34.25,
-      "chip_score": 0
-    },
-    {
-      "rank": 122,
-      "stock_id": "2884",
-      "name": "玉山金",
-      "industry": "金融",
-      "price": 32.1,
-      "afass_score": 34.03,
-      "chip_score": 0
-    },
-    {
-      "rank": 123,
-      "stock_id": "4306",
-      "name": "炎洲",
-      "industry": "傳統產業",
-      "price": 13.45,
-      "afass_score": 33.69,
-      "chip_score": 0
-    },
-    {
-      "rank": 124,
-      "stock_id": "6190",
-      "name": "萬泰科",
+      "rank": 16,
+      "stock_id": "2351",
+      "name": "順德",
       "industry": "電子",
-      "price": 54.9,
-      "afass_score": 33.07,
-      "chip_score": 0
+      "price": 99.2,
+      "afass_score": 10.29,
+      "chip_score": 66.96
     },
     {
-      "rank": 125,
-      "stock_id": "3162",
-      "name": "精確",
-      "industry": "傳統產業",
-      "price": 56.0,
-      "afass_score": 32.98,
-      "chip_score": 0
-    },
-    {
-      "rank": 126,
-      "stock_id": "3305",
-      "name": "昇貿",
+      "rank": 17,
+      "stock_id": "3583",
+      "name": "辛耘",
       "industry": "電子",
-      "price": 102.5,
-      "afass_score": 32.22,
-      "chip_score": 0
+      "price": 501.0,
+      "afass_score": 58.21,
+      "chip_score": 54.9
     },
     {
-      "rank": 127,
-      "stock_id": "6239",
-      "name": "力成",
+      "rank": 18,
+      "stock_id": "6530",
+      "name": "創威",
       "industry": "電子",
-      "price": 203.5,
-      "afass_score": 31.0,
-      "chip_score": 0
+      "price": 95.6,
+      "afass_score": 61.65,
+      "chip_score": 20.24
     },
     {
-      "rank": 128,
-      "stock_id": "6196",
-      "name": "帆宣",
+      "rank": 19,
+      "stock_id": "4977",
+      "name": "眾達-KY",
       "industry": "電子",
-      "price": 300.0,
-      "afass_score": 30.77,
-      "chip_score": 0
+      "price": 196.0,
+      "afass_score": 53.31,
+      "chip_score": 24.72
     },
     {
-      "rank": 129,
-      "stock_id": "5608",
-      "name": "四維航",
-      "industry": "航運業",
-      "price": 16.95,
-      "afass_score": 30.06,
-      "chip_score": 0
-    },
-    {
-      "rank": 130,
-      "stock_id": "2363",
-      "name": "矽統",
+      "rank": 20,
+      "stock_id": "1785",
+      "name": "光洋科",
       "industry": "電子",
-      "price": 50.0,
-      "afass_score": 29.75,
-      "chip_score": 0
+      "price": 87.7,
+      "afass_score": 34.12,
+      "chip_score": 60.44
     },
     {
-      "rank": 131,
-      "stock_id": "5009",
-      "name": "榮剛",
-      "industry": "傳統產業",
-      "price": 33.25,
-      "afass_score": 29.63,
-      "chip_score": 0
-    },
-    {
-      "rank": 132,
-      "stock_id": "3028",
-      "name": "增你強",
+      "rank": 21,
+      "stock_id": "3508",
+      "name": "位速",
       "industry": "電子",
-      "price": 54.4,
-      "afass_score": 29.57,
-      "chip_score": 0
+      "price": 46.4,
+      "afass_score": 1.22,
+      "chip_score": 39.14
     },
     {
-      "rank": 133,
-      "stock_id": "2354",
-      "name": "鴻準",
+      "rank": 22,
+      "stock_id": "4949",
+      "name": "有成精密",
       "industry": "電子",
-      "price": 52.4,
-      "afass_score": 29.15,
-      "chip_score": 0
+      "price": 64.0,
+      "afass_score": 40.44,
+      "chip_score": 60.19
     },
     {
-      "rank": 134,
-      "stock_id": "1303",
-      "name": "南亞",
-      "industry": "傳統產業",
-      "price": 76.0,
-      "afass_score": 29.05,
-      "chip_score": 0
-    },
-    {
-      "rank": 135,
-      "stock_id": "2376",
-      "name": "技嘉",
-      "industry": "電子",
-      "price": 234.0,
-      "afass_score": 28.9,
-      "chip_score": 0
-    },
-    {
-      "rank": 136,
-      "stock_id": "3338",
-      "name": "泰碩",
-      "industry": "電子",
-      "price": 61.8,
-      "afass_score": 28.82,
-      "chip_score": 0
-    },
-    {
-      "rank": 137,
-      "stock_id": "2371",
-      "name": "大同",
-      "industry": "傳統產業",
-      "price": 31.05,
-      "afass_score": 28.67,
-      "chip_score": 0
-    },
-    {
-      "rank": 138,
-      "stock_id": "8438",
-      "name": "昶昕",
-      "industry": "綠能環保",
-      "price": 65.7,
-      "afass_score": 28.41,
-      "chip_score": 0
-    },
-    {
-      "rank": 139,
-      "stock_id": "6202",
-      "name": "盛群",
-      "industry": "電子",
-      "price": 51.8,
-      "afass_score": 28.08,
-      "chip_score": 0
-    },
-    {
-      "rank": 140,
-      "stock_id": "5371",
-      "name": "中光電",
-      "industry": "電子",
-      "price": 76.9,
-      "afass_score": 27.6,
-      "chip_score": 0
-    },
-    {
-      "rank": 141,
-      "stock_id": "6282",
-      "name": "康舒",
-      "industry": "電子",
-      "price": 47.9,
-      "afass_score": 27.47,
-      "chip_score": 0
-    },
-    {
-      "rank": 142,
-      "stock_id": "2356",
-      "name": "英業達",
-      "industry": "電子",
-      "price": 42.9,
-      "afass_score": 27.27,
-      "chip_score": 0
-    },
-    {
-      "rank": 143,
-      "stock_id": "4164",
-      "name": "承業醫",
-      "industry": "生技醫療",
-      "price": 31.5,
-      "afass_score": 27.11,
-      "chip_score": 0
-    },
-    {
-      "rank": 144,
-      "stock_id": "5309",
-      "name": "系統電",
-      "industry": "電子",
-      "price": 61.4,
-      "afass_score": 26.67,
-      "chip_score": 0
-    },
-    {
-      "rank": 145,
-      "stock_id": "3037",
-      "name": "欣興",
-      "industry": "電子",
-      "price": 506.0,
-      "afass_score": 26.17,
-      "chip_score": 0
-    },
-    {
-      "rank": 146,
-      "stock_id": "3033",
-      "name": "威健",
-      "industry": "電子",
-      "price": 33.45,
-      "afass_score": 26.13,
-      "chip_score": 0
-    },
-    {
-      "rank": 147,
-      "stock_id": "6861",
-      "name": "睿生光電",
-      "industry": "生技醫療",
-      "price": 150.0,
-      "afass_score": 25.71,
-      "chip_score": 0
-    },
-    {
-      "rank": 148,
-      "stock_id": "5475",
-      "name": "德宏",
-      "industry": "電子",
-      "price": 211.5,
-      "afass_score": 24.23,
-      "chip_score": 0
-    },
-    {
-      "rank": 149,
-      "stock_id": "3701",
-      "name": "大眾控",
-      "industry": "電子",
-      "price": 60.0,
-      "afass_score": 24.1,
-      "chip_score": 0
-    },
-    {
-      "rank": 150,
-      "stock_id": "2419",
-      "name": "仲琦",
-      "industry": "電子",
-      "price": 30.25,
-      "afass_score": 23.67,
-      "chip_score": 0
-    },
-    {
-      "rank": 151,
-      "stock_id": "2401",
-      "name": "凌陽",
-      "industry": "電子",
-      "price": 20.75,
-      "afass_score": 23.45,
-      "chip_score": 0
-    },
-    {
-      "rank": 152,
-      "stock_id": "8011",
-      "name": "台通",
-      "industry": "電子",
-      "price": 20.8,
-      "afass_score": 23.0,
-      "chip_score": 0
-    },
-    {
-      "rank": 153,
-      "stock_id": "6285",
-      "name": "啟碁",
-      "industry": "電子",
-      "price": 180.0,
-      "afass_score": 22.76,
-      "chip_score": 0
-    },
-    {
-      "rank": 154,
-      "stock_id": "3189",
-      "name": "景碩",
-      "industry": "電子",
-      "price": 351.5,
-      "afass_score": 22.49,
-      "chip_score": 0
-    },
-    {
-      "rank": 155,
-      "stock_id": "6962",
-      "name": "奕力-KY",
-      "industry": "電子",
-      "price": 30.85,
-      "afass_score": 20.79,
-      "chip_score": 0
-    },
-    {
-      "rank": 156,
-      "stock_id": "3663",
-      "name": "鑫科",
-      "industry": "電子",
-      "price": 74.0,
-      "afass_score": 20.33,
-      "chip_score": 0
-    },
-    {
-      "rank": 157,
-      "stock_id": "6244",
-      "name": "茂迪",
-      "industry": "電子",
-      "price": 29.65,
-      "afass_score": 20.11,
-      "chip_score": 0
-    },
-    {
-      "rank": 158,
-      "stock_id": "8046",
-      "name": "南電",
-      "industry": "電子",
-      "price": 540.0,
-      "afass_score": 20.0,
-      "chip_score": 0
-    },
-    {
-      "rank": 159,
-      "stock_id": "8112",
-      "name": "至上",
-      "industry": "電子",
-      "price": 82.9,
-      "afass_score": 19.36,
-      "chip_score": 0
-    },
-    {
-      "rank": 160,
-      "stock_id": "3310",
-      "name": "佳穎",
-      "industry": "電子",
-      "price": 76.3,
-      "afass_score": 18.49,
-      "chip_score": 0
-    },
-    {
-      "rank": 161,
+      "rank": 23,
       "stock_id": "2355",
       "name": "敬鵬",
       "industry": "電子",
-      "price": 44.95,
+      "price": 49.4,
       "afass_score": 18.47,
-      "chip_score": 0
+      "chip_score": 42.65
     },
     {
-      "rank": 162,
+      "rank": 24,
       "stock_id": "3532",
       "name": "台勝科",
       "industry": "電子",
-      "price": 133.0,
+      "price": 146.0,
       "afass_score": 18.42,
-      "chip_score": 0
+      "chip_score": 88.89
     },
     {
-      "rank": 163,
-      "stock_id": "4743",
-      "name": "合一",
-      "industry": "生技醫療",
-      "price": 53.4,
-      "afass_score": 17.94,
-      "chip_score": 0
-    },
-    {
-      "rank": 164,
-      "stock_id": "3380",
-      "name": "明泰",
+      "rank": 25,
+      "stock_id": "6270",
+      "name": "倍微",
       "industry": "電子",
-      "price": 36.45,
-      "afass_score": 17.79,
-      "chip_score": 0
+      "price": 26.1,
+      "afass_score": 38.73,
+      "chip_score": 42.55
     },
     {
-      "rank": 165,
-      "stock_id": "2486",
-      "name": "一詮",
+      "rank": 26,
+      "stock_id": "3702",
+      "name": "大聯大",
       "industry": "電子",
-      "price": 154.5,
-      "afass_score": 17.76,
-      "chip_score": 0
+      "price": 95.1,
+      "afass_score": 36.45,
+      "chip_score": 84.32
     },
     {
-      "rank": 166,
-      "stock_id": "8150",
-      "name": "南茂",
-      "industry": "電子",
-      "price": 59.1,
-      "afass_score": 17.64,
-      "chip_score": 0
+      "rank": 27,
+      "stock_id": "9933",
+      "name": "中鼎",
+      "industry": "其他",
+      "price": 38.55,
+      "afass_score": 37.51,
+      "chip_score": 57.78
     },
     {
-      "rank": 167,
-      "stock_id": "8104",
-      "name": "錸寶",
-      "industry": "電子",
-      "price": 34.2,
-      "afass_score": 17.58,
-      "chip_score": 0
-    },
-    {
-      "rank": 168,
-      "stock_id": "2331",
-      "name": "精英",
-      "industry": "電子",
-      "price": 22.45,
-      "afass_score": 17.44,
-      "chip_score": 0
-    },
-    {
-      "rank": 169,
-      "stock_id": "2515",
-      "name": "中工",
-      "industry": "傳統產業",
-      "price": 13.8,
-      "afass_score": 17.24,
-      "chip_score": 0
-    },
-    {
-      "rank": 170,
-      "stock_id": "1909",
-      "name": "榮成",
-      "industry": "傳統產業",
-      "price": 9.54,
-      "afass_score": 16.55,
-      "chip_score": 0
-    },
-    {
-      "rank": 171,
-      "stock_id": "4510",
-      "name": "高鋒",
-      "industry": "傳統產業",
-      "price": 45.6,
-      "afass_score": 15.17,
-      "chip_score": 0
-    },
-    {
-      "rank": 172,
-      "stock_id": "6456",
-      "name": "GIS-KY",
-      "industry": "電子",
-      "price": 60.4,
-      "afass_score": 14.81,
-      "chip_score": 0
-    },
-    {
-      "rank": 173,
-      "stock_id": "3060",
-      "name": "銘異",
-      "industry": "電子",
-      "price": 32.4,
-      "afass_score": 13.62,
-      "chip_score": 0
-    },
-    {
-      "rank": 174,
-      "stock_id": "2634",
-      "name": "漢翔",
+      "rank": 28,
+      "stock_id": "2603",
+      "name": "長榮",
       "industry": "航運業",
-      "price": 51.2,
-      "afass_score": 13.34,
-      "chip_score": 0
+      "price": 203.0,
+      "afass_score": 50.0,
+      "chip_score": 68.35
     },
     {
-      "rank": 175,
-      "stock_id": "8926",
-      "name": "台汽電",
+      "rank": 29,
+      "stock_id": "3005",
+      "name": "神基",
+      "industry": "電子",
+      "price": 109.5,
+      "afass_score": 71.01,
+      "chip_score": 80.11
+    },
+    {
+      "rank": 30,
+      "stock_id": "1309",
+      "name": "台達化",
       "industry": "傳統產業",
-      "price": 46.15,
-      "afass_score": 13.24,
-      "chip_score": 0
+      "price": 20.15,
+      "afass_score": 8.61,
+      "chip_score": 48.05
     },
     {
-      "rank": 176,
-      "stock_id": "5498",
-      "name": "凱崴",
+      "rank": 31,
+      "stock_id": "2441",
+      "name": "超豐",
       "industry": "電子",
-      "price": 57.5,
-      "afass_score": 13.2,
-      "chip_score": 0
+      "price": 95.5,
+      "afass_score": 41.91,
+      "chip_score": 76.1
     },
     {
-      "rank": 177,
-      "stock_id": "3006",
-      "name": "晶豪科",
+      "rank": 32,
+      "stock_id": "4956",
+      "name": "光鋐",
       "industry": "電子",
-      "price": 177.5,
-      "afass_score": 7.1,
-      "chip_score": 0
+      "price": 35.1,
+      "afass_score": 1.61,
+      "chip_score": 42.82
     },
     {
-      "rank": 178,
-      "stock_id": "8105",
-      "name": "凌巨",
+      "rank": 33,
+      "stock_id": "3293",
+      "name": "鈊象",
+      "industry": "文化創意",
+      "price": 784.0,
+      "afass_score": 100.0,
+      "chip_score": 49.23
+    },
+    {
+      "rank": 34,
+      "stock_id": "2388",
+      "name": "威盛",
       "industry": "電子",
-      "price": 13.05,
-      "afass_score": 3.39,
-      "chip_score": 0
+      "price": 52.4,
+      "afass_score": 19.43,
+      "chip_score": 66.42
     },
     {
-      "rank": 179,
-      "stock_id": "2002",
-      "name": "中鋼",
+      "rank": 35,
+      "stock_id": "3324",
+      "name": "雙鴻",
+      "industry": "電子",
+      "price": 985.0,
+      "afass_score": 68.96,
+      "chip_score": 52.62
+    },
+    {
+      "rank": 36,
+      "stock_id": "4991",
+      "name": "環宇-KY",
+      "industry": "半導體",
+      "price": 442.0,
+      "afass_score": 56.69,
+      "chip_score": 60.9
+    },
+    {
+      "rank": 37,
+      "stock_id": "3717",
+      "name": "聯嘉投控",
       "industry": "傳統產業",
-      "price": 19.3,
-      "afass_score": 0.98,
-      "chip_score": 0
+      "price": 21.6,
+      "afass_score": 13.96,
+      "chip_score": 44.78
     }
   ],
   "status": "ok"
