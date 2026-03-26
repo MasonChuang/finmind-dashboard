@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-26 23:18:41",
+  "generated_at": "2026-03-26 23:50:30",
   "taiex": [
     {
       "date": "2025-09-19",
@@ -2929,105 +2929,105 @@
     "week_increase_top5": [
       {
         "stock_id": "6127",
-        "whale_change": 12.68,
+        "whale_change": 15.260000000000002,
         "stock_name": "九豪"
       },
       {
         "stock_id": "3715",
-        "whale_change": 8.840000000000003,
+        "whale_change": 10.290000000000006,
         "stock_name": "定穎投控"
       },
       {
-        "stock_id": "8435",
-        "whale_change": 8.76,
-        "stock_name": "鉅邁"
-      },
-      {
-        "stock_id": "6451",
-        "whale_change": 8.71,
-        "stock_name": "訊芯-KY"
+        "stock_id": "6179",
+        "whale_change": 8.850000000000001,
+        "stock_name": "亞通"
       },
       {
         "stock_id": "8028",
-        "whale_change": 8.520000000000003,
+        "whale_change": 8.079999999999998,
         "stock_name": "昇陽半導體"
       },
       {
         "stock_id": "4967",
-        "whale_change": 8.379999999999999,
+        "whale_change": 7.909999999999997,
         "stock_name": "十銓"
       },
       {
+        "stock_id": "3693",
+        "whale_change": 7.759999999999998,
+        "stock_name": "營邦"
+      },
+      {
         "stock_id": "5309",
-        "whale_change": 8.190000000000001,
+        "whale_change": 7.480000000000004,
         "stock_name": "系統電"
       },
       {
-        "stock_id": "6179",
-        "whale_change": 8.010000000000002,
-        "stock_name": "亞通"
-      },
-      {
         "stock_id": "2337",
-        "whale_change": 6.619999999999997,
+        "whale_change": 6.719999999999992,
         "stock_name": "旺宏"
       },
       {
-        "stock_id": "2605",
-        "whale_change": 6.5,
-        "stock_name": "新興"
+        "stock_id": "2399",
+        "whale_change": 6.460000000000001,
+        "stock_name": "映泰"
+      },
+      {
+        "stock_id": "8435",
+        "whale_change": 6.450000000000003,
+        "stock_name": "鉅邁"
       }
     ],
     "biweek_accumulate_top5": [
       {
-        "stock_id": "6470",
-        "whale_change_2w": 18.86,
-        "stock_name": "宇智"
-      },
-      {
         "stock_id": "6127",
-        "whale_change_2w": 13.94,
+        "whale_change_2w": 16.26,
         "stock_name": "九豪"
       },
       {
-        "stock_id": "8112",
-        "whale_change_2w": 13.0,
-        "stock_name": "至上"
+        "stock_id": "6470",
+        "whale_change_2w": 15.329999999999998,
+        "stock_name": "宇智"
       },
       {
         "stock_id": "8271",
-        "whale_change_2w": 12.0,
+        "whale_change_2w": 12.950000000000003,
         "stock_name": "宇瞻"
       },
       {
         "stock_id": "1785",
-        "whale_change_2w": 11.150000000000006,
+        "whale_change_2w": 12.390000000000008,
         "stock_name": "光洋科"
       },
       {
+        "stock_id": "8112",
+        "whale_change_2w": 11.64,
+        "stock_name": "至上"
+      },
+      {
         "stock_id": "3715",
-        "whale_change_2w": 9.420000000000002,
+        "whale_change_2w": 9.760000000000005,
         "stock_name": "定穎投控"
       },
       {
-        "stock_id": "8435",
-        "whale_change_2w": 8.76,
-        "stock_name": "鉅邁"
-      },
-      {
-        "stock_id": "6451",
-        "whale_change_2w": 8.71,
-        "stock_name": "訊芯-KY"
-      },
-      {
         "stock_id": "6179",
-        "whale_change_2w": 8.23,
+        "whale_change_2w": 9.420000000000002,
         "stock_name": "亞通"
       },
       {
-        "stock_id": "5309",
-        "whale_change_2w": 8.14,
-        "stock_name": "系統電"
+        "stock_id": "4967",
+        "whale_change_2w": 9.299999999999997,
+        "stock_name": "十銓"
+      },
+      {
+        "stock_id": "3645",
+        "whale_change_2w": 9.160000000000004,
+        "stock_name": "達邁"
+      },
+      {
+        "stock_id": "4973",
+        "whale_change_2w": 8.409999999999997,
+        "stock_name": "廣穎"
       }
     ]
   },
