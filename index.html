@@ -132,6 +132,9 @@
     <div class="header">
         <h1>📊 FinMind Antigravity</h1>
         <p>量化交易監控儀表板</p>
+        <div class="header-actions" style="margin-top: 15px;">
+            <button id="toggle-sort-btn">🔄 調整卡片排序</button>
+        </div>
     </div>
 
     <div class="dashboard-grid">
@@ -151,6 +154,12 @@
             <div class="card-icon">💼</div>
             <h2>持股健檢</h2>
             <p>持股狀態與建議</p>
+        </div>
+
+        <div class="card portfolio" onclick="location.href='etf_health_report.html'" style="border-top: 5px solid #8e44ad;">
+            <div class="card-icon">🏥</div>
+            <h2>ETF 健康監控</h2>
+            <p>全台熱門 ETF 體質與成分股健檢</p>
         </div>
 
         <div class="card highyield" onclick="location.href='高殖利率策略_BiasRate_Latest.html'">
@@ -228,6 +237,109 @@
     <div class="footer">
         <p>FinMind Antigravity V2 © 2026</p>
     </div>
+
+    <!-- 載入 SortableJS 處理拖曳排序 -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const grid = document.querySelector('.dashboard-grid');
+            const cards = Array.from(grid.children);
+
+            // 根據 onclick 目標網址自動賦予唯一 ID，作為記憶排序的 Key
+            cards.forEach((card, index) => {
+                let clickAttr = card.getAttribute('onclick') || '';
+                let fileMatch = clickAttr.match(/'([^']+)'/);
+                card.id = fileMatch ? 'card-' + fileMatch[1].replace(/[^a-zA-Z0-9]/g, '-') : 'card-idx-' + index;
+            });
+
+            // 讀取 LocalStorage 先前記憶的排序
+            const savedOrder = localStorage.getItem('dashboard_card_order');
+            if (savedOrder) {
+                try {
+                    const orderArray = JSON.parse(savedOrder);
+                    orderArray.forEach(id => {
+                        const card = document.getElementById(id);
+                        if (card) grid.appendChild(card);
+                    });
+                } catch (e) {
+                    console.error("還原排序失敗", e);
+                }
+            }
+
+            // 處理拖曳開關
+            let sortableInstance = null;
+            const toggleBtn = document.getElementById('toggle-sort-btn');
+            let isEditing = false;
+
+            toggleBtn.addEventListener('click', function () {
+                isEditing = !isEditing;
+                if (isEditing) {
+                    toggleBtn.innerHTML = "💾 儲存並退出排序";
+                    toggleBtn.style.backgroundColor = "#e74c3c";
+                    toggleBtn.style.color = "white";
+                    grid.classList.add('editing-mode');
+                    sortableInstance = new Sortable(grid, {
+                        animation: 150,
+                        ghostClass: 'sortable-ghost',
+                        onEnd: function () {
+                            const newOrder = Array.from(grid.children).map(c => c.id);
+                            localStorage.setItem('dashboard_card_order', JSON.stringify(newOrder));
+                        }
+                    });
+                } else {
+                    toggleBtn.innerHTML = "🔄 調整卡片排序";
+                    toggleBtn.style.backgroundColor = "";
+                    toggleBtn.style.color = "";
+
+                    if (sortableInstance) {
+                        sortableInstance.destroy();
+                        sortableInstance = null;
+                    }
+                    grid.classList.remove('editing-mode');
+                }
+            });
+
+            // 編輯模式下阻擋點擊跳轉事件
+            grid.addEventListener('click', function (e) {
+                if (isEditing) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+        });
+    </script>
+    <style>
+        .sortable-ghost {
+            opacity: 0.4;
+        }
+
+        .editing-mode .card {
+            cursor: grab !important;
+            border: 2px dashed #95a5a6;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        .editing-mode .card:active {
+            cursor: grabbing !important;
+        }
+
+        #toggle-sort-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        #toggle-sort-btn:hover {
+            background: #f1f5f9;
+        }
+    </style>
 </body>
 
 </html>
