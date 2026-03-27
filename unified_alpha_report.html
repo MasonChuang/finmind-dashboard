@@ -1,612 +1,378 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+
+    <!DOCTYPE html>
+    <html lang="zh-TW">
+    
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>高息雙引擎 UnifiedAlpha v1 — 2026-03-27</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-  <style>
-    body { font-family: 'Segoe UI', 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-             background: #f4f7fa; color: #212529; margin: 0; padding: 0; }
-
-    /* ── 頁首 ── */
-    .page-header {
-      background: linear-gradient(135deg, #1a3a6e 0%, #2563a8 60%, #0ea5e9 100%);
-      color: #fff; padding: 36px 48px 28px;
-    }
-    .page-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 4px; }
-    .page-header .subtitle { font-size: 1.05rem; opacity: .85; }
-    .page-header .meta    { font-size: 0.88rem; opacity: .7; margin-top: 8px; }
-
-    /* ── 摘要卡 ── */
-    .summary-row {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      padding: 24px 48px 0;
-    }
-    .summary-card {
-      background: #fff; border-radius: 12px; padding: 18px 24px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.07); min-width: 160px; flex: 1;
-    }
-    .summary-card .sc-label { font-size: 0.82rem; color: #6c757d; text-transform: uppercase; letter-spacing: .05em; }
-    .summary-card .sc-value { font-size: 1.65rem; font-weight: 800; color: #1a3a6e; }
-    .summary-card .sc-sub   { font-size: 0.82rem; color: #6c757d; }
-
-    /* ── 說明卡 ── */
-    .legend {
-      display: flex; gap: 12px; flex-wrap: wrap;
-      padding: 20px 48px;
-    }
-    .legend-card {
-      background: #fff; border: 1px solid #dee2e6; border-radius: 10px;
-      padding: 10px 18px; font-size: 0.95rem; line-height: 1.6; min-width: 200px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.06);
-    }
-    .legend-card .lc-title { font-weight: 700; font-size: 1rem; margin-bottom: 3px; }
-    .legend-card.whale .lc-title { color: #0d6efd; }
-    .legend-card.yield .lc-title { color: #198754; }
-    .legend-card.risk  .lc-title { color: #dc3545; }
-    .legend-card.afass .lc-title { color: #fd7e14; }
-
-    /* ── 主要內容 ── */
-    .main-content { padding: 0 48px 48px; }
-
-    /* ── 表格 ── */
-    th, td { text-align: center !important; vertical-align: middle !important; font-size: 0.97rem; }
-    th { font-size: 0.9rem; font-weight: 700; white-space: nowrap; }
-    .table { background: #fff; border-radius: 12px; overflow: hidden;
-               box-shadow: 0 2px 10px rgba(0,0,0,.07); }
-
-    /* ── 排行徽章 ── */
-    .rank-badge {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 34px; height: 34px; border-radius: 50%;
-      font-weight: 800; font-size: 0.9rem;
-    }
-    .rank-1 { background: #ffc107; color: #212529; }
-    .rank-2 { background: #adb5bd; color: #fff; }
-    .rank-3 { background: #cd7f32; color: #fff; }
-    .rank-n { background: #e9ecef; color: #495057; }
-
-    /* ── 股票資訊 ── */
-    .stock-code  { font-weight: 700; font-size: 1.05rem; }
-    .stock-name  { font-size: 0.88rem; color: #495057; }
-    .industry-tag {
-      display: inline-block; border-radius: 5px; padding: 2px 8px;
-      font-size: 0.78rem; font-weight: 600; background: #e7f1ff; color: #0d47a1;
-    }
-    .price-cell  { font-weight: 700; font-size: 1.05rem; }
-
-    /* ── 乖離率 ── */
-    .bias-pos  { color: #198754; font-weight: 700; }
-    .bias-neg  { color: #dc3545; font-weight: 700; }
-    .bias-neu  { color: #6c757d; }
-
-    /* ── 殖利率 ── */
-    .yield-high { color: #198754; font-weight: 700; }
-    .yield-med  { color: #e6a817; font-weight: 600; }
-    .yield-low  { color: #6c757d; }
-
-    /* ── 大戶籌碼 ── */
-    .whale-bar {
-      display: flex; gap: 2px; height: 8px; border-radius: 4px;
-      overflow: hidden; width: 80px; background: #e9ecef; margin: 4px auto 0;
-    }
-    .whale-pos { background: #0d6efd; }
-    .whale-neg { background: #dc3545; }
-    .whale-acc  { color: #0d6efd; font-weight: 700; }
-    .whale-dis  { color: #dc3545; font-weight: 700; }
-    .whale-neu  { color: #6c757d; }
-
-    /* ── 成交量 ── */
-    .vol-high { color: #198754; font-weight: 700; }
-    .vol-med  { color: #0d6efd; font-weight: 600; }
-    .vol-low  { color: #e6a817; font-weight: 600; }
-    .vol-tiny { color: #dc3545; font-weight: 700; }
-
-    /* ── 融資 ── */
-    .margin-up  { color: #dc3545; font-weight: 600; }
-    .margin-dn  { color: #198754; font-weight: 600; }
-    .margin-neu { color: #6c757d; }
-
-    /* ── AFASS ── */
-    .afass-high { color: #198754; font-weight: 700; }
-    .afass-med  { color: #e6a817; font-weight: 600; }
-    .afass-low  { color: #dc3545; font-weight: 700; }
-
-    /* ── 出場訊號標籤 ── */
-    .exit-ok   { background: #d1e7dd; color: #0a3622; border-radius: 6px; padding: 3px 10px; font-size:.85rem; font-weight:700; }
-    .exit-warn { background: #fff3cd; color: #664d03; border-radius: 6px; padding: 3px 10px; font-size:.85rem; font-weight:700; }
-    .exit-bad  { background: #f8d7da; color: #58151c; border-radius: 6px; padding: 3px 10px; font-size:.85rem; font-weight:700; }
-
-    /* ── 洗盤 ── */
-    .washout-yes { background: #d1e7dd; color: #0a3622; border-radius: 5px; padding:2px 8px; font-size:.85rem; font-weight:700; }
-    .washout-no  { background: #e9ecef; color: #6c757d; border-radius: 5px; padding:2px 8px; font-size:.85rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高息雙引擎 UnifiedAlpha v2 選股報告</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            font-family: 'IBM Plex Sans', "Microsoft JhengHei", sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            padding-bottom: 60px;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+        }
+        .navbar-brand {
+            font-weight: 600;
+            color: #0d6efd !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .card-header {
+            background-color: transparent;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-weight: 600;
+            padding: 15px 20px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Table Enhancements */
+        .table thead th {
+            background-color: #f1f5f9;
+            border-bottom: 2px solid #e2e8f0;
+            color: #475569;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            vertical-align: middle;
+            text-align: center !important;
+        }
+        .table tbody td {
+            text-align: center !important;
+            vertical-align: middle;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f8fafc;
+        }
+        
+        /* Custom Colors */
+        .text-primary { color: #0d6efd !important; }
+        .bg-primary-soft { background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; }
+        
+        /* MOPS 綜合頁連結按鈕 */
+        .mops-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 3px 9px;
+            border-radius: 6px;
+            text-decoration: none;
+            white-space: nowrap;
+            color: #5b21b6;
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            border: 1px solid #c4b5fd;
+        }
+        .mops-btn:hover {
+            background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
+            color: #4c1d95;
+        }
+        
+        /* Utility */
+        .icon-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
-<body>
 
-<div class="page-header">
-  <h1>🌊 高息雙引擎 UnifiedAlpha v1</h1>
-  <p class="subtitle">高殖利率 × 海鯨籌碼 雙核心篩選策略</p>
-  <p class="meta">掃描日期：2026-03-27 &nbsp;|&nbsp; 符合條件：16 檔</p>
-</div>
+    <body>
+        
+<nav class="navbar navbar-expand-lg navbar-light fixed-top mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="bi bi-graph-up-arrow"></i>
+            <div>
+                <div>Stock FinMind</div>
+                <div style="font-size: 0.75rem; font-weight: 400; color: #6c757d;">Report Viewer</div>
+            </div>
+        </a>
+        <div class="d-flex align-items-center gap-3">
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-03-27</span>
+            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
+        </div>
+    </div>
+</nav>
+<div style="height: 80px;"></div> <!-- Spacer for fixed navbar -->
 
-<!-- 摘要卡 -->
-<div class="summary-row">
-  <div class="summary-card">
-    <div class="sc-label">入選個股</div>
-    <div class="sc-value">16</div>
-    <div class="sc-sub">通過雙核心篩選</div>
-  </div>
-  <div class="summary-card">
-    <div class="sc-label">平均殖利率</div>
-    <div class="sc-value">5.75%</div>
-    <div class="sc-sub">動態 TTM 殖利率</div>
-  </div>
-  <div class="summary-card">
-    <div class="sc-label">平均大戶持股</div>
-    <div class="sc-value">52.42%</div>
-    <div class="sc-sub">轉讓持股比例</div>
-  </div>
-  <div class="summary-card">
-    <div class="sc-label">240MA 乖離</div>
-    <div class="sc-value">3.69%</div>
-    <div class="sc-sub">平均值（越接近0越佳）</div>
-  </div>
-  <div class="summary-card">
-    <div class="sc-label">AFASS 平均</div>
-    <div class="sc-value">70</div>
-    <div class="sc-sub">財務健康評分</div>
-  </div>
-</div>
+        
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="display-6 text-dark mb-0">高息雙引擎 UnifiedAlpha v2 選股報告</h2>
+                
+        <div class="float-end">
+            <a href="UnifiedAlpha_v2_20260327_1440.csv" class="btn btn-outline-success btn-sm"><i class="bi bi-file-earmark-spreadsheet"></i> 下載 Excel (CSV)</a>
+        </div>
+        
+            </div>
+            
+        <div class="alert alert-danger" role="alert" style="margin-bottom: 20px; font-weight: bold; border-left: 5px solid #dc3545;">
+            
+> [!IMPORTANT]
+> **高息雙引擎 UnifiedAlpha v2 | SKILL 對齊版 (CAGR 13.42%)**
+>
+> 掃描時間: 20260327_1440 | 入選: 12 檔
+>
+> | 條件 | 說明 |
+> |--|--|
+> | 大戶口徑 | 400 張以上 (4 個級距) |
+> | 大戶趨勢 | 連增 2 週，總增幅 ≥ 0.5% |
+> | TTM 殖利率 | ≥ 4.5% (近 18 個月現金股利 / 現價) |
+> | MA20 絞肉機否決 | 乖離率在 -2.05%~5.88% → 排除 |
+> | 排序 | 殖利率優先，其次大戶增幅 |
 
-<!-- 說明卡 -->
-<div class="legend">
-  <div class="legend-card whale">
-    <div class="lc-title">🐋 籌碼指標</div>
-    大戶持股(%)：轉讓持股比率<br>
-    大戶4週增減：近4週累積增減幅(pp)<br>
-    W1/W2/W3：各週增減量
-  </div>
-  <div class="legend-card yield">
-    <div class="lc-title">💰 殖利率指標</div>
-    動態殖利率：以最近12個月配息估算<br>
-    目標 &gt;4.5% | 乖離率 -15%~+15%<br>
-    平均填息天數越短代表支撐越強
-  </div>
-  <div class="legend-card risk">
-    <div class="lc-title">⚠️ 風險指標</div>
-    融資5日：融資餘額5日變化率<br>
-    洗盤訊號：股價跌但籌碼增加<br>
-    出場訊號：OK=持有 | 需止損=留意
-  </div>
-  <div class="legend-card afass">
-    <div class="lc-title">📊 AFASS分數</div>
-    財務健康綜合評分（0~100）<br>
-    &ge;60 優 &nbsp;|&nbsp; 40~59 中 &nbsp;|&nbsp; &lt;40 偏低
-  </div>
-</div>
-
-<!-- 主表格 -->
-<div class="main-content">
-  <table id="mainTable" class="table table-hover table-bordered" style="width:100%">
-    <thead class="table-dark">
-      <tr>
-        <th>排行</th>
-        <th>代號</th>
-        <th>名稱</th>
-        <th>產業</th>
-        <th>目前股價</th>
-        <th>平均成交量<br>(5日/張)</th>
-        <th>240MA<br>乖離(%)</th>
-        <th>動態<br>殖利率(%)</th>
-        <th>平均<br>填息天</th>
-        <th>配息<br>年數</th>
-        <th>獲利<br>年數</th>
-        <th>大戶<br>持股(%)</th>
-        <th>4週<br>增減(pp)</th>
-        <th>W1</th>
-        <th>W2</th>
-        <th>W3</th>
-        <th>融資<br>5日(%)</th>
-        <th>股價<br>5日(%)</th>
-        <th>洗盤</th>
-        <th>AFASS</th>
-        <th>出場訊號</th>
-      </tr>
-    </thead>
-    <tbody>
+        </div>
+        
+            
+            <div class="card p-3">
+                <div class="table-responsive">
+                    <table class="dataframe table table-striped table-hover text-center align-middle">
+  <thead>
+    <tr style="text-align: right;">
+      <th>排行</th>
+      <th>代號</th>
+      <th>大戶佔比(%)</th>
+      <th>大戶增幅(2週%)</th>
+      <th>逐週正增</th>
+      <th>股價</th>
+      <th>成交量</th>
+      <th>TTM殖利率(%)</th>
+      <th>MA20乖離(%)</th>
+      <th>名稱</th>
+      <th>產業</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
-      <td><span class="rank-badge rank-1">1</span></td>
-      <td><span class="stock-code">6651</span></td>
-      <td><span class="stock-name">全宇昕</span></td>
-      <td><span class="industry-tag">半導體</span></td>
-      <td><span class="price-cell">90.9</span></td>
-      <td><span class="vol-low">113張</span></td>
-      <td><span class="bias-pos">+12.81%</span></td>
-      <td><span class="yield-high">7.70%</span></td>
-      <td>81.5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>33.24</td>
-      <td><span class="whale-acc">▲15.38pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+3.35</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.87</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+6.46</span></td>
-      <td><span class="margin-neu">+3.23%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-1.62%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">83</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>1</td>
+      <td>2603</td>
+      <td>68.35</td>
+      <td>1.65</td>
+      <td>✅</td>
+      <td>203.00</td>
+      <td>6050張</td>
+      <td>16.01</td>
+      <td>-3.30</td>
+      <td>長榮</td>
+      <td>航運業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-2">2</span></td>
-      <td><span class="stock-code">1476</span></td>
-      <td><span class="stock-name">儒鴻</span></td>
-      <td><span class="industry-tag">傳統產業</span></td>
-      <td><span class="price-cell">344.0</span></td>
-      <td><span class="vol-med">1,309張</span></td>
-      <td><span class="bias-neg">-14.82%</span></td>
-      <td><span class="yield-med">4.94%</span></td>
-      <td>76.7</td>
-      <td>5</td>
-      <td>5</td>
-      <td>79.17</td>
-      <td><span class="whale-acc">▲3.03pp</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.48</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.55</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+3.60</span></td>
-      <td><span class="margin-up">+21.24%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-7.65%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">98</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>2</td>
+      <td>3056</td>
+      <td>30.44</td>
+      <td>0.75</td>
+      <td>✅</td>
+      <td>14.80</td>
+      <td>1156張</td>
+      <td>13.51</td>
+      <td>-5.31</td>
+      <td>富華新</td>
+      <td>建材營造</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-3">3</span></td>
-      <td><span class="stock-code">8081</span></td>
-      <td><span class="stock-name">致新</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">233.0</span></td>
-      <td><span class="vol-low">364張</span></td>
-      <td><span class="bias-pos">+5.97%</span></td>
-      <td><span class="yield-high">6.87%</span></td>
-      <td>29.0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>23.45</td>
-      <td><span class="whale-acc">▲2.86pp</span></td>
-      <td><span style="color:#6c757d">0.00</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.04</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+2.90</span></td>
-      <td><span class="margin-dn">-18.31%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-2.10%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">83</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>3</td>
+      <td>2458</td>
+      <td>60.98</td>
+      <td>0.57</td>
+      <td>⚡</td>
+      <td>126.50</td>
+      <td>9951張</td>
+      <td>8.28</td>
+      <td>-5.19</td>
+      <td>義隆</td>
+      <td>電子工業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">4</span></td>
-      <td><span class="stock-code">3042</span></td>
-      <td><span class="stock-name">晶技</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">90.1</span></td>
-      <td><span class="vol-med">1,213張</span></td>
-      <td><span class="bias-neu">+3.82%</span></td>
-      <td><span class="yield-high">5.77%</span></td>
-      <td>57.3</td>
-      <td>5</td>
-      <td>5</td>
-      <td>51.94</td>
-      <td><span class="whale-acc">▲2.41pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.29</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.49</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+1.94</span></td>
-      <td><span class="margin-neu">+1.67%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-3.53%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">76</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>4</td>
+      <td>2393</td>
+      <td>66.14</td>
+      <td>1.62</td>
+      <td>✅</td>
+      <td>69.60</td>
+      <td>4402張</td>
+      <td>7.63</td>
+      <td>9.61</td>
+      <td>億光</td>
+      <td>光電業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">5</span></td>
-      <td><span class="stock-code">2393</span></td>
-      <td><span class="stock-name">億光</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">69.6</span></td>
-      <td><span class="vol-med">5,803張</span></td>
-      <td><span class="bias-pos">+9.47%</span></td>
-      <td><span class="yield-high">7.63%</span></td>
-      <td>112.5</td>
       <td>5</td>
-      <td>5</td>
-      <td>58.90</td>
-      <td><span class="whale-acc">▲2.35pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.69</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+1.33</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.66</span></td>
-      <td><span class="margin-dn">-12.23%</span></td>
-      <td><span style="font-weight:600;color:#198754">+1.46%</span></td>
-      <td><span class="washout-yes">洗盤</span></td>
-      <td><span class="afass-high">72</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>8011</td>
+      <td>32.05</td>
+      <td>0.52</td>
+      <td>✅</td>
+      <td>20.00</td>
+      <td>2306張</td>
+      <td>7.00</td>
+      <td>-2.25</td>
+      <td>台通</td>
+      <td>電子工業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">6</span></td>
-      <td><span class="stock-code">2488</span></td>
-      <td><span class="stock-name">漢平</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">48.1</span></td>
-      <td><span class="vol-low">117張</span></td>
-      <td><span class="bias-pos">+6.93%</span></td>
-      <td><span class="yield-high">6.65%</span></td>
-      <td>39.0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>42.46</td>
-      <td><span class="whale-acc">▲1.87pp</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.08</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.09</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.53</span></td>
-      <td><span class="margin-neu">-0.16%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-0.52%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">74</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>6</td>
+      <td>1582</td>
+      <td>33.26</td>
+      <td>0.76</td>
+      <td>⚡</td>
+      <td>93.00</td>
+      <td>8601張</td>
+      <td>5.91</td>
+      <td>8.13</td>
+      <td>信錦</td>
+      <td>電子零組件業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">7</span></td>
-      <td><span class="stock-code">6546</span></td>
-      <td><span class="stock-name">正基</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">72.6</span></td>
-      <td><span class="vol-low">968張</span></td>
-      <td><span class="bias-neu">-3.93%</span></td>
-      <td><span class="yield-med">4.82%</span></td>
-      <td>90.3</td>
-      <td>5</td>
-      <td>5</td>
-      <td>33.95</td>
-      <td><span class="whale-acc">▲1.85pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.88</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-1.73</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+2.85</span></td>
-      <td><span class="margin-dn">-13.01%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-7.16%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">69</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>7</td>
+      <td>4938</td>
+      <td>77.13</td>
+      <td>0.50</td>
+      <td>⚡</td>
+      <td>80.70</td>
+      <td>25011張</td>
+      <td>5.58</td>
+      <td>8.63</td>
+      <td>和碩</td>
+      <td>電腦及週邊設備業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">8</span></td>
-      <td><span class="stock-code">2382</span></td>
-      <td><span class="stock-name">廣達</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">287.0</span></td>
-      <td><span class="vol-high">1.2萬張</span></td>
-      <td><span class="bias-pos">+5.67%</span></td>
-      <td><span class="yield-med">4.53%</span></td>
-      <td>28.7</td>
-      <td>5</td>
-      <td>5</td>
-      <td>79.82</td>
-      <td><span class="whale-acc">▲1.74pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.22</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.04</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.97</span></td>
-      <td><span class="margin-dn">-13.13%</span></td>
-      <td><span style="font-weight:600;color:#198754">+0.17%</span></td>
-      <td><span class="washout-yes">洗盤</span></td>
-      <td><span class="afass-med">52</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>8</td>
+      <td>3005</td>
+      <td>80.11</td>
+      <td>2.25</td>
+      <td>✅</td>
+      <td>109.50</td>
+      <td>9321張</td>
+      <td>5.47</td>
+      <td>-13.52</td>
+      <td>神基</td>
+      <td>電腦及週邊設備業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">9</span></td>
-      <td><span class="stock-code">3413</span></td>
-      <td><span class="stock-name">京鼎</span></td>
-      <td><span class="industry-tag">半導體</span></td>
-      <td><span class="price-cell">311.5</span></td>
-      <td><span class="vol-med">2,150張</span></td>
-      <td><span class="bias-pos">+6.34%</span></td>
-      <td><span class="yield-med">4.63%</span></td>
-      <td>58.0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>32.86</td>
-      <td><span class="whale-acc">▲1.54pp</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.04</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.04</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.56</span></td>
-      <td><span class="margin-up">+7.10%</span></td>
-      <td><span style="font-weight:600;color:#198754">+2.13%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">75</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>9</td>
+      <td>3209</td>
+      <td>43.03</td>
+      <td>3.86</td>
+      <td>✅</td>
+      <td>43.85</td>
+      <td>2318張</td>
+      <td>5.21</td>
+      <td>11.68</td>
+      <td>全科</td>
+      <td>電子通路業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">10</span></td>
-      <td><span class="stock-code">4545</span></td>
-      <td><span class="stock-name">銘鈺</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">31.3</span></td>
-      <td><span class="vol-low">169張</span></td>
-      <td><span class="bias-neg">-6.36%</span></td>
-      <td><span class="yield-med">5.27%</span></td>
-      <td>77.3</td>
-      <td>5</td>
-      <td>5</td>
-      <td>69.54</td>
-      <td><span class="whale-acc">▲1.37pp</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.03</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-1.33</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+1.40</span></td>
-      <td><span class="margin-neu">-2.41%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-3.40%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-low">21</span></td>
-      <td><span class="exit-warn">⚠ [FUND] AFASS 22 < 50</span></td>
+      <td>10</td>
+      <td>2347</td>
+      <td>87.57</td>
+      <td>0.75</td>
+      <td>✅</td>
+      <td>81.10</td>
+      <td>9991張</td>
+      <td>4.93</td>
+      <td>10.00</td>
+      <td>聯強</td>
+      <td>電子通路業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">11</span></td>
-      <td><span class="stock-code">4207</span></td>
-      <td><span class="stock-name">環泰</span></td>
-      <td><span class="industry-tag">食品餐飲</span></td>
-      <td><span class="price-cell">19.6</span></td>
-      <td><span class="vol-low">620張</span></td>
-      <td><span class="bias-pos">+10.70%</span></td>
-      <td><span class="yield-med">5.10%</span></td>
-      <td>50.7</td>
-      <td>5</td>
-      <td>5</td>
-      <td>63.31</td>
-      <td><span class="whale-acc">▲1.30pp</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.07</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.30</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+1.20</span></td>
-      <td><span class="margin-neu">+1.69%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-1.01%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">90</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>11</td>
+      <td>6147</td>
+      <td>66.00</td>
+      <td>4.81</td>
+      <td>✅</td>
+      <td>77.80</td>
+      <td>54515張</td>
+      <td>4.82</td>
+      <td>28.43</td>
+      <td>頎邦</td>
+      <td>半導體業</td>
     </tr>
     <tr>
-      <td><span class="rank-badge rank-n">12</span></td>
-      <td><span class="stock-code">2903</span></td>
-      <td><span class="stock-name">遠百</span></td>
-      <td><span class="industry-tag">零售百貨</span></td>
-      <td><span class="price-cell">22.9</span></td>
-      <td><span class="vol-med">1,629張</span></td>
-      <td><span class="bias-neu">+3.99%</span></td>
-      <td><span class="yield-high">5.88%</span></td>
-      <td>63.5</td>
-      <td>5</td>
-      <td>5</td>
-      <td>75.64</td>
-      <td><span class="whale-acc">▲1.24pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.40</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.25</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.17</span></td>
-      <td><span class="margin-neu">-2.12%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-1.29%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">61</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
+      <td>12</td>
+      <td>1708</td>
+      <td>50.60</td>
+      <td>4.93</td>
+      <td>✅</td>
+      <td>42.70</td>
+      <td>8368張</td>
+      <td>4.68</td>
+      <td>7.05</td>
+      <td>東鹼</td>
+      <td>化學生技醫療</td>
     </tr>
-    <tr>
-      <td><span class="rank-badge rank-n">13</span></td>
-      <td><span class="stock-code">6192</span></td>
-      <td><span class="stock-name">巨路</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">119.5</span></td>
-      <td><span class="vol-low">134張</span></td>
-      <td><span class="bias-pos">+13.61%</span></td>
-      <td><span class="yield-med">4.60%</span></td>
-      <td>14.3</td>
-      <td>5</td>
-      <td>5</td>
-      <td>43.74</td>
-      <td><span class="whale-acc">▲1.22pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.05</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.03</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+1.17</span></td>
-      <td><span class="margin-neu">-0.78%</span></td>
-      <td><span style="font-weight:600;color:#198754">+0.42%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">80</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
-    </tr>
-    <tr>
-      <td><span class="rank-badge rank-n">14</span></td>
-      <td><span class="stock-code">2357</span></td>
-      <td><span class="stock-name">華碩</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">574.0</span></td>
-      <td><span class="vol-med">4,217張</span></td>
-      <td><span class="bias-neu">-4.74%</span></td>
-      <td><span class="yield-high">5.92%</span></td>
-      <td>34.0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>62.58</td>
-      <td><span class="whale-acc">▲1.19pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.32</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.12</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.39</span></td>
-      <td><span class="margin-dn">-11.11%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-0.69%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">61</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
-    </tr>
-    <tr>
-      <td><span class="rank-badge rank-n">15</span></td>
-      <td><span class="stock-code">6438</span></td>
-      <td><span class="stock-name">迅得</span></td>
-      <td><span class="industry-tag">電子</span></td>
-      <td><span class="price-cell">172.5</span></td>
-      <td><span class="vol-med">9,979張</span></td>
-      <td><span class="bias-pos">+10.92%</span></td>
-      <td><span class="yield-med">4.51%</span></td>
-      <td>4.0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>24.65</td>
-      <td><span class="whale-acc">▲1.12pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+1.32</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.05</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.01</span></td>
-      <td><span class="margin-neu">+3.49%</span></td>
-      <td><span style="font-weight:600;color:#198754">+9.52%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-low">33</span></td>
-      <td><span class="exit-warn">⚠ [FUND] AFASS 33 < 50</span></td>
-    </tr>
-    <tr>
-      <td><span class="rank-badge rank-n">16</span></td>
-      <td><span class="stock-code">6670</span></td>
-      <td><span class="stock-name">復盛應用</span></td>
-      <td><span class="industry-tag">零售百貨</span></td>
-      <td><span class="price-cell">271.0</span></td>
-      <td><span class="vol-low">366張</span></td>
-      <td><span class="bias-neu">-1.33%</span></td>
-      <td><span class="yield-high">7.25%</span></td>
-      <td>102.0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>63.44</td>
-      <td><span class="whale-acc">▲1.03pp</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.65</span></td>
-      <td><span style="color:#0d6efd;font-weight:600">+0.02</span></td>
-      <td><span style="color:#dc3545;font-weight:600">-0.01</span></td>
-      <td><span class="margin-neu">+1.44%</span></td>
-      <td><span style="font-weight:600;color:#dc3545">-0.18%</span></td>
-      <td><span class="washout-no">—</span></td>
-      <td><span class="afass-high">88</span></td>
-      <td><span class="exit-ok">✓ 持有</span></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
+  </tbody>
+</table>
+                </div>
+            </div>
+        </div>
+        
+        
+<footer class="footer">
+    <div class="container">
+        <p class="mb-0">© 2026 FinMind Antigravity. Generated by Automated Analysis System.</p>
+    </div>
+</footer>
+<!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('#mainTable').DataTable({
-      pageLength: 50,
-      language: {
-        lengthMenu: '每頁顯示 _MENU_ 筆',
-        search: '搜尋：',
-        info: '第 _START_ ~ _END_ 筆，共 _TOTAL_ 筆',
-        paginate: { previous: '上頁', next: '下頁' }
-      },
-      order: [[0, 'asc']],
-      columnDefs: [{ orderable: false, targets: [2] }]
-    });
-  });
-</script>
-</body>
-</html>
+
+
+        <!-- DataTables Script override for Bootstrap 5 style if needed (or standard) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+        
+        <script>
+            $(document).ready(function() {
+                $('.table').DataTable({
+                    "pageLength": 50,
+                    "order": [], 
+                    "language": {
+                        "search": "🔍 搜尋:",
+                        "lengthMenu": "每頁顯示 _MENU_ 筆",
+                        "info": "顯示 _START_ 到 _END_ 筆 (共 _TOTAL_ 筆)",
+                        "paginate": { "first": "首頁", "last": "末頁", "next": "下一頁", "previous": "上一頁" }
+                    }
+                });
+            });
+        </script>
+    </body>
+    </html>
+    

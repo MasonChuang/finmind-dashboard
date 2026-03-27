@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-03-27 08:39",
+  "generated_at": "2026-03-27 15:04",
   "scan_date": "2026-03-27",
-  "buy_count": 11,
+  "buy_count": 4,
   "near_count": 0,
-  "wait_count": 16,
+  "wait_count": 5,
   "total_quality": 27,
-  "opportunity_score": 100,
-  "temperature_label": "🔵 修正機會",
-  "temperature_color": "#0d47a1",
-  "description": "優質公司普遍低估，適合分批布局"
+  "opportunity_score": 50,
+  "temperature_label": "🟡 市場中性",
+  "temperature_color": "#e65100",
+  "description": "估值合理，等待特定個股回落"
 }
