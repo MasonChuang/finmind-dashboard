@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-27 15:05:56",
+  "last_update": "2026-03-27 22:02:03",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -22,14 +22,14 @@
     },
     {
       "name": "TaiwanStockDelisting",
-      "latest_date": "2026-01-22",
-      "record_count": 11,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-03-27",
+      "record_count": 12,
+      "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockDispositionSecuritiesPeriod",
-      "latest_date": "2026-03-25",
-      "record_count": 181,
+      "latest_date": "2026-03-26",
+      "record_count": 185,
       "status": "✅ 正常"
     },
     {
@@ -64,14 +64,14 @@
     },
     {
       "name": "TaiwanStockInstitutionalInvestorsBuySell",
-      "latest_date": "2026-03-26",
-      "record_count": 66852672,
+      "latest_date": "2026-03-27",
+      "record_count": 66942332,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockMarginPurchaseShortSale",
-      "latest_date": "2026-03-26",
-      "record_count": 7982823,
+      "latest_date": "2026-03-27",
+      "record_count": 7984969,
       "status": "✅ 正常"
     },
     {
@@ -82,8 +82,8 @@
     },
     {
       "name": "TaiwanStockPER",
-      "latest_date": "2026-03-26",
-      "record_count": 7562767,
+      "latest_date": "2026-03-27",
+      "record_count": 7564716,
       "status": "✅ 正常"
     },
     {
@@ -100,8 +100,8 @@
     },
     {
       "name": "TaiwanStockSecuritiesLending",
-      "latest_date": "2026-03-26",
-      "record_count": 556723,
+      "latest_date": "2026-03-27",
+      "record_count": 557839,
       "status": "✅ 正常"
     },
     {
@@ -112,14 +112,14 @@
     },
     {
       "name": "TaiwanStockTotalInstitutionalInvestors",
-      "latest_date": "2026-03-26",
-      "record_count": 26440,
+      "latest_date": "2026-03-27",
+      "record_count": 26446,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockTotalMarginPurchaseShortSale",
-      "latest_date": "2026-03-26",
-      "record_count": 18651,
+      "latest_date": "2026-03-27",
+      "record_count": 18654,
       "status": "✅ 正常"
     },
     {
@@ -131,7 +131,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 2087,
+      "record_count": 2104,
       "status": "✅ 正常"
     },
     {

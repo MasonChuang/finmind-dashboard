@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27 15:05:49",
+  "generated_at": "2026-03-27 22:01:57",
   "taiex": [
     {
       "date": "2025-09-19",
@@ -2716,8 +2716,13 @@
   "mainforce": {
     "top_score": [
       {
-        "stock_id": "9933",
-        "stock_name": "中鼎",
+        "stock_id": "3702",
+        "stock_name": "大聯大",
+        "score": 100.0
+      },
+      {
+        "stock_id": "2618",
+        "stock_name": "長榮航",
         "score": 100.0
       },
       {
@@ -2726,8 +2731,8 @@
         "score": 100.0
       },
       {
-        "stock_id": "2412",
-        "stock_name": "中華電",
+        "stock_id": "3045",
+        "stock_name": "台灣大",
         "score": 100.0
       },
       {
@@ -2736,85 +2741,80 @@
         "score": 100.0
       },
       {
+        "stock_id": "4904",
+        "stock_name": "遠傳",
+        "score": 100.0
+      },
+      {
         "stock_id": "2851",
         "stock_name": "中再保",
         "score": 100.0
       },
       {
-        "stock_id": "3702",
-        "stock_name": "大聯大",
-        "score": 98.0
+        "stock_id": "2501",
+        "stock_name": "國建",
+        "score": 100.0
       },
       {
-        "stock_id": "2618",
-        "stock_name": "長榮航",
-        "score": 98.0
+        "stock_id": "2356",
+        "stock_name": "英業達",
+        "score": 92.0
       },
       {
-        "stock_id": "2347",
-        "stock_name": "聯強",
-        "score": 98.0
-      },
-      {
-        "stock_id": "3045",
-        "stock_name": "台灣大",
-        "score": 98.0
-      },
-      {
-        "stock_id": "4904",
-        "stock_name": "遠傳",
-        "score": 98.0
+        "stock_id": "2006",
+        "stock_name": "東和鋼鐵",
+        "score": 92.0
       }
     ],
     "new_signals": [
       {
-        "stock_id": "2855",
-        "stock_name": "統一證",
+        "stock_id": "2399",
+        "stock_name": "映泰",
         "score": 84.0
       },
       {
-        "stock_id": "2313",
-        "stock_name": "華通",
-        "score": 84.0
+        "stock_id": "2495",
+        "stock_name": "普安",
+        "score": 69.0
       },
       {
-        "stock_id": "8064",
-        "stock_name": "東捷",
-        "score": 84.0
+        "stock_id": "4919",
+        "stock_name": "新唐",
+        "score": 69.0
       },
       {
-        "stock_id": "3715",
-        "stock_name": "定穎投控",
-        "score": 84.0
+        "stock_id": "4973",
+        "stock_name": "廣穎",
+        "score": 69.0
       },
       {
-        "stock_id": "6213",
-        "stock_name": "聯茂",
-        "score": 84.0
+        "stock_id": "1309",
+        "stock_name": "台達化",
+        "score": 69.0
       },
       {
-        "stock_id": "3532",
-        "stock_name": "台勝科",
-        "score": 84.0
+        "stock_id": "3645",
+        "stock_name": "達邁",
+        "score": 69.0
       },
       {
-        "stock_id": "3034",
-        "stock_name": "聯詠",
-        "score": 84.0
+        "stock_id": "6451",
+        "stock_name": "訊芯-KY",
+        "score": 69.0
       },
       {
-        "stock_id": "5483",
-        "stock_name": "中美晶",
-        "score": 84.0
+        "stock_id": "2458",
+        "stock_name": "義隆",
+        "score": 69.0
       },
       {
-        "stock_id": "6147",
-        "stock_name": "頎邦",
-        "score": 74.0
+        "stock_id": "3221",
+        "stock_name": "台嘉碩",
+        "score": 69.0
       },
       {
-        "stock_id": "3313",
-        "stock_name": "斐成",
+        "stock_id": "6187",
+        "stock_name": "萬潤",
         "score": 69.0
       }
     ]
