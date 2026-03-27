@@ -1,159 +1,74 @@
-
-    <!DOCTYPE html>
-    <html lang="zh-TW">
-    
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高殖利率慢牛策略 PlusSign Fast</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    
-    <style>
-        body {
-            font-family: 'IBM Plex Sans', "Microsoft JhengHei", sans-serif;
-            background-color: #f8f9fa;
-            color: #212529;
-            padding-bottom: 60px;
-        }
-        .navbar {
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            background-color: #ffffff;
-        }
-        .navbar-brand {
-            font-weight: 600;
-            color: #0d6efd !important;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .card {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-bottom: 20px;
-            background-color: #ffffff;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .card-header {
-            background-color: transparent;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            font-weight: 600;
-            padding: 15px 20px;
-        }
-        .footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        /* Table Enhancements */
-        .table thead th {
-            background-color: #f1f5f9;
-            border-bottom: 2px solid #e2e8f0;
-            color: #475569;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            vertical-align: middle;
-            text-align: center !important;
-        }
-        .table tbody td {
-            text-align: center !important;
-            vertical-align: middle;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #f8fafc;
-        }
-        
-        /* Custom Colors */
-        .text-primary { color: #0d6efd !important; }
-        .bg-primary-soft { background-color: rgba(13, 110, 253, 0.1); color: #0d6efd; }
-        
-        /* MOPS 綜合頁連結按鈕 */
-        .mops-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.78rem;
-            font-weight: 500;
-            padding: 3px 9px;
-            border-radius: 6px;
-            text-decoration: none;
-            white-space: nowrap;
-            color: #5b21b6;
-            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
-            border: 1px solid #c4b5fd;
-        }
-        .mops-btn:hover {
-            background: linear-gradient(135deg, #ddd6fe, #c4b5fd);
-            color: #4c1d95;
-        }
-        
-        /* Utility */
-        .icon-circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>高殖利率慢牛策略 PlusSign</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <style>
+    body { background: #f4f7fa; color: #333; font-family: 'IBM Plex Sans', "Microsoft JhengHei", sans-serif; }
+    .page-header { background: linear-gradient(135deg, #1f4037 0%, #99f2c8 100%); color: #fff; padding: 36px 48px; border-radius: 0 0 16px 16px; margin-bottom: 24px; box-shadow: inset 0 -3px 6px rgba(0,0,0,0.1); }
+    .page-header h1 { font-size: 2.2rem; font-weight: 800; color: #fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+    .page-header p { opacity: 0.95; margin: 0; color: #f8f9fa; font-weight: 500; text-shadow: 0px 1px 2px rgba(0,0,0,0.4); letter-spacing: 0.5px; }
+    .page-header a.btn { background-color: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); color: #fff; font-weight: 500; }
+    .page-header a.btn:hover { background-color: rgba(255,255,255,0.3); }
+    .summary-row { display: flex; gap: 16px; margin: 0 48px 24px 48px; flex-wrap: wrap; }
+    .summary-card { background: #fff; border-radius: 12px; padding: 18px 24px; box-shadow: 0 2px 8px rgba(0,0,0,.05); flex: 1; min-width: 200px; border-top: 4px solid #1f4037; }
+    .summary-card .sc-label { font-size: 0.85rem; color: #6c757d; font-weight: bold; }
+    .summary-card .sc-value { font-size: 1.8rem; font-weight: 800; color: #1f4037; }
+    .legend { display: flex; gap: 12px; margin: 0 48px 24px 48px; flex-wrap: wrap; }
+    .legend-card { background: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 12px 18px; font-size: 0.9rem; flex: 1; min-width: 280px; box-shadow: 0 1px 4px rgba(0,0,0,0.03); }
+    .legend-card strong { color: #dc3545; }
+    .main-content { padding: 0 48px 48px 48px; }
+    .table { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.05); vertical-align: middle; text-align: center; }
+    .table td, .table th { white-space: nowrap; }
+  </style>
 </head>
+<body>
+<div class="page-header">
+  <div class="d-flex justify-content-between align-items-center">
+      <div>
+          <h1>📈 高殖利率慢牛策略 PlusSign (2026-V2)</h1>
+          <p>全向量化極速運算 × 正乖離強勢突破</p>
+          <p style="font-size: 0.85rem; margin-top: 8px; font-weight: normal;">掃描時間：2026-03-27 23:14:46 | 篩選條件：高殖利率、連年獲利、年線之上</p>
+      </div>
+      <div>
+          <a href="高殖利率策略_PlusSign_Fast_Latest.csv" class="btn btn-outline-light" download>下載 CSV 資料表</a>
+          <a href="portfolio.html" class="btn btn-outline-light ms-2">返回持股健檢</a>
+      </div>
+  </div>
+</div>
 
-    <body>
-        
-<nav class="navbar navbar-expand-lg navbar-light fixed-top mb-4">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="bi bi-graph-up-arrow"></i>
-            <div>
-                <div>Stock FinMind</div>
-                <div style="font-size: 0.75rem; font-weight: 400; color: #6c757d;">Report Viewer</div>
-            </div>
-        </a>
-        <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-03-27</span>
-            <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
-        </div>
-    </div>
-</nav>
-<div style="height: 80px;"></div> <!-- Spacer for fixed navbar -->
+<div class="summary-row">
+  <div class="summary-card"><div class="sc-label">右側強勢標的數</div><div class="sc-value text-primary">126 檔</div></div>
+  <div class="summary-card"><div class="sc-label">平均 5年殖利率</div><div class="sc-value text-danger">4.72%</div></div>
+  <div class="summary-card"><div class="sc-label">平均填息天數</div><div class="sc-value text-success">84.8 天</div></div>
+  <div class="summary-card"><div class="sc-label">最高「精選」級別</div><div class="sc-value">0 檔</div></div>
+</div>
 
-        
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="display-6 text-dark mb-0">高殖利率慢牛策略 PlusSign Fast</h2>
-                
-        <div class="float-end">
-            <a href="高殖利率策略_PlusSign_Fast_Latest.csv" class="btn btn-outline-success btn-sm"><i class="bi bi-file-earmark-spreadsheet"></i> 下載 Excel (CSV)</a>
-        </div>
-        
-            </div>
-            
-        <div class="alert alert-danger" role="alert" style="margin-bottom: 20px; font-weight: bold; border-left: 5px solid #dc3545;">
-            💡 <b>提示：</b> 本報告預設以<span style='color: #dc3545;'>優先以「評級」（精選 > 優選 > 入選）排序，然後才用「乖離率」排序</span>。<br>
-        </div>
-        
-            
-            <div class="card p-3">
-                <div class="table-responsive">
-                    <table class="dataframe table table-striped table-hover text-center align-middle">
-  <thead>
+<div class="legend">
+  <div class="legend-card text-dark">
+    📈 <strong>PlusSign 右側強勢進場 (正乖離)</strong><br>
+    鎖定 240MA 乖離率介於 <strong>0.0% ~ 20.0%</strong> 的標的。<br>
+    掌握股價已站上年線，形成右側動能的強勢多頭排列陣型。
+  </div>
+  <div class="legend-card text-dark">
+    🏆 <strong>三大維度評級系統</strong><br>
+    <strong>精選</strong>: 殖利率≥4.5% + 百日填息 + 連續7年獲利。<br>
+    <strong>優選</strong>: 至少滿足上述 2 項條件。<br>
+    <strong>入選</strong>: 基本面達標之潛力股。
+  </div>
+  <div class="legend-card text-dark">
+    ⚠️ <strong>特別排序機制</strong><br>
+    本分析表強制貫徹 <strong>先看評級、後看乖離率</strong> 的守則。<br>
+    確保投資人優先挑選安全基本面最佳 (精選) 之列，杜絕追高暴雷。
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="table-responsive">
+    <table class="dataframe table table-hover table-bordered">
+  <thead class="table-dark text-center">
     <tr style="text-align: right;">
       <th>排行</th>
       <th>📊 圖表</th>
@@ -3968,39 +3883,11 @@
     </tr>
   </tbody>
 </table>
-                </div>
-            </div>
-        </div>
-        
-        
-<footer class="footer">
-    <div class="container">
-        <p class="mb-0">© 2026 FinMind Antigravity. Generated by Automated Analysis System.</p>
-    </div>
-</footer>
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-
-        <!-- DataTables Script override for Bootstrap 5 style if needed (or standard) -->
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-        
-        <script>
-            $(document).ready(function() {
-                $('.table').DataTable({
-                    "pageLength": 50,
-                    "order": [], 
-                    "language": {
-                        "search": "🔍 搜尋:",
-                        "lengthMenu": "每頁顯示 _MENU_ 筆",
-                        "info": "顯示 _START_ 到 _END_ 筆 (共 _TOTAL_ 筆)",
-                        "paginate": { "first": "首頁", "last": "末頁", "next": "下一頁", "previous": "上一頁" }
-                    }
-                });
-            });
-        </script>
-    </body>
-    </html>
-    
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script>$(document).ready(function() { $('.table').DataTable({"pageLength":50, "scrollX": true}); });</script>
+</body>
+</html>
