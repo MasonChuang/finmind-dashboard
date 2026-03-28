@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-03-27 23:19:29",
+  "last_update": "2026-03-28 11:46:20",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -52,8 +52,8 @@
     },
     {
       "name": "TaiwanStockHoldingSharesPer",
-      "latest_date": "2026-03-20",
-      "record_count": 21890676,
+      "latest_date": "2026-03-27",
+      "record_count": 21957724,
       "status": "✅ 正常"
     },
     {
@@ -106,8 +106,8 @@
     },
     {
       "name": "TaiwanStockShareholding",
-      "latest_date": "2026-03-20",
-      "record_count": 17104503,
+      "latest_date": "2026-03-27",
+      "record_count": 17171551,
       "status": "✅ 正常"
     },
     {
@@ -131,7 +131,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 2138,
+      "record_count": 2155,
       "status": "✅ 正常"
     },
     {
