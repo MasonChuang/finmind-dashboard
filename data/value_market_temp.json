@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-30 23:02",
-  "scan_date": "2026-03-30",
+  "generated_at": "2026-03-31 22:16",
+  "scan_date": "2026-03-31",
   "buy_count": 11,
-  "near_count": 0,
-  "wait_count": 16,
+  "near_count": 2,
+  "wait_count": 14,
   "total_quality": 27,
   "opportunity_score": 100,
   "temperature_label": "🔵 修正機會",

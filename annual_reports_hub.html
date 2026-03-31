@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>歷年巨集觀測博物館 | FinMind Antigravity</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a; /* Deep Slate */
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
+            color: #f8fafc;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
+            letter-spacing: 2px;
+        }
+        .header p {
+            font-size: 1.2em;
+            color: #94a3b8;
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(-5px);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        .timeline {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .year-section {
+            margin-bottom: 60px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .year-title {
+            font-size: 2.2em;
+            color: #f1f5f9;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        .year-title span {
+            color: #38bdf8;
+            font-weight: 900;
+            font-size: 1.2em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .report-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 25px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .report-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-8px);
+            background: rgba(30, 41, 59, 0.9);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+        .report-card:hover::before {
+            opacity: 1;
+        }
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+        .card-title {
+            font-size: 1.25em;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .card-subtitle {
+            font-size: 0.95em;
+            color: #94a3b8;
+            margin-top: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .year-section { padding: 25px; }
+            .header h1 { font-size: 2.2em; }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">← 返回戰情首頁</a>
+    
+    <div class="header">
+        <h1>🏛️ 歷年巨集觀測博物館</h1>
+        <p>FinMind Antigravity 全策略歷史回測與大盤氣象封存庫 (Static HTML Archive)</p>
+    </div>
+    
+    <div class="timeline">
+
+        <div class="year-section">
+            <h2 class="year-title"><span>2026</span> 年度戰報</h2>
+            <div class="grid">
+
+                <a href="Annual_Reports/Report_2026_MF_TechRank.html" class="report-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">主力 & 技術動能 (MF TechRank)</div>
+                    <div class="card-subtitle">檢視 2026 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2026_Combined_v2.html" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">主力追蹤波段 (Combined v2)</div>
+                    <div class="card-subtitle">檢視 2026 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2026_BigData_v2.html" class="report-card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">巨鯨狙擊 (Whale Sniper)</div>
+                    <div class="card-subtitle">檢視 2026 全年靜態回測與季報動態</div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="year-section">
+            <h2 class="year-title"><span>2025</span> 年度戰報</h2>
+            <div class="grid">
+
+                <a href="Annual_Reports/Report_2025_MF_TechRank.html" class="report-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">主力 & 技術動能 (MF TechRank)</div>
+                    <div class="card-subtitle">檢視 2025 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2025_Combined_v2.html" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">主力追蹤波段 (Combined v2)</div>
+                    <div class="card-subtitle">檢視 2025 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2025_BigData_v2.html" class="report-card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">巨鯨狙擊 (Whale Sniper)</div>
+                    <div class="card-subtitle">檢視 2025 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2025_TurtleTrading.html" class="report-card">
+                    <div class="card-icon">🐢</div>
+                    <div class="card-title">海龜交易法則 (Turtle Trading)</div>
+                    <div class="card-subtitle">檢視 2025 全年靜態回測與季報動態</div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="year-section">
+            <h2 class="year-title"><span>2024</span> 年度戰報</h2>
+            <div class="grid">
+
+                <a href="Annual_Reports/Report_2024_MF_TechRank.html" class="report-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">主力 & 技術動能 (MF TechRank)</div>
+                    <div class="card-subtitle">檢視 2024 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2024_Combined_v2.html" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">主力追蹤波段 (Combined v2)</div>
+                    <div class="card-subtitle">檢視 2024 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2024_BigData_v2.html" class="report-card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">巨鯨狙擊 (Whale Sniper)</div>
+                    <div class="card-subtitle">檢視 2024 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2024_TurtleTrading.html" class="report-card">
+                    <div class="card-icon">🐢</div>
+                    <div class="card-title">海龜交易法則 (Turtle Trading)</div>
+                    <div class="card-subtitle">檢視 2024 全年靜態回測與季報動態</div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="year-section">
+            <h2 class="year-title"><span>2023</span> 年度戰報</h2>
+            <div class="grid">
+
+                <a href="Annual_Reports/Report_2023_MF_TechRank.html" class="report-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">主力 & 技術動能 (MF TechRank)</div>
+                    <div class="card-subtitle">檢視 2023 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2023_Combined_v2.html" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">主力追蹤波段 (Combined v2)</div>
+                    <div class="card-subtitle">檢視 2023 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2023_BigData_v2.html" class="report-card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">巨鯨狙擊 (Whale Sniper)</div>
+                    <div class="card-subtitle">檢視 2023 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2023_TurtleTrading.html" class="report-card">
+                    <div class="card-icon">🐢</div>
+                    <div class="card-title">海龜交易法則 (Turtle Trading)</div>
+                    <div class="card-subtitle">檢視 2023 全年靜態回測與季報動態</div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="year-section">
+            <h2 class="year-title"><span>2022</span> 年度戰報</h2>
+            <div class="grid">
+
+                <a href="Annual_Reports/Report_2022_MF_TechRank.html" class="report-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">主力 & 技術動能 (MF TechRank)</div>
+                    <div class="card-subtitle">檢視 2022 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2022_Combined_v2.html" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">主力追蹤波段 (Combined v2)</div>
+                    <div class="card-subtitle">檢視 2022 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2022_BigData_v2.html" class="report-card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">巨鯨狙擊 (Whale Sniper)</div>
+                    <div class="card-subtitle">檢視 2022 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2022_TurtleTrading.html" class="report-card">
+                    <div class="card-icon">🐢</div>
+                    <div class="card-title">海龜交易法則 (Turtle Trading)</div>
+                    <div class="card-subtitle">檢視 2022 全年靜態回測與季報動態</div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="year-section">
+            <h2 class="year-title"><span>2021</span> 年度戰報</h2>
+            <div class="grid">
+
+                <a href="Annual_Reports/Report_2021_MF_TechRank.html" class="report-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">主力 & 技術動能 (MF TechRank)</div>
+                    <div class="card-subtitle">檢視 2021 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2021_Combined_v2.html" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">主力追蹤波段 (Combined v2)</div>
+                    <div class="card-subtitle">檢視 2021 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2021_BigData_v2.html" class="report-card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">巨鯨狙擊 (Whale Sniper)</div>
+                    <div class="card-subtitle">檢視 2021 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2021_TurtleTrading.html" class="report-card">
+                    <div class="card-icon">🐢</div>
+                    <div class="card-title">海龜交易法則 (Turtle Trading)</div>
+                    <div class="card-subtitle">檢視 2021 全年靜態回測與季報動態</div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="year-section">
+            <h2 class="year-title"><span>2020</span> 年度戰報</h2>
+            <div class="grid">
+
+                <a href="Annual_Reports/Report_2020_MF_TechRank.html" class="report-card">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-title">主力 & 技術動能 (MF TechRank)</div>
+                    <div class="card-subtitle">檢視 2020 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2020_Combined_v2.html" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <div class="card-title">主力追蹤波段 (Combined v2)</div>
+                    <div class="card-subtitle">檢視 2020 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2020_BigData_v2.html" class="report-card">
+                    <div class="card-icon">🐋</div>
+                    <div class="card-title">巨鯨狙擊 (Whale Sniper)</div>
+                    <div class="card-subtitle">檢視 2020 全年靜態回測與季報動態</div>
+                </a>
+
+                <a href="Annual_Reports/Report_2020_TurtleTrading.html" class="report-card">
+                    <div class="card-icon">🐢</div>
+                    <div class="card-title">海龜交易法則 (Turtle Trading)</div>
+                    <div class="card-subtitle">檢視 2020 全年靜態回測與季報動態</div>
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
