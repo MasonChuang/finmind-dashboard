@@ -1,11 +1,11 @@
 {
-  "last_update": "2026-03-31 22:18:23",
+  "last_update": "2026-04-01 22:23:53",
   "database_file": "finmind_data.db",
   "tables": [
     {
       "name": "StockListingDate",
       "latest_date": "N/A",
-      "record_count": 2188,
+      "record_count": 2193,
       "status": "✅ 正常"
     },
     {
@@ -28,14 +28,14 @@
     },
     {
       "name": "TaiwanStockDispositionSecuritiesPeriod",
-      "latest_date": "2026-03-30",
-      "record_count": 195,
+      "latest_date": "2026-03-31",
+      "record_count": 200,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockDividend",
-      "latest_date": "2026-03-31",
-      "record_count": 29147,
+      "latest_date": "2026-04-01",
+      "record_count": 29164,
       "status": "✅ 正常"
     },
     {
@@ -64,44 +64,44 @@
     },
     {
       "name": "TaiwanStockInstitutionalInvestorsBuySell",
-      "latest_date": "2026-03-31",
-      "record_count": 67123302,
+      "latest_date": "2026-04-01",
+      "record_count": 67212882,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockMarginPurchaseShortSale",
-      "latest_date": "2026-03-31",
-      "record_count": 7989263,
+      "latest_date": "2026-04-01",
+      "record_count": 7991411,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockMonthRevenue",
-      "latest_date": "2026-03-01",
-      "record_count": 437666,
-      "status": "⚠️ 資料過舊"
+      "latest_date": "2026-04-01",
+      "record_count": 437671,
+      "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPER",
-      "latest_date": "2026-03-31",
-      "record_count": 7568618,
+      "latest_date": "2026-04-01",
+      "record_count": 7570567,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPrice",
-      "latest_date": "2026-03-31",
-      "record_count": 61705626,
+      "latest_date": "2026-04-01",
+      "record_count": 61751463,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockPrice_Adj",
-      "latest_date": "2026-03-31",
-      "record_count": 9543265,
+      "latest_date": "2026-04-01",
+      "record_count": 9545582,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockSecuritiesLending",
-      "latest_date": "2026-03-31",
-      "record_count": 560158,
+      "latest_date": "2026-04-01",
+      "record_count": 561132,
       "status": "✅ 正常"
     },
     {
@@ -112,26 +112,26 @@
     },
     {
       "name": "TaiwanStockTotalInstitutionalInvestors",
-      "latest_date": "2026-03-31",
-      "record_count": 26458,
+      "latest_date": "2026-04-01",
+      "record_count": 26464,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanStockTotalMarginPurchaseShortSale",
-      "latest_date": "2026-03-31",
-      "record_count": 18660,
+      "latest_date": "2026-04-01",
+      "record_count": 18663,
       "status": "✅ 正常"
     },
     {
       "name": "TaiwanTotalExchangeMarginMaintenance",
-      "latest_date": "2026-03-30",
-      "record_count": 221,
+      "latest_date": "2026-03-31",
+      "record_count": 222,
       "status": "✅ 正常"
     },
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 2223,
+      "record_count": 2240,
       "status": "✅ 正常"
     },
     {
