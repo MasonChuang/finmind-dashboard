@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-05 22:19:31",
+  "last_update": "2026-04-06 22:19:49",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -34,8 +34,8 @@
     },
     {
       "name": "TaiwanStockDividend",
-      "latest_date": "2026-04-03",
-      "record_count": 29187,
+      "latest_date": "2026-04-06",
+      "record_count": 29191,
       "status": "✅ 正常"
     },
     {
@@ -131,7 +131,7 @@
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 2308,
+      "record_count": 2325,
       "status": "✅ 正常"
     },
     {
