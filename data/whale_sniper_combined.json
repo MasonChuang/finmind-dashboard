@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-04-07 21:49:27",
-  "report_file": "BigData_Scanner_20260407.csv",
+  "last_update": "2026-04-08 21:46:58",
+  "report_file": "BigData_Scanner_20260408.csv",
   "candidates": [
     {
       "rank": 1,
@@ -310,6 +310,15 @@
     },
     {
       "rank": 35,
+      "stock_id": "",
+      "name": "",
+      "industry": "其他",
+      "price": 0.0,
+      "afass_score": 0,
+      "chip_score": 0
+    },
+    {
+      "rank": 36,
       "stock_id": "",
       "name": "",
       "industry": "其他",

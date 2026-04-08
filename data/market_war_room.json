@@ -1,17 +1,6 @@
 {
-  "generated_at": "2026-04-07 21:51:06",
+  "generated_at": "2026-04-08 21:49:01",
   "taiex": [
-    {
-      "date": "2025-09-26",
-      "open": 25998.28,
-      "max": 25998.28,
-      "min": 25469.04,
-      "close": 25580.32,
-      "Trading_Volume": 8334201118,
-      "ma20": 25192.519500000002,
-      "ma60": 24109.160666666667,
-      "ma100": 23217.216099999998
-    },
     {
       "date": "2025-09-30",
       "open": 25738.31,
@@ -1320,82 +1309,82 @@
       "ma20": 33183.455500000004,
       "ma60": 32266.537333333334,
       "ma100": 30442.986699999998
+    },
+    {
+      "date": "2026-04-08",
+      "open": 33379.5,
+      "max": 34761.38,
+      "min": 33379.5,
+      "close": 34761.38,
+      "Trading_Volume": 12873431242,
+      "ma20": 33241.5475,
+      "ma60": 32369.960000000003,
+      "ma100": 30507.7252
     }
   ],
   "sectors": [
     {
       "industry_category": "ETF",
-      "flow": 1758122820164,
-      "diff_val": -141720951798,
-      "diff_pct": -7.46
+      "flow": 2592429798915,
+      "diff_val": 834306978751,
+      "diff_pct": 47.45
     },
     {
       "industry_category": "電子",
-      "flow": 533711188460,
-      "diff_val": -86749713731,
-      "diff_pct": -13.98
+      "flow": 785349496545,
+      "diff_val": 251638308085,
+      "diff_pct": 47.15
     },
     {
       "industry_category": "半導體",
-      "flow": 97333259153,
-      "diff_val": -14646190845,
-      "diff_pct": -13.08
+      "flow": 118162233738,
+      "diff_val": 20828974585,
+      "diff_pct": 21.4
     },
     {
       "industry_category": "傳統產業",
-      "flow": 52559022240,
-      "diff_val": -2021556583,
-      "diff_pct": -3.7
+      "flow": 61882414233,
+      "diff_val": 9323391993,
+      "diff_pct": 17.74
     },
     {
       "industry_category": "金融",
-      "flow": 12395822990,
-      "diff_val": -4717764986,
-      "diff_pct": -27.57
+      "flow": 18512779272,
+      "diff_val": 6116956282,
+      "diff_pct": 49.35
     },
     {
       "industry_category": "生技醫療",
-      "flow": 6169411638,
-      "diff_val": -2457287541,
-      "diff_pct": -28.48
+      "flow": 7572576934,
+      "diff_val": 1403165296,
+      "diff_pct": 22.74
     },
     {
       "industry_category": "航運業",
-      "flow": 3563842810,
-      "diff_val": -1206825421,
-      "diff_pct": -25.3
+      "flow": 7395371320,
+      "diff_val": 3831528510,
+      "diff_pct": 107.51
     },
     {
       "industry_category": "綠能環保",
-      "flow": 3032208895,
-      "diff_val": -319837778,
-      "diff_pct": -9.54
+      "flow": 4602786212,
+      "diff_val": 1570577317,
+      "diff_pct": 51.8
     },
     {
       "industry_category": "其他",
-      "flow": 2701945554,
-      "diff_val": 208563673,
-      "diff_pct": 8.36
+      "flow": 3517427481,
+      "diff_val": 815481927,
+      "diff_pct": 30.18
     },
     {
       "industry_category": "零售百貨",
-      "flow": 2062478697,
-      "diff_val": -513739835,
-      "diff_pct": -19.94
+      "flow": 2332920959,
+      "diff_val": 270442262,
+      "diff_pct": 13.11
     }
   ],
   "breadth": [
-    {
-      "date": "2025-10-01",
-      "total_stocks": 2219,
-      "up": 745,
-      "down": 1239,
-      "flat": 235,
-      "limit_up": 12,
-      "limit_down": 23,
-      "net_up": -494,
-      "adl": -494
-    },
     {
       "date": "2025-10-02",
       "total_stocks": 2226,
@@ -1405,7 +1394,7 @@
       "limit_up": 16,
       "limit_down": 29,
       "net_up": -507,
-      "adl": -1001
+      "adl": -507
     },
     {
       "date": "2025-10-03",
@@ -1416,7 +1405,7 @@
       "limit_up": 20,
       "limit_down": 21,
       "net_up": -364,
-      "adl": -1365
+      "adl": -871
     },
     {
       "date": "2025-10-07",
@@ -1427,7 +1416,7 @@
       "limit_up": 22,
       "limit_down": 18,
       "net_up": 139,
-      "adl": -1226
+      "adl": -732
     },
     {
       "date": "2025-10-08",
@@ -1438,7 +1427,7 @@
       "limit_up": 15,
       "limit_down": 36,
       "net_up": -251,
-      "adl": -1477
+      "adl": -983
     },
     {
       "date": "2025-10-09",
@@ -1449,7 +1438,7 @@
       "limit_up": 22,
       "limit_down": 18,
       "net_up": -279,
-      "adl": -1756
+      "adl": -1262
     },
     {
       "date": "2025-10-13",
@@ -1460,7 +1449,7 @@
       "limit_up": 23,
       "limit_down": 33,
       "net_up": -1049,
-      "adl": -2805
+      "adl": -2311
     },
     {
       "date": "2025-10-14",
@@ -1471,7 +1460,7 @@
       "limit_up": 12,
       "limit_down": 24,
       "net_up": -1040,
-      "adl": -3845
+      "adl": -3351
     },
     {
       "date": "2025-10-15",
@@ -1482,7 +1471,7 @@
       "limit_up": 19,
       "limit_down": 33,
       "net_up": 240,
-      "adl": -3605
+      "adl": -3111
     },
     {
       "date": "2025-10-16",
@@ -1493,7 +1482,7 @@
       "limit_up": 15,
       "limit_down": 15,
       "net_up": 686,
-      "adl": -2919
+      "adl": -2425
     },
     {
       "date": "2025-10-17",
@@ -1504,7 +1493,7 @@
       "limit_up": 19,
       "limit_down": 45,
       "net_up": -538,
-      "adl": -3457
+      "adl": -2963
     },
     {
       "date": "2025-10-20",
@@ -1515,7 +1504,7 @@
       "limit_up": 34,
       "limit_down": 28,
       "net_up": -154,
-      "adl": -3611
+      "adl": -3117
     },
     {
       "date": "2025-10-21",
@@ -1526,7 +1515,7 @@
       "limit_up": 21,
       "limit_down": 14,
       "net_up": 298,
-      "adl": -3313
+      "adl": -2819
     },
     {
       "date": "2025-10-22",
@@ -1537,7 +1526,7 @@
       "limit_up": 19,
       "limit_down": 37,
       "net_up": 381,
-      "adl": -2932
+      "adl": -2438
     },
     {
       "date": "2025-10-23",
@@ -1548,7 +1537,7 @@
       "limit_up": 16,
       "limit_down": 29,
       "net_up": -609,
-      "adl": -3541
+      "adl": -3047
     },
     {
       "date": "2025-10-27",
@@ -1559,7 +1548,7 @@
       "limit_up": 28,
       "limit_down": 15,
       "net_up": -81,
-      "adl": -3622
+      "adl": -3128
     },
     {
       "date": "2025-10-28",
@@ -1570,7 +1559,7 @@
       "limit_up": 10,
       "limit_down": 33,
       "net_up": -967,
-      "adl": -4589
+      "adl": -4095
     },
     {
       "date": "2025-10-29",
@@ -1581,7 +1570,7 @@
       "limit_up": 17,
       "limit_down": 28,
       "net_up": -256,
-      "adl": -4845
+      "adl": -4351
     },
     {
       "date": "2025-10-30",
@@ -1592,7 +1581,7 @@
       "limit_up": 12,
       "limit_down": 28,
       "net_up": -786,
-      "adl": -5631
+      "adl": -5137
     },
     {
       "date": "2025-10-31",
@@ -1603,7 +1592,7 @@
       "limit_up": 15,
       "limit_down": 23,
       "net_up": -157,
-      "adl": -5788
+      "adl": -5294
     },
     {
       "date": "2025-11-03",
@@ -1614,7 +1603,7 @@
       "limit_up": 18,
       "limit_down": 29,
       "net_up": -220,
-      "adl": -6008
+      "adl": -5514
     },
     {
       "date": "2025-11-04",
@@ -1625,7 +1614,7 @@
       "limit_up": 7,
       "limit_down": 49,
       "net_up": -1081,
-      "adl": -7089
+      "adl": -6595
     },
     {
       "date": "2025-11-05",
@@ -1636,7 +1625,7 @@
       "limit_up": 14,
       "limit_down": 34,
       "net_up": -547,
-      "adl": -7636
+      "adl": -7142
     },
     {
       "date": "2025-11-06",
@@ -1647,7 +1636,7 @@
       "limit_up": 19,
       "limit_down": 29,
       "net_up": 772,
-      "adl": -6864
+      "adl": -6370
     },
     {
       "date": "2025-11-07",
@@ -1658,7 +1647,7 @@
       "limit_up": 16,
       "limit_down": 41,
       "net_up": -808,
-      "adl": -7672
+      "adl": -7178
     },
     {
       "date": "2025-11-10",
@@ -1669,7 +1658,7 @@
       "limit_up": 14,
       "limit_down": 37,
       "net_up": -541,
-      "adl": -8213
+      "adl": -7719
     },
     {
       "date": "2025-11-11",
@@ -1680,7 +1669,7 @@
       "limit_up": 16,
       "limit_down": 19,
       "net_up": -198,
-      "adl": -8411
+      "adl": -7917
     },
     {
       "date": "2025-11-12",
@@ -1691,7 +1680,7 @@
       "limit_up": 30,
       "limit_down": 38,
       "net_up": 655,
-      "adl": -7756
+      "adl": -7262
     },
     {
       "date": "2025-11-13",
@@ -1702,7 +1691,7 @@
       "limit_up": 20,
       "limit_down": 31,
       "net_up": -156,
-      "adl": -7912
+      "adl": -7418
     },
     {
       "date": "2025-11-14",
@@ -1713,7 +1702,7 @@
       "limit_up": 13,
       "limit_down": 26,
       "net_up": -925,
-      "adl": -8837
+      "adl": -8343
     },
     {
       "date": "2025-11-17",
@@ -1724,7 +1713,7 @@
       "limit_up": 13,
       "limit_down": 28,
       "net_up": -867,
-      "adl": -9704
+      "adl": -9210
     },
     {
       "date": "2025-11-18",
@@ -1735,7 +1724,7 @@
       "limit_up": 4,
       "limit_down": 35,
       "net_up": -1561,
-      "adl": -11265
+      "adl": -10771
     },
     {
       "date": "2025-11-19",
@@ -1746,7 +1735,7 @@
       "limit_up": 7,
       "limit_down": 31,
       "net_up": -827,
-      "adl": -12092
+      "adl": -11598
     },
     {
       "date": "2025-11-20",
@@ -1757,7 +1746,7 @@
       "limit_up": 8,
       "limit_down": 29,
       "net_up": 1169,
-      "adl": -10923
+      "adl": -10429
     },
     {
       "date": "2025-11-21",
@@ -1768,7 +1757,7 @@
       "limit_up": 6,
       "limit_down": 47,
       "net_up": -1427,
-      "adl": -12350
+      "adl": -11856
     },
     {
       "date": "2025-11-24",
@@ -1779,7 +1768,7 @@
       "limit_up": 24,
       "limit_down": 38,
       "net_up": 780,
-      "adl": -11570
+      "adl": -11076
     },
     {
       "date": "2025-11-25",
@@ -1790,7 +1779,7 @@
       "limit_up": 18,
       "limit_down": 29,
       "net_up": 721,
-      "adl": -10849
+      "adl": -10355
     },
     {
       "date": "2025-11-26",
@@ -1801,7 +1790,7 @@
       "limit_up": 22,
       "limit_down": 24,
       "net_up": 1101,
-      "adl": -9748
+      "adl": -9254
     },
     {
       "date": "2025-11-27",
@@ -1812,7 +1801,7 @@
       "limit_up": 17,
       "limit_down": 26,
       "net_up": 249,
-      "adl": -9499
+      "adl": -9005
     },
     {
       "date": "2025-11-28",
@@ -1823,7 +1812,7 @@
       "limit_up": 20,
       "limit_down": 34,
       "net_up": 494,
-      "adl": -9005
+      "adl": -8511
     },
     {
       "date": "2025-12-01",
@@ -1834,7 +1823,7 @@
       "limit_up": 21,
       "limit_down": 33,
       "net_up": -659,
-      "adl": -9664
+      "adl": -9170
     },
     {
       "date": "2025-12-02",
@@ -1845,7 +1834,7 @@
       "limit_up": 23,
       "limit_down": 29,
       "net_up": 54,
-      "adl": -9610
+      "adl": -9116
     },
     {
       "date": "2025-12-03",
@@ -1856,7 +1845,7 @@
       "limit_up": 26,
       "limit_down": 21,
       "net_up": 527,
-      "adl": -9083
+      "adl": -8589
     },
     {
       "date": "2025-12-04",
@@ -1867,7 +1856,7 @@
       "limit_up": 14,
       "limit_down": 27,
       "net_up": 128,
-      "adl": -8955
+      "adl": -8461
     },
     {
       "date": "2025-12-05",
@@ -1878,7 +1867,7 @@
       "limit_up": 13,
       "limit_down": 37,
       "net_up": -539,
-      "adl": -9494
+      "adl": -9000
     },
     {
       "date": "2025-12-08",
@@ -1889,7 +1878,7 @@
       "limit_up": 21,
       "limit_down": 32,
       "net_up": -142,
-      "adl": -9636
+      "adl": -9142
     },
     {
       "date": "2025-12-09",
@@ -1900,7 +1889,7 @@
       "limit_up": 17,
       "limit_down": 34,
       "net_up": -241,
-      "adl": -9877
+      "adl": -9383
     },
     {
       "date": "2025-12-10",
@@ -1911,7 +1900,7 @@
       "limit_up": 20,
       "limit_down": 33,
       "net_up": -476,
-      "adl": -10353
+      "adl": -9859
     },
     {
       "date": "2025-12-11",
@@ -1922,7 +1911,7 @@
       "limit_up": 26,
       "limit_down": 29,
       "net_up": -291,
-      "adl": -10644
+      "adl": -10150
     },
     {
       "date": "2025-12-12",
@@ -1933,7 +1922,7 @@
       "limit_up": 15,
       "limit_down": 28,
       "net_up": 187,
-      "adl": -10457
+      "adl": -9963
     },
     {
       "date": "2025-12-15",
@@ -1944,7 +1933,7 @@
       "limit_up": 26,
       "limit_down": 45,
       "net_up": 12,
-      "adl": -10445
+      "adl": -9951
     },
     {
       "date": "2025-12-16",
@@ -1955,7 +1944,7 @@
       "limit_up": 18,
       "limit_down": 24,
       "net_up": -1018,
-      "adl": -11463
+      "adl": -10969
     },
     {
       "date": "2025-12-17",
@@ -1966,7 +1955,7 @@
       "limit_up": 23,
       "limit_down": 38,
       "net_up": -61,
-      "adl": -11524
+      "adl": -11030
     },
     {
       "date": "2025-12-18",
@@ -1977,7 +1966,7 @@
       "limit_up": 11,
       "limit_down": 34,
       "net_up": -511,
-      "adl": -12035
+      "adl": -11541
     },
     {
       "date": "2025-12-19",
@@ -1988,7 +1977,7 @@
       "limit_up": 14,
       "limit_down": 23,
       "net_up": 749,
-      "adl": -11286
+      "adl": -10792
     },
     {
       "date": "2025-12-22",
@@ -1999,7 +1988,7 @@
       "limit_up": 23,
       "limit_down": 31,
       "net_up": 704,
-      "adl": -10582
+      "adl": -10088
     },
     {
       "date": "2025-12-23",
@@ -2010,7 +1999,7 @@
       "limit_up": 21,
       "limit_down": 29,
       "net_up": -351,
-      "adl": -10933
+      "adl": -10439
     },
     {
       "date": "2025-12-24",
@@ -2021,7 +2010,7 @@
       "limit_up": 18,
       "limit_down": 31,
       "net_up": -436,
-      "adl": -11369
+      "adl": -10875
     },
     {
       "date": "2025-12-26",
@@ -2032,7 +2021,7 @@
       "limit_up": 28,
       "limit_down": 32,
       "net_up": -73,
-      "adl": -11442
+      "adl": -10948
     },
     {
       "date": "2025-12-29",
@@ -2043,7 +2032,7 @@
       "limit_up": 41,
       "limit_down": 22,
       "net_up": 100,
-      "adl": -11342
+      "adl": -10848
     },
     {
       "date": "2025-12-30",
@@ -2054,7 +2043,7 @@
       "limit_up": 21,
       "limit_down": 23,
       "net_up": -504,
-      "adl": -11846
+      "adl": -11352
     },
     {
       "date": "2025-12-31",
@@ -2065,7 +2054,7 @@
       "limit_up": 24,
       "limit_down": 19,
       "net_up": -250,
-      "adl": -12096
+      "adl": -11602
     },
     {
       "date": "2026-01-02",
@@ -2076,7 +2065,7 @@
       "limit_up": 38,
       "limit_down": 15,
       "net_up": 128,
-      "adl": -11968
+      "adl": -11474
     },
     {
       "date": "2026-01-05",
@@ -2087,7 +2076,7 @@
       "limit_up": 40,
       "limit_down": 24,
       "net_up": -1069,
-      "adl": -13037
+      "adl": -12543
     },
     {
       "date": "2026-01-06",
@@ -2098,7 +2087,7 @@
       "limit_up": 21,
       "limit_down": 24,
       "net_up": 192,
-      "adl": -12845
+      "adl": -12351
     },
     {
       "date": "2026-01-07",
@@ -2109,7 +2098,7 @@
       "limit_up": 35,
       "limit_down": 20,
       "net_up": 313,
-      "adl": -12532
+      "adl": -12038
     },
     {
       "date": "2026-01-08",
@@ -2120,7 +2109,7 @@
       "limit_up": 26,
       "limit_down": 23,
       "net_up": -533,
-      "adl": -13065
+      "adl": -12571
     },
     {
       "date": "2026-01-09",
@@ -2131,7 +2120,7 @@
       "limit_up": 33,
       "limit_down": 30,
       "net_up": 122,
-      "adl": -12943
+      "adl": -12449
     },
     {
       "date": "2026-01-12",
@@ -2142,7 +2131,7 @@
       "limit_up": 42,
       "limit_down": 15,
       "net_up": 498,
-      "adl": -12445
+      "adl": -11951
     },
     {
       "date": "2026-01-13",
@@ -2153,7 +2142,7 @@
       "limit_up": 34,
       "limit_down": 17,
       "net_up": -453,
-      "adl": -12898
+      "adl": -12404
     },
     {
       "date": "2026-01-14",
@@ -2164,7 +2153,7 @@
       "limit_up": 57,
       "limit_down": 19,
       "net_up": 1080,
-      "adl": -11818
+      "adl": -11324
     },
     {
       "date": "2026-01-15",
@@ -2175,7 +2164,7 @@
       "limit_up": 42,
       "limit_down": 23,
       "net_up": 57,
-      "adl": -11761
+      "adl": -11267
     },
     {
       "date": "2026-01-16",
@@ -2186,7 +2175,7 @@
       "limit_up": 40,
       "limit_down": 25,
       "net_up": -270,
-      "adl": -12031
+      "adl": -11537
     },
     {
       "date": "2026-01-19",
@@ -2197,7 +2186,7 @@
       "limit_up": 51,
       "limit_down": 7,
       "net_up": 171,
-      "adl": -11860
+      "adl": -11366
     },
     {
       "date": "2026-01-20",
@@ -2208,7 +2197,7 @@
       "limit_up": 37,
       "limit_down": 30,
       "net_up": -405,
-      "adl": -12265
+      "adl": -11771
     },
     {
       "date": "2026-01-21",
@@ -2219,7 +2208,7 @@
       "limit_up": 29,
       "limit_down": 22,
       "net_up": -981,
-      "adl": -13246
+      "adl": -12752
     },
     {
       "date": "2026-01-22",
@@ -2230,7 +2219,7 @@
       "limit_up": 36,
       "limit_down": 28,
       "net_up": 285,
-      "adl": -12961
+      "adl": -12467
     },
     {
       "date": "2026-01-23",
@@ -2241,7 +2230,7 @@
       "limit_up": 24,
       "limit_down": 21,
       "net_up": -78,
-      "adl": -13039
+      "adl": -12545
     },
     {
       "date": "2026-01-26",
@@ -2252,7 +2241,7 @@
       "limit_up": 60,
       "limit_down": 16,
       "net_up": 294,
-      "adl": -12745
+      "adl": -12251
     },
     {
       "date": "2026-01-27",
@@ -2263,7 +2252,7 @@
       "limit_up": 51,
       "limit_down": 19,
       "net_up": -365,
-      "adl": -13110
+      "adl": -12616
     },
     {
       "date": "2026-01-28",
@@ -2274,7 +2263,7 @@
       "limit_up": 37,
       "limit_down": 18,
       "net_up": -147,
-      "adl": -13257
+      "adl": -12763
     },
     {
       "date": "2026-01-29",
@@ -2285,7 +2274,7 @@
       "limit_up": 21,
       "limit_down": 32,
       "net_up": -952,
-      "adl": -14209
+      "adl": -13715
     },
     {
       "date": "2026-01-30",
@@ -2296,7 +2285,7 @@
       "limit_up": 12,
       "limit_down": 22,
       "net_up": -1299,
-      "adl": -15508
+      "adl": -15014
     },
     {
       "date": "2026-02-02",
@@ -2307,7 +2296,7 @@
       "limit_up": 18,
       "limit_down": 31,
       "net_up": -1320,
-      "adl": -16828
+      "adl": -16334
     },
     {
       "date": "2026-02-03",
@@ -2318,7 +2307,7 @@
       "limit_up": 28,
       "limit_down": 27,
       "net_up": 551,
-      "adl": -16277
+      "adl": -15783
     },
     {
       "date": "2026-02-04",
@@ -2329,7 +2318,7 @@
       "limit_up": 35,
       "limit_down": 22,
       "net_up": 976,
-      "adl": -15301
+      "adl": -14807
     },
     {
       "date": "2026-02-05",
@@ -2340,7 +2329,7 @@
       "limit_up": 20,
       "limit_down": 21,
       "net_up": -661,
-      "adl": -15962
+      "adl": -15468
     },
     {
       "date": "2026-02-06",
@@ -2351,7 +2340,7 @@
       "limit_up": 12,
       "limit_down": 27,
       "net_up": -1267,
-      "adl": -17229
+      "adl": -16735
     },
     {
       "date": "2026-02-09",
@@ -2362,7 +2351,7 @@
       "limit_up": 22,
       "limit_down": 18,
       "net_up": 227,
-      "adl": -17002
+      "adl": -16508
     },
     {
       "date": "2026-02-10",
@@ -2373,7 +2362,7 @@
       "limit_up": 25,
       "limit_down": 23,
       "net_up": 35,
-      "adl": -16967
+      "adl": -16473
     },
     {
       "date": "2026-02-11",
@@ -2384,7 +2373,7 @@
       "limit_up": 24,
       "limit_down": 19,
       "net_up": 126,
-      "adl": -16841
+      "adl": -16347
     },
     {
       "date": "2026-02-23",
@@ -2395,7 +2384,7 @@
       "limit_up": 66,
       "limit_down": 10,
       "net_up": 1040,
-      "adl": -15801
+      "adl": -15307
     },
     {
       "date": "2026-02-24",
@@ -2406,7 +2395,7 @@
       "limit_up": 49,
       "limit_down": 14,
       "net_up": 183,
-      "adl": -15618
+      "adl": -15124
     },
     {
       "date": "2026-02-25",
@@ -2417,7 +2406,7 @@
       "limit_up": 44,
       "limit_down": 12,
       "net_up": -74,
-      "adl": -15692
+      "adl": -15198
     },
     {
       "date": "2026-02-26",
@@ -2428,7 +2417,7 @@
       "limit_up": 51,
       "limit_down": 13,
       "net_up": 372,
-      "adl": -15320
+      "adl": -14826
     },
     {
       "date": "2026-03-02",
@@ -2439,7 +2428,7 @@
       "limit_up": 55,
       "limit_down": 24,
       "net_up": -620,
-      "adl": -15940
+      "adl": -15446
     },
     {
       "date": "2026-03-03",
@@ -2450,7 +2439,7 @@
       "limit_up": 30,
       "limit_down": 24,
       "net_up": -1242,
-      "adl": -17182
+      "adl": -16688
     },
     {
       "date": "2026-03-04",
@@ -2461,7 +2450,7 @@
       "limit_up": 7,
       "limit_down": 80,
       "net_up": -1885,
-      "adl": -19067
+      "adl": -18573
     },
     {
       "date": "2026-03-05",
@@ -2472,7 +2461,7 @@
       "limit_up": 40,
       "limit_down": 22,
       "net_up": 1420,
-      "adl": -17647
+      "adl": -17153
     },
     {
       "date": "2026-03-06",
@@ -2483,7 +2472,7 @@
       "limit_up": 34,
       "limit_down": 27,
       "net_up": 241,
-      "adl": -17406
+      "adl": -16912
     },
     {
       "date": "2026-03-09",
@@ -2494,7 +2483,7 @@
       "limit_up": 12,
       "limit_down": 103,
       "net_up": -1830,
-      "adl": -19236
+      "adl": -18742
     },
     {
       "date": "2026-03-10",
@@ -2505,7 +2494,7 @@
       "limit_up": 23,
       "limit_down": 19,
       "net_up": 925,
-      "adl": -18311
+      "adl": -17817
     },
     {
       "date": "2026-03-11",
@@ -2516,7 +2505,7 @@
       "limit_up": 94,
       "limit_down": 23,
       "net_up": 1409,
-      "adl": -16902
+      "adl": -16408
     },
     {
       "date": "2026-03-12",
@@ -2527,7 +2516,7 @@
       "limit_up": 52,
       "limit_down": 36,
       "net_up": -494,
-      "adl": -17396
+      "adl": -16902
     },
     {
       "date": "2026-03-13",
@@ -2538,7 +2527,7 @@
       "limit_up": 40,
       "limit_down": 18,
       "net_up": -313,
-      "adl": -17709
+      "adl": -17215
     },
     {
       "date": "2026-03-16",
@@ -2549,7 +2538,7 @@
       "limit_up": 72,
       "limit_down": 20,
       "net_up": 135,
-      "adl": -17574
+      "adl": -17080
     },
     {
       "date": "2026-03-17",
@@ -2560,7 +2549,7 @@
       "limit_up": 68,
       "limit_down": 24,
       "net_up": 653,
-      "adl": -16921
+      "adl": -16427
     },
     {
       "date": "2026-03-18",
@@ -2571,7 +2560,7 @@
       "limit_up": 65,
       "limit_down": 19,
       "net_up": 237,
-      "adl": -16684
+      "adl": -16190
     },
     {
       "date": "2026-03-19",
@@ -2582,7 +2571,7 @@
       "limit_up": 58,
       "limit_down": 17,
       "net_up": -967,
-      "adl": -17651
+      "adl": -17157
     },
     {
       "date": "2026-03-20",
@@ -2593,7 +2582,7 @@
       "limit_up": 49,
       "limit_down": 27,
       "net_up": -212,
-      "adl": -17863
+      "adl": -17369
     },
     {
       "date": "2026-03-23",
@@ -2604,7 +2593,7 @@
       "limit_up": 41,
       "limit_down": 47,
       "net_up": -1355,
-      "adl": -19218
+      "adl": -18724
     },
     {
       "date": "2026-03-24",
@@ -2615,7 +2604,7 @@
       "limit_up": 28,
       "limit_down": 39,
       "net_up": -293,
-      "adl": -19511
+      "adl": -19017
     },
     {
       "date": "2026-03-25",
@@ -2626,7 +2615,7 @@
       "limit_up": 69,
       "limit_down": 24,
       "net_up": 1206,
-      "adl": -18305
+      "adl": -17811
     },
     {
       "date": "2026-03-26",
@@ -2637,7 +2626,7 @@
       "limit_up": 27,
       "limit_down": 42,
       "net_up": -601,
-      "adl": -18906
+      "adl": -18412
     },
     {
       "date": "2026-03-27",
@@ -2648,7 +2637,7 @@
       "limit_up": 13,
       "limit_down": 4,
       "net_up": -113,
-      "adl": -19019
+      "adl": -18525
     },
     {
       "date": "2026-03-30",
@@ -2659,7 +2648,7 @@
       "limit_up": 57,
       "limit_down": 60,
       "net_up": -1031,
-      "adl": -20050
+      "adl": -19556
     },
     {
       "date": "2026-03-31",
@@ -2670,7 +2659,7 @@
       "limit_up": 10,
       "limit_down": 64,
       "net_up": -1513,
-      "adl": -21563
+      "adl": -21069
     },
     {
       "date": "2026-04-01",
@@ -2681,7 +2670,7 @@
       "limit_up": 65,
       "limit_down": 20,
       "net_up": 1521,
-      "adl": -20042
+      "adl": -19548
     },
     {
       "date": "2026-04-02",
@@ -2692,7 +2681,7 @@
       "limit_up": 28,
       "limit_down": 38,
       "net_up": -1075,
-      "adl": -21117
+      "adl": -20623
     },
     {
       "date": "2026-04-07",
@@ -2703,224 +2692,235 @@
       "limit_up": 44,
       "limit_down": 27,
       "net_up": 64,
-      "adl": -21053
+      "adl": -20559
+    },
+    {
+      "date": "2026-04-08",
+      "total_stocks": 2278,
+      "up": 1679,
+      "down": 449,
+      "flat": 150,
+      "limit_up": 74,
+      "limit_down": 24,
+      "net_up": 1230,
+      "adl": -19329
     }
   ],
   "credit": {
-    "date": "2026-04-02",
-    "margin_balance": 8320128,
-    "short_balance": 103956,
-    "margin_change": -38363,
-    "short_change": -7530
+    "date": "2026-04-08",
+    "margin_balance": 6362477,
+    "short_balance": 83656,
+    "margin_change": -2022400,
+    "short_change": -21014
   },
   "mainforce": {
     "top_score": [
+      {
+        "stock_id": "2886",
+        "stock_name": "兆豐金",
+        "score": 100.0
+      },
+      {
+        "stock_id": "3045",
+        "stock_name": "台灣大",
+        "score": 100.0
+      },
       {
         "stock_id": "2548",
         "stock_name": "華固",
         "score": 100.0
       },
       {
-        "stock_id": "2886",
-        "stock_name": "兆豐金",
-        "score": 98.0
-      },
-      {
-        "stock_id": "2812",
-        "stock_name": "台中銀",
-        "score": 96.0
+        "stock_id": "2845",
+        "stock_name": "遠東銀",
+        "score": 100.0
       },
       {
         "stock_id": "2897",
         "stock_name": "王道銀行",
-        "score": 96.0
+        "score": 98.0
       },
       {
-        "stock_id": "3045",
-        "stock_name": "台灣大",
+        "stock_id": "2892",
+        "stock_name": "第一金",
+        "score": 92.0
+      },
+      {
+        "stock_id": "2002",
+        "stock_name": "中鋼",
         "score": 90.0
       },
       {
-        "stock_id": "2605",
-        "stock_name": "新興",
+        "stock_id": "2883",
+        "stock_name": "凱基金",
         "score": 88.0
       },
       {
-        "stock_id": "2912",
-        "stock_name": "統一超",
+        "stock_id": "2006",
+        "stock_name": "東和鋼鐵",
         "score": 88.0
       },
       {
-        "stock_id": "6505",
-        "stock_name": "台塑化",
-        "score": 88.0
-      },
-      {
-        "stock_id": "8046",
-        "stock_name": "南電",
+        "stock_id": "3702",
+        "stock_name": "大聯大",
         "score": 86.0
-      },
-      {
-        "stock_id": "2867",
-        "stock_name": "三商壽",
-        "score": 85.0
       }
     ],
     "new_signals": [
       {
-        "stock_id": "3702",
-        "stock_name": "大聯大",
+        "stock_id": "1326",
+        "stock_name": "台化",
         "score": 84.0
       },
       {
-        "stock_id": "2337",
-        "stock_name": "旺宏",
+        "stock_id": "2301",
+        "stock_name": "光寶科",
         "score": 84.0
       },
       {
-        "stock_id": "9933",
-        "stock_name": "中鼎",
+        "stock_id": "4958",
+        "stock_name": "臻鼎-KY",
         "score": 84.0
       },
       {
-        "stock_id": "3211",
-        "stock_name": "順達",
-        "score": 69.0
+        "stock_id": "4904",
+        "stock_name": "遠傳",
+        "score": 84.0
       },
       {
-        "stock_id": "3209",
-        "stock_name": "全科",
-        "score": 69.0
+        "stock_id": "2501",
+        "stock_name": "國建",
+        "score": 84.0
       },
       {
-        "stock_id": "6415",
-        "stock_name": "矽力*-KY",
-        "score": 69.0
+        "stock_id": "5880",
+        "stock_name": "合庫金",
+        "score": 84.0
       },
       {
-        "stock_id": "8438",
-        "stock_name": "昶昕",
-        "score": 69.0
+        "stock_id": "6285",
+        "stock_name": "啟碁",
+        "score": 84.0
       },
       {
-        "stock_id": "8021",
-        "stock_name": "尖點",
-        "score": 69.0
+        "stock_id": "3034",
+        "stock_name": "聯詠",
+        "score": 84.0
       },
       {
-        "stock_id": "3293",
-        "stock_name": "鈊象",
-        "score": 59.0
+        "stock_id": "1605",
+        "stock_name": "華新",
+        "score": 84.0
       },
       {
-        "stock_id": "3583",
-        "stock_name": "辛耘",
-        "score": 59.0
+        "stock_id": "2382",
+        "stock_name": "廣達",
+        "score": 84.0
       }
     ]
   },
   "institutional": {
     "daily_top5": [
       {
-        "stock_id": "2303",
-        "net_buy": 53635605,
-        "stock_name": "聯電"
-      },
-      {
-        "stock_id": "00937B",
-        "net_buy": 44600625,
-        "stock_name": "群益ESG投等債20+"
-      },
-      {
         "stock_id": "009816",
-        "net_buy": 38937371,
+        "net_buy": 364338288,
         "stock_name": "凱基台灣TOP50"
       },
       {
-        "stock_id": "00981A",
-        "net_buy": 37851713,
-        "stock_name": "主動統一台股增長"
+        "stock_id": "0050",
+        "net_buy": 155863795,
+        "stock_name": "元大台灣50"
       },
       {
-        "stock_id": "00631L",
-        "net_buy": 34751354,
-        "stock_name": "元大台灣50正2"
+        "stock_id": "3481",
+        "net_buy": 139196863,
+        "stock_name": "群創"
       },
       {
-        "stock_id": "2883",
-        "net_buy": 26207381,
-        "stock_name": "凱基金"
+        "stock_id": "2409",
+        "net_buy": 80257650,
+        "stock_name": "友達"
       },
       {
-        "stock_id": "00990A",
-        "net_buy": 26119355,
-        "stock_name": "主動元大AI新經濟"
+        "stock_id": "00937B",
+        "net_buy": 79034807,
+        "stock_name": "群益ESG投等債20+"
       },
       {
-        "stock_id": "00993A",
-        "net_buy": 23720336,
-        "stock_name": "主動安聯台灣"
+        "stock_id": "00878",
+        "net_buy": 78998851,
+        "stock_name": "國泰永續高股息"
       },
       {
-        "stock_id": "00680L",
-        "net_buy": 20439239,
-        "stock_name": "元大美債20正2"
+        "stock_id": "00991A",
+        "net_buy": 76972338,
+        "stock_name": "主動復華未來50"
+      },
+      {
+        "stock_id": "0052",
+        "net_buy": 65305590,
+        "stock_name": "富邦科技"
       },
       {
         "stock_id": "00940",
-        "net_buy": 18831833,
+        "net_buy": 59713456,
         "stock_name": "元大台灣價值高息"
+      },
+      {
+        "stock_id": "00981A",
+        "net_buy": 59062750,
+        "stock_name": "主動統一台股增長"
       }
     ],
     "accumulate_10d_top5": [
       {
         "stock_id": "00937B",
-        "net_buy_10d": 341003984,
+        "net_buy_10d": 377311245,
         "stock_name": "群益ESG投等債20+"
       },
       {
         "stock_id": "00687B",
-        "net_buy_10d": 191133046,
+        "net_buy_10d": 197391876,
         "stock_name": "國泰20年美債"
       },
       {
         "stock_id": "00679B",
-        "net_buy_10d": 181487352,
+        "net_buy_10d": 174765253,
         "stock_name": "元大美債20年"
       },
       {
         "stock_id": "00680L",
-        "net_buy_10d": 156584219,
+        "net_buy_10d": 166227949,
         "stock_name": "元大美債20正2"
       },
       {
-        "stock_id": "00711B",
-        "net_buy_10d": 133828995,
-        "stock_name": "復華彭博新興債"
-      },
-      {
         "stock_id": "00940",
-        "net_buy_10d": 120111459,
+        "net_buy_10d": 140020503,
         "stock_name": "元大台灣價值高息"
       },
       {
         "stock_id": "00993A",
-        "net_buy_10d": 116249354,
+        "net_buy_10d": 139598315,
         "stock_name": "主動安聯台灣"
       },
       {
         "stock_id": "00990A",
-        "net_buy_10d": 96954804,
+        "net_buy_10d": 135680368,
         "stock_name": "主動元大AI新經濟"
       },
       {
+        "stock_id": "00711B",
+        "net_buy_10d": 133845075,
+        "stock_name": "復華彭博新興債"
+      },
+      {
         "stock_id": "3702",
-        "net_buy_10d": 95145134,
+        "net_buy_10d": 87865500,
         "stock_name": "大聯大"
       },
       {
         "stock_id": "2618",
-        "net_buy_10d": 76563074,
+        "net_buy_10d": 81672398,
         "stock_name": "長榮航"
       }
     ]
@@ -3034,115 +3034,115 @@
   "technical": {
     "high_60d": [
       {
+        "stock_id": "5274",
+        "price": 12615.0,
+        "stock_name": "信驊"
+      },
+      {
+        "stock_id": "6223",
+        "price": 4310.0,
+        "stock_name": "旺矽"
+      },
+      {
         "stock_id": "3131",
-        "price": 3150.0,
+        "price": 3340.0,
         "stock_name": "弘塑"
       },
       {
+        "stock_id": "7856",
+        "price": 3195.0,
+        "stock_name": "漢測"
+      },
+      {
+        "stock_id": "2383",
+        "price": 3170.0,
+        "stock_name": "台光電"
+      },
+      {
+        "stock_id": "3529",
+        "price": 2925.0,
+        "stock_name": "力旺"
+      },
+      {
+        "stock_id": "7734",
+        "price": 2440.0,
+        "stock_name": "印能科技"
+      },
+      {
         "stock_id": "3081",
-        "price": 2005.0,
+        "price": 2040.0,
         "stock_name": "聯亞"
       },
       {
         "stock_id": "3665",
-        "price": 1990.0,
+        "price": 2015.0,
         "stock_name": "貿聯-KY"
       },
       {
         "stock_id": "7751",
-        "price": 1830.0,
+        "price": 1990.0,
         "stock_name": "竑騰"
-      },
-      {
-        "stock_id": "7822",
-        "price": 1740.0,
-        "stock_name": "倍利科"
-      },
-      {
-        "stock_id": "6739",
-        "price": 1415.0,
-        "stock_name": "竹陞科技"
-      },
-      {
-        "stock_id": "3163",
-        "price": 1045.0,
-        "stock_name": "波若威"
-      },
-      {
-        "stock_id": "7861",
-        "price": 862.0,
-        "stock_name": "貝爾威勒"
-      },
-      {
-        "stock_id": "6274",
-        "price": 683.0,
-        "stock_name": "台燿"
-      },
-      {
-        "stock_id": "8046",
-        "price": 624.0,
-        "stock_name": "南電"
       }
     ],
     "ma60_breakout": [
       {
         "stock_id": "7419",
-        "price": 173.0,
-        "ma60": 49.397,
+        "price": 179.5,
+        "ma60": 52.489,
         "stock_name": "達勝"
       },
       {
         "stock_id": "6103",
-        "price": 42.35,
-        "ma60": 15.767924528301888,
+        "price": 41.5,
+        "ma60": 15.894339622641509,
         "stock_name": "合邦"
       },
       {
-        "stock_id": "8077",
-        "price": 44.45,
-        "ma60": 19.055660377358492,
-        "stock_name": "洛碁"
-      },
-      {
-        "stock_id": "8923",
-        "price": 20.25,
-        "ma60": 8.918867924528302,
-        "stock_name": "時報"
-      },
-      {
         "stock_id": "7742",
-        "price": 124.5,
-        "ma60": 55.935,
+        "price": 139.0,
+        "ma60": 57.797,
         "stock_name": "天弘化"
       },
       {
-        "stock_id": "6990",
-        "price": 69.6,
-        "ma60": 32.806999999999995,
-        "stock_name": "華鉬"
-      },
-      {
-        "stock_id": "3595",
-        "price": 1800.0,
-        "ma60": 861.64,
-        "stock_name": "山太士"
+        "stock_id": "7825",
+        "price": 153.0,
+        "ma60": 68.34313725490196,
+        "stock_name": "和亞智慧"
       },
       {
         "stock_id": "6830",
-        "price": 602.0,
-        "ma60": 291.47222222222223,
+        "price": 662.0,
+        "ma60": 299.25925925925924,
         "stock_name": "汎銓"
       },
       {
+        "stock_id": "8923",
+        "price": 19.7,
+        "ma60": 8.936792452830188,
+        "stock_name": "時報"
+      },
+      {
+        "stock_id": "3595",
+        "price": 1840.0,
+        "ma60": 891.54,
+        "stock_name": "山太士"
+      },
+      {
+        "stock_id": "4573",
+        "price": 315.0,
+        "ma60": 154.624,
+        "stock_name": "高明鐵"
+      },
+      {
         "stock_id": "6217",
-        "price": 200.0,
-        "ma60": 97.28867924528302,
+        "price": 195.5,
+        "ma60": 100.07169811320755,
         "stock_name": "中探針"
       },
       {
         "stock_id": "7858",
-        "price": 194.5,
-        "ma60": 98.6470588235294,
+        "price": 194.0,
+        "ma60": 101.03333333333333,
         "stock_name": "芝普"
       }
     ]
