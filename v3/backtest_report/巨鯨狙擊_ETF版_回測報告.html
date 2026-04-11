@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巨鯨狙擊_ETF — 回測完整報告</title>
+<style>
+  :root {
+    --bg:#0f1117;--card:#1a1d27;--card2:#1e2130;--border:#2e3347;
+    --accent:#4f8ef7;--accent2:#7c5cfc;--green:#34d399;--red:#f87171;
+    --yellow:#fbbf24;--text:#e2e8f0;--muted:#8892a4;--tag-bg:#2a3050;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft JhengHei",sans-serif;font-size:14px;line-height:1.65}
+  .container{max-width:1120px;margin:0 auto;padding:32px 24px}
+  .header{border-bottom:2px solid var(--border);padding-bottom:24px;margin-bottom:32px}
+  .header h1{font-size:26px;font-weight:700;color:#fff;letter-spacing:.5px}
+  .header .subtitle{color:var(--muted);margin-top:6px;font-size:13px}
+  .meta-row{display:flex;gap:24px;margin-top:14px;flex-wrap:wrap}
+  .meta-item{display:flex;flex-direction:column;gap:2px}
+  .meta-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .meta-value{font-size:13px;color:var(--text)}
+  .section{margin-bottom:36px}
+  .section-title{font-size:16px;font-weight:700;color:var(--accent);border-left:3px solid var(--accent);padding-left:10px;margin-bottom:16px;letter-spacing:.3px}
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+  .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+  .kpi-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px}
+  .kpi-value{font-size:24px;font-weight:700}
+  .kpi-value.pos{color:var(--green)}.kpi-value.neg{color:var(--red)}.kpi-value.neutral{color:var(--accent)}
+  .kpi-sub{font-size:11px;color:var(--muted);margin-top:4px}
+  .table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
+  table{width:100%;border-collapse:collapse}
+  thead th{background:var(--card2);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+  tbody tr{border-bottom:1px solid var(--border)}
+  tbody tr:last-child{border-bottom:none}
+  tbody tr:hover{background:rgba(79,142,247,.05)}
+  tbody td{padding:9px 14px;font-size:13px}
+  td.pos{color:var(--green);font-weight:600}td.neg{color:var(--red);font-weight:600}td.neutral{color:var(--accent)}
+  .cond-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:700px){.cond-grid{grid-template-columns:1fr}}
+  .cond-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+  .cond-card h4{font-size:13px;font-weight:700;margin-bottom:10px;color:#fff}
+  .cond-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:7px;font-size:13px}
+  .cond-num{min-width:20px;color:var(--accent2);font-weight:700}
+  .cond-text{color:var(--text)}.cond-text .param{color:var(--yellow);font-weight:600}
+  .issue-list{display:flex;flex-direction:column;gap:12px}
+  .issue-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+  .issue-card.warn{border-left:3px solid var(--yellow)}.issue-card.info{border-left:3px solid var(--accent)}
+  .issue-title{font-weight:700;font-size:13px;margin-bottom:5px}
+  .issue-title.warn{color:var(--yellow)}.issue-title.info{color:var(--accent)}
+  .issue-body{color:var(--muted);font-size:12.5px;line-height:1.7}
+  .rating-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px 22px}
+  .rating-stars{font-size:28px;letter-spacing:3px;margin-bottom:12px}
+  .rating-summary{font-size:14px;color:var(--text);line-height:1.8}
+  .rating-badge{display:inline-block;background:rgba(52,211,153,.15);color:var(--green);border-radius:6px;padding:3px 12px;font-size:12px;font-weight:700;margin-bottom:12px}
+  footer{border-top:1px solid var(--border);margin-top:48px;padding-top:18px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>巨鯨狙擊策略（ETF 版）— 回測完整報告</h1>
+    <div class="subtitle">Whale Sniper ETF Edition — Full Backtest Report</div>
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-label">長期回測</span><span class="meta-value">2016-01-01 ～ 2026-04-10（10 年）</span></div>
+      <div class="meta-item"><span class="meta-label">短期回測</span><span class="meta-value">2022-01-01 ～ 2023-12-31（2 年）</span></div>
+      <div class="meta-item"><span class="meta-label">掃描範圍</span><span class="meta-value">僅 ETF（代號 0 開頭全數字，如 0050、0056）</span></div>
+      <div class="meta-item"><span class="meta-label">程式版本</span><span class="meta-value">whale_sniper_etf_bt.py</span></div>
+      <div class="meta-item"><span class="meta-label">產出日期</span><span class="meta-value">2026-04-11</span></div>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="section">
+    <div class="section-title">績效總覽</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">長期累計報酬率</div>
+        <div class="kpi-value pos">+128.90%</div>
+        <div class="kpi-sub">總投入 100 萬 → 期末 2,289,005</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">短期累計報酬率</div>
+        <div class="kpi-value pos">+2.46%</div>
+        <div class="kpi-sub">總投入 100 萬 → 期末 1,024,582</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">長期整體勝率</div>
+        <div class="kpi-value neutral">51.6%</div>
+        <div class="kpi-sub">93 次出場中 48 次獲利</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">交易次數（長期）</div>
+        <div class="kpi-value neutral">93</div>
+        <div class="kpi-sub">ETF 大戶吸籌訊號</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">動態停利平均報酬</div>
+        <div class="kpi-value pos">+3.05%</div>
+        <div class="kpi-sub">14 次，最高 +27.47%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">籌碼出清平均報酬</div>
+        <div class="kpi-value pos">+9.38%</div>
+        <div class="kpi-sub">58 次，最高 +81.09%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">停損次數（長期）</div>
+        <div class="kpi-value neg">11 次</div>
+        <div class="kpi-sub">平均 -16.24%，佔比 11.8%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">回測結束清倉（長期）</div>
+        <div class="kpi-value pos">+17.19%</div>
+        <div class="kpi-sub">10 次，最高 +87.61%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 策略條件 -->
+  <div class="section">
+    <div class="section-title">策略條件（ETF 版）</div>
+    <div class="cond-grid">
+      <div class="cond-card">
+        <h4>入場條件（週頻，T+1 執行）</h4>
+        <div class="cond-item"><span class="cond-num">1</span><span class="cond-text">大戶持股週變化 <span class="param">&ge; +1.5%</span>（&gt;1000 張大戶吸籌）</span></div>
+        <div class="cond-item"><span class="cond-num">2</span><span class="cond-text">散戶持股週變化 <span class="param">&le; +0.3%</span>（散戶未同步追進）</span></div>
+        <div class="cond-item"><span class="cond-num">3</span><span class="cond-text">收盤 &gt; 前週收盤 <strong>或</strong> 收盤 &gt; SMA20</span></div>
+        <div class="cond-item"><span class="cond-num">4</span><span class="cond-text">收盤 &lt; 52週均價 × <span class="param">1.5</span>（排除高位）</span></div>
+        <div class="cond-item"><span class="cond-num">5</span><span class="cond-text">標的為 ETF（代號 0 開頭全數字）</span></div>
+      </div>
+      <div class="cond-card">
+        <h4>離場條件（共用）</h4>
+        <div class="cond-item"><span class="cond-num">A</span><span class="cond-text">【日頻】固定停損：收盤 &lt; 買入成本 × <span class="param">0.85</span></span></div>
+        <div class="cond-item"><span class="cond-num">B</span><span class="cond-text">【日頻】動態停利：收盤 &lt; 持有最高點 × <span class="param">0.80</span></span></div>
+        <div class="cond-item"><span class="cond-num">C</span><span class="cond-text">【週頻雙確認】連續 2 週大戶變化 &le; <span class="param">-0.8%</span> 且收盤 &lt; SMA20</span></div>
+        <div class="cond-item"><span class="cond-num">D</span><span class="cond-text">防倖存者偏差：連續 5 交易日無資料 → 強制出場</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 出場原因分析 -->
+  <div class="section">
+    <div class="section-title">出場原因分析（長期）</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>出場原因</th><th>次數</th><th>佔比</th><th>平均報酬</th><th>最高</th><th>最低</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>籌碼出清+技術反轉</td><td>58</td><td>62.4%</td><td class="pos">+9.38%</td><td class="pos">+81.09%</td><td class="neg">-13.21%</td></tr>
+          <tr><td>動態停利(回跌20%)</td><td>14</td><td>15.1%</td><td class="pos">+3.05%</td><td class="pos">+27.47%</td><td class="neg">-11.47%</td></tr>
+          <tr><td>回測結束清倉</td><td>10</td><td>10.8%</td><td class="pos">+17.19%</td><td class="pos">+87.61%</td><td class="neg">-1.80%</td></tr>
+          <tr><td>停損(15%)</td><td>11</td><td>11.8%</td><td class="neg">-16.24%</td><td class="neg">-15.40%</td><td class="neg">-18.27%</td></tr>
+          <tr style="background:rgba(79,142,247,.06)">
+            <td style="font-weight:700">合計</td><td style="font-weight:700">93</td>
+            <td>100%</td><td class="neutral">均值 +5.79%/筆</td>
+            <td class="pos">+87.61%</td><td class="neg">-18.27%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 長期年度績效 -->
+  <div class="section">
+    <div class="section-title">年度績效 — 長期（2016–2026）</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>年度</th><th>交易次數</th><th>該年度勝率</th><th>該年度報酬率</th><th>累積至今報酬</th></tr>
+        </thead>
+        <tbody>
+<tr><td>2016</td><td>2</td><td class="pos">100.0%</td><td class="pos">3.94%</td><td class="pos">3.94%</td></tr>
+<tr><td>2017</td><td>3</td><td class="pos">66.7%</td><td class="pos">11.53%</td><td class="pos">8.49%</td></tr>
+<tr><td>2018</td><td>4</td><td class="pos">50.0%</td><td class="pos">6.36%</td><td class="pos">7.54%</td></tr>
+<tr><td>2019</td><td>4</td><td class="pos">75.0%</td><td class="pos">7.86%</td><td class="pos">7.64%</td></tr>
+<tr><td>2020</td><td>9</td><td class="pos">55.6%</td><td class="pos">2.16%</td><td class="pos">5.40%</td></tr>
+<tr><td>2021</td><td>6</td><td class="pos">66.7%</td><td class="pos">26.95%</td><td class="pos">10.02%</td></tr>
+<tr><td>2022</td><td>12</td><td class="pos">16.7%</td><td class="neg">-7.64%</td><td class="pos">4.72%</td></tr>
+<tr><td>2023</td><td>7</td><td class="pos">57.1%</td><td class="pos">9.77%</td><td class="pos">5.47%</td></tr>
+<tr><td>2024</td><td>13</td><td class="pos">53.8%</td><td class="pos">8.04%</td><td class="pos">6.03%</td></tr>
+<tr><td>2025</td><td>20</td><td class="pos">35.0%</td><td class="pos">0.06%</td><td class="pos">4.54%</td></tr>
+<tr><td>2026</td><td>13</td><td class="pos">76.9%</td><td class="pos">16.70%</td><td class="pos">6.24%</td></tr>
+          <tr style="background:rgba(79,142,247,.06)">
+            <td style="font-weight:700">合計</td><td style="font-weight:700">93</td>
+            <td class="pos" style="font-weight:700">51.6%</td>
+            <td class="pos" style="font-weight:700">+128.90%</td>
+            <td class="pos" style="font-weight:700">+128.90%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 短期年度績效 -->
+  <div class="section">
+    <div class="section-title">年度績效 — 短期（2022–2023）</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>年度</th><th>交易次數</th><th>該年度勝率</th><th>該年度報酬率</th><th>累積至今報酬</th></tr>
+        </thead>
+        <tbody>
+<tr><td>2022</td><td>10</td><td class="pos">10.0%</td><td class="neg">-10.00%</td><td class="neg">-10.00%</td></tr>
+<tr><td>2023</td><td>10</td><td class="pos">70.0%</td><td class="pos">10.10%</td><td class="pos">0.05%</td></tr>
+          <tr style="background:rgba(79,142,247,.06)">
+            <td style="font-weight:700">合計</td><td style="font-weight:700">20</td>
+            <td class="neg" style="font-weight:700">40.0%</td>
+            <td class="pos" style="font-weight:700">+2.46%</td>
+            <td class="pos" style="font-weight:700">+2.46%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 三版對比 -->
+  <div class="section">
+    <div class="section-title">巨鯨狙擊三版本對比</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>版本</th><th>掃描範圍</th><th>短期</th><th>長期</th><th>長期勝率</th><th>說明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>v3 混合版</td><td>ETF + 個股</td><td class="pos">+30.92%</td><td class="pos">+117.39%</td><td>43.3%</td><td style="color:var(--muted)">ETF 條件套用全標的</td></tr>
+          <tr style="background:rgba(52,211,153,.06)">
+            <td style="font-weight:700">ETF 版（本報告）</td>
+            <td>僅 ETF</td>
+            <td class="pos" style="font-weight:700">+2.46%</td>
+            <td class="pos" style="font-weight:700">+128.90%</td>
+            <td class="pos" style="font-weight:700">51.6%</td>
+            <td style="color:var(--green)">ETF 追蹤法人輪動，勝率最高</td>
+          </tr>
+          <tr><td>個股版</td><td>僅個股</td><td class="pos">+136.50%</td><td class="pos">+458.83%</td><td>37.2%</td><td style="color:var(--muted)">強化過濾 + 3 週確認</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 注意事項 -->
+  <div class="section">
+    <div class="section-title">策略說明與注意事項</div>
+    <div class="issue-list">
+      <div class="issue-card warn">
+        <div class="issue-title warn">短期表現弱（+2.46%）</div>
+        <div class="issue-body">2022 年熊市 10 次出場勝率僅 10%，ETF 跌幅跟隨大盤。2023 年回血至 70% 勝率。ETF 版適合長期持有，短期熊市表現不佳。</div>
+      </div>
+      <div class="issue-card info">
+        <div class="issue-title info">ETF 籌碼特性</div>
+        <div class="issue-body">ETF 大戶增持通常反映法人輪動或機構建倉，非暴增型假訊號，因此不設 whale_chg 上限。籌碼出清雙確認成為主要出場方式（佔 62%）。</div>
+      </div>
+      <div class="issue-card info">
+        <div class="issue-title info">ETF 證交稅優惠</div>
+        <div class="issue-body">ETF 賣出證交稅 0.1%（vs 一般股票 0.3%），回測已套用正確費率。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 評級 -->
+  <div class="section">
+    <div class="section-title">策略評級</div>
+    <div class="rating-box">
+      <div class="rating-badge">長期 +128.90%　勝率 51.6%</div>
+      <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+      <div class="rating-summary">
+        ETF 版以追蹤法人輪動為核心，勝率 51.6% 優於個股版（37.2%），波動較小。<br>
+        長期 10 年 +128.9% 優於原版混合（+117%），顯示 ETF 部分貢獻正面。<br>
+        主要弱點：短期熊市年勝率崩潰，2022 年僅 10%。<br>
+        適合保守型操作者，追求穩定法人跟單，接受低波動低報酬組合。
+      </div>
+    </div>
+  </div>
+
+  <!-- 長期交易明細 -->
+  <div class="section">
+    <div class="section-title">完整交易明細 — 長期（2016–2026）</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>日期</th><th>代號</th><th>名稱</th><th>產業</th><th>股價</th><th>動作</th><th>排序</th><th>剩餘現金</th><th>報酬率</th></tr>
+        </thead>
+        <tbody>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2016 ──</td></tr>
+<tr><td>2016-01-06</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>600,000</td><td class="">-</td></tr>
+<tr><td>2016-02-15</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>700,000</td><td class="">-</td></tr>
+<tr><td>2016-02-19</td><td>0051</td><td>元大中型100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>24.35</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>431,768</td><td class="">-</td></tr>
+<tr><td>2016-02-19</td><td>0055</td><td>元大MSCI金融</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.05</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>154,223</td><td class="">-</td></tr>
+<tr><td>2016-02-26</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.66</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>4,070</td><td class="">-</td></tr>
+<tr><td>2016-03-07</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>104,070</td><td class="">-</td></tr>
+<tr><td>2016-03-18</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.96</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>256,340</td><td class="pos">1.41%</td></tr>
+<tr><td>2016-03-18</td><td>00639</td><td>富邦深100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.04</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>4,982</td><td class="">-</td></tr>
+<tr><td>2016-04-06</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>104,982</td><td class="">-</td></tr>
+<tr><td>2016-05-06</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>204,982</td><td class="">-</td></tr>
+<tr><td>2016-06-06</td><td>0050</td><td>元大台灣50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>64.05</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>12,558</td><td class="">-</td></tr>
+<tr><td>2016-06-06</td><td>0056</td><td>元大高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.98</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>1,548</td><td class="">-</td></tr>
+<tr><td>2016-08-03</td><td>0050</td><td>元大台灣50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.8500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>4,098</td><td class="pos">1.33%</td></tr>
+<tr><td>2016-09-14</td><td>0050</td><td>元大台灣50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>68.45</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>208,950</td><td class="pos">6.46%</td></tr>
+<tr><td>2016-10-14</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.25</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>1,655</td><td class="">-</td></tr>
+<tr><td>2016-11-01</td><td>0056</td><td>元大高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>1.3000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>2,305</td><td class="pos">5.90%</td></tr>
+<tr><td>2016-11-15</td><td>0051</td><td>元大中型100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.7000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>10,005</td><td class="pos">2.87%</td></tr>
+<tr><td>2016-11-25</td><td>00636</td><td>國泰中國A50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.83</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>1,570</td><td class="">-</td></tr>
+<tr><td>2016-11-29</td><td>0051</td><td>元大中型100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.7000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>9,270</td><td class="pos">5.74%</td></tr>
+<tr><td>2016-11-29</td><td>0055</td><td>元大MSCI金融</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.4500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>19,620</td><td class="pos">3.73%</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2017 ──</td></tr>
+<tr><td>2017-01-06</td><td>00639</td><td>富邦深100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>9.53</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>257,292</td><td class="neg">-5.44%</td></tr>
+<tr><td>2017-02-10</td><td>00660</td><td>元大歐洲50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>22.50</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>9,440</td><td class="">-</td></tr>
+<tr><td>2017-11-03</td><td>0056</td><td>元大高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>25.69</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>22,252</td><td class="pos">16.37%</td></tr>
+<tr><td>2017-11-10</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.38</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>1,843</td><td class="">-</td></tr>
+<tr><td>2017-11-29</td><td>0051</td><td>元大中型100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.8500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>11,193</td><td class="pos">9.23%</td></tr>
+<tr><td>2017-11-29</td><td>0055</td><td>元大MSCI金融</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.5000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>22,693</td><td class="pos">7.87%</td></tr>
+<tr><td>2017-12-01</td><td>00636</td><td>國泰中國A50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.92</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>33,122</td><td class="pos">23.65%</td></tr>
+<tr><td>2017-12-15</td><td>00678</td><td>群益那斯達克生技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.10</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>11,992</td><td class="">-</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2018 ──</td></tr>
+<tr><td>2018-04-25</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.2300</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>12,222</td><td class="pos">1.13%</td></tr>
+<tr><td>2018-07-23</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.2090</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>12,431</td><td class="pos">2.15%</td></tr>
+<tr><td>2018-10-22</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.2000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>12,631</td><td class="pos">3.13%</td></tr>
+<tr><td>2018-10-26</td><td>0051</td><td>元大中型100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>28.17</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>321,750</td><td class="pos">15.24%</td></tr>
+<tr><td>2018-10-26</td><td>00678</td><td>群益那斯達克生技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.16</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>342,859</td><td class="neg">-0.10%</td></tr>
+<tr><td>2018-11-02</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.29</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>44,374</td><td class="">-</td></tr>
+<tr><td>2018-11-02</td><td>0050</td><td>元大台灣50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>78.65</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>4,993</td><td class="">-</td></tr>
+<tr><td>2018-11-28</td><td>0055</td><td>元大MSCI金融</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.6500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>19,943</td><td class="pos">13.26%</td></tr>
+<tr><td>2018-12-14</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.21</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>316,163</td><td class="neg">-0.76%</td></tr>
+<tr><td>2018-12-21</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.23</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>546,363</td><td class="pos">11.05%</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2019 ──</td></tr>
+<tr><td>2019-01-04</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.03</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>245,485</td><td class="">-</td></tr>
+<tr><td>2019-01-11</td><td>00668</td><td>國泰美國道瓊</td><td style="color:var(--muted);font-size:12px">ETF</td><td>25.58</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>14,937</td><td class="">-</td></tr>
+<tr><td>2019-01-22</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1700</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>15,107</td><td class="pos">3.96%</td></tr>
+<tr><td>2019-01-28</td><td>0050</td><td>元大台灣50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>2.3000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>16,257</td><td class="pos">2.92%</td></tr>
+<tr><td>2019-04-23</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>16,407</td><td class="pos">4.70%</td></tr>
+<tr><td>2019-05-10</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>23.45</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>367,304</td><td class="pos">16.62%</td></tr>
+<tr><td>2019-05-17</td><td>0050</td><td>元大台灣50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>78.25</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>406,334</td><td class="neg">-0.89%</td></tr>
+<tr><td>2019-05-17</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>31.94</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>86,479</td><td class="">-</td></tr>
+<tr><td>2019-05-17</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>22.04</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>20,265</td><td class="">-</td></tr>
+<tr><td>2019-07-22</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1350</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>20,400</td><td class="pos">5.36%</td></tr>
+<tr><td>2019-10-07</td><td>00668</td><td>國泰美國道瓊</td><td style="color:var(--muted);font-size:12px">ETF</td><td>29.34</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>283,819</td><td class="pos">14.26%</td></tr>
+<tr><td>2019-10-07</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>32.53</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>608,330</td><td class="pos">1.46%</td></tr>
+<tr><td>2019-10-18</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.27</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>260,976</td><td class="">-</td></tr>
+<tr><td>2019-10-18</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.05</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>8,016</td><td class="">-</td></tr>
+<tr><td>2019-10-25</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>8,116</td><td class="pos">5.85%</td></tr>
+<tr><td>2019-10-29</td><td>00660</td><td>元大歐洲50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.7500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>16,366</td><td class="pos">3.33%</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2020 ──</td></tr>
+<tr><td>2020-02-07</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.3800</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>23,206</td><td class="pos">1.97%</td></tr>
+<tr><td>2020-02-27</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>22.17</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>89,555</td><td class="pos">0.20%</td></tr>
+<tr><td>2020-02-27</td><td>00783</td><td>富邦中証500</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.85</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>10,042</td><td class="">-</td></tr>
+<tr><td>2020-03-11</td><td>00660</td><td>元大歐洲50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.18</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>242,457</td><td class="neg">-6.23%</td></tr>
+<tr><td>2020-03-12</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>18.86</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>261,271</td><td class="neg">-7.81%</td></tr>
+<tr><td>2020-03-12</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.27</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>468,008</td><td class="neg">-18.27%</td></tr>
+<tr><td>2020-03-16</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.70</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>785,836</td><td class="neg">-8.50%</td></tr>
+<tr><td>2020-03-17</td><td>0055</td><td>元大MSCI金融</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.42</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>1,139,636</td><td class="pos">27.47%</td></tr>
+<tr><td>2020-03-27</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.68</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>838,648</td><td class="">-</td></tr>
+<tr><td>2020-03-27</td><td>00661</td><td>元大日經225</td><td style="color:var(--muted);font-size:12px">ETF</td><td>24.16</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>548,314</td><td class="">-</td></tr>
+<tr><td>2020-03-27</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>22.15</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>259,954</td><td class="">-</td></tr>
+<tr><td>2020-03-27</td><td>00731</td><td>復華富時高息低波</td><td style="color:var(--muted);font-size:12px">ETF</td><td>40.20</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">4</td><td>18,410</td><td class="">-</td></tr>
+<tr><td>2020-04-01</td><td>00678</td><td>群益那斯達克生技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.02</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>1,570</td><td class="">-</td></tr>
+<tr><td>2020-07-24</td><td>00783</td><td>富邦中証500</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.14</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>85,925</td><td class="pos">6.09%</td></tr>
+<tr><td>2020-07-24</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.26</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>8,776</td><td class="">-</td></tr>
+<tr><td>2020-07-31</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>27.23</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>361,907</td><td class="pos">22.46%</td></tr>
+<tr><td>2020-07-31</td><td>00783</td><td>富邦中証500</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.67</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>14,693</td><td class="">-</td></tr>
+<tr><td>2020-09-11</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.12</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>94,978</td><td class="pos">4.06%</td></tr>
+<tr><td>2020-09-11</td><td>0057</td><td>富邦摩台</td><td style="color:var(--muted);font-size:12px">ETF</td><td>67.80</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>27,081</td><td class="">-</td></tr>
+<tr><td>2020-11-24</td><td>00731</td><td>復華富時高息低波</td><td style="color:var(--muted);font-size:12px">ETF</td><td>2.0900</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>39,621</td><td class="pos">5.19%</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2021 ──</td></tr>
+<tr><td>2021-01-25</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>1.0300</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>57,131</td><td class="pos">5.82%</td></tr>
+<tr><td>2021-01-29</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>32.14</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>602,186</td><td class="pos">81.09%</td></tr>
+<tr><td>2021-01-29</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>33.21</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>169,841</td><td class="">-</td></tr>
+<tr><td>2021-03-12</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>33.10</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>599,098</td><td class="neg">-0.71%</td></tr>
+<tr><td>2021-03-12</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>25.33</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>167,874</td><td class="">-</td></tr>
+<tr><td>2021-05-14</td><td>00661</td><td>元大日經225</td><td style="color:var(--muted);font-size:12px">ETF</td><td>34.65</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>582,666</td><td class="pos">42.87%</td></tr>
+<tr><td>2021-05-14</td><td>00652</td><td>富邦印度</td><td style="color:var(--muted);font-size:12px">ETF</td><td>24.76</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>136,351</td><td class="">-</td></tr>
+<tr><td>2021-09-13</td><td>00762</td><td>元大全球AI</td><td style="color:var(--muted);font-size:12px">ETF</td><td>42.60</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>8,368</td><td class="">-</td></tr>
+<tr><td>2021-09-24</td><td>00888</td><td>永豐台灣ESG</td><td style="color:var(--muted);font-size:12px">上櫃指數股票型基金(ETF)</td><td>16.09</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>303</td><td class="">-</td></tr>
+<tr><td>2021-10-01</td><td>00678</td><td>群益那斯達克生技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>28.80</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>23,288</td><td class="pos">36.49%</td></tr>
+<tr><td>2021-10-15</td><td>00888</td><td>永豐台灣ESG</td><td style="color:var(--muted);font-size:12px">上櫃指數股票型基金(ETF)</td><td>15.80</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>31,160</td><td class="neg">-2.39%</td></tr>
+<tr><td>2021-10-15</td><td>00678</td><td>群益那斯達克生技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>28.48</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>2,639</td><td class="">-</td></tr>
+<tr><td>2021-11-23</td><td>00731</td><td>復華富時高息低波</td><td style="color:var(--muted);font-size:12px">ETF</td><td>4.3000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>28,439</td><td class="pos">15.87%</td></tr>
+<tr><td>2021-12-03</td><td>00762</td><td>元大全球AI</td><td style="color:var(--muted);font-size:12px">ETF</td><td>44.61</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>161,945</td><td class="pos">4.32%</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2022 ──</td></tr>
+<tr><td>2022-01-07</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>27.42</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>24,649</td><td class="">-</td></tr>
+<tr><td>2022-01-14</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.68</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>2,938</td><td class="">-</td></tr>
+<tr><td>2022-01-19</td><td>00678</td><td>群益那斯達克生技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>23.88</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>26,760</td><td class="neg">-16.47%</td></tr>
+<tr><td>2022-01-24</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>1.6500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>35,010</td><td class="pos">6.01%</td></tr>
+<tr><td>2022-02-07</td><td>00645</td><td>富邦日本</td><td style="color:var(--muted);font-size:12px">ETF</td><td>25.72</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>471,190</td><td class="pos">1.15%</td></tr>
+<tr><td>2022-03-08</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>18.30</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>489,446</td><td class="neg">-15.91%</td></tr>
+<tr><td>2022-03-18</td><td>00876</td><td>元大全球5G</td><td style="color:var(--muted);font-size:12px">ETF</td><td>28.47</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>4,766</td><td class="">-</td></tr>
+<tr><td>2022-04-22</td><td>00783</td><td>富邦中証500</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.98</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>323,671</td><td class="neg">-8.15%</td></tr>
+<tr><td>2022-04-29</td><td>00700</td><td>富邦恒生國企</td><td style="color:var(--muted);font-size:12px">ETF</td><td>13.12</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>8,342</td><td class="">-</td></tr>
+<tr><td>2022-05-20</td><td>0057</td><td>富邦摩台</td><td style="color:var(--muted);font-size:12px">ETF</td><td>87.10</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>95,231</td><td class="pos">27.97%</td></tr>
+<tr><td>2022-05-20</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>25.23</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>19,433</td><td class="">-</td></tr>
+<tr><td>2022-06-17</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>22.57</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>86,979</td><td class="neg">-10.89%</td></tr>
+<tr><td>2022-06-17</td><td>00636</td><td>國泰中國A50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>23.21</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>17,250</td><td class="">-</td></tr>
+<tr><td>2022-06-20</td><td>00876</td><td>元大全球5G</td><td style="color:var(--muted);font-size:12px">ETF</td><td>24.18</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>427,313</td><td class="neg">-15.40%</td></tr>
+<tr><td>2022-06-24</td><td>00908</td><td>富邦入息REITs+</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.45</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>7,666</td><td class="">-</td></tr>
+<tr><td>2022-07-06</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>23.20</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>123,384</td><td class="neg">-15.72%</td></tr>
+<tr><td>2022-07-08</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>25.59</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>20,878</td><td class="">-</td></tr>
+<tr><td>2022-09-16</td><td>00908</td><td>富邦入息REITs+</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.39</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>437,177</td><td class="neg">-0.80%</td></tr>
+<tr><td>2022-09-16</td><td>00736</td><td>國泰新興市場</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.52</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>7,125</td><td class="">-</td></tr>
+<tr><td>2022-10-03</td><td>00700</td><td>富邦恒生國企</td><td style="color:var(--muted);font-size:12px">ETF</td><td>11.66</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>286,286</td><td class="neg">-11.47%</td></tr>
+<tr><td>2022-10-07</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>46.64</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>6,047</td><td class="">-</td></tr>
+<tr><td>2022-10-24</td><td>00636</td><td>國泰中國A50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.62</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>64,764</td><td class="neg">-15.79%</td></tr>
+<tr><td>2022-10-28</td><td>00736</td><td>國泰新興市場</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.60</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>451,025</td><td class="neg">-10.18%</td></tr>
+<tr><td>2022-10-28</td><td>00920</td><td>富邦ESG綠色電力</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.98</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>34,953</td><td class="">-</td></tr>
+<tr><td>2022-10-28</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>22.48</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>12,441</td><td class="">-</td></tr>
+<tr><td>2022-11-23</td><td>00731</td><td>復華富時高息低波</td><td style="color:var(--muted);font-size:12px">ETF</td><td>2.8000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>29,241</td><td class="pos">22.83%</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2023 ──</td></tr>
+<tr><td>2023-02-10</td><td>00920</td><td>富邦ESG綠色電力</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.45</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>455,904</td><td class="pos">2.55%</td></tr>
+<tr><td>2023-02-10</td><td>00643</td><td>群益深証中小</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.65</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>32,752</td><td class="">-</td></tr>
+<tr><td>2023-02-24</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>47.74</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>318,497</td><td class="pos">1.96%</td></tr>
+<tr><td>2023-02-24</td><td>00911</td><td>兆豐洲際半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.83</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>15,126</td><td class="">-</td></tr>
+<tr><td>2023-03-10</td><td>00911</td><td>兆豐洲際半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.83</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>317,331</td><td class="neg">-0.38%</td></tr>
+<tr><td>2023-03-10</td><td>00770</td><td>國泰北美科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>27.11</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>18,696</td><td class="">-</td></tr>
+<tr><td>2023-07-21</td><td>00735</td><td>國泰臺韓科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>29.40</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>48,025</td><td class="pos">30.28%</td></tr>
+<tr><td>2023-07-21</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>62.30</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>4,353</td><td class="">-</td></tr>
+<tr><td>2023-08-18</td><td>00643</td><td>群益深証中小</td><td style="color:var(--muted);font-size:12px">ETF</td><td>13.29</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>362,313</td><td class="neg">-15.41%</td></tr>
+<tr><td>2023-08-18</td><td>00731</td><td>復華富時高息低波</td><td style="color:var(--muted);font-size:12px">ETF</td><td>66.70</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>761,542</td><td class="pos">65.28%</td></tr>
+<tr><td>2023-08-18</td><td>00919</td><td>群益台灣精選高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.14</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>297,662</td><td class="">-</td></tr>
+<tr><td>2023-08-25</td><td>00920</td><td>富邦ESG綠色電力</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.33</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>5,977</td><td class="">-</td></tr>
+<tr><td>2023-10-31</td><td>00920</td><td>富邦ESG綠色電力</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.94</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>251,241</td><td class="neg">-15.91%</td></tr>
+<tr><td>2023-11-03</td><td>00851</td><td>台新全球AI</td><td style="color:var(--muted);font-size:12px">ETF</td><td>32.46</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>23,697</td><td class="">-</td></tr>
+<tr><td>2023-12-15</td><td>00690</td><td>兆豐藍籌30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>28.93</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>520</td><td class="">-</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2024 ──</td></tr>
+<tr><td>2024-01-05</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>64.95</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>45,875</td><td class="pos">3.85%</td></tr>
+<tr><td>2024-01-12</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>37.13</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>8,692</td><td class="">-</td></tr>
+<tr><td>2024-01-23</td><td>00770</td><td>國泰北美科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>4.0000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>52,692</td><td class="pos">14.73%</td></tr>
+<tr><td>2024-01-23</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>1.5100</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>54,202</td><td class="pos">4.06%</td></tr>
+<tr><td>2024-01-26</td><td>00770</td><td>國泰北美科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>38.28</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>474,261</td><td class="pos">40.66%</td></tr>
+<tr><td>2024-01-26</td><td>00904</td><td>新光臺灣半導體30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.08</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>66,520</td><td class="">-</td></tr>
+<tr><td>2024-01-26</td><td>00935</td><td>野村臺灣新科技50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.15</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>14,997</td><td class="">-</td></tr>
+<tr><td>2024-01-26</td><td>00917</td><td>中信特選金融</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.20</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>1,217</td><td class="">-</td></tr>
+<tr><td>2024-04-19</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>29.12</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>117,415</td><td class="pos">13.36%</td></tr>
+<tr><td>2024-04-19</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>40.44</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>157,757</td><td class="pos">8.50%</td></tr>
+<tr><td>2024-04-19</td><td>00935</td><td>野村臺灣新科技50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>18.58</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>213,361</td><td class="pos">7.92%</td></tr>
+<tr><td>2024-04-19</td><td>00739</td><td>元大MSCI A股</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.15</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>1,560</td><td class="">-</td></tr>
+<tr><td>2024-05-24</td><td>00690</td><td>兆豐藍籌30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.9000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>2,280</td><td class="pos">3.11%</td></tr>
+<tr><td>2024-08-05</td><td>00904</td><td>新光臺灣半導體30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.48</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>419,227</td><td class="pos">2.26%</td></tr>
+<tr><td>2024-08-09</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.15</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>16,804</td><td class="">-</td></tr>
+<tr><td>2024-08-16</td><td>00951</td><td>台新日本半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>9.43</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>7,354</td><td class="">-</td></tr>
+<tr><td>2024-08-23</td><td>00908</td><td>富邦入息REITs+</td><td style="color:var(--muted);font-size:12px">ETF</td><td>13.16</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>754</td><td class="">-</td></tr>
+<tr><td>2024-09-06</td><td>00652</td><td>富邦印度</td><td style="color:var(--muted);font-size:12px">ETF</td><td>39.80</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>715,417</td><td class="pos">60.13%</td></tr>
+<tr><td>2024-09-06</td><td>00951</td><td>台新日本半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>8.23</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>723,618</td><td class="neg">-13.21%</td></tr>
+<tr><td>2024-09-13</td><td>00951</td><td>台新日本半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>8.48</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>273,538</td><td class="">-</td></tr>
+<tr><td>2024-09-13</td><td>00913</td><td>兆豐台灣晶圓製造</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.56</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>5,877</td><td class="">-</td></tr>
+<tr><td>2024-09-13</td><td>00954</td><td>中信日本半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>8.96</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">7</td><td>481</td><td class="">-</td></tr>
+<tr><td>2024-10-23</td><td>00739</td><td>元大MSCI A股</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.5000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>5,481</td><td class="pos">2.36%</td></tr>
+<tr><td>2024-10-23</td><td>00908</td><td>富邦入息REITs+</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1330</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>5,548</td><td class="pos">1.01%</td></tr>
+<tr><td>2024-10-25</td><td>00951</td><td>台新日本半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>8.20</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>439,094</td><td class="neg">-3.67%</td></tr>
+<tr><td>2024-10-25</td><td>00954</td><td>中信日本半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>8.61</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>444,235</td><td class="neg">-4.73%</td></tr>
+<tr><td>2024-10-25</td><td>00639</td><td>富邦深100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.46</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>7,513</td><td class="">-</td></tr>
+<tr><td>2024-10-25</td><td>00952</td><td>凱基台灣AI50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.01</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">5</td><td>486</td><td class="">-</td></tr>
+<tr><td>2024-10-28</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1230</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>2,823</td><td class="pos">0.58%</td></tr>
+<tr><td>2024-11-25</td><td>00690</td><td>兆豐藍籌30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.8000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>3,463</td><td class="pos">5.87%</td></tr>
+<tr><td>2024-11-29</td><td>00639</td><td>富邦深100</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.25</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>431,173</td><td class="neg">-2.06%</td></tr>
+<tr><td>2024-11-29</td><td>00909</td><td>國泰數位支付服務</td><td style="color:var(--muted);font-size:12px">ETF</td><td>35.58</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>3,605</td><td class="">-</td></tr>
+<tr><td>2024-12-20</td><td>00952</td><td>凱基台灣AI50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>9.86</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>10,480</td><td class="neg">-2.16%</td></tr>
+<tr><td>2024-12-20</td><td>00877</td><td>復華中國5G</td><td style="color:var(--muted);font-size:12px">上櫃指數股票型基金(ETF)</td><td>13.37</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>1,101</td><td class="">-</td></tr>
+<tr><td>2024-12-27</td><td>00908</td><td>富邦入息REITs+</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.42</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>7,285</td><td class="neg">-6.31%</td></tr>
+<tr><td>2024-12-27</td><td>00899</td><td>FT潔淨能源</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.13</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>200</td><td class="">-</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2025 ──</td></tr>
+<tr><td>2025-01-06</td><td>00739</td><td>元大MSCI A股</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.74</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>217,073</td><td class="pos">2.39%</td></tr>
+<tr><td>2025-01-10</td><td>00877</td><td>復華中國5G</td><td style="color:var(--muted);font-size:12px">上櫃指數股票型基金(ETF)</td><td>12.49</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>225,787</td><td class="neg">-7.09%</td></tr>
+<tr><td>2025-01-10</td><td>00962</td><td>台新AI優息動能</td><td style="color:var(--muted);font-size:12px">ETF</td><td>9.76</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>987</td><td class="">-</td></tr>
+<tr><td>2025-02-21</td><td>00909</td><td>國泰數位支付服務</td><td style="color:var(--muted);font-size:12px">ETF</td><td>33.43</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>401,174</td><td class="neg">-6.40%</td></tr>
+<tr><td>2025-02-21</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.07</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>8,796</td><td class="">-</td></tr>
+<tr><td>2025-02-21</td><td>00643</td><td>群益深証中小</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.10</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>316</td><td class="">-</td></tr>
+<tr><td>2025-02-24</td><td>00690</td><td>兆豐藍籌30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.7000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>876</td><td class="pos">8.28%</td></tr>
+<tr><td>2025-02-24</td><td>00913</td><td>兆豐台灣晶圓製造</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.5000</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>7,376</td><td class="pos">2.43%</td></tr>
+<tr><td>2025-03-14</td><td>00962</td><td>台新AI優息動能</td><td style="color:var(--muted);font-size:12px">ETF</td><td>9.48</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>224,887</td><td class="neg">-3.24%</td></tr>
+<tr><td>2025-03-14</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.64</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>604,604</td><td class="neg">-3.23%</td></tr>
+<tr><td>2025-03-14</td><td>00657</td><td>國泰日經225</td><td style="color:var(--muted);font-size:12px">ETF</td><td>44.07</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>207,409</td><td class="">-</td></tr>
+<tr><td>2025-03-14</td><td>00783</td><td>富邦中証500</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.15</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>16,788</td><td class="">-</td></tr>
+<tr><td>2025-03-24</td><td>00919</td><td>群益台灣精選高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.7200</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>33,348</td><td class="pos">3.57%</td></tr>
+<tr><td>2025-03-28</td><td>00899</td><td>FT潔淨能源</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.02</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>40,331</td><td class="neg">-1.44%</td></tr>
+<tr><td>2025-03-28</td><td>00963</td><td>中信全球高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.87</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>7,674</td><td class="">-</td></tr>
+<tr><td>2025-04-02</td><td>00657</td><td>國泰日經225</td><td style="color:var(--muted);font-size:12px">ETF</td><td>42.55</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>389,695</td><td class="neg">-3.82%</td></tr>
+<tr><td>2025-04-07</td><td>00919</td><td>群益台灣精選高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.34</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>856,381</td><td class="pos">0.60%</td></tr>
+<tr><td>2025-04-07</td><td>00851</td><td>台新全球AI</td><td style="color:var(--muted);font-size:12px">ETF</td><td>37.76</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>1,120,060</td><td class="pos">15.88%</td></tr>
+<tr><td>2025-04-07</td><td>00690</td><td>兆豐藍籌30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>29.43</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>1,143,547</td><td class="pos">1.34%</td></tr>
+<tr><td>2025-04-07</td><td>00917</td><td>中信特選金融</td><td style="color:var(--muted);font-size:12px">ETF</td><td>18.76</td><td style="color:var(--green)">動態停利(回跌20%)</td><td style="color:var(--muted)">-</td><td>1,158,519</td><td class="pos">8.65%</td></tr>
+<tr><td>2025-04-07</td><td>00913</td><td>兆豐台灣晶圓製造</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.98</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>1,378,723</td><td class="neg">-17.73%</td></tr>
+<tr><td>2025-04-08</td><td>00643</td><td>群益深証中小</td><td style="color:var(--muted);font-size:12px">ETF</td><td>11.84</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>1,385,800</td><td class="neg">-16.55%</td></tr>
+<tr><td>2025-04-18</td><td>00963</td><td>中信全球高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.28</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>1,416,565</td><td class="neg">-5.79%</td></tr>
+<tr><td>2025-04-18</td><td>00703</td><td>台新MSCI中國</td><td style="color:var(--muted);font-size:12px">ETF</td><td>18.36</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>938,525</td><td class="">-</td></tr>
+<tr><td>2025-04-18</td><td>00972</td><td>野村日本動能高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.61</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>453,926</td><td class="">-</td></tr>
+<tr><td>2025-04-18</td><td>00899</td><td>FT潔淨能源</td><td style="color:var(--muted);font-size:12px">ETF</td><td>13.61</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>4,156</td><td class="">-</td></tr>
+<tr><td>2025-05-02</td><td>00899</td><td>FT潔淨能源</td><td style="color:var(--muted);font-size:12px">ETF</td><td>13.42</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>445,942</td><td class="neg">-1.78%</td></tr>
+<tr><td>2025-05-02</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>13.28</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>7,077</td><td class="">-</td></tr>
+<tr><td>2025-05-05</td><td>00783</td><td>富邦中証500</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.95</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>168,235</td><td class="neg">-15.46%</td></tr>
+<tr><td>2025-05-09</td><td>00972</td><td>野村日本動能高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.98</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>631,489</td><td class="neg">-4.40%</td></tr>
+<tr><td>2025-05-09</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>28.61</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>173,077</td><td class="">-</td></tr>
+<tr><td>2025-05-09</td><td>00690</td><td>兆豐藍籌30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>31.60</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>14,852</td><td class="">-</td></tr>
+<tr><td>2025-05-09</td><td>00904</td><td>新光臺灣半導體30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.12</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>323</td><td class="">-</td></tr>
+<tr><td>2025-07-22</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1230</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>2,660</td><td class="pos">1.16%</td></tr>
+<tr><td>2025-07-22</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0520</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>4,376</td><td class="pos">0.39%</td></tr>
+<tr><td>2025-08-01</td><td>00887</td><td>永豐中國科技50大</td><td style="color:var(--muted);font-size:12px">上櫃指數股票型基金(ETF)</td><td>8.27</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">7</td><td>221</td><td class="">-</td></tr>
+<tr><td>2025-09-22</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0680</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>2,465</td><td class="pos">0.90%</td></tr>
+<tr><td>2025-10-17</td><td>00887</td><td>永豐中國科技50大</td><td style="color:var(--muted);font-size:12px">上櫃指數股票型基金(ETF)</td><td>11.21</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>8,044</td><td class="pos">34.28%</td></tr>
+<tr><td>2025-10-17</td><td>00941</td><td>中信上游半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.96</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">8</td><td>44</td><td class="">-</td></tr>
+<tr><td>2025-10-28</td><td>00904</td><td>新光臺灣半導體30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.6500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>629</td><td class="pos">4.03%</td></tr>
+<tr><td>2025-11-21</td><td>00690</td><td>兆豐藍籌30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>40.38</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>202,040</td><td class="pos">27.29%</td></tr>
+<tr><td>2025-11-21</td><td>00972</td><td>野村日本動能高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.07</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>14,002</td><td class="">-</td></tr>
+<tr><td>2025-11-21</td><td>00963</td><td>中信全球高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.82</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>3,162</td><td class="">-</td></tr>
+<tr><td>2025-11-24</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0700</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>5,472</td><td class="pos">1.43%</td></tr>
+<tr><td>2025-11-24</td><td>00963</td><td>中信全球高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0400</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>5,512</td><td class="pos">0.37%</td></tr>
+<tr><td>2025-11-28</td><td>00962</td><td>台新AI優息動能</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.81</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">10</td><td>87</td><td class="">-</td></tr>
+<tr><td>2025-12-22</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0660</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>2,265</td><td class="pos">1.92%</td></tr>
+<tr><td>2025-12-22</td><td>00972</td><td>野村日本動能高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.2700</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>5,235</td><td class="pos">1.58%</td></tr>
+<tr><td>2025-12-22</td><td>00963</td><td>中信全球高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0400</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>5,275</td><td class="pos">0.74%</td></tr>
+<tr><td>2025-12-26</td><td>00962</td><td>台新AI優息動能</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.64</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>10,570</td><td class="neg">-2.40%</td></tr>
+<tr><td>2025-12-26</td><td>00885</td><td>富邦越南</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.16</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>254</td><td class="">-</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2026 ──</td></tr>
+<tr><td>2026-03-06</td><td>00972</td><td>野村日本動能高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>19.60</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>215,331</td><td class="pos">14.38%</td></tr>
+<tr><td>2026-03-06</td><td>00733</td><td>富邦臺灣中小</td><td style="color:var(--muted);font-size:12px">ETF</td><td>54.80</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>50,697</td><td class="">-</td></tr>
+<tr><td>2026-03-06</td><td>00971</td><td>野村美國研發龍頭</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.47</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>4,221</td><td class="">-</td></tr>
+<tr><td>2026-03-13</td><td>00941</td><td>中信上游半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.50</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>14,940</td><td class="pos">33.99%</td></tr>
+<tr><td>2026-03-13</td><td>00961</td><td>FT臺灣永續高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.28</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>4,640</td><td class="">-</td></tr>
+<tr><td>2026-03-23</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0720</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>7,016</td><td class="pos">2.47%</td></tr>
+<tr><td>2026-03-23</td><td>00963</td><td>中信全球高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.0450</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>7,061</td><td class="pos">1.15%</td></tr>
+<tr><td>2026-03-23</td><td>00961</td><td>FT臺灣永續高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.1220</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>7,183</td><td class="pos">1.18%</td></tr>
+<tr><td>2026-03-27</td><td>00961</td><td>FT臺灣永續高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.01</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>17,163</td><td class="neg">-3.11%</td></tr>
+<tr><td>2026-03-27</td><td>00944</td><td>野村趨勢動能高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.34</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>1,801</td><td class="">-</td></tr>
+<tr><td>2026-04-10</td><td>00714</td><td>群益道瓊美國地產</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.02</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>400,213</td><td class="neg">-1.00%</td></tr>
+<tr><td>2026-04-10</td><td>00703</td><td>台新MSCI中國</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.54</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>932,958</td><td class="pos">11.44%</td></tr>
+<tr><td>2026-04-10</td><td>00943</td><td>兆豐電子高息等權</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.16</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>1,464,944</td><td class="pos">21.22%</td></tr>
+<tr><td>2026-04-10</td><td>00737</td><td>國泰AI機器人</td><td style="color:var(--muted);font-size:12px">ETF</td><td>33.06</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>1,992,622</td><td class="pos">15.11%</td></tr>
+<tr><td>2026-04-10</td><td>00904</td><td>新光臺灣半導體30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>30.36</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>2,019,879</td><td class="pos">87.61%</td></tr>
+<tr><td>2026-04-10</td><td>00963</td><td>中信全球高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.76</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>2,032,607</td><td class="pos">17.41%</td></tr>
+<tr><td>2026-04-10</td><td>00885</td><td>富邦越南</td><td style="color:var(--muted);font-size:12px">ETF</td><td>18.11</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>2,043,442</td><td class="pos">5.03%</td></tr>
+<tr><td>2026-04-10</td><td>00733</td><td>富邦臺灣中小</td><td style="color:var(--muted);font-size:12px">ETF</td><td>61.40</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>2,227,195</td><td class="pos">11.61%</td></tr>
+<tr><td>2026-04-10</td><td>00971</td><td>野村美國研發龍頭</td><td style="color:var(--muted);font-size:12px">ETF</td><td>15.25</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>2,272,834</td><td class="neg">-1.80%</td></tr>
+<tr><td>2026-04-10</td><td>00944</td><td>野村趨勢動能高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.21</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>2,289,005</td><td class="pos">5.27%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 短期交易明細 -->
+  <div class="section">
+    <div class="section-title">完整交易明細 — 短期（2022–2023）</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>日期</th><th>代號</th><th>名稱</th><th>產業</th><th>股價</th><th>動作</th><th>排序</th><th>剩餘現金</th><th>報酬率</th></tr>
+        </thead>
+        <tbody>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2022 ──</td></tr>
+<tr><td>2022-01-06</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>600,000</td><td class="">-</td></tr>
+<tr><td>2022-01-07</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>27.42</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>380,327</td><td class="">-</td></tr>
+<tr><td>2022-01-07</td><td>0052</td><td>富邦科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>134.75</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>245,385</td><td class="">-</td></tr>
+<tr><td>2022-01-14</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.68</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>6,566</td><td class="">-</td></tr>
+<tr><td>2022-01-24</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>1.6500</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>19,766</td><td class="pos">6.01%</td></tr>
+<tr><td>2022-01-24</td><td>0052</td><td>富邦科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>135.60</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>155,037</td><td class="pos">0.24%</td></tr>
+<tr><td>2022-02-07</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>255,037</td><td class="">-</td></tr>
+<tr><td>2022-02-11</td><td>0052</td><td>富邦科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>136.10</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>118,743</td><td class="">-</td></tr>
+<tr><td>2022-03-07</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>218,743</td><td class="">-</td></tr>
+<tr><td>2022-03-08</td><td>00752</td><td>中信中國50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>18.30</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>419,555</td><td class="neg">-15.91%</td></tr>
+<tr><td>2022-03-18</td><td>0052</td><td>富邦科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>125.80</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>545,050</td><td class="neg">-7.92%</td></tr>
+<tr><td>2022-03-18</td><td>00876</td><td>元大全球5G</td><td style="color:var(--muted);font-size:12px">ETF</td><td>28.47</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>259,944</td><td class="">-</td></tr>
+<tr><td>2022-03-18</td><td>00861</td><td>元大全球未來通訊</td><td style="color:var(--muted);font-size:12px">ETF</td><td>29.55</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>23,207</td><td class="">-</td></tr>
+<tr><td>2022-04-06</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>123,207</td><td class="">-</td></tr>
+<tr><td>2022-05-06</td><td>-</td><td>資金注入</td><td style="color:var(--muted);font-size:12px">-</td><td>-</td><td style="color:var(--muted)">注入</td><td style="color:var(--muted)">-</td><td>223,207</td><td class="">-</td></tr>
+<tr><td>2022-06-20</td><td>00876</td><td>元大全球5G</td><td style="color:var(--muted);font-size:12px">ETF</td><td>24.18</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>464,421</td><td class="neg">-15.40%</td></tr>
+<tr><td>2022-06-24</td><td>00700</td><td>富邦恒生國企</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.25</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>121,933</td><td class="">-</td></tr>
+<tr><td>2022-07-06</td><td>00701</td><td>國泰股利精選30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>23.20</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>307,083</td><td class="neg">-15.72%</td></tr>
+<tr><td>2022-07-08</td><td>00904</td><td>新光臺灣半導體30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.68</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>7,617</td><td class="">-</td></tr>
+<tr><td>2022-09-08</td><td>00904</td><td>新光臺灣半導體30</td><td style="color:var(--muted);font-size:12px">ETF</td><td>10.67</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>305,653</td><td class="neg">-0.48%</td></tr>
+<tr><td>2022-09-08</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>23.55</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>22,650</td><td class="">-</td></tr>
+<tr><td>2022-09-28</td><td>00861</td><td>元大全球未來通訊</td><td style="color:var(--muted);font-size:12px">ETF</td><td>24.90</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>221,367</td><td class="neg">-16.06%</td></tr>
+<tr><td>2022-09-28</td><td>00700</td><td>富邦恒生國企</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.04</td><td style="color:var(--green)">停損(15%)</td><td style="color:var(--muted)">-</td><td>509,626</td><td class="neg">-15.83%</td></tr>
+<tr><td>2022-10-07</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>46.64</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>229,387</td><td class="">-</td></tr>
+<tr><td>2022-10-07</td><td>00912</td><td>中信臺灣智慧50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>12.93</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>9,264</td><td class="">-</td></tr>
+<tr><td>2022-10-21</td><td>00912</td><td>中信臺灣智慧50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>11.98</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>212,430</td><td class="neg">-7.70%</td></tr>
+<tr><td>2022-10-21</td><td>00916</td><td>國泰全球品牌50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.76</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>5,496</td><td class="">-</td></tr>
+<tr><td>2022-12-30</td><td>00916</td><td>國泰全球品牌50</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.04</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>201,579</td><td class="neg">-5.24%</td></tr>
+<tr><td>2022-12-30</td><td>00885</td><td>富邦越南</td><td style="color:var(--muted);font-size:12px">ETF</td><td>11.13</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>954</td><td class="">-</td></tr>
+<tr><td colspan="9" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 2023 ──</td></tr>
+<tr><td>2023-02-24</td><td>00830</td><td>國泰費城半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>26.39</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>316,866</td><td class="pos">11.63%</td></tr>
+<tr><td>2023-02-24</td><td>00662</td><td>富邦NASDAQ</td><td style="color:var(--muted);font-size:12px">ETF</td><td>47.74</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>602,611</td><td class="pos">1.96%</td></tr>
+<tr><td>2023-02-24</td><td>00885</td><td>富邦越南</td><td style="color:var(--muted);font-size:12px">ETF</td><td>11.38</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>806,954</td><td class="pos">1.85%</td></tr>
+<tr><td>2023-02-24</td><td>00911</td><td>兆豐洲際半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.83</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>486,729</td><td class="">-</td></tr>
+<tr><td>2023-02-24</td><td>00907</td><td>永豐優息存股</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.87</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">2</td><td>174,014</td><td class="">-</td></tr>
+<tr><td>2023-02-24</td><td>00878</td><td>國泰永續高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>17.10</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">3</td><td>2,770</td><td class="">-</td></tr>
+<tr><td>2023-03-10</td><td>00911</td><td>兆豐洲際半導體</td><td style="color:var(--muted);font-size:12px">ETF</td><td>16.83</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>321,765</td><td class="neg">-0.38%</td></tr>
+<tr><td>2023-03-10</td><td>00770</td><td>國泰北美科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>27.11</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>23,130</td><td class="">-</td></tr>
+<tr><td>2023-05-23</td><td>00878</td><td>國泰永續高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>0.2700</td><td style="color:var(--yellow)">配息</td><td style="color:var(--muted)">-</td><td>25,830</td><td class="pos">1.58%</td></tr>
+<tr><td>2023-08-11</td><td>00878</td><td>國泰永續高股息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>21.22</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>237,515</td><td class="pos">23.62%</td></tr>
+<tr><td>2023-08-11</td><td>00661</td><td>元大日經225</td><td style="color:var(--muted);font-size:12px">ETF</td><td>41.40</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>30,220</td><td class="">-</td></tr>
+<tr><td>2023-08-18</td><td>00907</td><td>永豐優息存股</td><td style="color:var(--muted);font-size:12px">ETF</td><td>14.07</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>324,974</td><td class="neg">-5.74%</td></tr>
+<tr><td>2023-08-18</td><td>00919</td><td>群益台灣精選高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.14</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>2,274</td><td class="">-</td></tr>
+<tr><td>2023-12-08</td><td>00661</td><td>元大日經225</td><td style="color:var(--muted);font-size:12px">ETF</td><td>41.16</td><td style="color:var(--green)">籌碼出清+技術反轉</td><td style="color:var(--muted)">-</td><td>207,575</td><td class="neg">-0.96%</td></tr>
+<tr><td>2023-12-08</td><td>00909</td><td>國泰數位支付服務</td><td style="color:var(--muted);font-size:12px">ETF</td><td>20.39</td><td style="color:var(--accent)">買入</td><td style="color:var(--muted)">1</td><td>3,385</td><td class="">-</td></tr>
+<tr><td>2023-12-29</td><td>00770</td><td>國泰北美科技</td><td style="color:var(--muted);font-size:12px">ETF</td><td>39.52</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>437,050</td><td class="pos">45.22%</td></tr>
+<tr><td>2023-12-29</td><td>00919</td><td>群益台灣精選高息</td><td style="color:var(--muted);font-size:12px">ETF</td><td>22.26</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>792,347</td><td class="pos">10.10%</td></tr>
+<tr><td>2023-12-29</td><td>00909</td><td>國泰數位支付服務</td><td style="color:var(--muted);font-size:12px">ETF</td><td>23.28</td><td style="color:var(--green)">回測結束清倉</td><td style="color:var(--muted)">-</td><td>1,024,582</td><td class="pos">13.73%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    巨鯨狙擊策略 ETF 版 — FinMind V3 回測系統 &nbsp;|&nbsp; 產出日期：2026-04-11 &nbsp;|&nbsp; 僅供策略研究參考，不構成投資建議
+  </footer>
+</div>
+</body>
+</html>
