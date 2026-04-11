@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巨鯨狙擊策略</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+         background: #f4f7fa; color: #333; }
+
+  .header {
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    color: #fff; padding: 36px 48px; border-radius: 0 0 16px 16px;
+  }
+  .header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 6px; }
+  .header p  { opacity: .85; font-size: .95rem; }
+
+  .cards {
+    display: flex; flex-wrap: wrap; gap: 16px; padding: 24px 48px 8px;
+  }
+  .card {
+    background: #fff; border-radius: 12px; padding: 18px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05); min-width: 190px;
+  }
+  .card .label { font-size: .85rem; color: #6c757d; margin-bottom: 4px; }
+  .card .value { font-size: 1.8rem; font-weight: 700; color: #2b5876; }
+  .card .value.small { font-size: 1rem; line-height: 1.6; }
+  .card .sub { font-size: .78rem; color: #aaa; margin-top: 3px; }
+
+  .section { padding: 0 48px 24px; }
+  .section h2 {
+    font-size: 1rem; font-weight: 700; color: #2b5876;
+    margin: 20px 0 10px; padding-left: 10px;
+    border-left: 4px solid #4e4376; letter-spacing: .04em;
+  }
+
+  .params {
+    background: #fff; border-radius: 12px; padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .85rem; color: #555;
+    line-height: 1.9;
+  }
+  .params b { color: #2b5876; }
+
+  .market-box {
+    background: #fff; border-radius: 12px; padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .9rem;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .market-badge {
+    display: inline-block; border-radius: 8px; padding: 4px 14px;
+    font-size: .85rem; font-weight: 700;
+  }
+  .market-badge.above { background: #fff3cd; color: #856404; }
+  .market-badge.below { background: #d1ecf1; color: #0c5460; }
+  .market-note { font-size: .78rem; color: #aaa; margin-top: 2px; }
+
+  .no-candidate {
+    background: #fff; border-radius: 12px; padding: 32px 24px; text-align: center;
+    color: #6c757d; font-size: .95rem; box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+
+  .table-wrap {
+    background: #fff; border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05); overflow-x: auto;
+  }
+  table { border-collapse: collapse; width: 100%; font-size: .82rem; }
+  thead th {
+    background: #2b5876; color: #fff;
+    padding: 10px 10px; white-space: nowrap; text-align: center;
+    position: sticky; top: 0;
+  }
+  tbody tr:nth-child(even) { background: #f8f9fc; }
+  tbody tr:hover { background: #eef2ff; }
+  tbody td { padding: 8px 10px; text-align: center; white-space: nowrap;
+             border-bottom: 1px solid #eee; }
+  .rank    { font-weight: 700; color: #2b5876; }
+  .pos     { color: #198754; font-weight: 600; }
+  .neg     { color: #dc3545; font-weight: 600; }
+  .neutral { color: #6c757d; }
+
+  .weekly-note {
+    background: #fff8e1; border: 1px solid #ffe082; border-radius: 10px;
+    padding: 12px 18px; font-size: .82rem; color: #795548;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .header { padding: 24px 20px; }
+    .cards, .section { padding-left: 16px; padding-right: 16px; }
+    .header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>巨鯨狙擊策略</h1>
+  <p>大戶吸籌 × 散戶未追 × 技術確認 · 週頻掃描</p>
+</div>
+
+
+<div class="cards">
+  <div class="card">
+    <div class="label">本期候選標的</div>
+    <div class="value">33 <span style="font-size:1rem;color:#6c757d">檔</span></div>
+    <div class="sub">依大戶吸籌幅度排序</div>
+  </div>
+  <div class="card">
+    <div class="label">訊號日期（股權資料）</div>
+    <div class="value small">2026-03-27</div>
+    <div class="sub">每週五更新</div>
+  </div>
+  <div class="card">
+    <div class="label">掃描時間</div>
+    <div class="value small">2026-04-11 18:32</div>
+    <div class="sub">FinMind 最後資料：2026-04-10</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>大盤位置參考（僅供參考，策略無大盤濾網）</h2>
+  <div class="market-box">
+    <span class="market-badge above">高於月線（多頭偏強）</span>
+    <span>0050 收盤 <b>35417.83</b> &nbsp;｜&nbsp; SMA20 <b>33511.38</b></span>
+    <span class="market-note">（資料日期：2026-04-10）</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2>策略條件</h2>
+  <div class="params">
+    <b>入場（週頻）</b>：
+    大戶週變化 ≥ <b>+1.5%</b> &nbsp;｜&nbsp;
+    散戶週變化 ≤ <b>+0.3%</b> &nbsp;｜&nbsp;
+    收盤 &gt; 前週收盤 <em>或</em> 收盤 &gt; SMA20 &nbsp;｜&nbsp;
+    股價 &lt; 52週均價 × <b>1.5</b><br>
+    <b>離場（日頻優先）</b>：
+    固定停損 <b>-15%</b> &nbsp;｜&nbsp;
+    動態停利 回跌 <b>20%</b><br>
+    <b>離場（週頻雙確認）</b>：
+    連續 2 週大戶變化 ≤ <b>-0.8%</b> 且週收盤 &lt; SMA20
+  </div>
+</div>
+
+<div class="section">
+  <h2>候選標的（依大戶週吸籌幅度排序）</h2>
+  <div class="weekly-note">
+    &#9888; 股權分散資料每週更新，以上為本週訊號日 <b>2026-03-27</b> 的掃描結果。<br>
+    進場建議於訊號確認後 T+1 執行，請搭配當日股價確認技術位置。
+  </div>
+  <div class="table-wrap">
+    <table><thead><tr><th>排行</th><th>代號</th><th>名稱</th><th>產業</th><th>收盤</th><th>SMA20</th><th>52週均價</th><th>大戶持股%</th><th>大戶週變化</th><th>前週大戶變化</th><th>散戶持股%</th><th>散戶週變化</th></tr></thead><tbody><tr><td class="rank">1</td><td><b>6194</b></td><td>育富</td><td style="color:#6c757d;font-size:.78rem">電子零組件業</td><td>33.05</td><td style="color:#6c757d">31.98</td><td style="color:#6c757d">34.36</td><td>34.91%</td><td class="pos">+7.91%</td><td class="neg">-1.40%</td><td>10.18%</td><td class="neg">-0.08%</td></tr><tr><td class="rank">2</td><td><b>6706</b></td><td>惠特</td><td style="color:#6c757d;font-size:.78rem">光電業</td><td>126.50</td><td style="color:#6c757d">123.30</td><td style="color:#6c757d">87.88</td><td>19.49%</td><td class="pos">+6.95%</td><td class="pos">+0.13%</td><td>24.54%</td><td class="neg">-2.68%</td></tr><tr><td class="rank">3</td><td><b>8027</b></td><td>鈦昇</td><td style="color:#6c757d;font-size:.78rem">電機機械</td><td>133.50</td><td style="color:#6c757d">105.08</td><td style="color:#6c757d">93.28</td><td>32.03%</td><td class="pos">+6.94%</td><td class="pos">+2.64%</td><td>13.57%</td><td class="neg">-3.20%</td></tr><tr><td class="rank">4</td><td><b>3211</b></td><td>順達</td><td style="color:#6c757d;font-size:.78rem">電腦及週邊設備業</td><td>362.00</td><td style="color:#6c757d">313.25</td><td style="color:#6c757d">291.00</td><td>49.51%</td><td class="pos">+5.09%</td><td class="neg">-0.75%</td><td>15.40%</td><td class="neg">-4.29%</td></tr><tr><td class="rank">5</td><td><b>7782</b></td><td>光速火箭</td><td style="color:#6c757d;font-size:.78rem">居家生活</td><td>25.90</td><td style="color:#6c757d">25.87</td><td style="color:#6c757d">36.26</td><td>70.30%</td><td class="pos">+4.50%</td><td class="neutral">0.00%</td><td>4.93%</td><td class="pos">+0.07%</td></tr><tr><td class="rank">6</td><td><b>7716</b></td><td>昱臺國際</td><td style="color:#6c757d;font-size:.78rem">航運業</td><td>26.50</td><td style="color:#6c757d">20.73</td><td style="color:#6c757d">28.61</td><td>65.56%</td><td class="pos">+4.45%</td><td class="neutral">0.00%</td><td>2.50%</td><td class="pos">+0.01%</td></tr><tr><td class="rank">7</td><td><b>5439</b></td><td>高技</td><td style="color:#6c757d;font-size:.78rem">電子零組件業</td><td>301.00</td><td style="color:#6c757d">277.07</td><td style="color:#6c757d">288.22</td><td>36.77%</td><td class="pos">+3.98%</td><td class="pos">+1.48%</td><td>20.24%</td><td class="neg">-1.39%</td></tr><tr><td class="rank">8</td><td><b>2355</b></td><td>敬鵬</td><td style="color:#6c757d;font-size:.78rem">電子工業</td><td>50.50</td><td style="color:#6c757d">44.16</td><td style="color:#6c757d">35.03</td><td>38.93%</td><td class="pos">+3.97%</td><td class="pos">+0.26%</td><td>16.84%</td><td class="neg">-1.15%</td></tr><tr><td class="rank">9</td><td><b>6240</b></td><td>松崗</td><td style="color:#6c757d;font-size:.78rem">其他</td><td>19.10</td><td style="color:#6c757d">17.58</td><td style="color:#6c757d">17.98</td><td>70.94%</td><td class="pos">+3.94%</td><td class="neutral">0.00%</td><td>3.68%</td><td class="pos">+0.22%</td></tr><tr><td class="rank">10</td><td><b>3583</b></td><td>辛耘</td><td style="color:#6c757d;font-size:.78rem">半導體業</td><td>497.50</td><td style="color:#6c757d">402.82</td><td style="color:#6c757d">349.56</td><td>48.54%</td><td class="pos">+3.45%</td><td class="pos">+1.24%</td><td>20.33%</td><td class="neg">-2.09%</td></tr><tr><td class="rank">11</td><td><b>6895</b></td><td>宏碩系統</td><td style="color:#6c757d;font-size:.78rem">半導體業</td><td>158.50</td><td style="color:#6c757d">161.88</td><td style="color:#6c757d">210.54</td><td>51.10%</td><td class="pos">+3.39%</td><td class="neutral">0.00%</td><td>8.67%</td><td class="neg">-0.02%</td></tr><tr><td class="rank">12</td><td><b>6147</b></td><td>頎邦</td><td style="color:#6c757d;font-size:.78rem">半導體業</td><td>77.80</td><td style="color:#6c757d">60.58</td><td style="color:#6c757d">55.84</td><td>63.33%</td><td class="pos">+3.05%</td><td class="pos">+2.51%</td><td>9.69%</td><td class="neg">-1.11%</td></tr><tr><td class="rank">13</td><td><b>4961</b></td><td>天鈺</td><td style="color:#6c757d;font-size:.78rem">電子工業</td><td>144.00</td><td style="color:#6c757d">143.72</td><td style="color:#6c757d">164.87</td><td>32.47%</td><td class="pos">+3.01%</td><td class="neg">-0.84%</td><td>23.57%</td><td class="neg">-0.05%</td></tr><tr><td class="rank">14</td><td><b>2472</b></td><td>立隆電</td><td style="color:#6c757d;font-size:.78rem">電子零組件業</td><td>129.50</td><td style="color:#6c757d">117.75</td><td style="color:#6c757d">96.06</td><td>48.54%</td><td class="pos">+2.98%</td><td class="pos">+1.36%</td><td>16.23%</td><td class="neg">-0.32%</td></tr><tr><td class="rank">15</td><td><b>9136</b></td><td>巨騰-DR</td><td style="color:#6c757d;font-size:.78rem">存託憑證</td><td>9.86</td><td style="color:#6c757d">9.41</td><td style="color:#6c757d">7.09</td><td>56.30%</td><td class="pos">+2.96%</td><td class="neg">-1.11%</td><td>4.41%</td><td class="pos">+0.04%</td></tr><tr><td class="rank">16</td><td><b>2399</b></td><td>映泰</td><td style="color:#6c757d;font-size:.78rem">電子工業</td><td>31.00</td><td style="color:#6c757d">27.62</td><td style="color:#6c757d">21.94</td><td>26.40%</td><td class="pos">+2.89%</td><td class="pos">+5.92%</td><td>24.75%</td><td class="neg">-0.41%</td></tr><tr><td class="rank">17</td><td><b>6257</b></td><td>矽格</td><td style="color:#6c757d;font-size:.78rem">半導體業</td><td>146.00</td><td style="color:#6c757d">132.30</td><td style="color:#6c757d">99.22</td><td>48.28%</td><td class="pos">+2.73%</td><td class="pos">+0.14%</td><td>13.43%</td><td class="neg">-1.47%</td></tr><tr><td class="rank">18</td><td><b>3406</b></td><td>玉晶光</td><td style="color:#6c757d;font-size:.78rem">光電業</td><td>443.00</td><td style="color:#6c757d">432.90</td><td style="color:#6c757d">431.76</td><td>39.74%</td><td class="pos">+2.71%</td><td class="pos">+1.60%</td><td>14.18%</td><td class="neg">-0.71%</td></tr><tr><td class="rank">19</td><td><b>00944</b></td><td>野村趨勢動能高息</td><td style="color:#6c757d;font-size:.78rem">ETF</td><td>15.34</td><td style="color:#6c757d">15.21</td><td style="color:#6c757d">14.44</td><td>9.28%</td><td class="pos">+2.71%</td><td class="neg">-2.07%</td><td>18.28%</td><td class="neg">-0.14%</td></tr><tr><td class="rank">20</td><td><b>8028</b></td><td>昇陽半導體</td><td style="color:#6c757d;font-size:.78rem">半導體業</td><td>191.00</td><td style="color:#6c757d">182.50</td><td style="color:#6c757d">162.96</td><td>37.99%</td><td class="pos">+2.68%</td><td class="pos">+8.52%</td><td>22.41%</td><td class="neg">-1.07%</td></tr><tr><td class="rank">21</td><td><b>3580</b></td><td>友威科</td><td style="color:#6c757d;font-size:.78rem">其他電子類</td><td>76.90</td><td style="color:#6c757d">69.93</td><td style="color:#6c757d">65.54</td><td>7.19%</td><td class="pos">+2.65%</td><td class="neutral">0.00%</td><td>29.64%</td><td class="neg">-1.06%</td></tr><tr><td class="rank">22</td><td><b>1570</b></td><td>力肯</td><td style="color:#6c757d;font-size:.78rem">電機機械</td><td>31.90</td><td style="color:#6c757d">31.05</td><td style="color:#6c757d">27.81</td><td>45.18%</td><td class="pos">+2.24%</td><td class="neutral">0.00%</td><td>9.07%</td><td class="neg">-0.07%</td></tr><tr><td class="rank">23</td><td><b>8091</b></td><td>翔名</td><td style="color:#6c757d;font-size:.78rem">電子零組件業</td><td>152.00</td><td style="color:#6c757d">138.40</td><td style="color:#6c757d">115.79</td><td>39.82%</td><td class="pos">+2.24%</td><td class="neutral">0.00%</td><td>11.23%</td><td class="neg">-0.50%</td></tr><tr><td class="rank">24</td><td><b>2461</b></td><td>光群雷</td><td style="color:#6c757d;font-size:.78rem">其他電子業</td><td>17.50</td><td style="color:#6c757d">16.23</td><td style="color:#6c757d">16.21</td><td>35.39%</td><td class="pos">+2.16%</td><td class="pos">+1.65%</td><td>11.59%</td><td class="neg">-0.50%</td></tr><tr><td class="rank">25</td><td><b>4906</b></td><td>正文</td><td style="color:#6c757d;font-size:.78rem">通信網路業</td><td>37.10</td><td style="color:#6c757d">29.78</td><td style="color:#6c757d">26.31</td><td>30.41%</td><td class="pos">+1.85%</td><td class="pos">+3.80%</td><td>16.57%</td><td class="neg">-0.59%</td></tr><tr><td class="rank">26</td><td><b>5534</b></td><td>長虹</td><td style="color:#6c757d;font-size:.78rem">建材營造</td><td>79.20</td><td style="color:#6c757d">76.17</td><td style="color:#6c757d">80.30</td><td>59.87%</td><td class="pos">+1.84%</td><td class="neg">-0.23%</td><td>7.87%</td><td class="neg">-0.66%</td></tr><tr><td class="rank">27</td><td><b>3171</b></td><td>新洲</td><td style="color:#6c757d;font-size:.78rem">貿易百貨</td><td>62.70</td><td style="color:#6c757d">56.12</td><td style="color:#6c757d">48.07</td><td>67.11%</td><td class="pos">+1.66%</td><td class="pos">+2.53%</td><td>7.12%</td><td class="neg">-0.15%</td></tr><tr><td class="rank">28</td><td><b>2254</b></td><td>巨鎧精密-創</td><td style="color:#6c757d;font-size:.78rem">創新版股票</td><td>71.90</td><td style="color:#6c757d">69.61</td><td style="color:#6c757d">60.47</td><td>86.92%</td><td class="pos">+1.66%</td><td class="neutral">0.00%</td><td>0.96%</td><td class="pos">+0.01%</td></tr><tr><td class="rank">29</td><td><b>2727</b></td><td>王品</td><td style="color:#6c757d;font-size:.78rem">觀光事業</td><td>229.00</td><td style="color:#6c757d">226.20</td><td style="color:#6c757d">225.13</td><td>17.29%</td><td class="pos">+1.63%</td><td class="pos">+0.11%</td><td>23.80%</td><td class="neg">-0.96%</td></tr><tr><td class="rank">30</td><td><b>6167</b></td><td>久正</td><td style="color:#6c757d;font-size:.78rem">光電業</td><td>14.10</td><td style="color:#6c757d">13.34</td><td style="color:#6c757d">12.59</td><td>38.18%</td><td class="pos">+1.62%</td><td class="neg">-2.31%</td><td>12.61%</td><td class="neg">-0.34%</td></tr><tr><td class="rank">31</td><td><b>8240</b></td><td>華宏</td><td style="color:#6c757d;font-size:.78rem">光電業</td><td>50.70</td><td style="color:#6c757d">47.37</td><td style="color:#6c757d">37.07</td><td>50.09%</td><td class="pos">+1.57%</td><td class="neg">-3.19%</td><td>11.47%</td><td class="neg">-0.85%</td></tr><tr><td class="rank">32</td><td><b>00955</b></td><td>中信日本商社</td><td style="color:#6c757d;font-size:.78rem">上櫃指數股票型基金(ETF)</td><td>15.60</td><td style="color:#6c757d">15.52</td><td style="color:#6c757d">12.12</td><td>19.23%</td><td class="pos">+1.56%</td><td class="pos">+1.16%</td><td>10.79%</td><td class="neg">-0.22%</td></tr><tr><td class="rank">33</td><td><b>4541</b></td><td>晟田</td><td style="color:#6c757d;font-size:.78rem">其他</td><td>42.05</td><td style="color:#6c757d">42.33</td><td style="color:#6c757d">45.56</td><td>26.77%</td><td class="pos">+1.50%</td><td class="pos">+0.06%</td><td>23.62%</td><td class="neg">-0.34%</td></tr></tbody></table>
+  </div>
+</div>
+
+<div class="section" style="padding-bottom:36px">
+  <p style="font-size:.78rem;color:#aaa;text-align:center">
+    巨鯨狙擊策略 · FinMind V3 · 產出時間：2026-04-11 18:32 · 僅供策略研究，不構成投資建議
+  </p>
+</div>
+
+</body>
+</html>
