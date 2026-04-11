@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinMind V3 Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+         background: #f4f7fa; color: #333; }
+
+  /* ── Header ── */
+  .header {
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    color: #fff;
+    padding: 36px 48px;
+    border-radius: 0 0 16px 16px;
+  }
+  .header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 6px; }
+  .header p  { opacity: .85; font-size: .95rem; }
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 20px;
+    padding: 3px 14px;
+    font-size: .8rem;
+    margin-top: 10px;
+    letter-spacing: .05em;
+  }
+
+  /* ── Section ── */
+  .section { padding: 28px 48px 0; }
+  .section h2 {
+    font-size: 1rem; font-weight: 700; color: #2b5876;
+    margin-bottom: 14px; letter-spacing: .05em;
+    padding-left: 10px;
+    border-left: 4px solid #4e4376;
+  }
+
+  /* ── Card Grid ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 22px 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow .2s, transform .2s;
+    display: block;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .card:hover {
+    box-shadow: 0 6px 20px rgba(43,88,118,.18);
+    transform: translateY(-2px);
+    border-color: #c0d0e0;
+  }
+  .card .icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .card .title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2b5876;
+    margin-bottom: 6px;
+  }
+  .card .desc {
+    font-size: .82rem;
+    color: #6c757d;
+    line-height: 1.5;
+  }
+  .card .tag {
+    display: inline-block;
+    margin-top: 12px;
+    background: #eef3f8;
+    color: #2b5876;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: .75rem;
+    font-weight: 600;
+  }
+  .card.disabled {
+    opacity: .5;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* ── Old version link ── */
+  .old-link-bar {
+    margin: 28px 48px 0;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: .88rem;
+    color: #795548;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .old-link-bar a {
+    color: #5c3317;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin: 32px 48px 32px;
+    color: #aaa;
+    font-size: .78rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>FinMind V3 Dashboard</h1>
+  <p>台股分析系統 · 策略掃描 · 持倉管理 · 回測報告</p>
+  <span class="badge">V3 · 自動更新 22:01</span>
+</div>
+
+<!-- 策略掃描 -->
+<div class="section">
+  <h2>策略掃描報告</h2>
+  <div class="cards">
+    <a class="card" href="高殖利率防禦型策略_Latest.html">
+      <div class="icon">📊</div>
+      <div class="title">高殖利率防禦型策略</div>
+      <div class="desc">全市場掃描，篩選高殖利率且已完成填息的優質標的，依綜合評分排序。</div>
+      <span class="tag">每日更新</span>
+    </a>
+  </div>
+</div>
+
+<!-- 持倉管理 -->
+<div class="section">
+  <h2>持倉管理</h2>
+  <div class="cards">
+    <a class="card" href="持倉離場檢核_Latest.html">
+      <div class="icon">🔍</div>
+      <div class="title">持倉離場檢核</div>
+      <div class="desc">現有持倉的離場條件檢核，包含停損、停利、填息狀態等判斷。</div>
+      <span class="tag">每日更新</span>
+    </a>
+  </div>
+</div>
+
+<!-- 回測報告 -->
+<div class="section">
+  <h2>策略回測報告</h2>
+  <div class="cards">
+    <!-- 有回測報告時在此新增 card，檔案放在 backtest_report/ 資料夾 -->
+    <a class="card" href="backtest_report/高殖利率防禦型_回測報告.html">
+      <div class="icon">📈</div>
+      <div class="title">高殖利率防禦型策略 回測</div>
+      <div class="desc">2022–2026 回測結果，含年度報酬、持倉明細、績效指標。</div>
+      <span class="tag">回測報告</span>
+    </a>
+  </div>
+</div>
+
+<!-- 舊版連結提示 -->
+<div class="old-link-bar">
+  <span>⚠️</span>
+  <span>舊版 Dashboard（V2）：<a href="https://masonchuang.github.io/finmind-dashboard/" target="_blank">https://masonchuang.github.io/finmind-dashboard/</a></span>
+</div>
+
+<div class="footer">
+  FinMind V3 · 自動同步 by GitHub Actions · 資料來源：FinMind API
+</div>
+
+</body>
+</html>
