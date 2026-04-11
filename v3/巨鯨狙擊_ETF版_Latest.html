@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巨鯨狙擊_ETF版</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+         background: #f4f7fa; color: #333; }
+  .header {
+    background: linear-gradient(135deg, #0369a1, #0ea5e9);
+    color: #fff; padding: 36px 48px; border-radius: 0 0 16px 16px;
+  }
+  .header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 6px; }
+  .header p  { opacity: .85; font-size: .95rem; }
+  .header .badge {
+    display: inline-block; background: rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.4); border-radius: 20px;
+    padding: 3px 14px; font-size: .8rem; margin-top: 10px;
+  }
+  .cards { display: flex; flex-wrap: wrap; gap: 16px; padding: 24px 48px 8px; }
+  .card { background: #fff; border-radius: 12px; padding: 18px 24px;
+          box-shadow: 0 2px 8px rgba(0,0,0,.05); min-width: 190px; }
+  .card .label { font-size: .85rem; color: #6c757d; margin-bottom: 4px; }
+  .card .value { font-size: 1.8rem; font-weight: 700; color: #0369a1; }
+  .card .value.small { font-size: 1rem; line-height: 1.6; }
+  .card .sub { font-size: .78rem; color: #aaa; margin-top: 3px; }
+  .section { padding: 0 48px 24px; }
+  .section h2 {
+    font-size: 1rem; font-weight: 700; color: #0369a1;
+    margin: 20px 0 10px; padding-left: 10px;
+    border-left: 4px solid #0ea5e9; letter-spacing: .04em;
+  }
+  .params { background: #fff; border-radius: 12px; padding: 14px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .85rem;
+            color: #555; line-height: 1.9; }
+  .params b { color: #0369a1; }
+  .market-box { background: #fff; border-radius: 12px; padding: 14px 20px;
+                box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .9rem;
+                display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .market-badge { display: inline-block; border-radius: 8px; padding: 4px 14px;
+                  font-size: .85rem; font-weight: 700; }
+  .market-badge.above { background: #fff3cd; color: #856404; }
+  .market-badge.below { background: #d1ecf1; color: #0c5460; }
+  .market-note { font-size: .78rem; color: #aaa; margin-top: 2px; }
+  .no-candidate { background: #fff; border-radius: 12px; padding: 32px 24px;
+                  text-align: center; color: #6c757d; font-size: .95rem;
+                  box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+  .table-wrap { background: #fff; border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(0,0,0,.05); overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: .82rem; }
+  thead th { background: #0369a1; color: #fff; padding: 10px; white-space: nowrap;
+             text-align: center; position: sticky; top: 0; }
+  tbody tr:nth-child(even) { background: #f0f9ff; }
+  tbody tr:hover { background: #e0f2fe; }
+  tbody td { padding: 8px 10px; text-align: center; white-space: nowrap;
+             border-bottom: 1px solid #eee; }
+  .rank    { font-weight: 700; color: #0369a1; }
+  .pos     { color: #198754; font-weight: 600; }
+  .neg     { color: #dc3545; font-weight: 600; }
+  .neutral { color: #6c757d; }
+  .weekly-note { background: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 10px;
+                 padding: 12px 18px; font-size: .82rem; color: #075985; margin-bottom: 16px; }
+  @media (max-width: 768px) {
+    .header { padding: 24px 20px; }
+    .cards, .section { padding-left: 16px; padding-right: 16px; }
+    .header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🐋 巨鯨狙擊策略（ETF 版）</h1>
+  <p>追蹤法人輪動 × ETF 大戶吸籌 × 週頻低頻策略</p>
+  <span class="badge">ETF 版 · 自動更新</span>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="label">本期 ETF 候選標的</div>
+    <div class="value">2 <span style="font-size:1rem;color:#6c757d">檔</span></div>
+    <div class="sub">依大戶吸籌幅度排序</div>
+  </div>
+  <div class="card">
+    <div class="label">訊號日期（股權資料）</div>
+    <div class="value small">2026-03-27</div>
+    <div class="sub">每週五更新</div>
+  </div>
+  <div class="card">
+    <div class="label">掃描時間</div>
+    <div class="value small">2026-04-11 23:43</div>
+    <div class="sub">FinMind 最後資料：2026-04-10</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>0050 位置參考（僅供參考，策略無大盤濾網）</h2>
+  <div class="market-box">
+    <span class="market-badge above">高於月線（多頭偏強）</span>
+    <span>0050 收盤 <b>80.75</b> &nbsp;｜&nbsp; SMA20 <b>76.01</b></span>
+    <span class="market-note">（資料日期：2026-04-10）</span>
+  </div>
+</div>
+
+<div class="section">
+  <h2>策略條件（ETF 版）</h2>
+  <div class="params">
+    <b>入場（週頻）</b>：
+    大戶週變化 ≥ <b>+1.5%</b> &nbsp;｜&nbsp;
+    散戶週變化 ≤ <b>+0.3%</b> &nbsp;｜&nbsp;
+    收盤 &gt; 前週收盤 <em>或</em> 收盤 &gt; SMA20 &nbsp;｜&nbsp;
+    股價 &lt; 52週均價 × <b>1.5</b> &nbsp;｜&nbsp;
+    <b>標的限定 ETF</b>（代號 0 開頭全數字）<br>
+    <b>離場（日頻優先）</b>：
+    固定停損 <b>-15%</b> &nbsp;｜&nbsp;
+    動態停利 回跌 <b>20%</b><br>
+    <b>離場（週頻雙確認）</b>：
+    連續 2 週大戶變化 ≤ <b>-0.8%</b> 且週收盤 &lt; SMA20
+  </div>
+</div>
+
+<div class="section">
+  <h2>ETF 候選標的（依大戶週吸籌幅度排序）</h2>
+  <div class="weekly-note">
+    &#9432; 股權分散資料每週更新，以上為本週訊號日 <b>2026-03-27</b> 的掃描結果（僅限 ETF）。<br>
+    ETF 大戶增持反映法人輪動，進場建議訊號確認後 T+1 執行。
+  </div>
+  <div class="table-wrap">
+    <table><thead><tr><th>排行</th><th>代號</th><th>名稱</th><th>收盤</th><th>SMA20</th><th>52週均價</th><th>大戶持股%</th><th>大戶週變化</th><th>前週大戶變化</th><th>散戶持股%</th><th>散戶週變化</th></tr></thead><tbody><tr><td class="rank">1</td><td><b>00944</b></td><td>野村趨勢動能高息</td><td>15.34</td><td style="color:#6c757d">15.21</td><td style="color:#6c757d">14.44</td><td>9.28%</td><td class="pos">+2.71%</td><td class="neg">-2.07%</td><td>18.28%</td><td class="neg">-0.14%</td></tr><tr><td class="rank">2</td><td><b>00955</b></td><td>中信日本商社</td><td>15.60</td><td style="color:#6c757d">15.52</td><td style="color:#6c757d">12.12</td><td>19.23%</td><td class="pos">+1.56%</td><td class="pos">+1.16%</td><td>10.79%</td><td class="neg">-0.22%</td></tr></tbody></table>
+  </div>
+</div>
+<div class="section" style="padding-bottom:36px">
+  <p style="font-size:.78rem;color:#aaa;text-align:center">
+    巨鯨狙擊_ETF版 · FinMind V3 · 產出時間：2026-04-11 23:43 · 僅供策略研究，不構成投資建議
+  </p>
+</div>
+</body>
+</html>
