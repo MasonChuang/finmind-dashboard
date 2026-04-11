@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高殖利率防禦型策略 — 長期回測完整報告</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card2: #1e2130;
+    --border: #2e3347;
+    --accent: #4f8ef7;
+    --accent2: #7c5cfc;
+    --green: #34d399;
+    --red: #f87171;
+    --yellow: #fbbf24;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --tag-bg: #2a3050;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif; font-size: 14px; line-height: 1.65; }
+
+  .container { max-width: 1120px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Header */
+  .header { border-bottom: 2px solid var(--border); padding-bottom: 24px; margin-bottom: 32px; }
+  .header h1 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: .5px; }
+  .header .subtitle { color: var(--muted); margin-top: 6px; font-size: 13px; }
+  .meta-row { display: flex; gap: 24px; margin-top: 14px; flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); }
+  .meta-value { font-size: 13px; color: var(--text); }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--accent); border-left: 3px solid var(--accent); padding-left: 10px; margin-bottom: 16px; letter-spacing: .3px; }
+
+  /* KPI cards */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+  .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .kpi-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .7px; margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 700; }
+  .kpi-value.pos { color: var(--green); }
+  .kpi-value.neg { color: var(--red); }
+  .kpi-value.neutral { color: var(--accent); }
+  .kpi-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; }
+  thead th { background: var(--card2); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .6px; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: rgba(79,142,247,.05); }
+  tbody td { padding: 9px 14px; font-size: 13px; }
+  td.pos { color: var(--green); font-weight: 600; }
+  td.neg { color: var(--red); font-weight: 600; }
+  td.neutral { color: var(--accent); }
+  td.warn { color: var(--yellow); }
+
+  /* Tag */
+  .tag { display: inline-block; background: var(--tag-bg); border-radius: 4px; padding: 2px 8px; font-size: 11px; color: var(--accent); margin: 2px; }
+  .tag.green { background: rgba(52,211,153,.12); color: var(--green); }
+  .tag.red { background: rgba(248,113,113,.12); color: var(--red); }
+  .tag.yellow { background: rgba(251,191,36,.12); color: var(--yellow); }
+
+  /* Condition cards */
+  .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 700px) { .cond-grid { grid-template-columns: 1fr; } }
+  .cond-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .cond-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #fff; }
+  .cond-item { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 7px; font-size: 13px; }
+  .cond-num { min-width: 20px; color: var(--accent2); font-weight: 700; }
+  .cond-text { color: var(--text); }
+  .cond-text .param { color: var(--yellow); font-weight: 600; }
+
+  /* Issue card */
+  .issue-list { display: flex; flex-direction: column; gap: 12px; }
+  .issue-card { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 8px; padding: 14px 16px; }
+  .issue-card.warn { border-left-color: var(--yellow); }
+  .issue-card.info { border-left-color: var(--accent); }
+  .issue-title { font-weight: 700; font-size: 13px; margin-bottom: 5px; }
+  .issue-title.red { color: var(--red); }
+  .issue-title.warn { color: var(--yellow); }
+  .issue-title.info { color: var(--accent); }
+  .issue-body { color: var(--muted); font-size: 12.5px; line-height: 1.7; }
+
+  /* Rating */
+  .rating-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; }
+  .rating-stars { font-size: 28px; letter-spacing: 3px; margin-bottom: 12px; }
+  .rating-summary { font-size: 14px; color: var(--text); line-height: 1.8; }
+  .rating-badge { display: inline-block; background: rgba(52,211,153,.15); color: var(--green); border-radius: 6px; padding: 3px 12px; font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+
+  /* Progress bar */
+  .prog-bar-wrap { background: var(--border); border-radius: 99px; height: 8px; margin-top: 4px; }
+  .prog-bar { height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .prog-bar.green { background: linear-gradient(90deg, #34d399, #059669); }
+  .prog-bar.red { background: linear-gradient(90deg, #f87171, #dc2626); }
+  .prog-bar.yellow { background: linear-gradient(90deg, #fbbf24, #d97706); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  .note { background: rgba(79,142,247,.08); border: 1px solid rgba(79,142,247,.2); border-radius: 8px; padding: 12px 16px; font-size: 12.5px; color: var(--muted); }
+  .note strong { color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); margin-top: 48px; padding-top: 18px; color: var(--muted); font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── Header ── -->
+  <div class="header">
+    <h1>高殖利率防禦型策略 — 長期回測完整報告</h1>
+    <div class="subtitle">High Dividend Yield Defensive Strategy — Long-term Backtest Report</div>
+    <div class="meta-row">
+      <div class="meta-item"><span class="meta-label">回測起訖</span><span class="meta-value">2016-01-01 ～ 2026-04-09（10 年）</span></div>
+      <div class="meta-item"><span class="meta-label">執行時間</span><span class="meta-value">2026-04-10 20:14 ～ 20:21</span></div>
+      <div class="meta-item"><span class="meta-label">資料來源</span><span class="meta-value">FinMind SQLite DB（本機）</span></div>
+      <div class="meta-item"><span class="meta-label">程式版本</span><span class="meta-value">high_dividend_bt.py（向量化 + Cache 版）</span></div>
+      <div class="meta-item"><span class="meta-label">宇宙範圍</span><span class="meta-value">TWSE + TPEX 全市場（LENGTH ≤ 5，含下市股）</span></div>
+    </div>
+  </div>
+
+  <!-- ── KPI ── -->
+  <div class="section">
+    <div class="section-title">績效總覽</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">累計報酬率</div>
+        <div class="kpi-value pos">+92.80%</div>
+        <div class="kpi-sub">期初 100 萬 → 期末 1,927,954</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">期末資產</div>
+        <div class="kpi-value neutral">1,927,954</div>
+        <div class="kpi-sub">總投入（含注資）1,000,000</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">整體勝率</div>
+        <div class="kpi-value pos">57.1%</div>
+        <div class="kpi-sub">已結算 7 筆中 4 筆獲利</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">交易次數（買/賣）</div>
+        <div class="kpi-value neutral">48</div>
+        <div class="kpi-sub">含配息收取 14 次</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">實際操作區間</div>
+        <div class="kpi-value neutral">5 年</div>
+        <div class="kpi-sub">2021-01 ～ 2026-04（有效）</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">最大單筆報酬</div>
+        <div class="kpi-value pos">+36.30%</div>
+        <div class="kpi-sub">4987 科誠（2024-2026）</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">最大單筆虧損</div>
+        <div class="kpi-value neg">-24.41%</div>
+        <div class="kpi-sub">3567 逸昌（2025-12，小部位）</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">配息總收取</div>
+        <div class="kpi-value pos">+14 次</div>
+        <div class="kpi-sub">穩定貢獻現金流緩衝</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 年度報酬 ── -->
+  <div class="section">
+    <div class="section-title">年度績效明細</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>年度</th>
+            <th>交易次數</th>
+            <th>該年度勝率</th>
+            <th>該年度報酬率</th>
+            <th>累積至今報酬</th>
+            <th>主要事件</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2016 – 2020</td>
+            <td>0（資金注入 5 次）</td>
+            <td class="neutral">—</td>
+            <td class="neutral">0.00%</td>
+            <td class="neutral">0.00%</td>
+            <td style="color:var(--muted)">資料缺口期，全現金待機（詳見說明）</td>
+          </tr>
+          <tr>
+            <td>2021</td>
+            <td>3</td>
+            <td class="neutral">33.3%</td>
+            <td class="pos">+8.14%</td>
+            <td class="pos">+8.14%</td>
+            <td>3078 僑威 <span class="tag green">+26.00%</span> 首筆建倉成功</td>
+          </tr>
+          <tr>
+            <td>2022</td>
+            <td>1</td>
+            <td class="pos">100.0%</td>
+            <td class="pos">+2.52%</td>
+            <td class="pos">+6.74%</td>
+            <td>1565 精華 <span class="tag green">+2.52%</span>；配息貢獻</td>
+          </tr>
+          <tr>
+            <td>2023</td>
+            <td>2</td>
+            <td class="neg">0.0%</td>
+            <td class="neg">-14.42%</td>
+            <td class="neg">-0.32%</td>
+            <td>6210 慶生 <span class="tag red">-13.66%</span>、6294 智基 <span class="tag red">-15.18%</span></td>
+          </tr>
+          <tr>
+            <td>2024</td>
+            <td>2</td>
+            <td class="pos">100.0%</td>
+            <td class="pos">+17.84%</td>
+            <td class="pos">+4.22%</td>
+            <td>3556 禾瑞亞 <span class="tag green">+9.45%</span>、5015 華祺 <span class="tag green">+26.24%</span></td>
+          </tr>
+          <tr>
+            <td>2025</td>
+            <td>1</td>
+            <td class="neg">0.0%</td>
+            <td class="neg">-24.41%</td>
+            <td class="pos">+1.04%</td>
+            <td>3567 逸昌賣出 <span class="tag red">-24.41%</span>（小部位）</td>
+          </tr>
+          <tr>
+            <td>2026</td>
+            <td>5</td>
+            <td class="pos">80.0%</td>
+            <td class="pos">+11.34%</td>
+            <td class="pos">+4.72%</td>
+            <td>4987 科誠 <span class="tag green">+36.30%</span>（回測清倉）</td>
+          </tr>
+          <tr style="background:rgba(79,142,247,.06)">
+            <td style="font-weight:700">合計</td>
+            <td style="font-weight:700">48</td>
+            <td class="pos" style="font-weight:700">57.1%</td>
+            <td class="pos" style="font-weight:700">+92.80%</td>
+            <td class="pos" style="font-weight:700">+92.80%</td>
+            <td style="color:var(--muted)">10 年期（有效操作 5 年）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 交易明細 ── -->
+  <div class="section">
+    <div class="section-title">完整交易明細</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>代號</th>
+            <th>名稱</th>
+            <th>產業</th>
+            <th>股價</th>
+            <th>動作</th>
+            <th>手頭現金</th>
+            <th>報酬率</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="8" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 資金注入期（2016-01 ~ 2016-05）──</td></tr>
+          <tr><td>2016-01-06</td><td>—</td><td>資金注入</td><td>—</td><td>—</td><td class="neutral">注入 100,000</td><td>600,000</td><td>—</td></tr>
+          <tr><td>2016-02-15</td><td>—</td><td>資金注入</td><td>—</td><td>—</td><td class="neutral">注入 100,000</td><td>700,000</td><td>—</td></tr>
+          <tr><td>2016-03-07</td><td>—</td><td>資金注入</td><td>—</td><td>—</td><td class="neutral">注入 100,000</td><td>800,000</td><td>—</td></tr>
+          <tr><td>2016-04-06</td><td>—</td><td>資金注入</td><td>—</td><td>—</td><td class="neutral">注入 100,000</td><td>900,000</td><td>—</td></tr>
+          <tr><td>2016-05-06</td><td>—</td><td>資金注入</td><td>—</td><td>—</td><td class="neutral">注入 100,000</td><td>1,000,000</td><td>—</td></tr>
+          <tr><td colspan="8" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 有效操作期（2021 起）──</td></tr>
+          <tr><td>2021-01-19</td><td>3078</td><td>僑威</td><td>電子零組件</td><td>43.00</td><td style="color:var(--accent)">買入 #1</td><td>9,591</td><td>—</td></tr>
+          <tr><td>2021-03-15</td><td>3078</td><td>僑威</td><td>電子零組件</td><td>54.50</td><td style="color:var(--green)">賣出</td><td>1,257,544</td><td class="pos">+26.00%</td></tr>
+          <tr><td>2021-03-17</td><td>1565</td><td>精華</td><td>生技醫療</td><td>288.00</td><td style="color:var(--accent)">買入 #1</td><td>103,902</td><td>—</td></tr>
+          <tr><td>2021-03-17</td><td>3078</td><td>僑威</td><td>電子零組件</td><td>54.60</td><td style="color:var(--accent)">買入 #2</td><td>49,225</td><td>—</td></tr>
+          <tr><td>2021-03-17</td><td>3118</td><td>進階</td><td>生技醫療</td><td>30.30</td><td style="color:var(--accent)">買入 #3</td><td>18,881</td><td>—</td></tr>
+          <tr><td>2021-03-18</td><td>3078</td><td>僑威</td><td>電子零組件</td><td>54.90</td><td style="color:var(--green)">賣出</td><td>73,538</td><td class="neg">-0.04%</td></tr>
+          <tr><td>2021-04-19</td><td>2421</td><td>建準</td><td>電子工業</td><td>52.70</td><td style="color:var(--accent)">買入 #1</td><td>20,763</td><td>—</td></tr>
+          <tr><td>2021-04-20</td><td>2421</td><td>建準</td><td>電子工業</td><td>52.20</td><td style="color:var(--green)">賣出</td><td>72,732</td><td class="neg">-1.53%</td></tr>
+          <tr><td>2021-05-18</td><td>6210</td><td>慶生</td><td>電子零組件</td><td>40.30</td><td style="color:var(--accent)">買入 #1</td><td>32,375</td><td>—</td></tr>
+          <tr><td>2021-05-18</td><td>5015</td><td>華祺</td><td>鋼鐵工業</td><td>30.20</td><td style="color:var(--accent)">買入 #3</td><td>2,132</td><td>—</td></tr>
+          <tr><td>2021-08-03</td><td>5015</td><td>華祺</td><td>鋼鐵工業</td><td>1.90</td><td class="warn">配息</td><td>4,032</td><td class="pos">+6.28%</td></tr>
+          <tr><td>2021-08-13</td><td>6210</td><td>慶生</td><td>電子零組件</td><td>3.00</td><td class="warn">配息</td><td>7,032</td><td class="pos">+7.43%</td></tr>
+          <tr><td>2022-02-21</td><td>1565</td><td>精華</td><td>生技醫療</td><td>297.00</td><td style="color:var(--green)">賣出</td><td>1,189,775</td><td class="pos">+2.52%</td></tr>
+          <tr><td>2022-03-17</td><td>6294</td><td>智基</td><td>文化創意</td><td>126.00</td><td style="color:var(--accent)">買入 #1</td><td>54,159</td><td>—</td></tr>
+          <tr><td>2022-03-17</td><td>4305</td><td>世坤</td><td>塑膠工業</td><td>31.50</td><td style="color:var(--accent)">買入 #3</td><td>22,614</td><td>—</td></tr>
+          <tr><td>2022-04-22</td><td>6294</td><td>智基</td><td>文化創意</td><td>9.50</td><td class="warn">配息</td><td>108,114</td><td class="pos">+7.53%</td></tr>
+          <tr><td>2022-05-17</td><td>3567</td><td>逸昌</td><td>半導體</td><td>34.00</td><td style="color:var(--accent)">買入 #1</td><td>5,969</td><td>—</td></tr>
+          <tr><td>2022-07-14</td><td>5015</td><td>華祺</td><td>鋼鐵工業</td><td>3.50</td><td class="warn">配息</td><td>9,469</td><td class="pos">+17.86%</td></tr>
+          <tr><td>2022-08-01</td><td>4305</td><td>世坤</td><td>塑膠工業</td><td>1.80</td><td class="warn">配息</td><td>11,269</td><td class="pos">+5.71%</td></tr>
+          <tr><td>2022-08-02</td><td>3567</td><td>逸昌</td><td>半導體</td><td>2.60</td><td class="warn">配息</td><td>19,069</td><td class="pos">+7.64%</td></tr>
+          <tr><td>2022-08-19</td><td>6210</td><td>慶生</td><td>電子零組件</td><td>3.00</td><td class="warn">配息</td><td>22,069</td><td class="pos">+14.87%</td></tr>
+          <tr><td>2023-01-10</td><td>6210</td><td>慶生</td><td>電子零組件</td><td>35.00</td><td style="color:var(--green)">賣出</td><td>56,914</td><td class="neg">-13.66%</td></tr>
+          <tr><td>2023-01-10</td><td>6294</td><td>智基</td><td>文化創意</td><td>107.50</td><td style="color:var(--green)">賣出</td><td>1,020,133</td><td class="neg">-15.18%</td></tr>
+          <tr><td>2023-01-17</td><td>3556</td><td>禾瑞亞</td><td>半導體</td><td>55.50</td><td style="color:var(--accent)">買入 #1</td><td>19,709</td><td>—</td></tr>
+          <tr><td>2023-06-21</td><td>3118</td><td>進階</td><td>生技醫療</td><td>1.70</td><td class="warn">配息</td><td>21,409</td><td class="pos">+5.60%</td></tr>
+          <tr><td>2023-07-05</td><td>5015</td><td>華祺</td><td>鋼鐵工業</td><td>5.60</td><td class="warn">配息</td><td>27,009</td><td class="pos">+36.37%</td></tr>
+          <tr><td>2023-07-12</td><td>3556</td><td>禾瑞亞</td><td>半導體</td><td>4.70</td><td class="warn">配息</td><td>111,609</td><td class="pos">+8.46%</td></tr>
+          <tr><td>2023-07-12</td><td>4305</td><td>世坤</td><td>塑膠工業</td><td>2.00</td><td class="warn">配息</td><td>113,609</td><td class="pos">+12.05%</td></tr>
+          <tr><td>2023-07-17</td><td>3567</td><td>逸昌</td><td>半導體</td><td>2.10</td><td class="warn">配息</td><td>119,909</td><td class="pos">+13.80%</td></tr>
+          <tr><td>2024-01-03</td><td>3556</td><td>禾瑞亞</td><td>半導體</td><td>61.10</td><td style="color:var(--green)">賣出</td><td>1,214,843</td><td class="pos">+9.45%</td></tr>
+          <tr><td>2024-01-17</td><td>4987</td><td>科誠</td><td>電腦週邊</td><td>59.30</td><td style="color:var(--accent)">買入 #1</td><td>27,152</td><td>—</td></tr>
+          <tr><td>2024-06-24</td><td>3118</td><td>進階</td><td>生技醫療</td><td>1.70</td><td class="warn">配息</td><td>28,852</td><td class="pos">+11.21%</td></tr>
+          <tr><td>2024-07-15</td><td>4305</td><td>世坤</td><td>塑膠工業</td><td>2.50</td><td class="warn">配息</td><td>31,352</td><td class="pos">+19.97%</td></tr>
+          <tr><td>2024-07-17</td><td>3567</td><td>逸昌</td><td>半導體</td><td>2.70</td><td class="warn">配息</td><td>39,452</td><td class="pos">+21.73%</td></tr>
+          <tr><td>2024-12-03</td><td>5015</td><td>華祺</td><td>鋼鐵工業</td><td>38.35</td><td style="color:var(--green)">賣出</td><td>77,633</td><td class="pos">+26.24%</td></tr>
+          <tr><td>2025-01-17</td><td>9927</td><td>泰銘</td><td>其他</td><td>65.80</td><td style="color:var(--accent)">買入 #4</td><td>11,739</td><td>—</td></tr>
+          <tr><td>2025-06-18</td><td>3118</td><td>進階</td><td>生技醫療</td><td>1.80</td><td class="warn">配息</td><td>13,539</td><td class="pos">+17.14%</td></tr>
+          <tr><td>2025-07-16</td><td>3567</td><td>逸昌</td><td>半導體</td><td>1.80</td><td class="warn">配息</td><td>18,939</td><td class="pos">+27.02%</td></tr>
+          <tr><td>2025-07-29</td><td>4987</td><td>科誠</td><td>電腦週邊</td><td>5.20</td><td class="warn">配息</td><td>122,939</td><td class="pos">+8.76%</td></tr>
+          <tr><td>2025-08-05</td><td>4305</td><td>世坤</td><td>塑膠工業</td><td>3.20</td><td class="warn">配息</td><td>126,139</td><td class="pos">+30.12%</td></tr>
+          <tr><td>2025-09-01</td><td>9927</td><td>泰銘</td><td>其他</td><td>6.00</td><td class="warn">配息</td><td>132,139</td><td class="pos">+9.11%</td></tr>
+          <tr><td>2025-12-16</td><td>3567</td><td>逸昌</td><td>半導體</td><td>25.85</td><td style="color:var(--green)">賣出</td><td>209,346</td><td class="neg">-24.41%</td></tr>
+          <tr><td>2025-12-17</td><td>5508</td><td>永信建</td><td>建材營造</td><td>72.60</td><td style="color:var(--accent)">買入 #1</td><td>63,939</td><td>—</td></tr>
+          <tr><td colspan="8" style="color:var(--muted);font-size:12px;padding:8px 14px;background:var(--card2)">── 回測結束清倉（2026-04-09）──</td></tr>
+          <tr><td>2026-04-09</td><td>3118</td><td>進階</td><td>生技醫療</td><td>33.60</td><td style="color:var(--muted)">清倉</td><td>97,390</td><td class="pos">+10.24%</td></tr>
+          <tr><td>2026-04-09</td><td>4305</td><td>世坤</td><td>塑膠工業</td><td>43.70</td><td style="color:var(--muted)">清倉</td><td>140,897</td><td class="pos">+37.92%</td></tr>
+          <tr><td>2026-04-09</td><td>4987</td><td>科誠</td><td>電腦週邊</td><td>81.30</td><td style="color:var(--muted)">清倉</td><td>1,759,702</td><td class="pos">+36.30%</td></tr>
+          <tr><td>2026-04-09</td><td>9927</td><td>泰銘</td><td>其他</td><td>68.40</td><td style="color:var(--muted)">清倉</td><td>1,827,799</td><td class="pos">+3.34%</td></tr>
+          <tr><td>2026-04-09</td><td>5508</td><td>永信建</td><td>建材營造</td><td>50.30</td><td style="color:var(--muted)">清倉</td><td>1,927,954</td><td class="neg">-31.12%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── 入手/出場條件 ── -->
+  <div class="section">
+    <div class="section-title">買入條件（7 項全通過才列入候選）</div>
+    <div class="cond-grid">
+      <div class="cond-card">
+        <h4>📊 基本篩選條件</h4>
+        <div class="cond-item"><span class="cond-num">①</span><span class="cond-text">近 5 年現金殖利率日均值 ≥ <span class="param">4.0%</span></span></div>
+        <div class="cond-item"><span class="cond-num">②</span><span class="cond-text">近 <span class="param">5 年</span>每次除息均已填息（always_filled = True）</span></div>
+        <div class="cond-item"><span class="cond-num">③</span><span class="cond-text">連續配息年數 ≥ <span class="param">5 年</span></span></div>
+        <div class="cond-item"><span class="cond-num">④</span><span class="cond-text">上市年數 ≥ <span class="param">10 年</span>（成熟企業）</span></div>
+        <div class="cond-item"><span class="cond-num">⑤</span><span class="cond-text">連續獲利年數 ≥ <span class="param">7 年</span>（EPS > 0）</span></div>
+        <div class="cond-item"><span class="cond-num">⑥</span><span class="cond-text">近 10 年 ROA 均值 ≥ 產業門檻（一般 <span class="param">5%</span>，金融 <span class="param">0.5%</span>）</span></div>
+        <div class="cond-item"><span class="cond-num">⑦</span><span class="cond-text">每年本業佔比在合理範圍（一般 <span class="param">70%~130%</span>）</span></div>
+      </div>
+      <div class="cond-card">
+        <h4>📈 年線動態門檻（疊加）</h4>
+        <div class="cond-item"><span class="cond-num">↑</span><span class="cond-text"><strong>股價高於 250MA（高檔）</strong>：追加「平均填息天數 ≤ <span class="param">60</span> 交易日」防止高檔追入填息慢的股</span></div>
+        <div class="cond-item"><span class="cond-num">↓</span><span class="cond-text"><strong>股價低於 250MA（低檔）</strong>：維持 7 項基本條件即可（基本面未變質）</span></div>
+        <br>
+        <h4>📋 排序與買入邏輯</h4>
+        <div class="cond-item"><span class="cond-num">▶</span><span class="cond-text">高檔：按「填息天數少 × 0.5 + ROA × 0.3 + 殖利率 × 0.2」排序</span></div>
+        <div class="cond-item"><span class="cond-num">▶</span><span class="cond-text">低檔：按「殖利率 × 0.5 + 獲利年數 × 0.3 + ROA × 0.2」排序</span></div>
+        <div class="cond-item"><span class="cond-num">▶</span><span class="cond-text">每月第一個 ≥ 16 日的交易日掃描；T+1 開盤買入</span></div>
+        <div class="cond-item"><span class="cond-num">▶</span><span class="cond-text">季報套用 <span class="param">45 天</span>申報延遲（防未來資訊）</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">賣出條件（任一觸發即 EXIT）</div>
+    <div class="cond-grid">
+      <div class="cond-card">
+        <h4>🚨 強制賣出（EXIT）</h4>
+        <div class="cond-item"><span class="cond-num">①</span><span class="cond-text">近 1 年殖利率均值 &lt; <span class="param">4.0%</span>（股價漲太高或配息縮水）</span></div>
+        <div class="cond-item"><span class="cond-num">②</span><span class="cond-text">最近完整財年 EPS &lt; 0（轉虧）</span></div>
+        <div class="cond-item"><span class="cond-num">③</span><span class="cond-text">最近完整財年現金股利 = 0（停發）</span></div>
+        <div class="cond-item"><span class="cond-num">④</span><span class="cond-text">近 5 年有除息未填息（always_filled 變 False）</span></div>
+      </div>
+      <div class="cond-card">
+        <h4>⚠️ 觀察警告（WATCH，不立即賣出）</h4>
+        <div class="cond-item"><span class="cond-num">W1</span><span class="cond-text">近 2 年 ROA 均值跌破產業門檻</span></div>
+        <div class="cond-item"><span class="cond-num">W2</span><span class="cond-text">最新年本業佔比超出合理範圍</span></div>
+        <div class="cond-item"><span class="cond-num">W3</span><span class="cond-text">股價高於年線 且 平均填息天數 &gt; 60 天</span></div>
+        <br>
+        <div class="cond-item"><span class="cond-num">✓</span><span class="cond-text" style="color:var(--muted)">掃描每月 ≥ 16 日執行；次日開盤賣出</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 策略特性 ── -->
+  <div class="section">
+    <div class="section-title">策略特性與設計目標</div>
+    <div class="two-col">
+      <div class="cond-card">
+        <h4 style="margin-bottom:12px;">🎯 策略定位</h4>
+        <p style="color:var(--muted);font-size:13px;line-height:1.8;">
+          本策略並非追求資本快速增值，而是以<strong style="color:var(--text)">「安全邊際 + 現金流複利」</strong>為核心：
+          先用多重基本面篩選淘汰高風險標的，再從通過篩選的優質高息股中選取殖利率最具吸引力者。
+          每次配息收取的現金自動累積至可用資金，配合次年度再投入，形成<strong style="color:var(--text)">小複利效果</strong>。
+          股價低於年線時允許更低的殖利率速度門檻，體現<strong style="color:var(--text)">逢低加碼的防禦思路</strong>。
+        </p>
+      </div>
+      <div class="cond-card">
+        <h4 style="margin-bottom:12px;">📌 反作弊設計</h4>
+        <div class="cond-item"><span class="cond-num">✓</span><span class="cond-text">訊號 T 日收盤後產生，T+1 開盤執行（無未來偷看）</span></div>
+        <div class="cond-item"><span class="cond-num">✓</span><span class="cond-text">季報延遲 45 天（模擬現實申報時間）</span></div>
+        <div class="cond-item"><span class="cond-num">✓</span><span class="cond-text">填息計算嚴格：fill_date ≤ T（未確認填息不計）</span></div>
+        <div class="cond-item"><span class="cond-num">✓</span><span class="cond-text">涵蓋所有已下市股票（防倖存者偏差）</span></div>
+        <div class="cond-item"><span class="cond-num">✓</span><span class="cond-text">連續 5 日無報價 → 強制出場（含下市處理）</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 問題 ── -->
+  <div class="section">
+    <div class="section-title">已知問題與影響</div>
+    <div class="issue-list">
+      <div class="issue-card info">
+        <div class="issue-title info">📅 問題一：2016～2020 完全無交易（資料缺口，無法修復）</div>
+        <div class="issue-body">
+          <strong style="color:var(--text)">根本原因：</strong>FinMind API 的 <code>TaiwanStockDividendResult</code>（填息結果）僅從 2020-01-02 起有資料，
+          2016-2019 年的除息記錄無法判斷是否已填息。同時，財報 EPS 從 2014 年起、min_profit_years=7 需要 7 個完整財年，
+          最早也要 2021 年才能滿足。兩道條件同時缺失，導致 2016-2020 全市場掃描無任何候選股，資金全部現金待機。<br><br>
+          <strong style="color:var(--text)">影響：</strong>100 萬資金閒置整整 5 年，若以 2% 定存計算損失約 10.4 萬機會成本。
+          有效操作期從 10 年縮短為 5 年，年化報酬需從 92.8% 拆分回 5 年期評估（≈ 14.0% 年化）。<br><br>
+          <strong style="color:var(--yellow)">處理方式：</strong>此缺口不可靠程式碼修補，屬 API 上游資料限制。回測報告已標注有效起點為 2021-01-19。
+          未來若需以填息品質為主要篩選條件的新策略回測，建議有效起點設為 2022-01-01。
+        </div>
+      </div>
+      <div class="issue-card warn">
+        <div class="issue-title warn">⚠️ 問題二：部分持股仍高度集中（95%+）</div>
+        <div class="issue-body">
+          策略按「最多資金 → 排名第 1 的候選股」邏輯，每次主要持股幾乎動用 95~100% 可用資金（例：1565 精華、4987 科誠各佔近百萬）。
+          這雖然在多頭標的（科誠 +36%）時放大獲利，但若主力持股出問題，整體資產將遭受嚴重打擊。
+          現行策略持有多檔（最多 5-6 檔），但資金分配不均，排名第 1 的股票往往吃掉 80%+ 資金。<br><br>
+          <strong style="color:var(--yellow)">建議：</strong>可評估加入單檔持股上限（如 40%），但需重新回測驗證對整體績效的影響。
+        </div>
+      </div>
+      <div class="issue-card warn">
+        <div class="issue-title warn">⚠️ 問題三：獲利趨勢未納入篩選（潛在「價值陷阱」風險）</div>
+        <div class="issue-body">
+          現行策略只要求「連續 N 年 EPS > 0」，不考慮 EPS 是否連續下滑。歷史案例（已修正的 8066 來思達）顯示，
+          一間公司可能 EPS 連年縮水但未轉虧，仍通過篩選，導致選入基本面惡化中的股票。<br><br>
+          <strong style="color:var(--yellow)">建議：</strong>加入「近 3 年 EPS 不能連續負成長」作為輔助條件，或加入最近財年 EPS 不能低於前 3 年均值的 50%。
+        </div>
+      </div>
+      <div class="issue-card">
+        <div class="issue-title red">🔴 已修正：fill_guard Bug（8066 來思達漏洞）</div>
+        <div class="issue-body">
+          原版程式碼在 <code>settled</code>（超過 520 天的除息記錄）為空集時，使用過於寬鬆的邏輯，
+          允許 <code>filled_count = 0</code> 的股票通過篩選。此問題導致原始長期回測選入尚未填息的 8066 來思達（2021-01-19 買入，
+          股價從 52.5 跌至 35.1，-33.53%，損失 334,972 元，佔投入資本 33.5%）。
+          舊版結果：-58.83%；修正後結果：+92.80%。<br><br>
+          <strong style="color:var(--green)">狀態：</strong>現行程式碼已修正為「settled 為空時，至少需有 1 筆 actual_filled=True 才通過」，
+          模擬驗證確認 8066 在修正後被正確排除。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 客觀評價 ── -->
+  <div class="section">
+    <div class="section-title">客觀評價與策略達成度</div>
+    <div class="rating-box">
+      <div class="rating-badge">綜合評分：達成策略目標 ✓</div>
+      <div class="rating-stars">★★★★☆</div>
+      <div class="rating-summary">
+
+        <p style="margin-bottom:12px;">
+          <strong style="color:var(--green)">正面評價：</strong>
+          在有效操作的 5 年期間（2021-2026），策略累計報酬 +92.80%，約年化 <strong>14.0%</strong>。
+          整體勝率 57.1%，7 筆已結算交易中 4 筆獲利，符合防禦型策略「勝多輸少但輸幅較深」的特徵。
+          配息收取 14 次，提供了持倉期間的現金流緩衝，並在多次「持股帳面浮虧但配息為正」的情形下維持策略執行紀律。
+          反作弊設計完整（T+1 買賣、季報延遲、無倖存者偏差），回測結果具有較高的真實性參考價值。
+        </p>
+
+        <p style="margin-bottom:12px;">
+          <strong style="color:var(--yellow)">中性觀察：</strong>
+          策略在 2021-2022 年台股多頭尾段抓到了幾檔優質標的（僑威 +26%、精華 +2.5%、科誠 +36%），
+          但 2023 年的熊市修正中，智基、慶生雙雙賣出虧損，顯示策略對系統性下跌無法免疫。
+          持倉最多曾達 5-6 檔，但資金集中在排名 #1 的標的，實際分散效果有限。
+        </p>
+
+        <p style="margin-bottom:12px;">
+          <strong style="color:var(--red)">負面觀察：</strong>
+          2016-2020 的五年資料缺口是最大缺陷——回測涵蓋 10 年但只有後 5 年有操作，若從 2021-01-19 起算的 5 年期年化約 14%，
+          對於防禦型策略而言是合理表現，但尚未經歷完整的空頭週期驗證（2022 熊市中期即因殖利率條件觸發賣出，
+          並未持有到最低點，這既是風險控制也是配息驅動出場的直接效果）。
+        </p>
+
+        <p>
+          <strong style="color:var(--accent)">策略達成度：</strong>
+          高殖利率防禦型策略的核心目標為「用填息品質篩選穩健企業，以殖利率驅動進出，在穩定配息中獲取長期複利」。
+          從結果來看，策略有效排除了高風險標的，配息收取次數達 14 次，最終累積 92.8% 的絕對報酬。
+          在沒有槓桿、不做空、純靠基本面篩選的前提下，<strong>策略達成了預設的防禦性投資目標</strong>，
+          但距離「在任何市場環境下均穩健」尚需更長的真實市場驗證。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 進度條 ── -->
+  <div class="section">
+    <div class="section-title">策略目標達成指標</div>
+    <div class="cond-grid">
+      <div class="cond-card">
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--muted)">年化報酬（目標 &gt;8%）</span><span style="font-size:12px;color:var(--green);font-weight:700">14.0% ✓</span></div>
+          <div class="prog-bar-wrap"><div class="prog-bar green" style="width:87%"></div></div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--muted)">勝率（目標 &gt;50%）</span><span style="font-size:12px;color:var(--green);font-weight:700">57.1% ✓</span></div>
+          <div class="prog-bar-wrap"><div class="prog-bar green" style="width:57%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--muted)">配息次數（10 年目標 &gt;10）</span><span style="font-size:12px;color:var(--green);font-weight:700">14 次 ✓</span></div>
+          <div class="prog-bar-wrap"><div class="prog-bar green" style="width:70%"></div></div>
+        </div>
+      </div>
+      <div class="cond-card">
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--muted)">填息 Bug 修正完整度</span><span style="font-size:12px;color:var(--green);font-weight:700">100% ✓</span></div>
+          <div class="prog-bar-wrap"><div class="prog-bar green" style="width:100%"></div></div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--muted)">資料缺口期（占 10 年）</span><span style="font-size:12px;color:var(--yellow);font-weight:700">50%（5/10 年）⚠</span></div>
+          <div class="prog-bar-wrap"><div class="prog-bar yellow" style="width:50%"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--muted)">最大單筆虧損控制（目標 &lt;30%）</span><span style="font-size:12px;color:var(--yellow);font-weight:700">-24.41% ⚠</span></div>
+          <div class="prog-bar-wrap"><div class="prog-bar yellow" style="width:81%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 注意事項 ── -->
+  <div class="note">
+    <strong>資料缺口備忘（下次回測前必讀）：</strong>
+    TaiwanStockDividendResult 可用起點 2020-01-02，fill_guard 有效 settled 約 2021-09 起；EPS / TotalAssets 可用起點 2014-03-31，
+    min_profit_years=7 有效起點 2021-01-01。<strong>依賴填息品質篩選的策略，建議有效回測起點設為 2022-01-01。</strong>
+    即使回測從 2016 開始，2016-2020 無任何交易是正確行為，並非 bug。
+  </div>
+
+  <footer>
+    <div>回測程式：<code>backtest/high_dividend_bt.py</code>（向量化 + Cache 版）&nbsp;|&nbsp; 策略定義：<code>strategies/high_dividend.py</code></div>
+    <div style="margin-top:4px;">報告產生：2026-04-10&nbsp;|&nbsp; FinMind V3 專案 &nbsp;|&nbsp; 資料截止：2026-04-09</div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>持倉離場檢核</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI','Microsoft JhengHei',sans-serif;
+         background:#f4f7fa; color:#333; }
+
+  .header {
+    background: linear-gradient(135deg,#7b2d2d,#4e4376);
+    color:#fff; padding:36px 48px; border-radius:0 0 16px 16px;
+  }
+  .header h1 { font-size:2rem; font-weight:800; margin-bottom:6px; }
+  .header p  { opacity:.85; font-size:.95rem; }
+
+  .cards {
+    display:flex; flex-wrap:wrap; gap:16px; padding:24px 48px 8px;
+  }
+  .card {
+    background:#fff; border-radius:12px; padding:18px 24px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05); min-width:160px;
+  }
+  .card .label { font-size:.85rem; color:#6c757d; margin-bottom:4px; }
+  .card .value { font-size:1.8rem; font-weight:700; }
+  .card .value.exit  { color:#dc3545; }
+  .card .value.watch { color:#fd7e14; }
+  .card .value.hold  { color:#198754; }
+  .card .value.total { color:#2b5876; }
+
+  .section { padding:0 48px 32px; }
+  .section h2 {
+    font-size:1rem; font-weight:600; color:#2b5876;
+    margin:20px 0 8px; letter-spacing:.04em;
+  }
+
+  .table-wrap {
+    background:#fff; border-radius:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,.05); overflow-x:auto;
+  }
+  table { border-collapse:collapse; width:100%; font-size:.82rem; }
+  thead th {
+    background:#2b5876; color:#fff;
+    padding:10px 8px; white-space:nowrap; text-align:center;
+    position:sticky; top:0;
+  }
+  tbody tr:nth-child(even) { background:#f8f9fc; }
+  tbody tr:hover { background:#eef2ff; }
+  tbody td { padding:8px; text-align:center; white-space:nowrap;
+               border-bottom:1px solid #eee; }
+
+  .badge {
+    display:inline-block; border-radius:6px; padding:2px 10px;
+    font-weight:700; font-size:.8rem; color:#fff;
+  }
+  .badge-EXIT  { background:#dc3545; }
+  .badge-WATCH { background:#fd7e14; }
+  .badge-HOLD  { background:#198754; }
+
+  .reasons-list { text-align:left; font-size:.78rem; color:#555; }
+  .reason-exit  { color:#dc3545; }
+  .reason-watch { color:#fd7e14; }
+
+  .cand-section { margin-top:16px; }
+
+  @media(max-width:768px){
+    .header { padding:24px 20px; }
+    .cards,.section { padding-left:16px; padding-right:16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>持倉離場檢核</h1>
+  <p>檢核時間：2026-04-11 10:07 &nbsp;｜&nbsp; 策略：高殖利率防禦型（殖利率門檻 4.0%）</p>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="label">持倉總數</div>
+    <div class="value total">8 <span style="font-size:1rem;color:#6c757d">檔</span></div>
+  </div>
+  <div class="card">
+    <div class="label">建議離場 EXIT</div>
+    <div class="value exit">4 <span style="font-size:1rem;color:#6c757d">檔</span></div>
+  </div>
+  <div class="card">
+    <div class="label">持續觀察 WATCH</div>
+    <div class="value watch">2 <span style="font-size:1rem;color:#6c757d">檔</span></div>
+  </div>
+  <div class="card">
+    <div class="label">正常持有 HOLD</div>
+    <div class="value hold">2 <span style="font-size:1rem;color:#6c757d">檔</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>持倉檢核結果</h2>
+  <div class="table-wrap">
+    <table><thead><tr><th>股票代號</th><th>股票名稱</th><th>產業別</th><th>狀態</th><th>近1年殖利率%</th><th>是否填息</th><th>去年現金股利</th><th>去年年度EPS</th><th>近2年ROA%</th><th>去年本業佔比%</th><th>股價</th><th>年線</th><th>位階</th><th>平均填息天</th><th>觸發原因</th></tr></thead><tbody><tr><td>5519</td><td>隆大</td><td>建材營造</td><td><span class="badge badge-WATCH">WATCH</span></td><td>9.8</td><td>✓ 全填息</td><td>3.00</td><td>4.31</td><td>6.3</td><td>99.1</td><td>33.3</td><td>31.4</td><td>高於年線</td><td>83</td><td><ul class="reasons-list"><li class="reason-watch">位於年線上方且平均填息>60天</li></ul></td></tr><tr><td>9911</td><td>櫻花</td><td>居家生活</td><td><span class="badge badge-HOLD">HOLD</span></td><td>5.5</td><td>✓ 全填息</td><td>4.70</td><td>4.57</td><td>12.8</td><td>93.7</td><td>84.7</td><td>85.8</td><td>低於年線</td><td>46</td><td></td></tr><tr><td>2002</td><td>中鋼</td><td>鋼鐵工業</td><td><span class="badge badge-EXIT">EXIT</span></td><td>1.6</td><td>✗ 有未填</td><td>0.33</td><td>-0.27</td><td>0.6</td><td>91.0</td><td>20.1</td><td>19.5</td><td>高於年線</td><td>36</td><td><ul class="reasons-list"><li class="reason-exit">殖利率均值低於 4.0%（近1年日均）</li><li class="reason-exit">觀察期（近5年）出現未填息紀錄</li><li class="reason-exit">最近完整年度虧損（年度EPS合計<0）</li><li class="reason-exit">近2年ROA均值低於產業門檻</li></ul></td></tr><tr><td>2393</td><td>億光</td><td>電子工業</td><td><span class="badge badge-WATCH">WATCH</span></td><td>8.2</td><td>✗ 有未填</td><td>5.31</td><td>3.34</td><td>11.2</td><td>100.6</td><td>69.7</td><td>65.6</td><td>高於年線</td><td>80</td><td><ul class="reasons-list"><li class="reason-watch">位於年線上方且平均填息>60天</li></ul></td></tr><tr><td>2412</td><td>中華電</td><td>通信網路業</td><td><span class="badge badge-EXIT">EXIT</span></td><td>3.8</td><td>✗ 有未填</td><td>5.00</td><td>3.79</td><td>7.3</td><td>97.6</td><td>135.5</td><td>132.4</td><td>高於年線</td><td>68</td><td><ul class="reasons-list"><li class="reason-exit">殖利率均值低於 4.0%（近1年日均）</li><li class="reason-exit">觀察期（近5年）出現未填息紀錄</li><li class="reason-exit">位於年線上方且平均填息>60天</li></ul></td></tr><tr><td>3551</td><td>世禾</td><td>綠能環保類</td><td><span class="badge badge-EXIT">EXIT</span></td><td>2.2</td><td>✓ 全填息</td><td>1.40</td><td>6.12</td><td>7.7</td><td>85.8</td><td>182.5</td><td>160.7</td><td>高於年線</td><td>11</td><td><ul class="reasons-list"><li class="reason-exit">殖利率均值低於 4.0%（近1年日均）</li></ul></td></tr><tr><td>3526</td><td>凡甲</td><td>電子零組件業</td><td><span class="badge badge-HOLD">HOLD</span></td><td>6.7</td><td>✓ 全填息</td><td>13.22</td><td>12.33</td><td>19.2</td><td>94.0</td><td>290.5</td><td>248.2</td><td>高於年線</td><td>16</td><td></td></tr><tr><td>4417</td><td>金洲</td><td>紡織纖維</td><td><span class="badge badge-EXIT">EXIT</span></td><td>5.7</td><td>✗ 有未填</td><td>2.80</td><td>4.69</td><td>7.6</td><td>85.3</td><td>50.6</td><td>49.7</td><td>高於年線</td><td>103</td><td><ul class="reasons-list"><li class="reason-exit">觀察期（近5年）出現未填息紀錄</li><li class="reason-exit">位於年線上方且平均填息>60天</li></ul></td></tr></tbody></table>
+  </div>
+</div>
+
+
+
+</body>
+</html>
