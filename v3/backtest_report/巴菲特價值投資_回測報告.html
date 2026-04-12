@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴菲特價值投資策略 — 回測報告</title>
+<style>
+  :root{--bg:#0f1117;--card:#1a1d27;--card2:#1e2130;--border:#2e3347;
+    --accent:#34d399;--accent2:#6ee7b7;--green:#34d399;--red:#f87171;
+    --yellow:#fbbf24;--text:#e2e8f0;--muted:#8892a4;--tag-bg:#1b3a2a;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:"Segoe UI","Microsoft JhengHei",sans-serif;font-size:14px;line-height:1.65}
+  .container{max-width:1100px;margin:0 auto;padding:32px 24px}
+  .header{border-bottom:2px solid var(--border);padding-bottom:20px;margin-bottom:28px}
+  .header h1{font-size:24px;font-weight:700;color:#fff}
+  .header .sub{color:var(--muted);font-size:12px;margin-top:5px}
+  .meta-row{display:flex;gap:22px;margin-top:12px;flex-wrap:wrap}
+  .meta-item{display:flex;flex-direction:column;gap:2px}
+  .meta-label{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+  .meta-value{font-size:13px}
+  .section{margin-bottom:32px}
+  .section-title{font-size:15px;font-weight:700;color:var(--accent);border-left:3px solid var(--accent);padding-left:10px;margin-bottom:14px}
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+  .kpi-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+  .kpi-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px}
+  .kpi-value{font-size:22px;font-weight:700}
+  .kpi-value.pos{color:var(--green)}.kpi-value.neg{color:var(--red)}.kpi-value.neutral{color:var(--accent)}
+  .kpi-sub{font-size:11px;color:var(--muted);margin-top:3px}
+  .table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
+  table{width:100%;border-collapse:collapse}
+  thead th{background:var(--card2);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.6px;padding:9px 12px;text-align:left;border-bottom:1px solid var(--border)}
+  tbody tr{border-bottom:1px solid var(--border)}
+  tbody tr:last-child{border-bottom:none}
+  tbody tr:hover{background:rgba(52,211,153,.04)}
+  tbody td{padding:8px 12px;font-size:13px}
+  .pos{color:var(--green);font-weight:600}.neg{color:var(--red);font-weight:600}.muted{color:var(--muted)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:700px){.two-col{grid-template-columns:1fr}}
+  .note-card{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--yellow);border-radius:8px;padding:14px 16px;font-size:12.5px;color:var(--muted);line-height:1.8}
+  footer{border-top:1px solid var(--border);margin-top:40px;padding-top:14px;color:var(--muted);font-size:11px}
+</style>
+</head>
+<body><div class="container">
+
+<div class="header">
+  <h1>💎 巴菲特價值投資策略 — 回測報告</h1>
+  <div class="sub">Buffett Value Investing Strategy — Backtest Report</div>
+  <div class="meta-row">
+    <div class="meta-item"><span class="meta-label">回測區間</span><span class="meta-value">2016-01-01 ～ 2024-12-31</span></div>
+    <div class="meta-item"><span class="meta-label">追蹤止損</span><span class="meta-value">20%</span></div>
+    <div class="meta-item"><span class="meta-label">最大持股</span><span class="meta-value">10 檔</span></div>
+    <div class="meta-item"><span class="meta-label">初始資金</span><span class="meta-value">NT$1,000,000</span></div>
+    <div class="meta-item"><span class="meta-label">產出日期</span><span class="meta-value">2026-04-12</span></div>
+  </div>
+</div>
+
+<!-- KPI -->
+<div class="section">
+  <div class="section-title">績效總覽</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">累計報酬率</div>
+      <div class="kpi-value pos">+39.77%</div>
+      <div class="kpi-sub">2016–2024</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">年化報酬率（CAGR）</div>
+      <div class="kpi-value pos">+3.79%</div>
+      <div class="kpi-sub">9 年幾何平均</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">初始資金</div>
+      <div class="kpi-value neutral">100<span style="font-size:14px">萬</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">期末資產</div>
+      <div class="kpi-value pos">140<span style="font-size:14px">萬</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">總出場次數</div>
+      <div class="kpi-value neutral">12</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">勝率</div>
+      <div class="kpi-value neg">41.7%</div>
+      <div class="kpi-sub">平均報酬 +19.98%</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">通過年度數</div>
+      <div class="kpi-value neutral">3<span style="font-size:14px">/9</span></div>
+      <div class="kpi-sub">各年底掃描有通過股票</div>
+    </div>
+  </div>
+</div>
+
+<!-- 年度績效 -->
+<div class="section">
+  <div class="section-title">年度績效</div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>年度</th><th>出場次數</th><th>勝率</th><th>平均報酬率</th></tr></thead>
+    <tbody><tr><td class="">2022</td><td class="">4</td><td class="">0.0%</td><td class=""><span class="neg">-19.80%</span></td></tr><tr><td class="">2023</td><td class="">4</td><td class="">50.0%</td><td class=""><span class="pos">+25.29%</span></td></tr><tr><td class="">2024</td><td class="">4</td><td class="">75.0%</td><td class=""><span class="pos">+54.47%</span></td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+<!-- 年度掃描彙整 -->
+<div class="section">
+  <div class="section-title">年度掃描通過彙整</div>
+  <div class="two-col">
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>掃描年度</th><th>全通過檔數</th></tr></thead>
+    <tbody><tr><td>2015</td><td><span class="muted">0</span></td></tr><tr><td>2016</td><td><span class="muted">0</span></td></tr><tr><td>2017</td><td><span class="muted">0</span></td></tr><tr><td>2018</td><td><span class="muted">0</span></td></tr><tr><td>2019</td><td><span class="muted">0</span></td></tr><tr><td>2020</td><td><span class="muted">0</span></td></tr><tr><td>2021</td><td><span class="pos">10 檔</span></td></tr><tr><td>2022</td><td><span class="pos">30 檔</span></td></tr><tr><td>2023</td><td><span class="pos">24 檔</span></td></tr></tbody>
+  </table>
+  </div>
+  <div class="note-card">
+    <strong style="color:var(--yellow)">⚠ 注意事項</strong><br><br>
+    • 掃描使用 <code>as_of_year=Y</code> 的財報（實務中 Q4 年報約在翌年 3 月公告，此處為保守近似）<br>
+    • 年底掃描結果決定次年 1 月初的持倉，入場價為次年第一個交易日收盤價<br>
+    • 條件 3、4（ROE/毛利率 vs 產業均值）以回測年度內的股票互比，小樣本年份可能有偏差<br>
+    • DCF 條件（條件7）以 15%/5%/9% 保守假設，高成長股（如台積電）通常不通過<br>
+    • 追蹤止損 20% 觸發後次日起不再持有，當年底若條件仍通過則次年可再買入<br>
+    • 金融保險業自動排除（不適用 ROE 槓桿邏輯）
+  </div>
+  </div>
+</div>
+
+<!-- 出場明細（最近 30 筆） -->
+<div class="section">
+  <div class="section-title">出場明細（最近 12 筆）</div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>出場日期</th><th>代號</th><th>名稱</th><th>產業</th><th>出場價</th><th>原因</th><th>報酬率</th></tr></thead>
+    <tbody><tr><td class="">2022-01-21</td><td class="">2615</td><td class="">萬海</td><td class="">航運業</td><td class="">151.50</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="neg">-19.67%</span></td></tr><tr><td class="">2022-03-15</td><td class="">5215</td><td class="">科嘉-KY</td><td class="">電腦及週邊設備業</td><td class="">61.90</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="neg">-20.29%</span></td></tr><tr><td class="">2022-04-25</td><td class="">8016</td><td class="">矽創</td><td class="">半導體業</td><td class="">256.00</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="neg">-20.72%</span></td></tr><tr><td class="">2022-07-04</td><td class="">2520</td><td class="">冠德</td><td class="">建材營造</td><td class="">30.90</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="neg">-18.52%</span></td></tr><tr><td class="">2023-04-25</td><td class="">2615</td><td class="">萬海</td><td class="">航運業</td><td class="">64.20</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="neg">-19.41%</span></td></tr><tr><td class="">2023-07-19</td><td class="">3557</td><td class="">嘉威</td><td class="">居家生活</td><td class="">57.40</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="pos">16.10%</span></td></tr><tr><td class="">2023-08-18</td><td class="">3056</td><td class="">富華新</td><td class="">建材營造</td><td class="">30.70</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="neg">-1.70%</span></td></tr><tr><td class="">2023-10-18</td><td class="">3032</td><td class="">偉訓</td><td class="">電子零組件業</td><td class="">61.90</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="pos">106.16%</span></td></tr><tr><td class="">2024-04-19</td><td class="">1808</td><td class="">潤隆</td><td class="">建材營造</td><td class="">103.50</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="pos">0.39%</span></td></tr><tr><td class="">2024-06-24</td><td class="">5469</td><td class="">瀚宇博</td><td class="">電子零組件業</td><td class="">53.60</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="neg">-3.81%</span></td></tr><tr><td class="">2024-07-05</td><td class="">3512</td><td class="">皇龍</td><td class="">電子零組件業</td><td class="">37.45</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="pos">12.31%</span></td></tr><tr><td class="">2024-09-10</td><td class="">9906</td><td class="">欣巴巴</td><td class="">建材營造</td><td class="">170.00</td><td class="">追蹤止損-從高點回跌>20%</td><td class=""><span class="pos">208.97%</span></td></tr></tbody>
+  </table>
+  </div>
+</div>
+
+<footer>
+  FinMind V3 · 巴菲特價值投資策略回測 · 資料來源：FinMind SQLite DB · 僅供研究參考，非投資建議
+</footer>
+</div></body></html>
