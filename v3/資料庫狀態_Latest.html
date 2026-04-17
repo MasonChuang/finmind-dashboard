@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資料庫狀態 - FinMind V3</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+         background: #f4f7fa; color: #333; font-size: 14px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    color: #fff; padding: 28px 48px; border-radius: 0 0 16px 16px;
+  }
+  .header h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 4px; }
+  .header p  { opacity: .85; font-size: .9rem; }
+  .header .back-link {
+    display: inline-block; margin-top: 10px;
+    color: rgba(255,255,255,.75); font-size: .82rem; text-decoration: none;
+  }
+  .header .back-link:hover { color: #fff; }
+
+  /* Summary stats */
+  .stats-row {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    padding: 20px 48px 0;
+  }
+  .stat-card {
+    background: #fff; border-radius: 10px; padding: 16px 22px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06); min-width: 140px; flex: 1;
+  }
+  .stat-card .label { font-size: .75rem; color: #888; margin-bottom: 4px; }
+  .stat-card .value { font-size: 1.5rem; font-weight: 800; color: #2b5876; }
+  .stat-card .value.ok    { color: #2e7d32; }
+  .stat-card .value.warn  { color: #e65100; }
+  .stat-card .value.stale { color: #c62828; }
+
+  /* Section */
+  .section { padding: 24px 48px 0; }
+  .section h2 {
+    font-size: .95rem; font-weight: 700; color: #2b5876;
+    margin-bottom: 14px; padding-left: 10px;
+    border-left: 4px solid #4e4376; letter-spacing: .04em;
+  }
+
+  /* DB Table */
+  .db-table { width: 100%; border-collapse: collapse; background: #fff;
+              border-radius: 12px; overflow: hidden;
+              box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .db-table th {
+    background: #f0f4f8; color: #555; font-size: .78rem;
+    font-weight: 700; padding: 10px 14px; text-align: left;
+    border-bottom: 2px solid #e0e8f0; white-space: nowrap;
+  }
+  .db-table td {
+    padding: 10px 14px; border-bottom: 1px solid #f0f4f8;
+    vertical-align: middle;
+  }
+  .db-table tr:last-child td { border-bottom: none; }
+  .db-table tr:hover td { background: #fafcff; }
+  .db-table td.center { text-align: center; }
+  .db-table td.right  { text-align: right; font-variant-numeric: tabular-nums; }
+  .sub-name { font-size: .72rem; color: #aaa; margin-top: 2px; }
+  .days-warn  { color: #e65100; font-weight: 600; }
+  .days-stale { color: #c62828; font-weight: 700; }
+  .diff-pos  { color: #2e7d32; font-weight: 600; }
+  .diff-zero { color: #bbb; }
+
+  /* Freq badge */
+  .freq-badge {
+    display: inline-block; border-radius: 4px; padding: 2px 8px;
+    font-size: .72rem; font-weight: 700;
+  }
+  .freq-日   { background: #e3f2fd; color: #0d47a1; }
+  .freq-週   { background: #e8f5e9; color: #1b5e20; }
+  .freq-月   { background: #fff8e1; color: #e65100; }
+  .freq-季   { background: #fce4ec; color: #880e4f; }
+  .freq-年   { background: #f3e5f5; color: #4a148c; }
+  .freq-事件  { background: #efebe9; color: #4e342e; }
+  .freq-補充  { background: #eceff1; color: #546e7a; }
+
+  /* Status badges */
+  .badge { display: inline-block; border-radius: 20px; padding: 3px 12px;
+            font-size: .75rem; font-weight: 700; white-space: nowrap; }
+  .badge-ok    { background: #e8f5e9; color: #2e7d32; }
+  .badge-warn  { background: #fff3e0; color: #e65100; }
+  .badge-stale { background: #ffebee; color: #c62828; }
+  .badge-unknown { background: #eceff1; color: #546e7a; }
+
+  /* History pills */
+  .hist-cell { white-space: nowrap; }
+  .hist-pill {
+    display: inline-block; border-radius: 6px; padding: 3px 8px;
+    font-size: .72rem; margin-right: 4px; text-align: center;
+    vertical-align: top; line-height: 1.4;
+  }
+  .hist-ok   { background: #e8f5e9; color: #2e7d32; }
+  .hist-fail { background: #ffebee; color: #c62828; }
+  .hist-skip { background: #eceff1; color: #607d8b; }
+
+  /* Report cards */
+  .report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .report-card {
+    background: #fff; border-radius: 12px; padding: 18px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    border: 1px solid #eef0f4;
+  }
+  .report-icon  { font-size: 1.5rem; margin-bottom: 8px; }
+  .report-title { font-size: .95rem; font-weight: 700; color: #2b5876; margin-bottom: 6px; }
+  .report-time  { font-size: .78rem; color: #888; }
+  .report-age   { font-size: .82rem; font-weight: 600; color: #555; margin-top: 2px; }
+  .dep-info {
+    margin-top: 8px; font-size: .75rem; line-height: 1.5;
+    padding: 6px 10px; border-radius: 6px;
+  }
+  .dep-ok    { background: #e8f5e9; color: #2e7d32; }
+  .dep-stale { background: #fff3e0; color: #e65100; }
+  .dep-info:not(.dep-ok):not(.dep-stale) { background: #f5f5f5; color: #777; }
+
+  /* Footer */
+  .footer {
+    margin: 28px 48px 32px; color: #bbb;
+    font-size: .76rem; text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .header, .section, .stats-row, .footer { padding-left: 16px; padding-right: 16px; }
+    .db-table { font-size: .8rem; }
+    .hist-cell { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>資料庫狀態</h1>
+  <p>FinMind V3 · 資料同步狀態 × 報表更新確認</p>
+  <a class="back-link" href="index.html">← 返回首頁</a>
+</div>
+
+<!-- Summary -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="label">資料表總數</div>
+    <div class="value">20</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">總資料筆數</div>
+    <div class="value">205,480,098</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">狀態正常</div>
+    <div class="value ok">6</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">略過期</div>
+    <div class="value warn">8</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">資料過期</div>
+    <div class="value stale">6</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">最後同步</div>
+    <div class="value" style="font-size:1rem">2026-04-07 21:34</div>
+  </div>
+</div>
+
+<!-- DB Tables -->
+<div class="section" style="margin-top:24px">
+  <h2>資料表同步狀態</h2>
+  <div style="overflow-x:auto">
+  <table class="db-table">
+    <thead>
+      <tr>
+        <th>資料表</th>
+        <th>更新頻率</th>
+        <th style="text-align:right">總筆數</th>
+        <th>最新資料日</th>
+        <th>距今</th>
+        <th>狀態</th>
+        <th>前三次更新記錄</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td>
+            <strong>處置股票</strong>
+            <div class="sub-name">TaiwanStockDispositionSecuritiesPeriod</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">205</td>
+          <td class="center">2026-04-02</td>
+          <td class="center days-stale">15天前</td>
+          <td class="center"><span class="badge badge-stale">資料過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-ok" title="2026-04-07 21:34:10">2026-04-07<br><small>+1</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>股利政策</strong>
+            <div class="sub-name">TaiwanStockDividend</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">29,232</td>
+          <td class="center">2026-04-07</td>
+          <td class="center days-warn">10天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-ok" title="2026-04-07 21:34:10">2026-04-07<br><small>+2</small></span><span class="hist-pill hist-ok" title="2026-04-06 22:01:06">2026-04-06<br><small>+4</small></span><span class="hist-pill hist-skip" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>除權息結果</strong>
+            <div class="sub-name">TaiwanStockDividendResult</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">12,886</td>
+          <td class="center">2026-01-20</td>
+          <td class="center days-stale">87天前</td>
+          <td class="center"><span class="badge badge-stale">資料過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-skip" title="2026-01-31 15:15:45">2026-01-31<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-01-31 14:05:51">2026-01-31<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-01-31 10:20:51">2026-01-31<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>法人買賣超</strong>
+            <div class="sub-name">TaiwanStockInstitutionalInvestorsBuySell</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">68,038,852</td>
+          <td class="center">2026-04-07</td>
+          <td class="center days-warn">10天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-ok" title="2026-04-07 21:34:10">2026-04-07<br><small>+85,250</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>融資融券（個股）</strong>
+            <div class="sub-name">TaiwanStockMarginPurchaseShortSale</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">8,010,779</td>
+          <td class="center">2026-04-02</td>
+          <td class="center days-stale">15天前</td>
+          <td class="center"><span class="badge badge-stale">資料過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>PER / 殖利率</strong>
+            <div class="sub-name">TaiwanStockPER</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">7,588,123</td>
+          <td class="center">2026-04-07</td>
+          <td class="center days-warn">10天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-ok" title="2026-04-07 21:34:10">2026-04-07<br><small>+1,948</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>股價</strong>
+            <div class="sub-name">TaiwanStockPrice</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">62,110,495</td>
+          <td class="center">2026-04-07</td>
+          <td class="center days-warn">10天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-ok" title="2026-04-07 21:34:10">2026-04-07<br><small>+44,788</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>借券</strong>
+            <div class="sub-name">TaiwanStockSecuritiesLending</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">569,735</td>
+          <td class="center">2026-04-07</td>
+          <td class="center days-warn">10天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-ok" title="2026-04-07 21:34:10">2026-04-07<br><small>+806</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>三大法人合計</strong>
+            <div class="sub-name">TaiwanStockTotalInstitutionalInvestors</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">26,482</td>
+          <td class="center">2026-04-07</td>
+          <td class="center days-warn">10天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-ok" title="2026-04-07 21:34:10">2026-04-07<br><small>+12</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>全市場融資融券</strong>
+            <div class="sub-name">TaiwanStockTotalMarginPurchaseShortSale</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">18,666</td>
+          <td class="center">2026-04-02</td>
+          <td class="center days-stale">15天前</td>
+          <td class="center"><span class="badge badge-stale">資料過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>全市場維持率</strong>
+            <div class="sub-name">TaiwanTotalExchangeMarginMaintenance</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-日">日</span></td>
+          <td class="right">224</td>
+          <td class="center">2026-04-02</td>
+          <td class="center days-stale">15天前</td>
+          <td class="center"><span class="badge badge-stale">資料過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>持股比例分布</strong>
+            <div class="sub-name">TaiwanStockHoldingSharesPer</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-週">週</span></td>
+          <td class="right">21,957,724</td>
+          <td class="center">2026-03-27</td>
+          <td class="center days-warn">21天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>股權分散表</strong>
+            <div class="sub-name">TaiwanStockShareholding</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-週">週</span></td>
+          <td class="right">17,305,868</td>
+          <td class="center">2026-03-27</td>
+          <td class="center days-warn">21天前</td>
+          <td class="center"><span class="badge badge-warn">略過期</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>月營收</strong>
+            <div class="sub-name">TaiwanStockMonthRevenue</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-月">月</span></td>
+          <td class="right">439,628</td>
+          <td class="center">2026-04-01</td>
+          <td class="center ">16天前</td>
+          <td class="center"><span class="badge badge-ok">正常</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-skip" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>資產負債表</strong>
+            <div class="sub-name">TaiwanStockBalanceSheet</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-季">季</span></td>
+          <td class="right">6,244,713</td>
+          <td class="center">2025-12-31</td>
+          <td class="center ">107天前</td>
+          <td class="center"><span class="badge badge-ok">正常</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>現金流量表</strong>
+            <div class="sub-name">TaiwanStockCashFlowsStatement</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-季">季</span></td>
+          <td class="right">2,253,522</td>
+          <td class="center">2025-12-31</td>
+          <td class="center ">107天前</td>
+          <td class="center"><span class="badge badge-ok">正常</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>綜合損益表</strong>
+            <div class="sub-name">TaiwanStockFinancialStatements</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-季">季</span></td>
+          <td class="right">1,318,657</td>
+          <td class="center">2025-12-31</td>
+          <td class="center ">107天前</td>
+          <td class="center"><span class="badge badge-ok">正常</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>股票基本資料</strong>
+            <div class="sub-name">TaiwanStockInfo</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-年">年</span></td>
+          <td class="right">4,081</td>
+          <td class="center">N/A</td>
+          <td class="center ">—</td>
+          <td class="center"><span class="badge badge-unknown">無資料</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-skip" title="2026-01-31 15:15:45">2026-01-31<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-01-31 14:05:51">2026-01-31<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-01-31 10:20:51">2026-01-31<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>下市股票</strong>
+            <div class="sub-name">TaiwanStockDelisting</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-事件">事件</span></td>
+          <td class="right">12</td>
+          <td class="center">2026-03-27</td>
+          <td class="center ">21天前</td>
+          <td class="center"><span class="badge badge-ok">正常</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-04-07 21:34:10">2026-04-07<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-06 22:01:06">2026-04-06<br><small>0</small></span><span class="hist-pill hist-fail" title="2026-04-05 22:01:06">2026-04-05<br><small>0</small></span></td>
+        </tr>
+        <tr>
+          <td>
+            <strong>還原股價（補充）</strong>
+            <div class="sub-name">TaiwanStockPrice_Adj</div>
+          </td>
+          <td class="center"><span class="freq-badge freq-補充">補充</span></td>
+          <td class="right">9,550,214</td>
+          <td class="center">2026-01-30</td>
+          <td class="center ">77天前</td>
+          <td class="center"><span class="badge badge-ok">正常</span></td>
+          <td class="hist-cell"><span class="hist-pill hist-fail" title="2026-03-12 10:04:15">2026-03-12<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-01-31 15:15:45">2026-01-31<br><small>0</small></span><span class="hist-pill hist-skip" title="2026-01-31 14:05:51">2026-01-31<br><small>0</small></span></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Reports -->
+<div class="section" style="margin-top:28px">
+  <h2>報表更新狀態</h2>
+  <div class="report-grid">
+    
+        <div class="report-card">
+          <div class="report-icon">📄</div>
+          <div class="report-title">價值投資持倉檢核</div>
+          <div class="report-time">最後產出：2026-04-12 21:08</div>
+          <div class="report-age">5天前</div>
+          <div class="dep-info">資料源：—</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+        <div class="report-card">
+          <div class="report-icon">💎</div>
+          <div class="report-title">價值投資策略</div>
+          <div class="report-time">最後產出：2026-04-17 10:23</div>
+          <div class="report-age">今天</div>
+          <div class="dep-info dep-stale">資料源：股權分散表（週更）<br>最新資料：2026-03-27（21天前）</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+        <div class="report-card">
+          <div class="report-icon">🐋</div>
+          <div class="report-title">巨鯨狙擊（ETF版）</div>
+          <div class="report-time">最後產出：2026-04-17 10:22</div>
+          <div class="report-age">今天</div>
+          <div class="dep-info dep-stale">資料源：股權分散表（週更）<br>最新資料：2026-03-27（21天前）</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+        <div class="report-card">
+          <div class="report-icon">🐋</div>
+          <div class="report-title">巨鯨狙擊（個股版）</div>
+          <div class="report-time">最後產出：2026-04-17 10:22</div>
+          <div class="report-age">今天</div>
+          <div class="dep-info dep-stale">資料源：股權分散表（週更）<br>最新資料：2026-03-27（21天前）</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+        <div class="report-card">
+          <div class="report-icon">🐋</div>
+          <div class="report-title">巨鯨狙擊（混合版）</div>
+          <div class="report-time">最後產出：2026-04-17 10:22</div>
+          <div class="report-age">今天</div>
+          <div class="dep-info dep-stale">資料源：股權分散表（週更）<br>最新資料：2026-03-27（21天前）</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+        <div class="report-card">
+          <div class="report-icon">💎</div>
+          <div class="report-title">巴菲特價值投資</div>
+          <div class="report-time">最後產出：2026-04-15 16:00</div>
+          <div class="report-age">2天前</div>
+          <div class="dep-info dep-stale">資料源：股權分散表（週更）<br>最新資料：2026-03-27（21天前）</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+        <div class="report-card">
+          <div class="report-icon">🔍</div>
+          <div class="report-title">持倉離場檢核</div>
+          <div class="report-time">最後產出：2026-04-16 22:08</div>
+          <div class="report-age">1天前</div>
+          <div class="dep-info dep-stale">資料源：股價（日更）<br>最新資料：2026-04-07（10天前）</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+        <div class="report-card">
+          <div class="report-icon">📊</div>
+          <div class="report-title">高殖利率防禦型策略</div>
+          <div class="report-time">最後產出：2026-04-17 10:21</div>
+          <div class="report-age">今天</div>
+          <div class="dep-info dep-stale">資料源：PER / 殖利率（日更）<br>最新資料：2026-04-07（10天前）</div>
+          <span class="badge badge-ok" style="margin-top:10px;display:inline-block">已更新</span>
+        </div>
+  </div>
+</div>
+
+<div class="footer">
+  報告產出時間：2026-04-17 10:23 · FinMind V3
+</div>
+
+</body>
+</html>
