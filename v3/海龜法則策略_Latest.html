@@ -1,0 +1,2690 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>海龜法則策略 - FinMind V3</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+       background: #f4f7fa; color: #333; font-size: 14px; }
+
+.header {
+  background: linear-gradient(135deg, #1a3a5c, #2e7d5e);
+  color: #fff; padding: 32px 48px; border-radius: 0 0 16px 16px;
+}
+.header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+.header p  { opacity: .85; font-size: .9rem; }
+.header .back-link {
+  display: inline-block; margin-top: 10px;
+  color: rgba(255,255,255,.7); font-size: .82rem; text-decoration: none;
+}
+.header .back-link:hover { color: #fff; }
+
+.stats-row { display: flex; flex-wrap: wrap; gap: 14px; padding: 20px 48px 0; }
+.stat-card {
+  background: #fff; border-radius: 10px; padding: 14px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06); min-width: 150px; flex: 1;
+}
+.stat-card .label { font-size: .75rem; color: #888; margin-bottom: 4px; }
+.stat-card .value { font-size: 1.5rem; font-weight: 800; color: #1a3a5c; }
+.stat-card .value.sys2 { color: #c0392b; }
+.stat-card .value.sys1 { color: #2980b9; }
+
+.section { padding: 24px 48px 0; }
+.section h2 {
+  font-size: .95rem; font-weight: 700;
+  margin-bottom: 12px; padding: 6px 12px;
+  border-radius: 6px; display: inline-block;
+}
+.sys2-title { background: #fdedec; color: #c0392b; }
+.sys1-title { background: #eaf4fb; color: #2980b9; }
+
+table { width: 100%; border-collapse: collapse; background: #fff;
+        border-radius: 12px; overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+th {
+  background: #f0f4f8; color: #555; font-size: .78rem;
+  font-weight: 700; padding: 10px 12px; text-align: left;
+  border-bottom: 2px solid #e0e8f0; white-space: nowrap;
+}
+td { padding: 10px 12px; border-bottom: 1px solid #f0f4f8; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafcff; }
+td.right { text-align: right; font-variant-numeric: tabular-nums; }
+td.center { text-align: center; }
+
+.stock-id   { font-weight: 700; color: #1a3a5c; }
+.stock-name { font-size: .82rem; color: #777; margin-top: 2px; }
+.sig-sys2 {
+  display: inline-block; background: #fdedec; color: #c0392b;
+  border-radius: 20px; padding: 2px 10px; font-size: .75rem; font-weight: 700;
+}
+.sig-sys1 {
+  display: inline-block; background: #eaf4fb; color: #2980b9;
+  border-radius: 20px; padding: 2px 10px; font-size: .75rem; font-weight: 700;
+}
+.stop-loss { color: #c0392b; font-weight: 600; }
+.vol-bar {
+  display: inline-block; height: 8px; background: #2e7d5e;
+  border-radius: 4px; vertical-align: middle; margin-right: 4px;
+}
+.note-box {
+  background: #fff8e1; border-left: 4px solid #f39c12;
+  padding: 14px 18px; border-radius: 6px; font-size: .85rem;
+  line-height: 1.7; margin-bottom: 16px; color: #555;
+}
+.no-signal {
+  text-align: center; padding: 32px; color: #aaa; font-size: .95rem;
+}
+.footer {
+  margin: 28px 48px 36px; text-align: center;
+  color: #bbb; font-size: .76rem;
+}
+@media (max-width: 768px) {
+  .header, .section, .stats-row, .footer { padding-left: 16px; padding-right: 16px; }
+  table { font-size: .8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐢 海龜交易法則策略</h1>
+  <p>趨勢突破選股 · System 1（20日）× System 2（55日）</p>
+  <a class="back-link" href="index.html">← 返回首頁</a>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="label">System 2 訊號（55日）</div>
+    <div class="value sys2">113</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">System 1 訊號（20日）</div>
+    <div class="value sys1">44</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">總訊號</div>
+    <div class="value">157</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">帳戶規模</div>
+    <div class="value" style="font-size:1.1rem">1,000,000</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">股價資料</div>
+    <div class="value" style="font-size:1rem">2026-04-17</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">掃描時間</div>
+    <div class="value" style="font-size:.9rem">2026-04-19 09:50</div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <div class="note-box">
+    <strong>策略說明</strong>　N 值 = Wilder EMA ATR（20 日）；
+    止損 = 收盤 − 2N；建議張數 = (帳戶 × 1%) ÷ (N × 1000)；
+    流動性門檻 = 近 20 日均量 ≥ 500 張。
+    還原股價資料截至 2026-04-07，近期價格以比例推導補足。
+    <br>
+    <strong>出場參考</strong>　System 1 → 跌破 10 日低點；
+    System 2 → 跌破 20 日低點。
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="sys2-title">▲ System 2 — 55 日突破（強勢訊號）</h2>
+  
+    <table>
+      <thead><tr>
+        <th>股票</th>
+        <th>訊號</th>
+        <th class="right">收盤 / 突破點</th>
+        <th class="right">N 值（ATR）</th>
+        <th class="right">出場參考線</th>
+        <th class="right">止損</th>
+        <th class="right">建議張數</th>
+        <th class="right">平均量（張）</th>
+      </tr></thead>
+      <tbody>
+    
+        <tr>
+          <td>
+            <div class="stock-id">1802</div>
+            <div class="stock-name">台玻</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            74.20
+            <div style="font-size:.78rem;color:#aaa">突破 73.50</div>
+          </td>
+          <td class="right">4.90</td>
+          <td class="right">50.10</td>
+          <td class="right stop-loss">64.40</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:60px"></span>121,439</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">1815</div>
+            <div class="stock-name">富喬</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            127.00
+            <div style="font-size:.78rem;color:#aaa">突破 122.50</div>
+          </td>
+          <td class="right">8.31</td>
+          <td class="right">94.20</td>
+          <td class="right stop-loss">110.38</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:34px"></span>70,930</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">0056</div>
+            <div class="stock-name">元大高股息</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            40.98
+            <div style="font-size:.78rem;color:#aaa">突破 40.88</div>
+          </td>
+          <td class="right">0.60</td>
+          <td class="right">37.05</td>
+          <td class="right stop-loss">39.78</td>
+          <td class="right">16</td>
+          <td class="right"><span class="vol-bar" style="width:33px"></span>68,632</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3714</div>
+            <div class="stock-name">富采</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            77.90
+            <div style="font-size:.78rem;color:#aaa">突破 76.00</div>
+          </td>
+          <td class="right">4.00</td>
+          <td class="right">44.90</td>
+          <td class="right stop-loss">69.89</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:20px"></span>42,148</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3105</div>
+            <div class="stock-name">穩懋</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            539.00
+            <div style="font-size:.78rem;color:#aaa">突破 491.00</div>
+          </td>
+          <td class="right">29.91</td>
+          <td class="right">290.50</td>
+          <td class="right stop-loss">479.17</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:19px"></span>40,131</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">1785</div>
+            <div class="stock-name">光洋科</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            156.00
+            <div style="font-size:.78rem;color:#aaa">突破 145.50</div>
+          </td>
+          <td class="right">8.09</td>
+          <td class="right">87.10</td>
+          <td class="right stop-loss">139.81</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:16px"></span>34,065</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4958</div>
+            <div class="stock-name">臻鼎-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            282.00
+            <div style="font-size:.78rem;color:#aaa">突破 271.00</div>
+          </td>
+          <td class="right">15.39</td>
+          <td class="right">190.00</td>
+          <td class="right stop-loss">251.22</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:16px"></span>33,483</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6213</div>
+            <div class="stock-name">聯茂</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            270.50
+            <div style="font-size:.78rem;color:#aaa">突破 252.00</div>
+          </td>
+          <td class="right">12.96</td>
+          <td class="right">130.00</td>
+          <td class="right stop-loss">244.57</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:15px"></span>31,372</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">1711</div>
+            <div class="stock-name">永光</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            47.95
+            <div style="font-size:.78rem;color:#aaa">突破 45.85</div>
+          </td>
+          <td class="right">3.06</td>
+          <td class="right">32.40</td>
+          <td class="right stop-loss">41.84</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:15px"></span>31,323</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2481</div>
+            <div class="stock-name">強茂</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            118.00
+            <div style="font-size:.78rem;color:#aaa">突破 109.50</div>
+          </td>
+          <td class="right">6.07</td>
+          <td class="right">85.60</td>
+          <td class="right stop-loss">105.85</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:13px"></span>28,138</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8358</div>
+            <div class="stock-name">金居</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            367.50
+            <div style="font-size:.78rem;color:#aaa">突破 344.00</div>
+          </td>
+          <td class="right">21.09</td>
+          <td class="right">213.00</td>
+          <td class="right stop-loss">325.33</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:13px"></span>27,075</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8046</div>
+            <div class="stock-name">南電</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            724.00
+            <div style="font-size:.78rem;color:#aaa">突破 721.00</div>
+          </td>
+          <td class="right">43.94</td>
+          <td class="right">486.00</td>
+          <td class="right stop-loss">636.13</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:10px"></span>22,558</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4919</div>
+            <div class="stock-name">新唐</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            129.00
+            <div style="font-size:.78rem;color:#aaa">突破 117.50</div>
+          </td>
+          <td class="right">7.73</td>
+          <td class="right">84.70</td>
+          <td class="right stop-loss">113.55</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:10px"></span>21,484</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4960</div>
+            <div class="stock-name">誠美材</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            33.85
+            <div style="font-size:.78rem;color:#aaa">突破 30.85</div>
+          </td>
+          <td class="right">1.89</td>
+          <td class="right">19.60</td>
+          <td class="right stop-loss">30.07</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:9px"></span>19,989</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2402</div>
+            <div class="stock-name">毅嘉</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            77.70
+            <div style="font-size:.78rem;color:#aaa">突破 75.90</div>
+          </td>
+          <td class="right">3.74</td>
+          <td class="right">48.60</td>
+          <td class="right stop-loss">70.22</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:9px"></span>19,835</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3450</div>
+            <div class="stock-name">聯鈞</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            366.00
+            <div style="font-size:.78rem;color:#aaa">突破 345.50</div>
+          </td>
+          <td class="right">20.86</td>
+          <td class="right">237.00</td>
+          <td class="right stop-loss">324.28</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:9px"></span>18,580</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8021</div>
+            <div class="stock-name">尖點</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            390.50
+            <div style="font-size:.78rem;color:#aaa">突破 371.00</div>
+          </td>
+          <td class="right">21.46</td>
+          <td class="right">222.50</td>
+          <td class="right stop-loss">347.59</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:8px"></span>17,166</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4956</div>
+            <div class="stock-name">光鋐</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            49.75
+            <div style="font-size:.78rem;color:#aaa">突破 46.75</div>
+          </td>
+          <td class="right">2.80</td>
+          <td class="right">31.20</td>
+          <td class="right stop-loss">44.15</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:7px"></span>15,264</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3645</div>
+            <div class="stock-name">達邁</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            104.50
+            <div style="font-size:.78rem;color:#aaa">突破 102.50</div>
+          </td>
+          <td class="right">6.08</td>
+          <td class="right">68.20</td>
+          <td class="right stop-loss">92.33</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:6px"></span>13,763</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3673</div>
+            <div class="stock-name">TPK-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            72.10
+            <div style="font-size:.78rem;color:#aaa">突破 71.30</div>
+          </td>
+          <td class="right">3.24</td>
+          <td class="right">40.25</td>
+          <td class="right stop-loss">65.62</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:6px"></span>13,239</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4979</div>
+            <div class="stock-name">華星光</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            644.00
+            <div style="font-size:.78rem;color:#aaa">突破 586.00</div>
+          </td>
+          <td class="right">33.06</td>
+          <td class="right">341.50</td>
+          <td class="right stop-loss">577.87</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:6px"></span>13,084</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6456</div>
+            <div class="stock-name">GIS-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            77.60
+            <div style="font-size:.78rem;color:#aaa">突破 77.10</div>
+          </td>
+          <td class="right">4.70</td>
+          <td class="right">51.00</td>
+          <td class="right stop-loss">68.21</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:6px"></span>12,629</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2484</div>
+            <div class="stock-name">希華</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            42.40
+            <div style="font-size:.78rem;color:#aaa">突破 40.30</div>
+          </td>
+          <td class="right">2.16</td>
+          <td class="right">26.20</td>
+          <td class="right stop-loss">38.08</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:6px"></span>12,565</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4977</div>
+            <div class="stock-name">眾達-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            235.50
+            <div style="font-size:.78rem;color:#aaa">突破 214.50</div>
+          </td>
+          <td class="right">13.99</td>
+          <td class="right">175.00</td>
+          <td class="right stop-loss">207.52</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:6px"></span>12,401</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3042</div>
+            <div class="stock-name">晶技</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            151.50
+            <div style="font-size:.78rem;color:#aaa">突破 142.00</div>
+          </td>
+          <td class="right">5.32</td>
+          <td class="right">88.90</td>
+          <td class="right stop-loss">140.86</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>9,480</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2388</div>
+            <div class="stock-name">威盛</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            65.30
+            <div style="font-size:.78rem;color:#aaa">突破 64.80</div>
+          </td>
+          <td class="right">2.99</td>
+          <td class="right">49.70</td>
+          <td class="right stop-loss">59.33</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>9,443</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3339</div>
+            <div class="stock-name">泰谷</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            69.30
+            <div style="font-size:.78rem;color:#aaa">突破 63.00</div>
+          </td>
+          <td class="right">3.36</td>
+          <td class="right">31.25</td>
+          <td class="right stop-loss">62.59</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>8,716</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6672</div>
+            <div class="stock-name">騰輝電子-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            176.00
+            <div style="font-size:.78rem;color:#aaa">突破 160.50</div>
+          </td>
+          <td class="right">8.12</td>
+          <td class="right">100.00</td>
+          <td class="right stop-loss">159.77</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>8,364</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3031</div>
+            <div class="stock-name">佰鴻</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            33.20
+            <div style="font-size:.78rem;color:#aaa">突破 33.10</div>
+          </td>
+          <td class="right">1.55</td>
+          <td class="right">21.55</td>
+          <td class="right stop-loss">30.11</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>8,162</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6530</div>
+            <div class="stock-name">創威</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            125.50
+            <div style="font-size:.78rem;color:#aaa">突破 114.50</div>
+          </td>
+          <td class="right">6.77</td>
+          <td class="right">74.50</td>
+          <td class="right stop-loss">111.96</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>7,929</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5340</div>
+            <div class="stock-name">建榮</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            134.00
+            <div style="font-size:.78rem;color:#aaa">突破 126.00</div>
+          </td>
+          <td class="right">8.53</td>
+          <td class="right">96.20</td>
+          <td class="right stop-loss">116.95</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>7,873</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4908</div>
+            <div class="stock-name">前鼎</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            170.50
+            <div style="font-size:.78rem;color:#aaa">突破 155.00</div>
+          </td>
+          <td class="right">8.87</td>
+          <td class="right">99.50</td>
+          <td class="right stop-loss">152.76</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>7,810</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6173</div>
+            <div class="stock-name">信昌電</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            92.20
+            <div style="font-size:.78rem;color:#aaa">突破 83.90</div>
+          </td>
+          <td class="right">4.24</td>
+          <td class="right">56.90</td>
+          <td class="right stop-loss">83.72</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>7,466</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6278</div>
+            <div class="stock-name">台表科</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            157.00
+            <div style="font-size:.78rem;color:#aaa">突破 147.50</div>
+          </td>
+          <td class="right">5.06</td>
+          <td class="right">92.50</td>
+          <td class="right stop-loss">146.88</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>7,410</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3045</div>
+            <div class="stock-name">台灣大</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            112.50
+            <div style="font-size:.78rem;color:#aaa">突破 110.00</div>
+          </td>
+          <td class="right">1.10</td>
+          <td class="right">108.00</td>
+          <td class="right stop-loss">110.30</td>
+          <td class="right">9</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>7,166</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3585</div>
+            <div class="stock-name">聯致</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            82.00
+            <div style="font-size:.78rem;color:#aaa">突破 71.70</div>
+          </td>
+          <td class="right">5.74</td>
+          <td class="right">15.45</td>
+          <td class="right stop-loss">70.52</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,952</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3030</div>
+            <div class="stock-name">德律</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            338.50
+            <div style="font-size:.78rem;color:#aaa">突破 324.00</div>
+          </td>
+          <td class="right">16.92</td>
+          <td class="right">233.50</td>
+          <td class="right stop-loss">304.65</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,641</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2340</div>
+            <div class="stock-name">台亞</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            32.30
+            <div style="font-size:.78rem;color:#aaa">突破 32.25</div>
+          </td>
+          <td class="right">1.60</td>
+          <td class="right">24.20</td>
+          <td class="right stop-loss">29.10</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,404</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6175</div>
+            <div class="stock-name">立敦</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            64.60
+            <div style="font-size:.78rem;color:#aaa">突破 64.20</div>
+          </td>
+          <td class="right">2.97</td>
+          <td class="right">44.50</td>
+          <td class="right stop-loss">58.65</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,398</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2347</div>
+            <div class="stock-name">聯強</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            83.90
+            <div style="font-size:.78rem;color:#aaa">突破 83.50</div>
+          </td>
+          <td class="right">2.10</td>
+          <td class="right">74.80</td>
+          <td class="right stop-loss">79.70</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,358</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6139</div>
+            <div class="stock-name">亞翔</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            723.00
+            <div style="font-size:.78rem;color:#aaa">突破 673.00</div>
+          </td>
+          <td class="right">36.46</td>
+          <td class="right">513.00</td>
+          <td class="right stop-loss">650.08</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,271</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6415</div>
+            <div class="stock-name">矽力*-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            332.50
+            <div style="font-size:.78rem;color:#aaa">突破 320.00</div>
+          </td>
+          <td class="right">17.48</td>
+          <td class="right">267.00</td>
+          <td class="right stop-loss">297.54</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,250</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4991</div>
+            <div class="stock-name">環宇-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            660.00
+            <div style="font-size:.78rem;color:#aaa">突破 641.00</div>
+          </td>
+          <td class="right">35.55</td>
+          <td class="right">313.00</td>
+          <td class="right stop-loss">588.90</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,247</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4904</div>
+            <div class="stock-name">遠傳</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            97.40
+            <div style="font-size:.78rem;color:#aaa">突破 96.10</div>
+          </td>
+          <td class="right">1.63</td>
+          <td class="right">90.70</td>
+          <td class="right stop-loss">94.14</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>6,132</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5475</div>
+            <div class="stock-name">德宏</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            368.50
+            <div style="font-size:.78rem;color:#aaa">突破 344.00</div>
+          </td>
+          <td class="right">21.21</td>
+          <td class="right">180.00</td>
+          <td class="right stop-loss">326.07</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>5,278</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6434</div>
+            <div class="stock-name">達輝光電</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            20.55
+            <div style="font-size:.78rem;color:#aaa">突破 13.85</div>
+          </td>
+          <td class="right">1.36</td>
+          <td class="right">5.80</td>
+          <td class="right stop-loss">17.82</td>
+          <td class="right">7</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,729</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3437</div>
+            <div class="stock-name">榮創</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            27.20
+            <div style="font-size:.78rem;color:#aaa">突破 27.00</div>
+          </td>
+          <td class="right">1.65</td>
+          <td class="right">19.50</td>
+          <td class="right stop-loss">23.90</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,717</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3034</div>
+            <div class="stock-name">聯詠</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            415.00
+            <div style="font-size:.78rem;color:#aaa">突破 414.00</div>
+          </td>
+          <td class="right">10.61</td>
+          <td class="right">369.50</td>
+          <td class="right stop-loss">393.78</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,644</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8215</div>
+            <div class="stock-name">明基材</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            29.25
+            <div style="font-size:.78rem;color:#aaa">突破 27.50</div>
+          </td>
+          <td class="right">1.38</td>
+          <td class="right">21.90</td>
+          <td class="right stop-loss">26.49</td>
+          <td class="right">7</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,456</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8289</div>
+            <div class="stock-name">泰藝</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            49.65
+            <div style="font-size:.78rem;color:#aaa">突破 47.20</div>
+          </td>
+          <td class="right">3.05</td>
+          <td class="right">33.00</td>
+          <td class="right stop-loss">43.54</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,422</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2360</div>
+            <div class="stock-name">致茂</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            2,255.00
+            <div style="font-size:.78rem;color:#aaa">突破 2,110.00</div>
+          </td>
+          <td class="right">128.43</td>
+          <td class="right">1,465.00</td>
+          <td class="right stop-loss">1,998.14</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,407</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6187</div>
+            <div class="stock-name">萬潤</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            1,215.00
+            <div style="font-size:.78rem;color:#aaa">突破 1,175.00</div>
+          </td>
+          <td class="right">67.43</td>
+          <td class="right">681.00</td>
+          <td class="right stop-loss">1,080.15</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,358</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3583</div>
+            <div class="stock-name">辛耘</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            760.00
+            <div style="font-size:.78rem;color:#aaa">突破 730.00</div>
+          </td>
+          <td class="right">33.80</td>
+          <td class="right">412.50</td>
+          <td class="right stop-loss">692.40</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,292</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3363</div>
+            <div class="stock-name">上詮</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            899.00
+            <div style="font-size:.78rem;color:#aaa">突破 875.00</div>
+          </td>
+          <td class="right">51.90</td>
+          <td class="right">550.00</td>
+          <td class="right stop-loss">795.19</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,168</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8996</div>
+            <div class="stock-name">高力</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            1,220.00
+            <div style="font-size:.78rem;color:#aaa">突破 1,200.00</div>
+          </td>
+          <td class="right">73.45</td>
+          <td class="right">738.00</td>
+          <td class="right stop-loss">1,073.11</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,126</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3587</div>
+            <div class="stock-name">閎康</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            367.00
+            <div style="font-size:.78rem;color:#aaa">突破 339.50</div>
+          </td>
+          <td class="right">17.81</td>
+          <td class="right">185.00</td>
+          <td class="right stop-loss">331.37</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,118</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2476</div>
+            <div class="stock-name">鉅祥</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            115.00
+            <div style="font-size:.78rem;color:#aaa">突破 112.50</div>
+          </td>
+          <td class="right">4.62</td>
+          <td class="right">80.20</td>
+          <td class="right stop-loss">105.76</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,046</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8111</div>
+            <div class="stock-name">立碁</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            79.20
+            <div style="font-size:.78rem;color:#aaa">突破 74.30</div>
+          </td>
+          <td class="right">3.88</td>
+          <td class="right">58.00</td>
+          <td class="right stop-loss">71.43</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,780</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4764</div>
+            <div class="stock-name">雙鍵</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            212.50
+            <div style="font-size:.78rem;color:#aaa">突破 205.00</div>
+          </td>
+          <td class="right">12.84</td>
+          <td class="right">114.50</td>
+          <td class="right stop-loss">186.83</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,735</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2912</div>
+            <div class="stock-name">統一超</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            237.50
+            <div style="font-size:.78rem;color:#aaa">突破 234.00</div>
+          </td>
+          <td class="right">4.11</td>
+          <td class="right">210.00</td>
+          <td class="right stop-loss">229.28</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,600</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2393</div>
+            <div class="stock-name">億光</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            73.30
+            <div style="font-size:.78rem;color:#aaa">突破 72.70</div>
+          </td>
+          <td class="right">1.92</td>
+          <td class="right">65.80</td>
+          <td class="right stop-loss">69.46</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,552</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">7853</div>
+            <div class="stock-name">政美應用</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            456.50
+            <div style="font-size:.78rem;color:#aaa">突破 431.50</div>
+          </td>
+          <td class="right">28.82</td>
+          <td class="right">144.00</td>
+          <td class="right stop-loss">398.86</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,506</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4707</div>
+            <div class="stock-name">磐亞</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            15.05
+            <div style="font-size:.78rem;color:#aaa">突破 14.80</div>
+          </td>
+          <td class="right">0.47</td>
+          <td class="right">10.25</td>
+          <td class="right stop-loss">14.11</td>
+          <td class="right">21</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,383</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4540</div>
+            <div class="stock-name">全球傳動</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            57.90
+            <div style="font-size:.78rem;color:#aaa">突破 55.00</div>
+          </td>
+          <td class="right">2.78</td>
+          <td class="right">40.70</td>
+          <td class="right stop-loss">52.35</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,382</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8155</div>
+            <div class="stock-name">博智</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            377.50
+            <div style="font-size:.78rem;color:#aaa">突破 363.00</div>
+          </td>
+          <td class="right">20.03</td>
+          <td class="right">214.00</td>
+          <td class="right stop-loss">337.44</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,140</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3693</div>
+            <div class="stock-name">營邦</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            662.00
+            <div style="font-size:.78rem;color:#aaa">突破 659.00</div>
+          </td>
+          <td class="right">40.26</td>
+          <td class="right">434.00</td>
+          <td class="right stop-loss">581.47</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,084</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6788</div>
+            <div class="stock-name">華景電</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            431.00
+            <div style="font-size:.78rem;color:#aaa">突破 409.50</div>
+          </td>
+          <td class="right">23.45</td>
+          <td class="right">341.50</td>
+          <td class="right stop-loss">384.10</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,011</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6909</div>
+            <div class="stock-name">創控</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            64.90
+            <div style="font-size:.78rem;color:#aaa">突破 61.30</div>
+          </td>
+          <td class="right">3.40</td>
+          <td class="right">41.40</td>
+          <td class="right stop-loss">58.09</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,987</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6426</div>
+            <div class="stock-name">統新</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            227.00
+            <div style="font-size:.78rem;color:#aaa">突破 216.50</div>
+          </td>
+          <td class="right">15.16</td>
+          <td class="right">136.00</td>
+          <td class="right stop-loss">196.68</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,937</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8261</div>
+            <div class="stock-name">富鼎</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            127.50
+            <div style="font-size:.78rem;color:#aaa">突破 118.00</div>
+          </td>
+          <td class="right">5.12</td>
+          <td class="right">96.00</td>
+          <td class="right stop-loss">117.26</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,856</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2474</div>
+            <div class="stock-name">可成</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            217.00
+            <div style="font-size:.78rem;color:#aaa">突破 212.50</div>
+          </td>
+          <td class="right">4.58</td>
+          <td class="right">181.50</td>
+          <td class="right stop-loss">207.83</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,743</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6830</div>
+            <div class="stock-name">汎銓</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            885.00
+            <div style="font-size:.78rem;color:#aaa">突破 842.00</div>
+          </td>
+          <td class="right">40.56</td>
+          <td class="right">376.50</td>
+          <td class="right stop-loss">803.88</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,717</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2478</div>
+            <div class="stock-name">大毅</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            77.20
+            <div style="font-size:.78rem;color:#aaa">突破 76.40</div>
+          </td>
+          <td class="right">3.66</td>
+          <td class="right">56.70</td>
+          <td class="right stop-loss">69.88</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,657</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3081</div>
+            <div class="stock-name">聯亞</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            2,600.00
+            <div style="font-size:.78rem;color:#aaa">突破 2,405.00</div>
+          </td>
+          <td class="right">147.54</td>
+          <td class="right">1,350.00</td>
+          <td class="right stop-loss">2,304.93</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,654</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6205</div>
+            <div class="stock-name">詮欣</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            75.00
+            <div style="font-size:.78rem;color:#aaa">突破 70.00</div>
+          </td>
+          <td class="right">4.07</td>
+          <td class="right">50.50</td>
+          <td class="right stop-loss">66.86</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,476</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8383</div>
+            <div class="stock-name">千附</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            62.40
+            <div style="font-size:.78rem;color:#aaa">突破 57.50</div>
+          </td>
+          <td class="right">1.79</td>
+          <td class="right">43.10</td>
+          <td class="right stop-loss">58.81</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,255</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6141</div>
+            <div class="stock-name">柏承</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            31.20
+            <div style="font-size:.78rem;color:#aaa">突破 28.55</div>
+          </td>
+          <td class="right">1.76</td>
+          <td class="right">19.10</td>
+          <td class="right stop-loss">27.68</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,230</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5244</div>
+            <div class="stock-name">弘凱</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            46.20
+            <div style="font-size:.78rem;color:#aaa">突破 45.55</div>
+          </td>
+          <td class="right">2.28</td>
+          <td class="right">35.40</td>
+          <td class="right stop-loss">41.65</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,187</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3581</div>
+            <div class="stock-name">博磊</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            119.00
+            <div style="font-size:.78rem;color:#aaa">突破 108.50</div>
+          </td>
+          <td class="right">5.81</td>
+          <td class="right">64.60</td>
+          <td class="right stop-loss">107.38</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,072</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4971</div>
+            <div class="stock-name">IET-KY</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            767.00
+            <div style="font-size:.78rem;color:#aaa">突破 711.00</div>
+          </td>
+          <td class="right">40.61</td>
+          <td class="right">418.00</td>
+          <td class="right stop-loss">685.78</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,825</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6829</div>
+            <div class="stock-name">千附精密</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            197.00
+            <div style="font-size:.78rem;color:#aaa">突破 179.50</div>
+          </td>
+          <td class="right">7.20</td>
+          <td class="right">108.50</td>
+          <td class="right stop-loss">182.59</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,814</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6831</div>
+            <div class="stock-name">邁科</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            475.00
+            <div style="font-size:.78rem;color:#aaa">突破 462.00</div>
+          </td>
+          <td class="right">24.93</td>
+          <td class="right">314.00</td>
+          <td class="right stop-loss">425.14</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,567</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4741</div>
+            <div class="stock-name">泓瀚</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            58.30
+            <div style="font-size:.78rem;color:#aaa">突破 58.00</div>
+          </td>
+          <td class="right">2.68</td>
+          <td class="right">22.30</td>
+          <td class="right stop-loss">52.93</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,554</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3653</div>
+            <div class="stock-name">健策</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            4,565.00
+            <div style="font-size:.78rem;color:#aaa">突破 4,430.00</div>
+          </td>
+          <td class="right">230.84</td>
+          <td class="right">3,605.00</td>
+          <td class="right stop-loss">4,103.31</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,411</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6245</div>
+            <div class="stock-name">立端</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            82.80
+            <div style="font-size:.78rem;color:#aaa">突破 79.00</div>
+          </td>
+          <td class="right">2.56</td>
+          <td class="right">65.40</td>
+          <td class="right stop-loss">77.69</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,392</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6854</div>
+            <div class="stock-name">錼創科技-KY創</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            167.50
+            <div style="font-size:.78rem;color:#aaa">突破 166.00</div>
+          </td>
+          <td class="right">9.12</td>
+          <td class="right">135.00</td>
+          <td class="right stop-loss">149.26</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,267</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6223</div>
+            <div class="stock-name">旺矽</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            5,195.00
+            <div style="font-size:.78rem;color:#aaa">突破 4,935.00</div>
+          </td>
+          <td class="right">248.15</td>
+          <td class="right">3,465.00</td>
+          <td class="right stop-loss">4,698.69</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,241</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3529</div>
+            <div class="stock-name">力旺</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            4,075.00
+            <div style="font-size:.78rem;color:#aaa">突破 3,705.00</div>
+          </td>
+          <td class="right">202.96</td>
+          <td class="right">2,480.00</td>
+          <td class="right stop-loss">3,669.08</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,208</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8182</div>
+            <div class="stock-name">加高</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            39.05
+            <div style="font-size:.78rem;color:#aaa">突破 35.50</div>
+          </td>
+          <td class="right">1.51</td>
+          <td class="right">26.10</td>
+          <td class="right stop-loss">36.03</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,122</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6877</div>
+            <div class="stock-name">鏵友益</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            157.50
+            <div style="font-size:.78rem;color:#aaa">突破 143.50</div>
+          </td>
+          <td class="right">8.37</td>
+          <td class="right">103.50</td>
+          <td class="right stop-loss">140.76</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,047</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3088</div>
+            <div class="stock-name">艾訊</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            97.80
+            <div style="font-size:.78rem;color:#aaa">突破 96.90</div>
+          </td>
+          <td class="right">2.48</td>
+          <td class="right">80.00</td>
+          <td class="right stop-loss">92.84</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,045</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5228</div>
+            <div class="stock-name">鈺鎧</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            37.10
+            <div style="font-size:.78rem;color:#aaa">突破 33.75</div>
+          </td>
+          <td class="right">1.83</td>
+          <td class="right">21.75</td>
+          <td class="right stop-loss">33.45</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>968</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3595</div>
+            <div class="stock-name">山太士</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            2,205.00
+            <div style="font-size:.78rem;color:#aaa">突破 1,955.00</div>
+          </td>
+          <td class="right">168.80</td>
+          <td class="right">1,155.00</td>
+          <td class="right stop-loss">1,867.39</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>958</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6214</div>
+            <div class="stock-name">精誠</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            126.00
+            <div style="font-size:.78rem;color:#aaa">突破 125.50</div>
+          </td>
+          <td class="right">2.86</td>
+          <td class="right">104.50</td>
+          <td class="right stop-loss">120.27</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>946</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6891</div>
+            <div class="stock-name">樂迦再生</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            51.10
+            <div style="font-size:.78rem;color:#aaa">突破 49.15</div>
+          </td>
+          <td class="right">1.98</td>
+          <td class="right">23.90</td>
+          <td class="right stop-loss">47.14</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>871</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6435</div>
+            <div class="stock-name">大中</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            178.50
+            <div style="font-size:.78rem;color:#aaa">突破 176.00</div>
+          </td>
+          <td class="right">8.05</td>
+          <td class="right">144.50</td>
+          <td class="right stop-loss">162.41</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>858</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">7858</div>
+            <div class="stock-name">芝普</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            328.00
+            <div style="font-size:.78rem;color:#aaa">突破 311.00</div>
+          </td>
+          <td class="right">21.50</td>
+          <td class="right">86.40</td>
+          <td class="right stop-loss">285.01</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>850</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4195</div>
+            <div class="stock-name">基米</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            35.75
+            <div style="font-size:.78rem;color:#aaa">突破 35.50</div>
+          </td>
+          <td class="right">1.53</td>
+          <td class="right">23.05</td>
+          <td class="right stop-loss">32.69</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>793</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6959</div>
+            <div class="stock-name">兆捷科技</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            163.00
+            <div style="font-size:.78rem;color:#aaa">突破 129.00</div>
+          </td>
+          <td class="right">8.54</td>
+          <td class="right">73.30</td>
+          <td class="right stop-loss">145.92</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>763</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3518</div>
+            <div class="stock-name">柏騰</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            27.05
+            <div style="font-size:.78rem;color:#aaa">突破 26.20</div>
+          </td>
+          <td class="right">1.09</td>
+          <td class="right">19.90</td>
+          <td class="right stop-loss">24.87</td>
+          <td class="right">9</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>759</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3388</div>
+            <div class="stock-name">崇越電</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            99.30
+            <div style="font-size:.78rem;color:#aaa">突破 90.30</div>
+          </td>
+          <td class="right">2.59</td>
+          <td class="right">63.20</td>
+          <td class="right stop-loss">94.12</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>726</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6667</div>
+            <div class="stock-name">信紘科</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            288.50
+            <div style="font-size:.78rem;color:#aaa">突破 288.00</div>
+          </td>
+          <td class="right">9.87</td>
+          <td class="right">232.00</td>
+          <td class="right stop-loss">268.75</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>726</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8016</div>
+            <div class="stock-name">矽創</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            215.00
+            <div style="font-size:.78rem;color:#aaa">突破 212.50</div>
+          </td>
+          <td class="right">5.19</td>
+          <td class="right">190.00</td>
+          <td class="right stop-loss">204.62</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>711</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8147</div>
+            <div class="stock-name">正淩</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            162.00
+            <div style="font-size:.78rem;color:#aaa">突破 161.00</div>
+          </td>
+          <td class="right">7.43</td>
+          <td class="right">127.00</td>
+          <td class="right stop-loss">147.13</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>670</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6174</div>
+            <div class="stock-name">安碁</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            27.50
+            <div style="font-size:.78rem;color:#aaa">突破 27.30</div>
+          </td>
+          <td class="right">1.10</td>
+          <td class="right">21.00</td>
+          <td class="right stop-loss">25.31</td>
+          <td class="right">9</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>652</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3504</div>
+            <div class="stock-name">揚明光</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            67.40
+            <div style="font-size:.78rem;color:#aaa">突破 66.30</div>
+          </td>
+          <td class="right">2.81</td>
+          <td class="right">50.40</td>
+          <td class="right stop-loss">61.78</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>622</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6842</div>
+            <div class="stock-name">瑞宇</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            110.50
+            <div style="font-size:.78rem;color:#aaa">突破 97.70</div>
+          </td>
+          <td class="right">5.88</td>
+          <td class="right">70.10</td>
+          <td class="right stop-loss">98.73</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>588</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6465</div>
+            <div class="stock-name">威潤</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            49.05
+            <div style="font-size:.78rem;color:#aaa">突破 48.95</div>
+          </td>
+          <td class="right">3.00</td>
+          <td class="right">34.50</td>
+          <td class="right stop-loss">43.05</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>583</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6917</div>
+            <div class="stock-name">竟天</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            33.85
+            <div style="font-size:.78rem;color:#aaa">突破 33.00</div>
+          </td>
+          <td class="right">1.30</td>
+          <td class="right">21.45</td>
+          <td class="right stop-loss">31.25</td>
+          <td class="right">7</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>582</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">7590</div>
+            <div class="stock-name">怡和國際</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            24.95
+            <div style="font-size:.78rem;color:#aaa">突破 23.15</div>
+          </td>
+          <td class="right">1.14</td>
+          <td class="right">16.65</td>
+          <td class="right stop-loss">22.68</td>
+          <td class="right">8</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>540</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6679</div>
+            <div class="stock-name">鈺太</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            276.00
+            <div style="font-size:.78rem;color:#aaa">突破 275.50</div>
+          </td>
+          <td class="right">12.37</td>
+          <td class="right">225.50</td>
+          <td class="right stop-loss">251.26</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>523</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3444</div>
+            <div class="stock-name">利機</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            83.00
+            <div style="font-size:.78rem;color:#aaa">突破 82.30</div>
+          </td>
+          <td class="right">3.70</td>
+          <td class="right">58.50</td>
+          <td class="right stop-loss">75.60</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>521</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6820</div>
+            <div class="stock-name">連訊</div>
+          </td>
+          <td><span class="sig-sys2">System 2 ▲55日</span></td>
+          <td class="right">
+            355.00
+            <div style="font-size:.78rem;color:#aaa">突破 335.50</div>
+          </td>
+          <td class="right">31.41</td>
+          <td class="right">110.00</td>
+          <td class="right stop-loss">292.19</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>509</td>
+        </tr></tbody></table>
+</div>
+
+<div class="section" style="margin-top:28px">
+  <h2 class="sys1-title">▲ System 1 — 20 日突破</h2>
+  
+    <table>
+      <thead><tr>
+        <th>股票</th>
+        <th>訊號</th>
+        <th class="right">收盤 / 突破點</th>
+        <th class="right">N 值（ATR）</th>
+        <th class="right">出場參考線</th>
+        <th class="right">止損</th>
+        <th class="right">建議張數</th>
+        <th class="right">平均量（張）</th>
+      </tr></thead>
+      <tbody>
+    
+        <tr>
+          <td>
+            <div class="stock-id">2303</div>
+            <div class="stock-name">聯電</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            73.00
+            <div style="font-size:.78rem;color:#aaa">突破 68.30</div>
+          </td>
+          <td class="right">3.10</td>
+          <td class="right">52.80</td>
+          <td class="right stop-loss">66.79</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:59px"></span>120,452</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2882</div>
+            <div class="stock-name">國泰金</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            75.00
+            <div style="font-size:.78rem;color:#aaa">突破 74.50</div>
+          </td>
+          <td class="right">1.66</td>
+          <td class="right">71.00</td>
+          <td class="right stop-loss">71.68</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:12px"></span>24,818</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2801</div>
+            <div class="stock-name">彰銀</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            21.60
+            <div style="font-size:.78rem;color:#aaa">突破 21.45</div>
+          </td>
+          <td class="right">0.27</td>
+          <td class="right">20.50</td>
+          <td class="right stop-loss">21.06</td>
+          <td class="right">37</td>
+          <td class="right"><span class="vol-bar" style="width:7px"></span>16,731</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">1216</div>
+            <div class="stock-name">統一</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            73.50
+            <div style="font-size:.78rem;color:#aaa">突破 73.30</div>
+          </td>
+          <td class="right">1.09</td>
+          <td class="right">71.00</td>
+          <td class="right stop-loss">71.31</td>
+          <td class="right">9</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>10,014</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6548</div>
+            <div class="stock-name">長科*</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            54.70
+            <div style="font-size:.78rem;color:#aaa">突破 54.00</div>
+          </td>
+          <td class="right">2.71</td>
+          <td class="right">45.10</td>
+          <td class="right stop-loss">49.29</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>7,982</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5876</div>
+            <div class="stock-name">上海商銀</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            39.85
+            <div style="font-size:.78rem;color:#aaa">突破 39.80</div>
+          </td>
+          <td class="right">0.48</td>
+          <td class="right">39.10</td>
+          <td class="right stop-loss">38.90</td>
+          <td class="right">21</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>5,879</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2363</div>
+            <div class="stock-name">矽統</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            54.40
+            <div style="font-size:.78rem;color:#aaa">突破 53.60</div>
+          </td>
+          <td class="right">2.26</td>
+          <td class="right">46.30</td>
+          <td class="right stop-loss">49.87</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>5,809</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4916</div>
+            <div class="stock-name">事欣科</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            67.80
+            <div style="font-size:.78rem;color:#aaa">突破 66.30</div>
+          </td>
+          <td class="right">3.21</td>
+          <td class="right">53.20</td>
+          <td class="right stop-loss">61.38</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>5,436</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8043</div>
+            <div class="stock-name">蜜望實</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            96.60
+            <div style="font-size:.78rem;color:#aaa">突破 94.10</div>
+          </td>
+          <td class="right">5.38</td>
+          <td class="right">62.70</td>
+          <td class="right stop-loss">85.84</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>5,264</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5425</div>
+            <div class="stock-name">台半</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            65.70
+            <div style="font-size:.78rem;color:#aaa">突破 64.40</div>
+          </td>
+          <td class="right">3.06</td>
+          <td class="right">53.10</td>
+          <td class="right stop-loss">59.58</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>5,106</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6153</div>
+            <div class="stock-name">嘉聯益</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            18.75
+            <div style="font-size:.78rem;color:#aaa">突破 18.20</div>
+          </td>
+          <td class="right">0.84</td>
+          <td class="right">15.70</td>
+          <td class="right stop-loss">17.07</td>
+          <td class="right">11</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>5,030</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2404</div>
+            <div class="stock-name">漢唐</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            1,025.00
+            <div style="font-size:.78rem;color:#aaa">突破 974.00</div>
+          </td>
+          <td class="right">47.05</td>
+          <td class="right">824.00</td>
+          <td class="right stop-loss">930.91</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,279</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2352</div>
+            <div class="stock-name">佳世達</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            25.65
+            <div style="font-size:.78rem;color:#aaa">突破 25.45</div>
+          </td>
+          <td class="right">0.66</td>
+          <td class="right">22.90</td>
+          <td class="right stop-loss">24.34</td>
+          <td class="right">15</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>4,261</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2401</div>
+            <div class="stock-name">凌陽</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            23.65
+            <div style="font-size:.78rem;color:#aaa">突破 22.90</div>
+          </td>
+          <td class="right">0.88</td>
+          <td class="right">19.30</td>
+          <td class="right stop-loss">21.88</td>
+          <td class="right">11</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,240</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3550</div>
+            <div class="stock-name">聯穎</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            21.10
+            <div style="font-size:.78rem;color:#aaa">突破 20.95</div>
+          </td>
+          <td class="right">1.25</td>
+          <td class="right">17.55</td>
+          <td class="right stop-loss">18.60</td>
+          <td class="right">8</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,152</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3704</div>
+            <div class="stock-name">合勤控</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            37.45
+            <div style="font-size:.78rem;color:#aaa">突破 37.25</div>
+          </td>
+          <td class="right">1.38</td>
+          <td class="right">32.40</td>
+          <td class="right stop-loss">34.68</td>
+          <td class="right">7</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>3,090</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4939</div>
+            <div class="stock-name">亞電</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            41.15
+            <div style="font-size:.78rem;color:#aaa">突破 37.45</div>
+          </td>
+          <td class="right">2.01</td>
+          <td class="right">27.65</td>
+          <td class="right stop-loss">37.13</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,930</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2395</div>
+            <div class="stock-name">研華</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            366.00
+            <div style="font-size:.78rem;color:#aaa">突破 362.00</div>
+          </td>
+          <td class="right">12.29</td>
+          <td class="right">317.00</td>
+          <td class="right stop-loss">341.41</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,776</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3357</div>
+            <div class="stock-name">臺慶科</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            181.00
+            <div style="font-size:.78rem;color:#aaa">突破 180.00</div>
+          </td>
+          <td class="right">9.52</td>
+          <td class="right">140.50</td>
+          <td class="right stop-loss">161.97</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,617</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2637</div>
+            <div class="stock-name">慧洋-KY</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            75.70
+            <div style="font-size:.78rem;color:#aaa">突破 74.60</div>
+          </td>
+          <td class="right">2.12</td>
+          <td class="right">67.40</td>
+          <td class="right stop-loss">71.47</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,417</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4915</div>
+            <div class="stock-name">致伸</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            75.10
+            <div style="font-size:.78rem;color:#aaa">突破 75.00</div>
+          </td>
+          <td class="right">1.60</td>
+          <td class="right">70.40</td>
+          <td class="right stop-loss">71.90</td>
+          <td class="right">6</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>2,354</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3545</div>
+            <div class="stock-name">敦泰</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            51.90
+            <div style="font-size:.78rem;color:#aaa">突破 50.20</div>
+          </td>
+          <td class="right">2.95</td>
+          <td class="right">47.00</td>
+          <td class="right stop-loss">46.01</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,958</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8104</div>
+            <div class="stock-name">錸寶</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            40.00
+            <div style="font-size:.78rem;color:#aaa">突破 38.35</div>
+          </td>
+          <td class="right">1.81</td>
+          <td class="right">31.05</td>
+          <td class="right stop-loss">36.39</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,854</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6284</div>
+            <div class="stock-name">佳邦</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            88.90
+            <div style="font-size:.78rem;color:#aaa">突破 88.60</div>
+          </td>
+          <td class="right">2.99</td>
+          <td class="right">80.10</td>
+          <td class="right stop-loss">82.92</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,824</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6425</div>
+            <div class="stock-name">易發</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            85.90
+            <div style="font-size:.78rem;color:#aaa">突破 84.50</div>
+          </td>
+          <td class="right">4.09</td>
+          <td class="right">61.90</td>
+          <td class="right stop-loss">77.73</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,766</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6462</div>
+            <div class="stock-name">神盾</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            122.50
+            <div style="font-size:.78rem;color:#aaa">突破 116.50</div>
+          </td>
+          <td class="right">5.51</td>
+          <td class="right">99.40</td>
+          <td class="right stop-loss">111.49</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,507</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3317</div>
+            <div class="stock-name">尼克森</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            54.60
+            <div style="font-size:.78rem;color:#aaa">突破 52.50</div>
+          </td>
+          <td class="right">1.98</td>
+          <td class="right">49.80</td>
+          <td class="right stop-loss">50.64</td>
+          <td class="right">5</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,451</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6414</div>
+            <div class="stock-name">樺漢</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            304.00
+            <div style="font-size:.78rem;color:#aaa">突破 300.00</div>
+          </td>
+          <td class="right">7.73</td>
+          <td class="right">270.00</td>
+          <td class="right stop-loss">288.54</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,230</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">7769</div>
+            <div class="stock-name">鴻勁</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            4,500.00
+            <div style="font-size:.78rem;color:#aaa">突破 4,450.00</div>
+          </td>
+          <td class="right">223.46</td>
+          <td class="right">3,645.00</td>
+          <td class="right stop-loss">4,053.08</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,179</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6603</div>
+            <div class="stock-name">富強鑫</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            25.45
+            <div style="font-size:.78rem;color:#aaa">突破 23.95</div>
+          </td>
+          <td class="right">1.09</td>
+          <td class="right">20.65</td>
+          <td class="right stop-loss">23.26</td>
+          <td class="right">9</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,168</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5234</div>
+            <div class="stock-name">達興材料</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            443.00
+            <div style="font-size:.78rem;color:#aaa">突破 430.00</div>
+          </td>
+          <td class="right">21.02</td>
+          <td class="right">340.00</td>
+          <td class="right stop-loss">400.96</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,077</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3024</div>
+            <div class="stock-name">憶聲</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            10.95
+            <div style="font-size:.78rem;color:#aaa">突破 10.90</div>
+          </td>
+          <td class="right">0.28</td>
+          <td class="right">9.98</td>
+          <td class="right stop-loss">10.39</td>
+          <td class="right">35</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,054</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6533</div>
+            <div class="stock-name">晶心科</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            235.00
+            <div style="font-size:.78rem;color:#aaa">突破 218.50</div>
+          </td>
+          <td class="right">10.69</td>
+          <td class="right">174.00</td>
+          <td class="right stop-loss">213.62</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>1,042</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5222</div>
+            <div class="stock-name">全訊</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            144.50
+            <div style="font-size:.78rem;color:#aaa">突破 138.50</div>
+          </td>
+          <td class="right">5.87</td>
+          <td class="right">110.50</td>
+          <td class="right stop-loss">132.77</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>971</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">4150</div>
+            <div class="stock-name">優你康</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            6.96
+            <div style="font-size:.78rem;color:#aaa">突破 6.73</div>
+          </td>
+          <td class="right">0.66</td>
+          <td class="right">3.59</td>
+          <td class="right stop-loss">5.64</td>
+          <td class="right">15</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>926</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">1590</div>
+            <div class="stock-name">亞德客-KY</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            1,255.00
+            <div style="font-size:.78rem;color:#aaa">突破 1,245.00</div>
+          </td>
+          <td class="right">53.28</td>
+          <td class="right">991.00</td>
+          <td class="right stop-loss">1,148.44</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>912</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8213</div>
+            <div class="stock-name">志超</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            36.60
+            <div style="font-size:.78rem;color:#aaa">突破 36.35</div>
+          </td>
+          <td class="right">1.11</td>
+          <td class="right">32.50</td>
+          <td class="right stop-loss">34.38</td>
+          <td class="right">9</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>801</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6696</div>
+            <div class="stock-name">仁新</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            433.00
+            <div style="font-size:.78rem;color:#aaa">突破 413.50</div>
+          </td>
+          <td class="right">17.11</td>
+          <td class="right">355.00</td>
+          <td class="right stop-loss">398.77</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>764</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">6206</div>
+            <div class="stock-name">飛捷</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            108.00
+            <div style="font-size:.78rem;color:#aaa">突破 107.50</div>
+          </td>
+          <td class="right">2.95</td>
+          <td class="right">96.30</td>
+          <td class="right stop-loss">102.09</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>731</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">3014</div>
+            <div class="stock-name">聯陽</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            124.00
+            <div style="font-size:.78rem;color:#aaa">突破 123.50</div>
+          </td>
+          <td class="right">2.35</td>
+          <td class="right">115.00</td>
+          <td class="right stop-loss">119.30</td>
+          <td class="right">4</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>719</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">2597</div>
+            <div class="stock-name">潤弘</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            165.50
+            <div style="font-size:.78rem;color:#aaa">突破 161.50</div>
+          </td>
+          <td class="right">4.31</td>
+          <td class="right">150.50</td>
+          <td class="right stop-loss">156.89</td>
+          <td class="right">2</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>713</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">5455</div>
+            <div class="stock-name">昇益</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            25.45
+            <div style="font-size:.78rem;color:#aaa">突破 24.90</div>
+          </td>
+          <td class="right">10.55</td>
+          <td class="right">—</td>
+          <td class="right stop-loss">4.36</td>
+          <td class="right">1</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>609</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">1442</div>
+            <div class="stock-name">名軒</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            29.00
+            <div style="font-size:.78rem;color:#aaa">突破 28.80</div>
+          </td>
+          <td class="right">1.00</td>
+          <td class="right">25.75</td>
+          <td class="right stop-loss">26.99</td>
+          <td class="right">9</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>578</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="stock-id">8048</div>
+            <div class="stock-name">德勝</div>
+          </td>
+          <td><span class="sig-sys1">System 1 ▲20日</span></td>
+          <td class="right">
+            64.60
+            <div style="font-size:.78rem;color:#aaa">突破 64.00</div>
+          </td>
+          <td class="right">2.87</td>
+          <td class="right">51.90</td>
+          <td class="right stop-loss">58.86</td>
+          <td class="right">3</td>
+          <td class="right"><span class="vol-bar" style="width:4px"></span>564</td>
+        </tr></tbody></table>
+</div>
+
+<div class="footer">
+  報告產出時間：2026-04-19 09:50 · FinMind V3 · 僅供參考，不構成投資建議
+</div>
+
+</body>
+</html>
