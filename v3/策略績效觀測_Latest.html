@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>策略績效觀測</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+       background: #f4f7fa; color: #333; }
+
+.header {
+  background: linear-gradient(135deg, #1a3a5c, #2e6da4);
+  color: #fff; padding: 36px 48px; border-radius: 0 0 16px 16px;
+}
+.header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+.header p  { opacity: .85; font-size: .9rem; }
+
+.cards { display: flex; flex-wrap: wrap; gap: 16px; padding: 24px 48px 8px; }
+.card {
+  background: #fff; border-radius: 12px; padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05); min-width: 180px;
+}
+.card .label { font-size: .8rem; color: #6c757d; margin-bottom: 4px; }
+.card .value { font-size: 1.6rem; font-weight: 700; color: #1a3a5c; }
+.card .sub   { font-size: .8rem; color: #6c757d; }
+
+.section { padding: 0 48px 32px; }
+.section h2 {
+  font-size: 1.1rem; font-weight: 700; color: #1a3a5c;
+  margin: 24px 0 10px; letter-spacing: .05em;
+  display: flex; align-items: center; gap: 8px;
+}
+.section h2 .badge {
+  font-size: .7rem; padding: 2px 8px; border-radius: 99px;
+  background: #e8f0fe; color: #1a3a5c;
+}
+
+.strategy-section {
+  background: #fff; border-radius: 14px; padding: 24px 28px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06); margin-bottom: 28px;
+}
+.strategy-section h3 {
+  font-size: 1.05rem; font-weight: 700; color: #1a3a5c; margin-bottom: 16px;
+  padding-bottom: 10px; border-bottom: 2px solid #e8f0fe;
+}
+
+.stats-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.stat-box {
+  background: #f8faff; border-radius: 8px; padding: 10px 16px; min-width: 130px;
+}
+.stat-box .s-label { font-size: .75rem; color: #6c757d; }
+.stat-box .s-value { font-size: 1.2rem; font-weight: 700; color: #1a3a5c; }
+
+.table-wrap {
+  background: #fff; border-radius: 10px; overflow-x: auto;
+  box-shadow: 0 1px 6px rgba(0,0,0,.04); margin-bottom: 20px;
+}
+table { border-collapse: collapse; width: 100%; font-size: .8rem; }
+thead th {
+  background: #1a3a5c; color: #fff;
+  padding: 9px 8px; white-space: nowrap; text-align: center;
+  position: sticky; top: 0;
+}
+tbody tr:nth-child(even) { background: #f8f9fc; }
+tbody tr:hover { background: #eef2ff; }
+tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
+           border-bottom: 1px solid #eee; }
+.rank   { font-weight: 700; color: #1a3a5c; }
+.pos    { color: #198754; font-weight: 700; }
+.neg    { color: #dc3545; font-weight: 700; }
+.active { color: #0d6efd; }
+.settled-exit { background: #fff3f3 !important; }
+.settled-expire { background: #f5f5f5 !important; }
+.tag {
+  display: inline-block; font-size: .7rem; padding: 2px 6px;
+  border-radius: 4px; font-weight: 600;
+}
+.tag.active  { background: #e8f5e9; color: #198754; }
+.tag.exit    { background: #fdecea; color: #dc3545; }
+.tag.expired { background: #f0f0f0; color: #888; }
+
+.chart-wrap { height: 280px; margin-bottom: 8px; }
+
+.summary-table th { background: #2e6da4; }
+
+.nav {
+  background: #fff; padding: 12px 48px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05); margin-bottom: 4px;
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.nav a {
+  color: #1a3a5c; text-decoration: none; font-size: .85rem;
+  padding: 4px 12px; border-radius: 99px; border: 1px solid #c5d8f0;
+  transition: background .15s;
+}
+.nav a:hover { background: #e8f0fe; }
+
+@media (max-width: 768px) {
+  .header, .cards, .section { padding-left: 16px; padding-right: 16px; }
+  .header h1 { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>策略績效觀測報表</h1>
+  <p>更新時間：2026-04-20 14:02 &nbsp;｜&nbsp; 大盤基準：TAIEX &nbsp;｜&nbsp; 最新基準價：36804.34</p>
+</div>
+
+<nav class="nav">
+  <a href="#summary">跨策略彙整</a>
+  <a href="#high_dividend">高殖利率防禦型</a>
+  <a href="#value_investing">價值投資</a>
+  <a href="#whale_stock">巨鯨狙擊_個股</a>
+  <a href="#whale_etf">巨鯨狙擊_ETF</a>
+  <a href="#turtle">海龜法則</a>
+
+</nav>
+
+<div class="cards">
+
+  <div class="card"><div class="label">觀測中</div><div class="value">0 <span class="sub">筆</span></div></div>
+  <div class="card"><div class="label">已結算</div><div class="value">0 <span class="sub">筆</span></div></div>
+  <div class="card"><div class="label">整體平均報酬</div><div class="value ">—</div></div>
+  <div class="card"><div class="label">基準 (TAIEX) 最新</div><div class="value small" style="font-size:1.3rem">36804.34</div></div>
+
+</div>
+
+<div class="section">
+  <h2 id="summary">跨策略績效彙整</h2>
+  
+    <div class="table-wrap">
+      <table class="summary-table">
+        <thead><tr><th>策略</th><th>觀測中</th><th>已結算</th><th>勝率</th><th>平均報酬</th><th>平均Alpha</th><th>最佳個股</th></tr></thead>
+        <tbody>
+        <tr>
+          <td><a href="#high_dividend" style="color:#1a3a5c;font-weight:700">高殖利率防禦型</a></td>
+          <td>0</td>
+          <td>0</td>
+          <td>—</td>
+          <td class="">—</td>
+          <td class="">—</td>
+          <td style="font-size:.75rem">—</td>
+        </tr>
+        <tr>
+          <td><a href="#value_investing" style="color:#1a3a5c;font-weight:700">價值投資</a></td>
+          <td>0</td>
+          <td>0</td>
+          <td>—</td>
+          <td class="">—</td>
+          <td class="">—</td>
+          <td style="font-size:.75rem">—</td>
+        </tr>
+        <tr>
+          <td><a href="#whale_stock" style="color:#1a3a5c;font-weight:700">巨鯨狙擊_個股</a></td>
+          <td>0</td>
+          <td>0</td>
+          <td>—</td>
+          <td class="">—</td>
+          <td class="">—</td>
+          <td style="font-size:.75rem">—</td>
+        </tr>
+        <tr>
+          <td><a href="#whale_etf" style="color:#1a3a5c;font-weight:700">巨鯨狙擊_ETF</a></td>
+          <td>0</td>
+          <td>0</td>
+          <td>—</td>
+          <td class="">—</td>
+          <td class="">—</td>
+          <td style="font-size:.75rem">—</td>
+        </tr>
+        <tr>
+          <td><a href="#turtle" style="color:#1a3a5c;font-weight:700">海龜法則</a></td>
+          <td>0</td>
+          <td>0</td>
+          <td>—</td>
+          <td class="">—</td>
+          <td class="">—</td>
+          <td style="font-size:.75rem">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+</div>
+
+<div class="section"><div class="strategy-section" id="high_dividend"><h3>📊 高殖利率防禦型</h3><p style="color:#888;padding:12px">尚無觀測資料</p></div></div>
+<div class="section"><div class="strategy-section" id="value_investing"><h3>📊 價值投資</h3><p style="color:#888;padding:12px">尚無觀測資料</p></div></div>
+<div class="section"><div class="strategy-section" id="whale_stock"><h3>📊 巨鯨狙擊_個股</h3><p style="color:#888;padding:12px">尚無觀測資料</p></div></div>
+<div class="section"><div class="strategy-section" id="whale_etf"><h3>📊 巨鯨狙擊_ETF</h3><p style="color:#888;padding:12px">尚無觀測資料</p></div></div>
+<div class="section"><div class="strategy-section" id="turtle"><h3>📊 海龜法則</h3><p style="color:#888;padding:12px">尚無觀測資料</p></div></div>
+
+<script>
+
+</script>
+
+</body>
+</html>
