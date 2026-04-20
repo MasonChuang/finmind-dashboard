@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-04-19</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-04-20</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -147,7 +147,7 @@
         <h5 style="margin-top: 0; font-weight: 700; color: #333; display: flex; align-items: center; gap: 10px;">
             🌍 2026 年度台灣加權指數 (TAIEX) 宏觀市況總結
             <span style="background: #dc3545; color: white; padding: 3px 10px; border-radius: 12px; font-size: 0.9rem;">
-                全年結算: +25.40% (狂暴多頭)
+                全年結算: +25.93% (狂暴多頭)
             </span>
         </h5>
         <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px;">
@@ -162,7 +162,7 @@
 
             <div style="flex: 1; min-width: 120px; background: white; border: 1px solid #dee2e6; border-radius: 6px; padding: 10px; text-align: center;">
                 <div style="font-size: 0.85rem; color: #666; font-weight: 600; text-transform: uppercase;">Q2 季度</div>
-                <div style="font-size: 1.25rem; font-weight: 700; color: #dc3545; margin: 5px 0;">+10.94%</div>
+                <div style="font-size: 1.25rem; font-weight: 700; color: #dc3545; margin: 5px 0;">+11.41%</div>
                 <span style="display: inline-block; background: #fd7e14; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">主升段多頭</span>
             </div>
         
@@ -178,8 +178,8 @@
             <div class="card text-white bg-primary mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>監控標的數</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">650 <small style="font-size:16px;">筆</small></h2>
-                    <p class="card-text mb-0 mt-1"><span class="badge bg-secondary">已平倉: 428</span> <span class="badge bg-warning text-dark">未平倉: 222</span></p>
+                    <h2 class="card-title mb-0">660 <small style="font-size:16px;">筆</small></h2>
+                    <p class="card-text mb-0 mt-1"><span class="badge bg-secondary">已平倉: 432</span> <span class="badge bg-warning text-dark">未平倉: 228</span></p>
                 </div>
             </div>
         </div>
@@ -187,7 +187,7 @@
             <div class="card text-white bg-success mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史平均勝率 (已平倉)</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">36.2%</h2>
+                    <h2 class="card-title mb-0">36.1%</h2>
                     <p class="card-text"><small>(停損出場策略: FIXED_STOP)</small></p>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
@@ -206,15 +206,15 @@
             <div class="card text-white bg-info mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史單筆期望值</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+1.42%</h2>
+                    <h2 class="card-title mb-0">+1.35%</h2>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
                 <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px;">
                     <span>⚠️ 多頭門檻: <strong>+2.0%</strong></span>
-                    <span style="color:#ffc107; font-weight:600;">70%</span>
+                    <span style="color:#ffc107; font-weight:600;">67%</span>
                 </div>
                 <div style="background:rgba(255,255,255,0.2); border-radius:4px; height:5px;">
-                    <div style="background:#ffc107; width:70%; height:5px; border-radius:4px; transition:width 0.5s;"></div>
+                    <div style="background:#ffc107; width:67%; height:5px; border-radius:4px; transition:width 0.5s;"></div>
                 </div>
             </div>
                 </div>
@@ -272,10 +272,10 @@
             
                 <tr>
                     <td><strong>名次 4</strong></td>
-                    <td class="text-dark">35.9%</td>
-                    <td class="text-danger">0.70%</td>
-                    <td>19.2</td>
-                    <td>39</td>
+                    <td class="text-dark">35.0%</td>
+                    <td class="text-danger">0.38%</td>
+                    <td>18.9</td>
+                    <td>40</td>
                 </tr>
             
                 <tr>
@@ -349,7 +349,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2026-01", "2026-02", "2026-03", "2026-04"], "wr": [38.6, 35.1, 31.3, 66.7], "roi": [1.93, 0.34, 0.91, 10.35], "grpA_roi": [4.1, 2.08, -0.23, 6.0], "rank_roi": {"Rank 1": [3.27, -5.16, -3.89, 0.0], "Rank 2": [4.09, 12.31, 2.27, -8.0], "Rank 3": [4.94, -1.33, 0.45, 20.0], "Rank 4": [4.36, -2.12, -8.14, 20.0], "Rank 5": [0.5, -0.4, -3.18, 20.0]}, "rank_wr": {"Rank 1": [42.9, 12.5, 16.7, 0.0], "Rank 2": [42.9, 66.7, 40.0, 0.0], "Rank 3": [47.6, 30.0, 28.6, 100.0], "Rank 4": [47.6, 33.3, 0.0, 100.0], "Rank 5": [28.6, 33.3, 16.7, 100.0]}};
+                var chartData = {"labels": ["2026-01", "2026-02", "2026-03", "2026-04"], "wr": [38.6, 35.7, 30.8, 57.1], "roi": [1.93, 0.4, 0.76, 7.14], "grpA_roi": [4.1, 2.08, -0.23, 6.0], "rank_roi": {"Rank 1": [3.27, -5.16, -3.89, 0.0], "Rank 2": [4.09, 12.31, 2.27, -8.0], "Rank 3": [4.94, -1.33, 0.45, 20.0], "Rank 4": [4.36, -2.12, -8.14, 3.96], "Rank 5": [0.5, -0.4, -3.18, 20.0]}, "rank_wr": {"Rank 1": [42.9, 12.5, 16.7, 0.0], "Rank 2": [42.9, 66.7, 40.0, 0.0], "Rank 3": [47.6, 30.0, 28.6, 100.0], "Rank 4": [47.6, 33.3, 0.0, 50.0], "Rank 5": [28.6, 33.3, 16.7, 100.0]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -488,6 +488,176 @@
   </thead>
   <tbody>
     <tr>
+      <td>2026-04-20</td>
+      <td>1</td>
+      <td>Group A</td>
+      <td>2458</td>
+      <td>義隆</td>
+      <td>電子</td>
+      <td>135.00</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>2</td>
+      <td>Group A</td>
+      <td>6443</td>
+      <td>元晶</td>
+      <td>電子</td>
+      <td>39.10</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>3</td>
+      <td>Group A</td>
+      <td>2884</td>
+      <td>玉山金</td>
+      <td>金融</td>
+      <td>32.85</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>4</td>
+      <td>Group B</td>
+      <td>2301</td>
+      <td>光寶科</td>
+      <td>電子</td>
+      <td>165.00</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>5</td>
+      <td>Group B</td>
+      <td>1605</td>
+      <td>華新</td>
+      <td>電子</td>
+      <td>33.65</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>6</td>
+      <td>Group B</td>
+      <td>6120</td>
+      <td>達運</td>
+      <td>電子</td>
+      <td>14.65</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>7</td>
+      <td>Group C</td>
+      <td>2002</td>
+      <td>中鋼</td>
+      <td>傳統產業</td>
+      <td>19.85</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>8</td>
+      <td>Group C</td>
+      <td>3706</td>
+      <td>神達</td>
+      <td>電子</td>
+      <td>84.10</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>9</td>
+      <td>Group C</td>
+      <td>8105</td>
+      <td>凌巨</td>
+      <td>電子</td>
+      <td>14.10</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-04-20</td>
+      <td>10</td>
+      <td>Group C</td>
+      <td>1723</td>
+      <td>中碳</td>
+      <td>傳統產業</td>
+      <td>80.10</td>
+      <td>0.0</td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td><span class='text-muted'>N/A</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>0</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
       <td>2026-04-17</td>
       <td>1</td>
       <td>Group A</td>
@@ -499,8 +669,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.62%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -516,8 +686,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.17%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -533,8 +703,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.26%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -550,8 +720,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.64%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -567,8 +737,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.31%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -584,8 +754,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.18%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -601,8 +771,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.85%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -618,8 +788,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.24%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -635,8 +805,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.05%</span></td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -653,7 +823,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>0</td>
+      <td>3</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -669,8 +839,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.24%</span></td>
-      <td>1</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.35%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -686,8 +856,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.58%</span></td>
-      <td>1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.34%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -703,8 +873,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.36%</span></td>
-      <td>1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.0%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -720,8 +890,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.76%</span></td>
-      <td>1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.45%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -737,8 +907,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.13%</span></td>
-      <td>1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.5%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -754,8 +924,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.61%</span></td>
-      <td>1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.81%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -771,8 +941,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.62%</span></td>
-      <td>1</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.83%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -788,8 +958,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.62%</span></td>
-      <td>1</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.48%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -805,8 +975,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.08%</span></td>
-      <td>1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.16%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -822,8 +992,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.36%</span></td>
-      <td>1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.53%</span></td>
+      <td>4</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -839,8 +1009,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.2%</span></td>
-      <td>2</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.04%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -856,8 +1026,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.32%</span></td>
-      <td>2</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>7.37%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -873,8 +1043,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.92%</span></td>
-      <td>2</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.84%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -890,8 +1060,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.18%</span></td>
-      <td>2</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.93%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -907,8 +1077,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.92%</span></td>
-      <td>2</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.74%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -924,8 +1094,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.16%</span></td>
-      <td>2</td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.25%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -941,8 +1111,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.9%</span></td>
-      <td>2</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.16%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -958,8 +1128,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.61%</span></td>
-      <td>2</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.3%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -975,8 +1145,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.11%</span></td>
-      <td>2</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.68%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -992,8 +1162,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>2</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.63%</span></td>
+      <td>5</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1009,8 +1179,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>3</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.05%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1026,8 +1196,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.29%</span></td>
-      <td>3</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.14%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1043,8 +1213,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>3</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.93%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1060,8 +1230,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.58%</span></td>
-      <td>3</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.48%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1077,8 +1247,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.83%</span></td>
-      <td>3</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.98%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1094,8 +1264,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.31%</span></td>
-      <td>3</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.91%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1111,8 +1281,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.41%</span></td>
-      <td>3</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.68%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1128,8 +1298,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.15%</span></td>
-      <td>3</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.46%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1145,8 +1315,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.29%</span></td>
-      <td>3</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.57%</span></td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1163,7 +1333,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>3</td>
+      <td>6</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1179,8 +1349,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.5%</span></td>
-      <td>4</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.73%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1196,8 +1366,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>4</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.53%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1213,8 +1383,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>4</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.05%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1230,8 +1400,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.29%</span></td>
-      <td>4</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.14%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1247,8 +1417,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.49%</span></td>
-      <td>4</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.46%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1264,8 +1434,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.69%</span></td>
-      <td>4</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.6%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1281,8 +1451,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>7.0%</span></td>
-      <td>4</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>7.15%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1298,8 +1468,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.36%</span></td>
-      <td>4</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.0%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1315,8 +1485,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.84%</span></td>
-      <td>4</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.54%</span></td>
+      <td>7</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1349,8 +1519,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.25%</span></td>
-      <td>7</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.0%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1366,8 +1536,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.13%</span></td>
-      <td>7</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.27%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1400,8 +1570,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>11.05%</span></td>
-      <td>7</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>12.11%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1417,8 +1587,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.21%</span></td>
-      <td>7</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.84%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1434,8 +1604,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.31%</span></td>
-      <td>7</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.17%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1451,8 +1621,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.96%</span></td>
-      <td>7</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.81%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1468,8 +1638,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.11%</span></td>
-      <td>7</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.07%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1485,8 +1655,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.27%</span></td>
-      <td>7</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.19%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1502,8 +1672,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.0%</span></td>
-      <td>7</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.77%</span></td>
+      <td>10</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1519,8 +1689,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.03%</span></td>
-      <td>8</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.69%</span></td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1536,8 +1706,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.5%</span></td>
-      <td>8</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.73%</span></td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1553,8 +1723,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.14%</span></td>
-      <td>8</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.23%</span></td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1604,8 +1774,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>12.43%</span></td>
-      <td>8</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>13.5%</span></td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1621,8 +1791,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.52%</span></td>
-      <td>8</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.45%</span></td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1638,8 +1808,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.2%</span></td>
-      <td>8</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.04%</span></td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1655,8 +1825,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.02%</span></td>
-      <td>8</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.04%</span></td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1673,7 +1843,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>8</td>
+      <td>11</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1689,8 +1859,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.25%</span></td>
-      <td>10</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.89%</span></td>
+      <td>13</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1723,8 +1893,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.42%</span></td>
-      <td>10</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.55%</span></td>
+      <td>13</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1739,11 +1909,11 @@
       <td>0.0</td>
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
-      <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.03%</span></td>
-      <td>10</td>
-      <td>-</td>
-      <td>Open</td>
+      <td>120.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-12.09%</span></td>
+      <td>9</td>
+      <td>停損出場 (-8%)</td>
+      <td>Closed</td>
     </tr>
     <tr>
       <td>2026-04-07</td>
@@ -1757,8 +1927,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.07%</span></td>
-      <td>10</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.12%</span></td>
+      <td>13</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1774,8 +1944,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.4%</span></td>
-      <td>10</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>13</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1792,7 +1962,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>10</td>
+      <td>13</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1808,8 +1978,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.7%</span></td>
-      <td>10</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.05%</span></td>
+      <td>13</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1842,8 +2012,8 @@
       <td><span class='text-muted'>N/A</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.16%</span></td>
-      <td>10</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.72%</span></td>
+      <td>13</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1856,11 +2026,11 @@
       <td>金融</td>
       <td>39.25</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>39.75</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.64%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.27%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1873,11 +2043,11 @@
       <td>金融</td>
       <td>20.75</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#198754;font-weight:600;'>20.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.96%</span></td>
-      <td>15</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.2%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1890,11 +2060,11 @@
       <td>金融</td>
       <td>28.40</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>28.9</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.41%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.76%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1907,11 +2077,11 @@
       <td>電子</td>
       <td>78.00</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>82.7</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.41%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.03%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1924,11 +2094,11 @@
       <td>航運業</td>
       <td>34.95</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>35.25</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.0%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.86%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1941,11 +2111,11 @@
       <td>電子</td>
       <td>77.40</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>84.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.4%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.53%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1958,11 +2128,11 @@
       <td>傳統產業</td>
       <td>69.30</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>70.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.61%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.15%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1975,11 +2145,11 @@
       <td>傳統產業</td>
       <td>5.54</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#6c757d;'>5.54</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>15</td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -1992,11 +2162,11 @@
       <td>金融</td>
       <td>12.55</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>12.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.8%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.4%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2009,11 +2179,11 @@
       <td>傳統產業</td>
       <td>100.50</td>
       <td>0.0</td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>113.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>13.43%</span></td>
-      <td>15</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>12.44%</span></td>
+      <td>18</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2029,8 +2199,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>39.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.41%</span></td>
-      <td>16</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.05%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2046,8 +2216,8 @@
       <td><span style='color:#198754;font-weight:600;'>20.55</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.96%</span></td>
-      <td>16</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.2%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2063,8 +2233,8 @@
       <td><span style='color:#198754;font-weight:600;'>75.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.64%</span></td>
-      <td>16</td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.64%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2080,8 +2250,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>28.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.23%</span></td>
-      <td>16</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.58%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2097,8 +2267,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>83.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.14%</span></td>
-      <td>16</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.75%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2114,8 +2284,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>230.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.22%</span></td>
-      <td>16</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.56%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2131,8 +2301,8 @@
       <td><span style='color:#198754;font-weight:600;'>32.45</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.31%</span></td>
-      <td>16</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.38%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2148,8 +2318,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>24.45</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.19%</span></td>
-      <td>16</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.73%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2165,8 +2335,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>12.65</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.8%</span></td>
-      <td>16</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.4%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2182,8 +2352,8 @@
       <td><span style='color:#198754;font-weight:600;'>18.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.6%</span></td>
-      <td>16</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.99%</span></td>
+      <td>19</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2199,8 +2369,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>47.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>14.48%</span></td>
-      <td>17</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>17.01%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2216,8 +2386,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>128.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.33%</span></td>
-      <td>17</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.67%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2250,8 +2420,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>39.95</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.73%</span></td>
-      <td>17</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.38%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2267,8 +2437,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>235.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.99%</span></td>
-      <td>17</td>
+      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2284,8 +2454,8 @@
       <td><span style='color:#198754;font-weight:600;'>76.9</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.33%</span></td>
-      <td>17</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.41%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2301,8 +2471,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>28.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.13%</span></td>
-      <td>17</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.48%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2335,8 +2505,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>77.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.69%</span></td>
-      <td>17</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.3%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2352,8 +2522,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>72.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.73%</span></td>
-      <td>17</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.13%</span></td>
+      <td>20</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2369,8 +2539,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>46.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>13.25%</span></td>
-      <td>18</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>15.75%</span></td>
+      <td>21</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2386,8 +2556,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>70.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.21%</span></td>
-      <td>18</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.74%</span></td>
+      <td>21</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2420,8 +2590,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>229.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.22%</span></td>
-      <td>18</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.56%</span></td>
+      <td>21</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2437,8 +2607,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>39.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.2%</span></td>
-      <td>18</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.85%</span></td>
+      <td>21</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2488,8 +2658,8 @@
       <td><span style='color:#198754;font-weight:600;'>77.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.71%</span></td>
-      <td>18</td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.75%</span></td>
+      <td>21</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2505,8 +2675,8 @@
       <td><span style='color:#198754;font-weight:600;'>77.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.77%</span></td>
-      <td>18</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.39%</span></td>
+      <td>21</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2539,8 +2709,8 @@
       <td><span style='color:#198754;font-weight:600;'>35.15</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.42%</span></td>
-      <td>21</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.56%</span></td>
+      <td>24</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2556,8 +2726,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>110.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.74%</span></td>
-      <td>21</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.65%</span></td>
+      <td>24</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2573,8 +2743,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>94.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.18%</span></td>
-      <td>21</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.05%</span></td>
+      <td>24</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2590,8 +2760,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>44.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.15%</span></td>
-      <td>21</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.12%</span></td>
+      <td>24</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2607,8 +2777,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>70.7</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.84%</span></td>
-      <td>21</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.57%</span></td>
+      <td>24</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2658,8 +2828,8 @@
       <td><span style='color:#198754;font-weight:600;'>227.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.44%</span></td>
-      <td>21</td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.24%</span></td>
+      <td>24</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2675,8 +2845,8 @@
       <td><span style='color:#198754;font-weight:600;'>31.65</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.37%</span></td>
-      <td>21</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.3%</span></td>
+      <td>24</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2709,8 +2879,8 @@
       <td><span style='color:#198754;font-weight:600;'>35.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.14%</span></td>
-      <td>22</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.28%</span></td>
+      <td>25</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2726,8 +2896,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>110.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.21%</span></td>
-      <td>22</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.13%</span></td>
+      <td>25</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2743,8 +2913,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>94.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.53%</span></td>
-      <td>22</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.39%</span></td>
+      <td>25</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2777,8 +2947,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>44.55</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.52%</span></td>
-      <td>22</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.5%</span></td>
+      <td>25</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2794,8 +2964,8 @@
       <td><span style='color:#198754;font-weight:600;'>71.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>22</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.37%</span></td>
+      <td>25</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2862,8 +3032,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.45</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.52%</span></td>
-      <td>22</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.87%</span></td>
+      <td>25</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2879,8 +3049,8 @@
       <td><span style='color:#6c757d;'>107.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.28%</span></td>
-      <td>23</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>12.15%</span></td>
+      <td>26</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2896,8 +3066,8 @@
       <td><span style='color:#198754;font-weight:600;'>34.85</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.98%</span></td>
-      <td>23</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.12%</span></td>
+      <td>26</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2913,8 +3083,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>110.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.21%</span></td>
-      <td>23</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.13%</span></td>
+      <td>26</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2930,8 +3100,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>94.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.62%</span></td>
-      <td>23</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.47%</span></td>
+      <td>26</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2964,8 +3134,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>44.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.64%</span></td>
-      <td>23</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.62%</span></td>
+      <td>26</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -2981,8 +3151,8 @@
       <td><span style='color:#198754;font-weight:600;'>71.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.69%</span></td>
-      <td>23</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.04%</span></td>
+      <td>26</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3015,8 +3185,8 @@
       <td><span style='color:#198754;font-weight:600;'>31.65</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.25%</span></td>
-      <td>23</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.49%</span></td>
+      <td>26</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3049,8 +3219,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>80.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.64%</span></td>
-      <td>24</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.25%</span></td>
+      <td>27</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3066,8 +3236,8 @@
       <td><span style='color:#198754;font-weight:600;'>34.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>24</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.14%</span></td>
+      <td>27</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3083,8 +3253,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>95.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.95%</span></td>
-      <td>24</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.8%</span></td>
+      <td>27</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3117,8 +3287,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>43.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.28%</span></td>
-      <td>24</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>10.3%</span></td>
+      <td>27</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3134,8 +3304,8 @@
       <td><span style='color:#198754;font-weight:600;'>71.7</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.24%</span></td>
-      <td>24</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.58%</span></td>
+      <td>27</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3185,8 +3355,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>348.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.91%</span></td>
-      <td>24</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>10.15%</span></td>
+      <td>27</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3202,8 +3372,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>31.45</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.6%</span></td>
-      <td>24</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>11.06%</span></td>
+      <td>27</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3236,8 +3406,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>79.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.64%</span></td>
-      <td>25</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.25%</span></td>
+      <td>28</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3253,8 +3423,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>109.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.21%</span></td>
-      <td>25</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.13%</span></td>
+      <td>28</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3270,8 +3440,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>93.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.62%</span></td>
-      <td>25</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.48%</span></td>
+      <td>28</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3287,8 +3457,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>35.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.29%</span></td>
-      <td>25</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.15%</span></td>
+      <td>28</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3304,8 +3474,8 @@
       <td><span style='color:#198754;font-weight:600;'>70.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.84%</span></td>
-      <td>25</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.54%</span></td>
+      <td>28</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3338,8 +3508,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>109.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>12.92%</span></td>
-      <td>25</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>14.83%</span></td>
+      <td>28</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3355,8 +3525,8 @@
       <td><span style='color:#198754;font-weight:600;'>23.25</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.94%</span></td>
-      <td>25</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.44%</span></td>
+      <td>28</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3389,8 +3559,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>109.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.21%</span></td>
-      <td>28</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.13%</span></td>
+      <td>31</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3406,8 +3576,8 @@
       <td><span style='color:#198754;font-weight:600;'>93.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.51%</span></td>
-      <td>28</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.36%</span></td>
+      <td>31</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3440,8 +3610,8 @@
       <td><span style='color:#198754;font-weight:600;'>32.55</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>12.63%</span></td>
-      <td>28</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>14.29%</span></td>
+      <td>31</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3543,7 +3713,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#dc3545;font-weight:bold;'>7.79%</span></td>
-      <td>28</td>
+      <td>31</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3559,8 +3729,8 @@
       <td><span style='color:#198754;font-weight:600;'>92.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.07%</span></td>
-      <td>29</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.93%</span></td>
+      <td>32</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3610,8 +3780,8 @@
       <td><span style='color:#198754;font-weight:600;'>32.4</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.99%</span></td>
-      <td>29</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>11.6%</span></td>
+      <td>32</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3695,8 +3865,8 @@
       <td><span style='color:#198754;font-weight:600;'>22.3</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.16%</span></td>
-      <td>29</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.67%</span></td>
+      <td>32</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3712,8 +3882,8 @@
       <td><span style='color:#198754;font-weight:600;'>67.9</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.58%</span></td>
-      <td>29</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.39%</span></td>
+      <td>32</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3746,8 +3916,8 @@
       <td><span style='color:#198754;font-weight:600;'>290.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.24%</span></td>
-      <td>30</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>12.29%</span></td>
+      <td>33</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3763,8 +3933,8 @@
       <td><span style='color:#198754;font-weight:600;'>93.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.62%</span></td>
-      <td>30</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.47%</span></td>
+      <td>33</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3865,8 +4035,8 @@
       <td><span style='color:#198754;font-weight:600;'>22.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.26%</span></td>
-      <td>30</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.76%</span></td>
+      <td>33</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3882,8 +4052,8 @@
       <td><span style='color:#198754;font-weight:600;'>69.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.58%</span></td>
-      <td>30</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.39%</span></td>
+      <td>33</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3916,8 +4086,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.03%</span></td>
-      <td>31</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.69%</span></td>
+      <td>34</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3967,8 +4137,8 @@
       <td><span style='color:#198754;font-weight:600;'>27.25</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.55%</span></td>
-      <td>31</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.01%</span></td>
+      <td>34</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -3984,8 +4154,8 @@
       <td><span style='color:#198754;font-weight:600;'>278.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>11.76%</span></td>
-      <td>31</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>13.84%</span></td>
+      <td>34</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4052,8 +4222,8 @@
       <td><span style='color:#198754;font-weight:600;'>32.7</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.18%</span></td>
-      <td>31</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>10.79%</span></td>
+      <td>34</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4103,8 +4273,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.15</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.17%</span></td>
-      <td>32</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.17%</span></td>
+      <td>35</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4153,11 +4323,11 @@
       <td>0.0</td>
       <td><span style='color:#198754;font-weight:600;'>31.85</span></td>
       <td><span class='text-muted'>N/A</span></td>
-      <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.33%</span></td>
-      <td>32</td>
-      <td>-</td>
-      <td>Open</td>
+      <td>30.5</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.0%</span></td>
+      <td>23</td>
+      <td>停損出場 (-8%)</td>
+      <td>Closed</td>
     </tr>
     <tr>
       <td>2026-03-16</td>
@@ -4222,8 +4392,8 @@
       <td><span style='color:#198754;font-weight:600;'>33.15</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>12.8%</span></td>
-      <td>32</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>14.46%</span></td>
+      <td>35</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4256,8 +4426,8 @@
       <td><span style='color:#198754;font-weight:600;'>31.7</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.99%</span></td>
-      <td>35</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.42%</span></td>
+      <td>38</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4358,8 +4528,8 @@
       <td><span style='color:#198754;font-weight:600;'>32.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.48%</span></td>
-      <td>35</td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.02%</span></td>
+      <td>38</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4376,7 +4546,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#dc3545;font-weight:bold;'>6.96%</span></td>
-      <td>35</td>
+      <td>38</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4409,8 +4579,8 @@
       <td><span style='color:#198754;font-weight:600;'>27.35</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.87%</span></td>
-      <td>36</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.33%</span></td>
+      <td>39</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4460,8 +4630,8 @@
       <td><span style='color:#198754;font-weight:600;'>69.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.39%</span></td>
-      <td>36</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.06%</span></td>
+      <td>39</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4561,11 +4731,11 @@
       <td>0.0</td>
       <td><span style='color:#198754;font-weight:600;'>28.6</span></td>
       <td><span class='text-muted'>N/A</span></td>
-      <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.62%</span></td>
-      <td>36</td>
-      <td>-</td>
-      <td>Open</td>
+      <td>27.78</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.0%</span></td>
+      <td>25</td>
+      <td>停損出場 (-8%)</td>
+      <td>Closed</td>
     </tr>
     <tr>
       <td>2026-03-11</td>
@@ -4579,8 +4749,8 @@
       <td><span style='color:#198754;font-weight:600;'>27.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.99%</span></td>
-      <td>37</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.44%</span></td>
+      <td>40</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4596,8 +4766,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.7</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.2%</span></td>
-      <td>37</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.86%</span></td>
+      <td>40</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4715,8 +4885,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>32.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.05%</span></td>
-      <td>37</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>7.84%</span></td>
+      <td>40</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4732,8 +4902,8 @@
       <td><span style='color:#198754;font-weight:600;'>17.4</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.99%</span></td>
-      <td>37</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.14%</span></td>
+      <td>40</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4749,8 +4919,8 @@
       <td><span style='color:#198754;font-weight:600;'>134.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.85%</span></td>
-      <td>38</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.48%</span></td>
+      <td>41</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4766,8 +4936,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>93.7</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>7.15%</span></td>
-      <td>38</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.03%</span></td>
+      <td>41</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4800,8 +4970,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>27.15</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>7.89%</span></td>
-      <td>38</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>7.33%</span></td>
+      <td>41</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4817,8 +4987,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.55</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.69%</span></td>
-      <td>38</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.34%</span></td>
+      <td>41</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4868,8 +5038,8 @@
       <td><span style='color:#198754;font-weight:600;'>19.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.28%</span></td>
-      <td>38</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.52%</span></td>
+      <td>41</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4919,8 +5089,8 @@
       <td><span style='color:#198754;font-weight:600;'>134.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.1%</span></td>
-      <td>39</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.74%</span></td>
+      <td>42</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4936,8 +5106,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>93.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.45%</span></td>
-      <td>39</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>7.32%</span></td>
+      <td>42</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4970,8 +5140,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>27.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.54%</span></td>
-      <td>39</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.97%</span></td>
+      <td>42</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -4987,8 +5157,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.03%</span></td>
-      <td>39</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.69%</span></td>
+      <td>42</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5072,8 +5242,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>19.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>7.16%</span></td>
-      <td>39</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.39%</span></td>
+      <td>42</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5089,8 +5259,8 @@
       <td><span style='color:#198754;font-weight:600;'>134.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.73%</span></td>
-      <td>42</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.37%</span></td>
+      <td>45</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5106,8 +5276,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>94.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.73%</span></td>
-      <td>42</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.59%</span></td>
+      <td>45</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5140,8 +5310,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>27.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.69%</span></td>
-      <td>42</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.13%</span></td>
+      <td>45</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5174,8 +5344,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.75</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.04%</span></td>
-      <td>42</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.7%</span></td>
+      <td>45</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5192,7 +5362,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#198754;font-weight:bold;'>-2.71%</span></td>
-      <td>42</td>
+      <td>45</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5276,8 +5446,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>28.35</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>7.49%</span></td>
-      <td>43</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.93%</span></td>
+      <td>46</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5429,8 +5599,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>137.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.48%</span></td>
-      <td>44</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.11%</span></td>
+      <td>47</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5446,8 +5616,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>110.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.17%</span></td>
-      <td>44</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.09%</span></td>
+      <td>47</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5480,8 +5650,8 @@
       <td><span style='color:#198754;font-weight:600;'>7.69</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.13%</span></td>
-      <td>44</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.01%</span></td>
+      <td>47</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5497,8 +5667,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>94.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.64%</span></td>
-      <td>44</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.51%</span></td>
+      <td>47</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5548,8 +5718,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>148.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.25%</span></td>
-      <td>44</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.28%</span></td>
+      <td>47</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5599,8 +5769,8 @@
       <td><span style='color:#198754;font-weight:600;'>39.35</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.23%</span></td>
-      <td>45</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.61%</span></td>
+      <td>48</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5633,8 +5803,8 @@
       <td><span style='color:#198754;font-weight:600;'>29.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.03%</span></td>
-      <td>45</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.69%</span></td>
+      <td>48</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5650,8 +5820,8 @@
       <td><span style='color:#198754;font-weight:600;'>93.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.84%</span></td>
-      <td>45</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.69%</span></td>
+      <td>48</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5769,8 +5939,8 @@
       <td><span style='color:#198754;font-weight:600;'>39.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.74%</span></td>
-      <td>46</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.12%</span></td>
+      <td>49</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5820,8 +5990,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>27.15</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.9%</span></td>
-      <td>46</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.35%</span></td>
+      <td>49</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5854,8 +6024,8 @@
       <td><span style='color:#198754;font-weight:600;'>28.85</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.7%</span></td>
-      <td>46</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.36%</span></td>
+      <td>49</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5871,8 +6041,8 @@
       <td><span style='color:#198754;font-weight:600;'>93.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.06%</span></td>
-      <td>46</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.91%</span></td>
+      <td>49</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5939,8 +6109,8 @@
       <td><span style='color:#198754;font-weight:600;'>38.75</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.59%</span></td>
-      <td>50</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.97%</span></td>
+      <td>53</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -5990,8 +6160,8 @@
       <td><span style='color:#198754;font-weight:600;'>91.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.87%</span></td>
-      <td>50</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.74%</span></td>
+      <td>53</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6024,8 +6194,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>16.45</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>7.4%</span></td>
-      <td>50</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.75%</span></td>
+      <td>53</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6041,8 +6211,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>136.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.61%</span></td>
-      <td>50</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.24%</span></td>
+      <td>53</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6075,8 +6245,8 @@
       <td><span style='color:#198754;font-weight:600;'>27.35</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.74%</span></td>
-      <td>50</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.2%</span></td>
+      <td>53</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6109,8 +6279,8 @@
       <td><span style='color:#198754;font-weight:600;'>38.8</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.59%</span></td>
-      <td>51</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.97%</span></td>
+      <td>54</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6126,8 +6296,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>211.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.12%</span></td>
-      <td>51</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.6%</span></td>
+      <td>54</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6143,8 +6313,8 @@
       <td><span style='color:#198754;font-weight:600;'>70.1</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.61%</span></td>
-      <td>51</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.81%</span></td>
+      <td>54</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6245,8 +6415,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>27.9</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.94%</span></td>
-      <td>51</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.39%</span></td>
+      <td>54</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6279,8 +6449,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>210.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>3.94%</span></td>
-      <td>52</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>3.41%</span></td>
+      <td>55</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6296,8 +6466,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>289.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>13.73%</span></td>
-      <td>52</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>15.85%</span></td>
+      <td>55</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6381,8 +6551,8 @@
       <td><span style='color:#198754;font-weight:600;'>70.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.68%</span></td>
-      <td>52</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.89%</span></td>
+      <td>55</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6432,8 +6602,8 @@
       <td><span style='color:#198754;font-weight:600;'>34.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>52</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.1%</span></td>
+      <td>55</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6466,8 +6636,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>205.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.04%</span></td>
-      <td>53</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.51%</span></td>
+      <td>56</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6585,8 +6755,8 @@
       <td><span style='color:#198754;font-weight:600;'>70.2</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.13%</span></td>
-      <td>53</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.33%</span></td>
+      <td>56</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6602,8 +6772,8 @@
       <td><span style='color:#198754;font-weight:600;'>282.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>13.93%</span></td>
-      <td>53</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>16.05%</span></td>
+      <td>56</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6654,7 +6824,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#198754;font-weight:bold;'>-0.75%</span></td>
-      <td>65</td>
+      <td>68</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6670,8 +6840,8 @@
       <td><span style='color:#198754;font-weight:600;'>282.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>12.94%</span></td>
-      <td>65</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>15.03%</span></td>
+      <td>68</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6772,8 +6942,8 @@
       <td><span style='color:#198754;font-weight:600;'>23.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
-      <td>65</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.05%</span></td>
+      <td>68</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6790,7 +6960,7 @@
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
       <td><span style='color:#dc3545;font-weight:bold;'>4.6%</span></td>
-      <td>66</td>
+      <td>69</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6840,8 +7010,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>289.0</span></td>
       <td><span class='text-muted'>N/A</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>13.33%</span></td>
-      <td>66</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>15.44%</span></td>
+      <td>69</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -6957,7 +7127,7 @@
       <td>62.40</td>
       <td>0.0</td>
       <td><span style='color:#198754;font-weight:600;'>62.1</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>76.9</span></td>
       <td>57.41</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.0%</span></td>
       <td>12</td>
@@ -6974,7 +7144,7 @@
       <td>53.60</td>
       <td>0.0</td>
       <td><span style='color:#dc3545;font-weight:600;'>62.9</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>67.4</span></td>
       <td>65.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>21.27%</span></td>
       <td>5</td>
@@ -6991,7 +7161,7 @@
       <td>528.00</td>
       <td>0.0</td>
       <td><span style='color:#198754;font-weight:600;'>506.0</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>950.0</span></td>
       <td>454.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-13.92%</span></td>
       <td>12</td>
@@ -7008,7 +7178,7 @@
       <td>61.50</td>
       <td>0.0</td>
       <td><span style='color:#198754;font-weight:600;'>56.5</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#198754;font-weight:600;'>46.2</span></td>
       <td>55.8</td>
       <td><span style='color:#198754;font-weight:bold;'>-9.27%</span></td>
       <td>9</td>
@@ -7025,7 +7195,7 @@
       <td>173.00</td>
       <td>0.0</td>
       <td><span style='color:#dc3545;font-weight:600;'>218.0</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>333.0</span></td>
       <td>207.6</td>
       <td><span style='color:#dc3545;font-weight:bold;'>20.0%</span></td>
       <td>6</td>
@@ -7042,7 +7212,7 @@
       <td>98.00</td>
       <td>0.0</td>
       <td><span style='color:#198754;font-weight:600;'>95.3</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>187.0</span></td>
       <td>90.16</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.0%</span></td>
       <td>12</td>
@@ -7059,7 +7229,7 @@
       <td>250.00</td>
       <td>0.0</td>
       <td><span style='color:#dc3545;font-weight:600;'>253.5</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>404.0</span></td>
       <td>300.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>20.0%</span></td>
       <td>4</td>
@@ -7076,7 +7246,7 @@
       <td>3145.00</td>
       <td>0.0</td>
       <td><span style='color:#198754;font-weight:600;'>3140.0</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>5020.0</span></td>
       <td>2893.4</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.0%</span></td>
       <td>9</td>
@@ -7093,10 +7263,10 @@
       <td>186.50</td>
       <td>0.0</td>
       <td><span style='color:#dc3545;font-weight:600;'>208.0</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>197.0</span></td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.17%</span></td>
-      <td>67</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.63%</span></td>
+      <td>70</td>
       <td>-</td>
       <td>Open</td>
     </tr>
@@ -7110,7 +7280,7 @@
       <td>173.00</td>
       <td>0.0</td>
       <td><span style='color:#dc3545;font-weight:600;'>195.0</span></td>
-      <td><span class='text-muted'>N/A</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>507.0</span></td>
       <td>215.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>24.28%</span></td>
       <td>5</td>
@@ -7264,11 +7434,11 @@
       <td>0.0</td>
       <td><span style='color:#dc3545;font-weight:600;'>209.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>198.0</span></td>
-      <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.6%</span></td>
-      <td>70</td>
-      <td>-</td>
-      <td>Open</td>
+      <td>198.5</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.87%</span></td>
+      <td>40</td>
+      <td>時間停損(40日)</td>
+      <td>Closed</td>
     </tr>
     <tr>
       <td>2026-02-06</td>
