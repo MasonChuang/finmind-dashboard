@@ -107,7 +107,7 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
 
 <div class="header">
   <h1>策略績效觀測報表</h1>
-  <p>更新時間：2026-04-24 10:40 &nbsp;｜&nbsp; 大盤基準：TAIEX &nbsp;｜&nbsp; 最新基準價：37714.15</p>
+  <p>更新時間：2026-04-24 22:34 &nbsp;｜&nbsp; 大盤基準：TAIEX &nbsp;｜&nbsp; 最新基準價：38932.4</p>
 </div>
 
 <nav class="nav">
@@ -126,7 +126,7 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
   <div class="card"><div class="label">觀測中</div><div class="value">86 <span class="sub">筆</span></div></div>
   <div class="card"><div class="label">已結算</div><div class="value">0 <span class="sub">筆</span></div></div>
   <div class="card"><div class="label">整體平均報酬</div><div class="value ">—</div></div>
-  <div class="card"><div class="label">基準 (TAIEX) 最新</div><div class="value small" style="font-size:1.3rem">37714.15</div></div>
+  <div class="card"><div class="label">基準 (TAIEX) 最新</div><div class="value small" style="font-size:1.3rem">38932.4</div></div>
 
 </div>
 
@@ -207,7 +207,7 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
       <div class="stat-box"><div class="s-label">平均Alpha</div><div class="s-value ">—</div></div>
       <div class="stat-box"><div class="s-label">最佳個股</div><div class="s-value small" style="font-size:.9rem">—</div></div>
     </div>
-      
+      <div class="chart-wrap"><canvas id="chart_high_dividend"></canvas></div>
       
     <div class="table-wrap">
       <table>
@@ -380,7 +380,7 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
           <td class="rank">#10</td>
           <td style="font-weight:700;color:#1a3a5c">3515</td>
           <td style="text-align:left">華擎</td>
-          <td style="font-size:.8rem;color:#666">電腦及週邊設備業</td>
+          <td style="font-size:.8rem;color:#666">電子工業</td>
           <td>224.00</td>
           <td>226.00</td>
           <td style="color:#2a9d8f">0</td>
@@ -398,7 +398,7 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
           <td class="rank">#10</td>
           <td style="font-weight:700;color:#1a3a5c">6257</td>
           <td style="text-align:left">矽格</td>
-          <td style="font-size:.8rem;color:#666">半導體業</td>
+          <td style="font-size:.8rem;color:#666">電子工業</td>
           <td>186.50</td>
           <td>181.00</td>
           <td style="color:#2a9d8f">0</td>
@@ -1058,7 +1058,7 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
           <td class="rank">#3</td>
           <td style="font-weight:700;color:#1a3a5c">2301</td>
           <td style="text-align:left">光寶科</td>
-          <td style="font-size:.8rem;color:#666">電子工業</td>
+          <td style="font-size:.8rem;color:#666">電腦及週邊設備業</td>
           <td>171.50</td>
           <td>164.50</td>
           <td style="color:#2a9d8f">0</td>
@@ -1619,7 +1619,7 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
           <td class="rank">#5</td>
           <td style="font-weight:700;color:#1a3a5c">2301</td>
           <td style="text-align:left">光寶科</td>
-          <td style="font-size:.8rem;color:#666">電子工業</td>
+          <td style="font-size:.8rem;color:#666">電腦及週邊設備業</td>
           <td>176.00</td>
           <td>164.50</td>
           <td style="color:#2a9d8f">0</td>
@@ -1872,6 +1872,26 @@ tbody td { padding: 7px 8px; text-align: center; white-space: nowrap;
 
 <script>
 
+new Chart(document.getElementById('chart_high_dividend'), {
+  type: 'line',
+  data: { labels: ["2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23"], datasets: [{"label":"4974 亞泰","data":[100.0,99.03,100.42,98.47],"borderColor":"#e63946","backgroundColor":"#e6394622","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"3526 凡甲","data":[100.0,100.0,100.37,98.35],"borderColor":"#457b9d","backgroundColor":"#457b9d22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"2480 敦陽科","data":[100.0,99.29,100.36,100.36],"borderColor":"#2a9d8f","backgroundColor":"#2a9d8f22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"8436 大江","data":[100.0,101.64,102.46,98.77],"borderColor":"#e9c46a","backgroundColor":"#e9c46a22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"9911 櫻花","data":[100.0,100.12,99.76,99.04],"borderColor":"#f4a261","backgroundColor":"#f4a26122","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"TAIEX（基準）","data":[100.0,101.75,102.49,102.04],"borderColor":"#adb5bd","backgroundColor":"#adb5bd22","borderDash":[6,4],"tension":0.3,"pointRadius":2,"spanGaps":true}] },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 } } },
+      tooltip: { mode: 'index', intersect: false }
+    },
+    scales: {
+      x: { ticks: { maxTicksLimit: 12, font: { size: 10 } } },
+      y: {
+        ticks: { font: { size: 10 }, callback: v => v + '' },
+        title: { display: true, text: '指數報酬（入場=100）', font: { size: 10 } }
+      }
+    }
+  }
+});
+
+
 new Chart(document.getElementById('chart_value_investing'), {
   type: 'line',
   data: { labels: ["2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23"], datasets: [{"label":"6196 帆宣","data":[100.0,100.76,98.99,95.31],"borderColor":"#e63946","backgroundColor":"#e6394622","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"1442 名軒","data":[100.0,101.35,99.16,96.3],"borderColor":"#457b9d","backgroundColor":"#457b9d22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"3406 玉晶光","data":[100.0,97.24,97.79,93.75],"borderColor":"#2a9d8f","backgroundColor":"#2a9d8f22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"4527 方土霖","data":[100.0,99.77,99.08,98.51],"borderColor":"#e9c46a","backgroundColor":"#e9c46a22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"6605 帝寶","data":[100.0,101.16,100.39,99.61],"borderColor":"#f4a261","backgroundColor":"#f4a26122","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"TAIEX（基準）","data":[100.0,101.75,102.49,102.04],"borderColor":"#adb5bd","backgroundColor":"#adb5bd22","borderDash":[6,4],"tension":0.3,"pointRadius":2,"spanGaps":true}] },
@@ -1934,7 +1954,7 @@ new Chart(document.getElementById('chart_whale_etf'), {
 
 new Chart(document.getElementById('chart_turtle'), {
   type: 'line',
-  data: { labels: ["2026-04-23"], datasets: [{"label":"1102 亞泥","data":[100.0],"borderColor":"#e63946","backgroundColor":"#e6394622","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"4931 新盛力","data":[100.0],"borderColor":"#457b9d","backgroundColor":"#457b9d22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"5876 上海商銀","data":[100.0],"borderColor":"#2a9d8f","backgroundColor":"#2a9d8f22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"TAIEX（基準）","data":[100.0],"borderColor":"#adb5bd","backgroundColor":"#adb5bd22","borderDash":[6,4],"tension":0.3,"pointRadius":2,"spanGaps":true}] },
+  data: { labels: ["2026-04-20", "2026-04-21", "2026-04-22", "2026-04-23"], datasets: [{"label":"2303 聯電","data":[100.0,99.09,102.21,95.71],"borderColor":"#e63946","backgroundColor":"#e6394622","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"3231 緯創","data":[100.0,102.85,102.49,99.29],"borderColor":"#457b9d","backgroundColor":"#457b9d22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"1605 華新","data":[100.0,97.03,93.91,90.19],"borderColor":"#2a9d8f","backgroundColor":"#2a9d8f22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"2356 英業達","data":[100.0,101.61,102.47,99.36],"borderColor":"#e9c46a","backgroundColor":"#e9c46a22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"5498 凱崴","data":[100.0,109.92,106.22,102.12],"borderColor":"#f4a261","backgroundColor":"#f4a26122","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"TAIEX（基準）","data":[100.0,101.75,102.49,102.04],"borderColor":"#adb5bd","backgroundColor":"#adb5bd22","borderDash":[6,4],"tension":0.3,"pointRadius":2,"spanGaps":true}] },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: {
@@ -1954,7 +1974,7 @@ new Chart(document.getElementById('chart_turtle'), {
 
 new Chart(document.getElementById('chart_institutional_tracker'), {
   type: 'line',
-  data: { labels: ["2026-04-23"], datasets: [{"label":"8028 昇陽半導體","data":[100.0],"borderColor":"#e63946","backgroundColor":"#e6394622","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"2886 兆豐金","data":[100.0],"borderColor":"#457b9d","backgroundColor":"#457b9d22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"1102 亞泥","data":[100.0],"borderColor":"#2a9d8f","backgroundColor":"#2a9d8f22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"TAIEX（基準）","data":[100.0],"borderColor":"#adb5bd","backgroundColor":"#adb5bd22","borderDash":[6,4],"tension":0.3,"pointRadius":2,"spanGaps":true}] },
+  data: { labels: ["2026-04-22", "2026-04-23"], datasets: [{"label":"2324 仁寶","data":[100.0,95.27],"borderColor":"#e63946","backgroundColor":"#e6394622","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"2317 鴻海","data":[100.0,101.81],"borderColor":"#457b9d","backgroundColor":"#457b9d22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"3231 緯創","data":[100.0,96.88],"borderColor":"#2a9d8f","backgroundColor":"#2a9d8f22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"2884 玉山金","data":[100.0,98.18],"borderColor":"#e9c46a","backgroundColor":"#e9c46a22","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"2301 光寶科","data":[100.0,93.47],"borderColor":"#f4a261","backgroundColor":"#f4a26122","borderDash":[],"tension":0.3,"pointRadius":2,"spanGaps":true},{"label":"TAIEX（基準）","data":[100.0,99.57],"borderColor":"#adb5bd","backgroundColor":"#adb5bd22","borderDash":[6,4],"tension":0.3,"pointRadius":2,"spanGaps":true}] },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: {
