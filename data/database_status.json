@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-24 21:33:57",
+  "last_update": "2026-04-25 21:33:10",
   "database_file": "finmind_data.db",
   "tables": [
     {
@@ -52,8 +52,8 @@
     },
     {
       "name": "TaiwanStockHoldingSharesPer",
-      "latest_date": "2026-04-17",
-      "record_count": 22092211,
+      "latest_date": "2026-04-24",
+      "record_count": 22159599,
       "status": "✅ 正常"
     },
     {
@@ -106,8 +106,8 @@
     },
     {
       "name": "TaiwanStockShareholding",
-      "latest_date": "2026-04-17",
-      "record_count": 17306038,
+      "latest_date": "2026-04-24",
+      "record_count": 17373426,
       "status": "✅ 正常"
     },
     {
@@ -124,14 +124,14 @@
     },
     {
       "name": "TaiwanTotalExchangeMarginMaintenance",
-      "latest_date": "2026-04-23",
-      "record_count": 238,
+      "latest_date": "2026-04-24",
+      "record_count": 239,
       "status": "✅ 正常"
     },
     {
       "name": "_System_Update_Log",
       "latest_date": "N/A",
-      "record_count": 2682,
+      "record_count": 2716,
       "status": "✅ 正常"
     },
     {

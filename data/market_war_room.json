@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24 21:33:51",
+  "generated_at": "2026-04-25 21:32:29",
   "taiex": [
     {
       "date": "2025-10-20",
@@ -2928,106 +2928,106 @@
   "whale": {
     "week_increase_top5": [
       {
-        "stock_id": "3086",
-        "whale_change": 22.819999999999993,
-        "stock_name": "華義"
+        "stock_id": "5246",
+        "whale_change": 12.310000000000002,
+        "stock_name": "勵威"
       },
       {
-        "stock_id": "6530",
-        "whale_change": 14.039999999999996,
-        "stock_name": "創威"
+        "stock_id": "4967",
+        "whale_change": 9.600000000000001,
+        "stock_name": "十銓"
       },
       {
-        "stock_id": "6109",
-        "whale_change": 12.900000000000006,
-        "stock_name": "亞元"
+        "stock_id": "8028",
+        "whale_change": 9.29,
+        "stock_name": "昇陽半導體"
       },
       {
-        "stock_id": "2484",
-        "whale_change": 11.09,
-        "stock_name": "希華"
+        "stock_id": "2464",
+        "whale_change": 8.529999999999994,
+        "stock_name": "盟立"
       },
       {
-        "stock_id": "4989",
-        "whale_change": 10.230000000000004,
-        "stock_name": "榮科"
+        "stock_id": "1721",
+        "whale_change": 8.159999999999997,
+        "stock_name": "三晃"
       },
       {
-        "stock_id": "5498",
-        "whale_change": 10.170000000000002,
-        "stock_name": "凱崴"
+        "stock_id": "6876",
+        "whale_change": 7.710000000000004,
+        "stock_name": "朗齊生醫*"
       },
       {
-        "stock_id": "6173",
-        "whale_change": 9.899999999999999,
-        "stock_name": "信昌電"
+        "stock_id": "8064",
+        "whale_change": 7.689999999999998,
+        "stock_name": "東捷"
       },
       {
-        "stock_id": "3057",
-        "whale_change": 8.629999999999999,
-        "stock_name": "喬鼎"
+        "stock_id": "5536",
+        "whale_change": 4.689999999999998,
+        "stock_name": "聖暉*"
       },
       {
-        "stock_id": "8358",
-        "whale_change": 8.330000000000005,
-        "stock_name": "金居"
+        "stock_id": "3162",
+        "whale_change": 4.649999999999999,
+        "stock_name": "精確"
       },
       {
-        "stock_id": "3221",
-        "whale_change": 8.089999999999996,
-        "stock_name": "台嘉碩"
+        "stock_id": "4541",
+        "whale_change": 4.289999999999999,
+        "stock_name": "晟田"
       }
     ],
     "biweek_accumulate_top5": [
       {
         "stock_id": "3086",
-        "whale_change_2w": 22.819999999999993,
+        "whale_change_2w": 10.829999999999998,
         "stock_name": "華義"
       },
       {
-        "stock_id": "4989",
-        "whale_change_2w": 19.310000000000006,
-        "stock_name": "榮科"
+        "stock_id": "5246",
+        "whale_change_2w": 10.420000000000002,
+        "stock_name": "勵威"
       },
       {
-        "stock_id": "2484",
-        "whale_change_2w": 12.82,
-        "stock_name": "希華"
+        "stock_id": "2464",
+        "whale_change_2w": 9.449999999999996,
+        "stock_name": "盟立"
       },
       {
-        "stock_id": "6109",
-        "whale_change_2w": 11.829999999999998,
-        "stock_name": "亞元"
-      },
-      {
-        "stock_id": "3026",
-        "whale_change_2w": 11.009999999999991,
-        "stock_name": "禾伸堂"
-      },
-      {
-        "stock_id": "5498",
-        "whale_change_2w": 10.660000000000004,
-        "stock_name": "凱崴"
-      },
-      {
-        "stock_id": "8358",
-        "whale_change_2w": 10.550000000000004,
-        "stock_name": "金居"
-      },
-      {
-        "stock_id": "6530",
-        "whale_change_2w": 10.549999999999997,
-        "stock_name": "創威"
+        "stock_id": "1721",
+        "whale_change_2w": 8.93,
+        "stock_name": "三晃"
       },
       {
         "stock_id": "6173",
-        "whale_change_2w": 10.259999999999991,
+        "whale_change_2w": 8.840000000000003,
         "stock_name": "信昌電"
       },
       {
-        "stock_id": "5243",
-        "whale_change_2w": 8.789999999999992,
-        "stock_name": "乙盛-KY"
+        "stock_id": "3057",
+        "whale_change_2w": 8.620000000000001,
+        "stock_name": "喬鼎"
+      },
+      {
+        "stock_id": "4989",
+        "whale_change_2w": 8.579999999999998,
+        "stock_name": "榮科"
+      },
+      {
+        "stock_id": "4979",
+        "whale_change_2w": 8.229999999999997,
+        "stock_name": "華星光"
+      },
+      {
+        "stock_id": "6278",
+        "whale_change_2w": 7.97999999999999,
+        "stock_name": "台表科"
+      },
+      {
+        "stock_id": "2484",
+        "whale_change_2w": 7.939999999999998,
+        "stock_name": "希華"
       }
     ]
   },
