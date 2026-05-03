@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>法人動能意圖策略 報表</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background:#f8f9fa; padding:20px; }
+    h1 { font-size:1.6rem; font-weight:bold; color:#1a1a2e; }
+    .badge-stat { background:#e8f5e9; color:#1b5e20; border-radius:8px; padding:10px 18px; display:inline-block; margin:6px; }
+    .badge-stat .num { font-size:2rem; font-weight:bold; display:block; }
+    .badge-stat .lbl { font-size:.8rem; color:#555; }
+    .section-title { font-size:1.1rem; font-weight:bold; margin-top:28px; padding:6px 14px;
+                       background:#1a1a2e; color:#fff; border-radius:4px; }
+    table td, table th { text-align:center !important; vertical-align: middle !important; font-size: 0.9rem; }
+    .criteria-box { background:#fff; border:1px solid #dee2e6; border-radius:6px; padding:14px; margin-bottom:18px; }
+    .criteria-box li { margin:4px 0; font-size:.85rem; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
+    .nav-tabs { border-bottom: 2px solid #1a1a2e; margin-bottom: 15px; }
+    .nav-link { color: #1a1a2e; font-weight: bold; cursor: pointer; }
+    .nav-link.active { background-color: #1a1a2e !important; color: #fff !important; }
+  </style>
+</head>
+<body>
+  <h1>🚀 法人動能意圖策略 報表</h1>
+  <p class="text-muted">掃描時間：2026-05-01 20:04:21 &nbsp;｜&nbsp; 資料來源：本地 FinMind DB &nbsp;｜&nbsp; 資料庫最新日期：2026-04-29</p>
+
+  <!-- 摘要統計 -->
+  <div class="my-3">
+    <div class="badge-stat">
+      <span class="num">6</span>
+      <span class="lbl">入選總計</span>
+    </div>
+    <div class="badge-stat" style="background:#e3f2fd;color:#0d47a1">
+      <span class="num">6</span>
+      <span class="lbl">個股</span>
+    </div>
+    <div class="badge-stat" style="background:#fff3e0;color:#e65100">
+      <span class="num" style="font-size:1.5rem">評級優先</span>
+      <span class="lbl">排序邏輯</span>
+    </div>
+  </div>
+
+  <!-- 策略條件說明 -->
+  <div class="criteria-box">
+    <div class="row">
+      <div class="col-md-6 border-end">
+        <b>✦ 篩選邏輯 (三位一體)</b>
+        <ul class="mt-2">
+          <li>C1：法人連續買超 >= 5 日 (核心動能)</li>
+          <li>C2：借券賣出餘額持續減少 (空頭回補)</li>
+          <li>C3：融資餘額無顯著增加 (籌碼穩定)</li>
+          <li><b>基本面：Excellent (YoY>15% + MoM增) / Good / Normal</b></li>
+        </ul>
+      </div>
+      <div class="col-md-6 ps-md-4">
+        <b>✦ Ranking 2.5 排行權重</b>
+        <ul class="mt-2">
+          <li><b>1. 基本面評級 (第一優先)</b></li>
+          <li><b>2. 綜合評分 (第二優先)</b>：含法人吸收率、回補強度。</li>
+          <li><small class="text-muted">目標：找出業績拐點與大戶搶貨同步的黑馬股。</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">入選清單（評級優先排序）</div>
+  <div class="mt-2 mb-4">
+    <table id="mainTable" class="display table table-bordered table-sm" style="width:100%">
+      <thead>
+        <tr>
+          <th>排行</th><th>代號</th><th>名稱</th><th>產業別</th><th>股價</th>
+          <th>評級</th><th>營收YoY</th><th>法人3日買超<br>(連買)</th><th>借券3日增減<br>(連減)</th><th>融資3日增減<br>(連減)</th>
+          <th>綜合評分</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr data-type="個股">
+          <td style='text-align:center'>1</td>
+          <td style='text-align:center'><b>6456</b></td>
+          <td style='text-align:center'>GIS-KY</td>
+          <td style='text-align:center'>光電業</td>
+          <td style='text-align:center'>79.0</td>
+          <td style='text-align:center'><span class='badge bg-danger'>Excellent</span></td>
+          <td style='text-align:center'>28.1%</td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>1,612,150<br><small>(連買7日)</small></td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>-1,369,000<br><small>(連減7日)</small></td>
+          <td style='text-align:center;color:#2e7d32'>0<br><small>(連減0日)</small></td>
+          <td style='text-align:center;font-weight:bold;color:#1565C0'>3.21</td>
+        </tr>
+        
+        <tr data-type="個股">
+          <td style='text-align:center'>2</td>
+          <td style='text-align:center'><b>1326</b></td>
+          <td style='text-align:center'>台化</td>
+          <td style='text-align:center'>塑膠工業</td>
+          <td style='text-align:center'>52.5</td>
+          <td style='text-align:center'><span class='badge bg-warning text-dark'>Good</span></td>
+          <td style='text-align:center'>4.3%</td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>36,412,741<br><small>(連買5日)</small></td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>-19,389,527<br><small>(連減7日)</small></td>
+          <td style='text-align:center;color:#2e7d32'>0<br><small>(連減0日)</small></td>
+          <td style='text-align:center;font-weight:bold;color:#1565C0'>6.00</td>
+        </tr>
+        
+        <tr data-type="個股">
+          <td style='text-align:center'>3</td>
+          <td style='text-align:center'><b>2615</b></td>
+          <td style='text-align:center'>萬海</td>
+          <td style='text-align:center'>航運業</td>
+          <td style='text-align:center'>75.7</td>
+          <td style='text-align:center'><span class='badge bg-warning text-dark'>Good</span></td>
+          <td style='text-align:center'>-14.6%</td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>3,926,726<br><small>(連買6日)</small></td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>-1,212,000<br><small>(連減1日)</small></td>
+          <td style='text-align:center;color:#2e7d32'>0<br><small>(連減0日)</small></td>
+          <td style='text-align:center;font-weight:bold;color:#1565C0'>2.89</td>
+        </tr>
+        
+        <tr data-type="個股">
+          <td style='text-align:center'>4</td>
+          <td style='text-align:center'><b>4576</b></td>
+          <td style='text-align:center'>大銀微系統</td>
+          <td style='text-align:center'>電機機械</td>
+          <td style='text-align:center'>202.0</td>
+          <td style='text-align:center'><span class='badge bg-warning text-dark'>Good</span></td>
+          <td style='text-align:center'>69.8%</td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>263,812<br><small>(連買7日)</small></td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>-56,000<br><small>(連減1日)</small></td>
+          <td style='text-align:center;color:#2e7d32'>0<br><small>(連減0日)</small></td>
+          <td style='text-align:center;font-weight:bold;color:#1565C0'>0.77</td>
+        </tr>
+        
+        <tr data-type="個股">
+          <td style='text-align:center'>5</td>
+          <td style='text-align:center'><b>9933</b></td>
+          <td style='text-align:center'>中鼎</td>
+          <td style='text-align:center'>其他</td>
+          <td style='text-align:center'>37.0</td>
+          <td style='text-align:center'><span class='badge bg-light text-muted'>Normal</span></td>
+          <td style='text-align:center'>-4.7%</td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>2,207,728<br><small>(連買7日)</small></td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>-205,000<br><small>(連減4日)</small></td>
+          <td style='text-align:center;color:#2e7d32'>0<br><small>(連減0日)</small></td>
+          <td style='text-align:center;font-weight:bold;color:#1565C0'>2.80</td>
+        </tr>
+        
+        <tr data-type="個股">
+          <td style='text-align:center'>6</td>
+          <td style='text-align:center'><b>2454</b></td>
+          <td style='text-align:center'>聯發科</td>
+          <td style='text-align:center'>半導體業</td>
+          <td style='text-align:center'>2575.0</td>
+          <td style='text-align:center'><span class='badge bg-light text-muted'>Normal</span></td>
+          <td style='text-align:center'>-8.1%</td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>4,063,920<br><small>(連買11日)</small></td>
+          <td style='text-align:center;color:#2e7d32;font-weight:bold'>-127,000<br><small>(連減2日)</small></td>
+          <td style='text-align:center;color:#2e7d32'>0<br><small>(連減0日)</small></td>
+          <td style='text-align:center;font-weight:bold;color:#1565C0'>1.49</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+    let table;
+    $(document).ready(function() {
+      table = $('#mainTable').DataTable({
+        pageLength: 25,
+        order: [[0, 'asc']],
+        language: { url: '' }
+      });
+    });
+  </script>
+</body>
+</html>

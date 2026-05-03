@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinMind V5 Dashboard</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+       background: #f4f7fa; color: #333; font-size: 15px; line-height: 1.6; }
+
+header { background: linear-gradient(135deg, #0d3b66, #1a6fa3); color: #fff; padding: 32px 48px; }
+header h1 { font-size: 1.9rem; font-weight: 800; margin-bottom: 6px; }
+header p  { opacity: .8; font-size: .9rem; }
+.badge { display: inline-block; background: rgba(255,255,255,.15);
+         border: 1px solid rgba(255,255,255,.25); border-radius: 20px;
+         padding: 3px 12px; font-size: .78rem; margin-top: 10px; margin-right: 6px; }
+
+main { max-width: 1080px; margin: 32px auto; padding: 0 24px; }
+
+section { margin-bottom: 36px; }
+section h2 { font-size: .95rem; font-weight: 700; color: #0d3b66;
+             margin-bottom: 14px; padding: 6px 14px;
+             background: #e8f4fd; border-radius: 6px; display: inline-block; }
+
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+
+a.card { background: #fff; border-radius: 10px; padding: 16px 20px;
+         box-shadow: 0 2px 8px rgba(0,0,0,.06); text-decoration: none; color: inherit;
+         display: block; transition: transform .15s, box-shadow .15s; }
+a.card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.1); }
+.card-icon  { font-size: 1.4rem; margin-bottom: 6px; }
+.card-title { font-size: .95rem; font-weight: 700; color: #0d3b66; margin-bottom: 4px; }
+.card-desc  { font-size: .8rem; color: #888; margin-bottom: 6px; }
+.tag { display: inline-block; font-size: .72rem; border-radius: 4px;
+       padding: 1px 7px; font-weight: 600; }
+.tag-blue   { background: #e8f4fd; color: #1a6fa3; }
+.tag-green  { background: #e8f5e9; color: #2e7d32; }
+.tag-orange { background: #fff3e0; color: #e65100; }
+
+footer { text-align: center; color: #bbb; font-size: .76rem; padding: 28px 0 36px; }
+
+@media (max-width: 600px) {
+  header { padding: 24px 16px; }
+  main    { padding: 0 16px; }
+  header h1 { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>FinMind V5 Dashboard</h1>
+  <p>台股策略研究與追蹤系統 · 個人投資決策輔助工具</p>
+  <div style="margin-top:10px">
+    <span class="badge">資料截至 2026-04-30</span>
+    <span class="badge">更新時間 11:22</span>
+    <span class="badge">V5 · 本地端</span>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <h2>🎯 市場戰情室</h2>
+    <div class="card-grid">
+      
+      <a class="card" href="daily/market_war_room.html">
+        <div class="card-icon">📈</div>
+        <div class="card-title">市場戰情室（整合版）</div>
+        <div class="card-desc">加權指數 K 線 + ADL 騰落線 + 景氣燈號 + 融資維持率</div>
+        <span class="tag tag-blue">daily</span>
+      </a>
+      <a class="card" href="daily/資料庫狀態_Latest.html">
+        <div class="card-icon">🗄️</div>
+        <div class="card-title">資料庫狀態 (DB Status)</div>
+        <div class="card-desc">監控本地資料庫資料量、日期範圍與最後同步時間</div>
+        <span class="tag tag-blue">維護監控</span>
+      </a>
+      <a class="card" href="daily/adl_20260425.html">
+        <div class="card-icon">〰️</div>
+        <div class="card-title">騰落線（ADL）</div>
+        <div class="card-desc">市場廣度指標 — 個別股票漲跌的累積差值</div>
+        
+      </a>
+      <a class="card" href="daily/business_indicator.html">
+        <div class="card-icon">🚦</div>
+        <div class="card-title">景氣對策信號</div>
+        <div class="card-desc">燈號走勢與景氣循環判讀</div>
+        
+      </a>
+      <a class="card" href="daily/margin_maintenance.html">
+        <div class="card-icon">💳</div>
+        <div class="card-title">大盤融資維持率</div>
+        <div class="card-desc">市場槓桿情緒指標 — 追繳警戒線監控</div>
+        
+      </a>
+    </div>
+  </section>
+  <section>
+    <h2>⭐ 策略掃描報告</h2>
+    <div class="card-grid">
+      
+      <a class="card" href="daily/法人追蹤_Latest.html">
+        <div class="card-icon">📡</div>
+        <div class="card-title">法人追蹤策略</div>
+        <div class="card-desc">外資連買 3 日 + MA20 + 大盤濾網 + 月營收年增率 + 量能確認</div>
+        <span class="tag tag-blue">CAGR +7.85%（2016–2026）</span>
+      </a>
+      <a class="card" href="daily/strategy_high_yield_defensive.html">
+        <div class="card-icon">🛡️</div>
+        <div class="card-title">高殖利率_防禦型</div>
+        <div class="card-desc">殖利率 > 4% + 填息 + 連配息 + 連獲利 + ROA + 本業佔比</div>
+        <span class="tag tag-blue">7 項條件全通過</span>
+      </a>
+      <a class="card" href="daily/etf_dca_report.html">
+        <div class="card-icon">📅</div>
+        <div class="card-title">ETF 定期定額建議</div>
+        <div class="card-desc">季配拼圖（A+B+C）· 月配組合 · 正2 訊號 · 0050 vs 009816 追蹤</div>
+        <span class="tag tag-green">月月領息 · 長期觀察</span>
+      </a>
+      <a class="card" href="daily/底部突破_Latest.html">
+        <div class="card-icon">🚀</div>
+        <div class="card-title">底部二度突破策略</div>
+        <div class="card-desc">60 日盤整 + 帶量突破 + 回踩 Peak A 再突破 · 純技術面黑馬股</div>
+        <span class="tag tag-orange">勝率 37.2%</span>
+      </a>
+      <a class="card" href="daily/海龜法則_Latest.html">
+        <div class="card-icon">🐢</div>
+        <div class="card-title">海龜交易法則</div>
+        <div class="card-desc">經典趨勢策略 · SYS1(20日)/SYS2(55日)突破 · ATR 波幅控管</div>
+        <span class="tag tag-blue">趨勢波段</span>
+      </a>
+      <a class="card" href="daily/strategy_value_investing.html">
+        <div class="card-icon">💎</div>
+        <div class="card-title">價值投資策略</div>
+        <div class="card-desc">DCF 巴菲特量化篩選 · 七大條件全通過 · 尋找安全邊際</div>
+        <span class="tag tag-green">長期佈局</span>
+      </a>
+      <a class="card" href="daily/巨鯨狙擊_Latest.html">
+        <div class="card-icon">🐋</div>
+        <div class="card-title">巨鯨狙擊策略</div>
+        <div class="card-desc">1000張大戶建倉追蹤 · 結合營收 YoY 與技術面過濾</div>
+        <span class="tag tag-blue">每週更新</span>
+      </a>
+    </div>
+  </section>
+  <section>
+    <h2>🏥 持倉管理</h2>
+    <div class="card-grid">
+      
+      <a class="card" href="daily/持倉離場檢核_Latest.html">
+        <div class="card-icon">🚩</div>
+        <div class="card-title">持倉離場檢核 (Holdings Checker)</div>
+        <div class="card-desc">實際持股監控 · 依策略屬性自動判斷賣出訊號 · 移動止盈止損</div>
+        <span class="tag tag-orange">核心功能</span>
+      </a>
+      <a class="card" href="daily/etf_dca_health.html">
+        <div class="card-icon">🩺</div>
+        <div class="card-title">ETF 定期定額 健檢報告</div>
+        <div class="card-desc">市值趨勢 · 配息變化 · 折溢價 · 換手建議（C 組 / 月配）</div>
+        <span class="tag tag-green">Phase 5 健檢機制</span>
+      </a>
+    </div>
+  </section>
+  <section>
+    <h2>🚀 策略績效中控台</h2>
+    <div class="card-grid">
+      
+      <a class="card" href="daily/performance_hub.html">
+        <div class="card-icon">🏆</div>
+        <div class="card-title">策略績效中控台 (Performance Hub)</div>
+        <div class="card-desc">所有策略一覽 · 觀測中標的統計 · 累積 Alpha 追蹤</div>
+        <span class="tag tag-blue">即時監控</span>
+      </a>
+      <a class="card" href="daily/observatory_institutional_tracker.html">
+        <div class="card-icon">🔭</div>
+        <div class="card-title">法人追蹤策略 觀測站</div>
+        <div class="card-desc">入選即追蹤，Alpha vs TAIEX · 持有天數 · 結算記錄</div>
+        <span class="tag tag-green">主力策略</span>
+      </a>
+      <a class="card" href="daily/observatory_high_yield_defensive.html">
+        <div class="card-icon">🔭</div>
+        <div class="card-title">高殖利率_防禦型 觀測站</div>
+        <div class="card-desc">持股健檢 + 報酬追蹤 + 退場紀錄</div>
+        <span class="tag tag-blue">基礎建設完成</span>
+      </a>
+      <a class="card" href="daily/observatory_turtle_trading.html">
+        <div class="card-icon">🔭</div>
+        <div class="card-title">海龜法則策略 觀測站</div>
+        <div class="card-desc">SYS1 & SYS2 訊號追蹤 · ATR 止損監控 · 趨勢持倉管理</div>
+        <span class="tag tag-orange">自動化追蹤</span>
+      </a>
+      <a class="card" href="daily/observatory_bottom_breakout.html">
+        <div class="card-icon">🔭</div>
+        <div class="card-title">底部二度突破 觀測站</div>
+        <div class="card-desc">黑馬股追蹤 · +20% 止盈 / -8% 止損 · 基本面拐點監控</div>
+        <span class="tag tag-orange">全新上線</span>
+      </a>
+      <a class="card" href="daily/observatory_value_investing.html">
+        <div class="card-icon">🔭</div>
+        <div class="card-title">價值投資策略 觀測站</div>
+        <div class="card-desc">DCF 合理價追蹤 · 安全邊際監控 · 長期基本面持倉管理</div>
+        <span class="tag tag-orange">全新上線</span>
+      </a>
+      <a class="card" href="daily/observatory_whale_sniper.html">
+        <div class="card-icon">🔭</div>
+        <div class="card-title">巨鯨狙擊策略 觀測站</div>
+        <div class="card-desc">大戶建倉追蹤 · 1000張大戶異動 · Alpha vs TAIEX 監控</div>
+        <span class="tag tag-orange">全新上線</span>
+      </a>
+      <a class="card" href="daily/etf_dca_observatory.html">
+        <div class="card-icon">📊</div>
+        <div class="card-title">ETF 定期定額 績效觀測站</div>
+        <div class="card-desc">總報酬曲線 · 殖利率走勢 · vs 0050 Alpha · 季配/月配/觀察分色追蹤</div>
+        <span class="tag tag-orange">定期定額追蹤</span>
+      </a>
+    </div>
+  </section>
+  <section>
+    <h2>📋 策略回測報告</h2>
+    <div class="card-grid">
+      
+      <a class="card" href="backtest/法人追蹤v5_回測報告.html">
+        <div class="card-icon">📄</div>
+        <div class="card-title">法人追蹤策略 v5 回測報告</div>
+        <div class="card-desc">2016–2026 長期，1,143 筆，完整交易明細 + 出場分析</div>
+        <span class="tag tag-green">CAGR +7.85% · 勝率 40.2%</span>
+      </a>
+      <a class="card" href="backtest/高殖利率防禦型_回測報告_v2.html">
+        <div class="card-icon">📄</div>
+        <div class="card-title">高殖利率_防禦型 v2 回測報告</div>
+        <div class="card-desc">4 項修正版回測 — 倖存者偏差修正 + EOD 執行</div>
+        <span class="tag tag-orange">v2 修正版</span>
+      </a>
+      <a class="card" href="backtest/底部突破_回測報告.html">
+        <div class="card-icon">📄</div>
+        <div class="card-title">底部二度突破 回測報告</div>
+        <div class="card-desc">2016–2026 長期，31,202 筆交易 · 正期望值技術策略</div>
+        <span class="tag tag-green">累加回報 118,441%</span>
+      </a>
+      <a class="card" href="backtest/海龜法則v5_回測報告.html">
+        <div class="card-icon">📄</div>
+        <div class="card-title">海龜法則 v5 回測報告</div>
+        <div class="card-desc">2016–2026 長期回測 · 完整趨勢跟蹤邏輯驗證</div>
+        <span class="tag tag-green">標準 V5 移植版</span>
+      </a>
+      <a class="card" href="backtest/價值投資v5_回測報告.html">
+        <div class="card-icon">📄</div>
+        <div class="card-title">價值投資 v5 回測報告 (整合版)</div>
+        <div class="card-desc">包含短期 (2020-2023) 與長期 (2018-今日) 回測結果 · 採分頁標籤切換</div>
+        <span class="tag tag-green">整合報告</span>
+      </a>
+      <a class="card" href="backtest/巨鯨狙擊v5_回測報告.html">
+        <div class="card-icon">📄</div>
+        <div class="card-title">巨鯨狙擊 v5 回測報告 (整合版)</div>
+        <div class="card-desc">包含短期 (2024-今日) 與長期 (2021-今日) 回測結果 · 採分頁標籤切換</div>
+        <span class="tag tag-orange">整合報告</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  FinMind V5 · 本地端 Dashboard · 資料截至 2026-04-30 · 僅供個人投資參考，不構成投資建議
+</footer>
+
+</body>
+</html>

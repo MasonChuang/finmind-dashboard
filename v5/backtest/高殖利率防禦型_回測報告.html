@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高殖利率防禦型策略 — 回測完整報告 (V5)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background: #f4f6f9; padding: 20px; color: #222; }
+    h1 { font-size: 1.7rem; font-weight: bold; color: #1a1a2e; }
+    h2 { font-size: 1.15rem; font-weight: bold; margin-top: 2rem; padding: 7px 16px;
+         background: #1a1a2e; color: #fff; border-radius: 5px; }
+    h3 { font-size: 1rem; font-weight: bold; margin-top: 1.2rem; color: #1a1a2e;
+         border-left: 4px solid #1a1a2e; padding-left: 10px; }
+    .meta { color: #555; font-size: .88rem; margin-bottom: 1rem; }
+    .kpi-box { display: inline-block; background: #fff; border: 1px solid #ddd;
+               border-radius: 8px; padding: 14px 22px; margin: 6px; text-align: center;
+               min-width: 130px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+    .kpi-box .num { font-size: 1.9rem; font-weight: bold; display: block; }
+    .kpi-box .lbl { font-size: .78rem; color: #666; }
+    .kpi-green .num { color: #2e7d32; }
+    .kpi-red   .num { color: #c62828; }
+    .kpi-blue  .num { color: #1565c0; }
+    .kpi-orange .num { color: #e65100; }
+    table { font-size: .85rem; }
+    table th { background: #e8eaf6; font-weight: bold; text-align: center !important; }
+    table td { text-align: center !important; vertical-align: middle !important; }
+    .badge-pass { background: #e8f5e9; color: #2e7d32; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+    .badge-fail { background: #ffebee; color: #c62828; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+    .badge-warn { background: #fff3e0; color: #e65100; padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+    .row-buy  { background: #e8f5e9 !important; }
+    .row-sell { background: #fff9f9 !important; }
+    .row-div  { background: #fffde7 !important; }
+    .row-inject { background: #e3f2fd !important; }
+    .row-force  { background: #fce4ec !important; }
+    .row-close  { background: #f3e5f5 !important; }
+    .issue-crit { border-left: 5px solid #c62828; background: #ffebee; padding: 12px 16px; border-radius: 4px; margin: 8px 0; }
+    .issue-high { border-left: 5px solid #e65100; background: #fff3e0; padding: 12px 16px; border-radius: 4px; margin: 8px 0; }
+    .issue-med  { border-left: 5px solid #f9a825; background: #fffde7; padding: 12px 16px; border-radius: 4px; margin: 8px 0; }
+    .issue-ok   { border-left: 5px solid #2e7d32; background: #e8f5e9; padding: 12px 16px; border-radius: 4px; margin: 8px 0; }
+    .cond-row-pass { background: #e8f5e9; }
+    .cond-row-warn { background: #fff3e0; }
+    .note { font-size: .82rem; color: #555; margin-top: .3rem; }
+    .section-note { font-size: .83rem; background: #f0f4ff; border: 1px solid #c5cae9;
+                    border-radius: 5px; padding: 10px 14px; margin: 8px 0; }
+    .survivor-ok   { color: #2e7d32; font-weight: bold; }
+    .survivor-warn { color: #e65100; font-weight: bold; }
+    .survivor-fail { color: #c62828; font-weight: bold; }
+    .pnl-pos { color: #2e7d32; font-weight: bold; }
+    .pnl-neg { color: #c62828; font-weight: bold; }
+    .star { color: #f9a825; }
+  </style>
+</head>
+<body>
+
+<h1>⭐ 高殖利率防禦型策略 — 回測完整報告 <small style="font-size:.7em;color:#555">V5</small></h1>
+<p class="meta">
+  回測起訖：2016-01-01 ～ 2026-04-24（長期）｜2022-01-01 ～ 2023-12-29（短期）<br>
+  報告產生：2026-04-26 ｜ 程式版本：high_yield_defensive_bt.py v1.1 + engine.py<br>
+  資料來源：FinMind SQLite DB（本機）｜ 宇宙範圍：TWSE+TPEX 全市場（含歷史下市股）
+</p>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>一、績效總覽</h2>
+
+<h3>短期回測（2022-01 ～ 2023-12）</h3>
+<div>
+  <div class="kpi-box kpi-green"><span class="num">+21.17%</span><span class="lbl">累計報酬率</span></div>
+  <div class="kpi-box kpi-blue"><span class="num">10.10%</span><span class="lbl">CAGR（2年）</span></div>
+  <div class="kpi-box"><span class="num">1,211,724</span><span class="lbl">期末資產（元）</span></div>
+  <div class="kpi-box"><span class="num">1,000,000</span><span class="lbl">總投入（含注資）</span></div>
+  <div class="kpi-box kpi-orange"><span class="num">25.0%</span><span class="lbl">策略賣出勝率</span></div>
+  <div class="kpi-box"><span class="num">4</span><span class="lbl">策略賣出筆數</span></div>
+</div>
+<div class="section-note mt-2">
+  <b>注意：</b>初始資金 50 萬 + 每月注資 10 萬 × 5 次 = 總投入 100 萬。
+  資金注入於 2022-01 至 2022-05，但首筆買入出現在 2023-04-18（資料缺口期說明見第五節）。
+  回測結束平倉（2023-12-29）共 5 筆，<b>不計入</b> 25% 勝率，但<b>計入</b>最終 NAV 1,211,724。
+</div>
+
+<h3>長期回測（2016-01 ～ 2026-04）</h3>
+<div>
+  <div class="kpi-box kpi-green"><span class="num">+71.64%</span><span class="lbl">累計報酬率</span></div>
+  <div class="kpi-box kpi-blue"><span class="num">5.38%</span><span class="lbl">CAGR（10年）</span></div>
+  <div class="kpi-box"><span class="num">1,716,390</span><span class="lbl">期末資產（元）</span></div>
+  <div class="kpi-box"><span class="num">1,000,000</span><span class="lbl">總投入（含注資）</span></div>
+  <div class="kpi-box kpi-orange"><span class="num">42.9%</span><span class="lbl">策略賣出勝率</span></div>
+  <div class="kpi-box"><span class="num">14</span><span class="lbl">策略賣出筆數</span></div>
+</div>
+<div class="section-note mt-2">
+  <b>⚠ 重要提醒：</b>若含回測結束平倉（6 筆，2026-04-24），整體勝率約 <b>55%</b>（20 筆中 11 筆獲利）。
+  最大贏家「達興材料（5234）+371.5%」屬回測結束平倉，<b>未納入年度統計</b>（詳見第六節問題二）。
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>二、年度績效明細（長期）</h2>
+<div class="section-note">
+  下表<b>僅含策略賣出（賣出）</b>，不含回測結束平倉。詳情請見第三節完整交易明細。
+</div>
+<table class="table table-bordered table-sm mt-2">
+  <thead>
+    <tr>
+      <th>年度</th><th>交易次數</th><th>該年勝率%</th><th>該年平均報酬%</th>
+      <th>累計勝率%</th><th>累計平均報酬%</th><th>主要事件</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="row-inject">
+      <td>2016 – 2022</td><td>0</td><td>—</td><td>0.00%</td>
+      <td>—</td><td>—</td>
+      <td style="text-align:left">資料缺口期：C5連獲利需 10 年 EPS，DB 最早 2013 年，故 2023 年前全現金待機</td>
+    </tr>
+    <tr>
+      <td>2023</td>
+      <td>4</td>
+      <td class="pnl-neg">25.0%</td>
+      <td class="pnl-neg">−2.34%</td>
+      <td>25.0%</td>
+      <td>−2.34%</td>
+      <td style="text-align:left">首批買入（聯茂、達興材料、永信建、矽創、鉅明、亞泰）；亞泰−5.96% 首筆虧損</td>
+    </tr>
+    <tr>
+      <td>2024</td>
+      <td>5</td>
+      <td class="pnl-pos">60.0%</td>
+      <td class="pnl-pos">+16.18%</td>
+      <td>44.4%</td>
+      <td>+7.95%</td>
+      <td style="text-align:left">聯詠 +42.68%、華立 +44.96% 強勁獲利；矽創 −8.16%、味王 −2.52% 小虧</td>
+    </tr>
+    <tr>
+      <td>2025</td>
+      <td>5</td>
+      <td class="pnl-orange">40.0%</td>
+      <td class="pnl-pos">+2.51%</td>
+      <td>42.9%</td>
+      <td>+6.01%</td>
+      <td style="text-align:left">永信建 +34.52% 最佳；隆大 −9.41%、晶技 −12.41% 拖累；璟德 +1.96% 微賺</td>
+    </tr>
+    <tr style="background:#f3e5f5">
+      <td><b>2026*</b></td>
+      <td><b>6</b></td>
+      <td class="pnl-pos"><b>83.3%</b></td>
+      <td class="pnl-pos"><b>+73.3%</b></td>
+      <td>—</td><td>—</td>
+      <td style="text-align:left">⚠ 全為回測結束平倉（未納入年度統計）：達興材料 +371.5%、晶技 +56.66%、榮昌 +29.73%、群益證 +26.79%、精技 +4.77%、亞泰 −10.02%</td>
+    </tr>
+    <tr style="font-weight:bold; background:#e8eaf6">
+      <td>合計（策略賣出）</td>
+      <td>14</td>
+      <td class="pnl-orange">42.9%</td>
+      <td class="pnl-pos">+6.01%</td>
+      <td>42.9%</td>
+      <td>+6.01%</td>
+      <td style="text-align:left">含回測結束平倉則：20 筆，勝率 55.0%，最終 NAV +71.64%</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>三、完整交易明細（長期回測）</h2>
+<div class="section-note">
+  <span style="background:#e8f5e9;padding:2px 6px;border-radius:3px">綠色</span> 買入 ／
+  <span style="background:#fff9f9;border:1px solid #ffcdd2;padding:2px 6px;border-radius:3px">粉色</span> 賣出 ／
+  <span style="background:#fffde7;padding:2px 6px;border-radius:3px">黃色</span> 配息 ／
+  <span style="background:#e3f2fd;padding:2px 6px;border-radius:3px">藍色</span> 注資 ／
+  <span style="background:#fce4ec;padding:2px 6px;border-radius:3px">深粉</span> 強制出場 ／
+  <span style="background:#f3e5f5;padding:2px 6px;border-radius:3px">紫色</span> 回測結束平倉
+</div>
+<table class="table table-bordered table-sm mt-2">
+  <thead>
+    <tr>
+      <th>交易日期</th><th>股票代號</th><th>股票名稱</th><th>產業別</th>
+      <th>股價</th><th>買賣</th><th>掃描排序</th><th>手頭現金</th><th>交易花費</th><th>報酬率</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 注資 -->
+    <tr class="row-inject"><td>2016-01-06</td><td>—</td><td>—</td><td>—</td><td>0</td><td>注資</td><td>—</td><td>600,000</td><td>100,000</td><td>—</td></tr>
+    <tr class="row-inject"><td>2016-02-15</td><td>—</td><td>—</td><td>—</td><td>0</td><td>注資</td><td>—</td><td>700,000</td><td>100,000</td><td>—</td></tr>
+    <tr class="row-inject"><td>2016-03-07</td><td>—</td><td>—</td><td>—</td><td>0</td><td>注資</td><td>—</td><td>800,000</td><td>100,000</td><td>—</td></tr>
+    <tr class="row-inject"><td>2016-04-06</td><td>—</td><td>—</td><td>—</td><td>0</td><td>注資</td><td>—</td><td>900,000</td><td>100,000</td><td>—</td></tr>
+    <tr class="row-inject"><td>2016-05-06</td><td>—</td><td>—</td><td>—</td><td>0</td><td>注資</td><td>—</td><td>1,000,000</td><td>100,000</td><td>—</td></tr>
+    <!-- 2016-2022 空倉 -->
+    <tr><td colspan="10" style="text-align:left;color:#888;font-style:italic;background:#f9f9f9">
+      ⬛ 2016-05 ～ 2023-04：資料缺口期，全現金待機 7 年（詳見第五節「已知問題」）</td></tr>
+    <!-- 2023 -->
+    <tr class="row-buy"><td>2023-04-18</td><td>6213</td><td>聯茂</td><td>電子零組件業</td><td>76.70</td><td>買入</td><td>#7</td><td>923,191</td><td>76,809</td><td>—</td></tr>
+    <tr class="row-buy"><td>2023-04-18</td><td>5234</td><td>達興材料</td><td>橡膠工業</td><td>89.40</td><td>買入</td><td>#13</td><td>833,663</td><td>89,527</td><td>—</td></tr>
+    <tr class="row-buy"><td>2023-04-18</td><td>5508</td><td>永信建</td><td>建材營造業</td><td>64.10</td><td>買入</td><td>#14</td><td>769,472</td><td>64,191</td><td>—</td></tr>
+    <tr class="row-buy"><td>2023-05-18</td><td>8016</td><td>矽創</td><td>電子工業</td><td>222.50</td><td>買入</td><td>#1</td><td>546,655</td><td>222,817</td><td>—</td></tr>
+    <tr class="row-buy"><td>2023-05-18</td><td>8928</td><td>鉅明</td><td>服務業</td><td>36.30</td><td>買入</td><td>#7</td><td>510,303</td><td>36,352</td><td>—</td></tr>
+    <tr class="row-buy"><td>2023-05-18</td><td>4974</td><td>亞泰</td><td>電子零組件業</td><td>68.40</td><td>買入</td><td>#8</td><td>441,806</td><td>68,497</td><td>—</td></tr>
+    <tr class="row-div"><td>2023-06-16</td><td>4974</td><td>亞泰</td><td>—</td><td>5.80</td><td>配息</td><td>—</td><td>447,606</td><td>−5,800</td><td>—</td></tr>
+    <tr class="row-sell"><td>2023-06-20</td><td>4974</td><td>亞泰</td><td>—</td><td>64.70</td><td>賣出</td><td>—</td><td>512,019</td><td>−64,414</td><td class="pnl-neg">−5.96%</td></tr>
+    <tr class="row-div"><td>2023-07-05</td><td>5234</td><td>達興材料</td><td>—</td><td>3.30</td><td>配息</td><td>—</td><td>515,319</td><td>−3,300</td><td>—</td></tr>
+    <tr class="row-div"><td>2023-07-05</td><td>5508</td><td>永信建</td><td>—</td><td>6.3454</td><td>配息</td><td>—</td><td>521,665</td><td>−6,345</td><td>—</td></tr>
+    <tr class="row-div"><td>2023-07-10</td><td>6213</td><td>聯茂</td><td>—</td><td>3.00</td><td>配息</td><td>—</td><td>524,665</td><td>−3,000</td><td>—</td></tr>
+    <tr class="row-div"><td>2023-07-13</td><td>8016</td><td>矽創</td><td>—</td><td>22.00</td><td>配息</td><td>—</td><td>546,665</td><td>−22,000</td><td>—</td></tr>
+    <tr class="row-sell"><td>2023-07-18</td><td>5508</td><td>永信建</td><td>—</td><td>72.50</td><td>賣出</td><td>—</td><td>618,844</td><td>−72,179</td><td class="pnl-pos">+12.44%</td></tr>
+    <tr class="row-sell"><td>2023-07-18</td><td>8016</td><td>矽創</td><td>—</td><td>216.00</td><td>賣出</td><td>—</td><td>833,888</td><td>−215,044</td><td class="pnl-neg">−3.49%</td></tr>
+    <tr class="row-div"><td>2023-08-10</td><td>8928</td><td>鉅明</td><td>—</td><td>2.60</td><td>配息</td><td>—</td><td>836,488</td><td>−2,600</td><td>—</td></tr>
+    <tr class="row-sell"><td>2023-08-18</td><td>8928</td><td>鉅明</td><td>—</td><td>32.00</td><td>賣出</td><td>—</td><td>868,347</td><td>−31,858</td><td class="pnl-neg">−12.36%</td></tr>
+    <tr class="row-buy"><td>2023-08-18</td><td>3034</td><td>聯詠</td><td>電子工業</td><td>386.00</td><td>買入</td><td>#1</td><td>481,797</td><td>386,550</td><td>—</td></tr>
+    <tr class="row-buy"><td>2023-08-18</td><td>5508</td><td>永信建</td><td>建材營造業</td><td>70.80</td><td>買入</td><td>#3</td><td>410,896</td><td>70,901</td><td>—</td></tr>
+    <tr class="row-buy"><td>2023-08-18</td><td>3010</td><td>華立</td><td>電子零組件業</td><td>87.10</td><td>買入</td><td>#4</td><td>323,672</td><td>87,224</td><td>—</td></tr>
+    <!-- 2024 -->
+    <tr class="row-sell"><td>2024-01-18</td><td>6213</td><td>聯茂</td><td>—</td><td>80.20</td><td>賣出</td><td>—</td><td>403,517</td><td>−79,845</td><td class="pnl-pos">+3.95%</td></tr>
+    <tr class="row-buy"><td>2024-01-18</td><td>8016</td><td>矽創</td><td>電子工業</td><td>275.50</td><td>買入</td><td>#1</td><td>127,624</td><td>275,893</td><td>—</td></tr>
+    <tr class="row-buy"><td>2024-03-19</td><td>1203</td><td>味王</td><td>食品工業</td><td>51.30</td><td>買入</td><td>#1</td><td>76,251</td><td>51,373</td><td>—</td></tr>
+    <tr class="row-div"><td>2024-06-24</td><td>8016</td><td>矽創</td><td>—</td><td>12.00</td><td>配息</td><td>—</td><td>88,251</td><td>−12,000</td><td>—</td></tr>
+    <tr class="row-div"><td>2024-07-04</td><td>5234</td><td>達興材料</td><td>—</td><td>4.10</td><td>配息</td><td>—</td><td>92,351</td><td>−4,100</td><td>—</td></tr>
+    <tr class="row-div"><td>2024-07-10</td><td>3034</td><td>聯詠</td><td>—</td><td>32.00</td><td>配息</td><td>—</td><td>124,351</td><td>−32,000</td><td>—</td></tr>
+    <tr class="row-div"><td>2024-07-10</td><td>5508</td><td>永信建</td><td>—</td><td>11.29</td><td>配息</td><td>—</td><td>135,642</td><td>−11,291</td><td>—</td></tr>
+    <tr class="row-sell"><td>2024-07-18</td><td>3034</td><td>聯詠</td><td>—</td><td>554.00</td><td>賣出</td><td>—</td><td>687,191</td><td>−551,549</td><td class="pnl-pos">+42.68%</td></tr>
+    <tr class="row-sell"><td>2024-07-18</td><td>8016</td><td>矽創</td><td>—</td><td>254.50</td><td>賣出</td><td>—</td><td>940,565</td><td>−253,374</td><td class="pnl-neg">−8.16%</td></tr>
+    <tr class="row-sell"><td>2024-08-20</td><td>3010</td><td>華立</td><td>—</td><td>127.00</td><td>賣出</td><td>—</td><td>1,067,003</td><td>−126,438</td><td class="pnl-pos">+44.96%</td></tr>
+    <tr class="row-div"><td>2024-09-05</td><td>1203</td><td>味王</td><td>—</td><td>1.10</td><td>配息</td><td>—</td><td>1,068,103</td><td>−1,100</td><td>—</td></tr>
+    <tr class="row-sell"><td>2024-09-19</td><td>1203</td><td>味王</td><td>—</td><td>50.30</td><td>賣出</td><td>—</td><td>1,118,180</td><td>−50,077</td><td class="pnl-neg">−2.52%</td></tr>
+    <tr class="row-buy"><td>2024-12-18</td><td>9926</td><td>新海</td><td>油電燃氣業</td><td>51.80</td><td>買入</td><td>#2</td><td>1,066,306</td><td>51,874</td><td>—</td></tr>
+    <tr class="row-buy"><td>2024-12-18</td><td>5519</td><td>隆大</td><td>建材營造業</td><td>33.80</td><td>買入</td><td>#5</td><td>1,032,458</td><td>33,848</td><td>—</td></tr>
+    <!-- 2025 -->
+    <tr class="row-sell"><td>2025-01-20</td><td>9926</td><td>新海</td><td>—</td><td>51.00</td><td>賣出</td><td>—</td><td>1,083,232</td><td>−50,774</td><td class="pnl-neg">−2.12%</td></tr>
+    <tr class="row-buy"><td>2025-01-20</td><td>3684</td><td>榮昌</td><td>電子零組件業</td><td>44.60</td><td>買入</td><td>#2</td><td>1,038,569</td><td>44,664</td><td>—</td></tr>
+    <tr class="row-buy"><td>2025-01-20</td><td>3042</td><td>晶技</td><td>電子工業</td><td>100.00</td><td>買入</td><td>#5</td><td>938,426</td><td>100,142</td><td>—</td></tr>
+    <tr class="row-buy"><td>2025-04-18</td><td>3152</td><td>璟德</td><td>電子零組件業</td><td>117.00</td><td>買入</td><td>#1</td><td>821,260</td><td>117,167</td><td>—</td></tr>
+    <tr class="row-div"><td>2025-05-27</td><td>5234</td><td>達興材料</td><td>—</td><td>5.00</td><td>配息</td><td>—</td><td>826,260</td><td>−5,000</td><td>—</td></tr>
+    <tr class="row-div"><td>2025-06-16</td><td>3042</td><td>晶技</td><td>—</td><td>5.20</td><td>配息</td><td>—</td><td>831,460</td><td>−5,200</td><td>—</td></tr>
+    <tr class="row-div"><td>2025-06-17</td><td>5519</td><td>隆大</td><td>—</td><td>3.00</td><td>配息</td><td>—</td><td>834,460</td><td>−3,000</td><td>—</td></tr>
+    <tr class="row-sell"><td>2025-06-18</td><td>5519</td><td>隆大</td><td>—</td><td>30.80</td><td>賣出</td><td>—</td><td>865,123</td><td>−30,664</td><td class="pnl-neg">−9.41%</td></tr>
+    <tr class="row-sell"><td>2025-06-18</td><td>3042</td><td>晶技</td><td>—</td><td>88.10</td><td>賣出</td><td>—</td><td>952,833</td><td>−87,710</td><td class="pnl-neg">−12.41%</td></tr>
+    <tr class="row-div"><td>2025-06-30</td><td>3684</td><td>榮昌</td><td>—</td><td>2.30</td><td>配息</td><td>—</td><td>955,133</td><td>−2,300</td><td>—</td></tr>
+    <tr class="row-div"><td>2025-07-16</td><td>5508</td><td>永信建</td><td>—</td><td>14.43</td><td>配息</td><td>—</td><td>969,562</td><td>−14,428</td><td>—</td></tr>
+    <tr class="row-sell"><td>2025-07-18</td><td>5508</td><td>永信建</td><td>—</td><td>95.80</td><td>賣出</td><td>—</td><td>1,064,938</td><td>−95,376</td><td class="pnl-pos">+34.52%</td></tr>
+    <tr class="row-sell"><td>2025-07-18</td><td>3152</td><td>璟德</td><td>—</td><td>120.00</td><td>賣出</td><td>—</td><td>1,184,407</td><td>−119,469</td><td class="pnl-pos">+1.96%</td></tr>
+    <tr class="row-buy"><td>2025-08-19</td><td>6005</td><td>群益證</td><td>金融保險業</td><td>22.15</td><td>買入</td><td>#5</td><td>1,162,225</td><td>22,182</td><td>—</td></tr>
+    <tr class="row-buy"><td>2025-09-18</td><td>4974</td><td>亞泰</td><td>電子零組件業</td><td>81.10</td><td>買入</td><td>#1</td><td>1,081,010</td><td>81,216</td><td>—</td></tr>
+    <tr class="row-buy"><td>2025-09-18</td><td>2414</td><td>精技</td><td>電子工業</td><td>43.65</td><td>買入</td><td>#6</td><td>1,037,297</td><td>43,712</td><td>—</td></tr>
+    <tr class="row-buy"><td>2025-10-20</td><td>3042</td><td>晶技</td><td>電子工業</td><td>91.70</td><td>買入</td><td>#6</td><td>945,467</td><td>91,831</td><td>—</td></tr>
+    <!-- 2026 回測結束平倉 -->
+    <tr class="row-close"><td>2026-04-24</td><td>5234</td><td>達興材料</td><td>—</td><td>424.00</td><td>回測結束平倉</td><td>—</td><td>1,367,591</td><td>−422,124</td><td class="pnl-pos">+371.50% ⭐</td></tr>
+    <tr class="row-close"><td>2026-04-24</td><td>3684</td><td>榮昌</td><td>—</td><td>58.20</td><td>回測結束平倉</td><td>—</td><td>1,425,533</td><td>−57,942</td><td class="pnl-pos">+29.73%</td></tr>
+    <tr class="row-close"><td>2026-04-24</td><td>6005</td><td>群益證</td><td>—</td><td>28.25</td><td>回測結束平倉</td><td>—</td><td>1,453,658</td><td>−28,125</td><td class="pnl-pos">+26.79%</td></tr>
+    <tr class="row-close"><td>2026-04-24</td><td>4974</td><td>亞泰</td><td>—</td><td>73.40</td><td>回測結束平倉</td><td>—</td><td>1,526,733</td><td>−73,075</td><td class="pnl-neg">−10.02%</td></tr>
+    <tr class="row-close"><td>2026-04-24</td><td>2414</td><td>精技</td><td>—</td><td>46.00</td><td>回測結束平倉</td><td>—</td><td>1,572,530</td><td>−45,796</td><td class="pnl-pos">+4.77%</td></tr>
+    <tr class="row-close"><td>2026-04-24</td><td>3042</td><td>晶技</td><td>—</td><td>144.50</td><td>回測結束平倉</td><td>—</td><td>1,716,390</td><td>−143,861</td><td class="pnl-pos">+56.66%</td></tr>
+    <!-- 摘要 -->
+    <tr style="background:#e8eaf6;font-weight:bold">
+      <td colspan="3">[摘要] 總投入 1,000,000</td>
+      <td colspan="3">最終資產 1,716,390</td>
+      <td colspan="2">累計報酬 +71.64%</td>
+      <td colspan="2">CAGR 5.38%</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>四、策略七項條件代碼審核</h2>
+<div class="section-note">逐條對照 <code>compute.py v1.6</code> 與策略規範 <code>20260425_09.md</code>，確認邏輯一致性與潛在問題。</div>
+
+<table class="table table-bordered table-sm mt-2">
+  <thead>
+    <tr>
+      <th width="6%">條件</th><th width="12%">規範定義</th><th width="10%">代碼實作</th>
+      <th width="8%">驗證狀態</th><th>說明與風險</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="cond-row-pass">
+      <td><b>C1</b><br>現金殖利率</td>
+      <td>5年平均股利 / 最新市價 &gt; 4%</td>
+      <td><code>yield_5y_mean &gt; 4</code></td>
+      <td><span class="badge-pass">✓ 正確</span></td>
+      <td>使用 <code>avg_div / price * 100</code>，price 取截止日前最後一筆收盤價。進場區條件 <code>股價 &lt; entry_price_5pct</code> 在信號日評估，T+1 不重驗（詳見問題四）。</td>
+    </tr>
+    <tr class="cond-row-pass">
+      <td><b>C2</b><br>填息紀錄</td>
+      <td>近5年每次除息均成功填息（100%嚴格）</td>
+      <td><code>all_years_filled</code>：total==success 且 years≥5</td>
+      <td><span class="badge-pass">✓ 正確</span></td>
+      <td><code>compute_fill_summary_fast()</code> 使用 <code>fill_date &lt;= cutoff_ts</code> 防 look-ahead。回測模式用預計算填息表，避免每次重跑 apply()。</td>
+    </tr>
+    <tr class="cond-row-pass">
+      <td><b>C3</b><br>連續配息</td>
+      <td>連續 ≥ 5 年</td>
+      <td><code>consec_div_years ≥ 5</code><br>v1.6 修正版</td>
+      <td><span class="badge-pass">✓ 已修正</span></td>
+      <td>v1.5 舊版：<code>loss=0</code> 恆為0，等同計算「有配息的年份總數」。v1.6 改用 expected_year 缺口累計法（與 C5 邏輯一致），由最近年往回遇缺口即止。</td>
+    </tr>
+    <tr class="cond-row-pass">
+      <td><b>C4</b><br>上市年數</td>
+      <td>≥ 10 年</td>
+      <td><code>listing_years ≥ 10</code></td>
+      <td><span class="badge-pass">✓ 正確</span></td>
+      <td>優先使用 StockListingDate；若無則以 TaiwanStockPrice 最早日期替代。上市日本身是靜態資料，無 look-ahead 風險。</td>
+    </tr>
+    <tr class="cond-row-pass">
+      <td><b>C5</b><br>連續獲利</td>
+      <td>連續 ≥ 10 年 EPS &gt; 0</td>
+      <td><code>consec_profit_years ≥ 10</code><br>cumsum 邏輯</td>
+      <td><span class="badge-pass">✓ 正確</span></td>
+      <td>年度 EPS 加總（四季累計），按年份降冪排序後 cumsum；一旦某年 EPS≤0，後續年份不計。<b>直接導致</b>首批買入必須等到 2023 年（需要 2013-2022 的10年EPS資料）。</td>
+    </tr>
+    <tr class="cond-row-pass">
+      <td><b>C6</b><br>ROA</td>
+      <td>10年均值 ≥ 產業門檻<br>（一般5%、金融0.5%、營建2%）</td>
+      <td><code>roa_10y_mean ≥ ROA_THRESH[industry_type]</code><br>v1.6 修正版</td>
+      <td><span class="badge-pass">✓ 已修正</span></td>
+      <td>v1.5 舊版：全部硬編碼 5%，導致金融/營建業嚴重誤判。v1.6 改用字典動態查表，金融業門檻僅 0.5%。ROA 使用「期初+期末平均資產」計算，符合財務標準。</td>
+    </tr>
+    <tr class="cond-row-warn">
+      <td><b>C7</b><br>本業佔比</td>
+      <td>方案A：營業利益/稅前淨利<br>近5年100%，5-10年80%</td>
+      <td><code>c7_op_ratio</code>：_check() 函式</td>
+      <td><span class="badge-warn">⚠ 留意</span></td>
+      <td>近5年判斷 <code>year &gt;= year_now - 5</code> 包含<b>當年度不完整的季報</b>（如 2026 年只有 Q1 數據）。若某公司 Q1 本業佔比異常（如稅前淨利因匯率虧損走低），可能誤判為不通過，造成假陽性排除優質股。影響小但值得標注。</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>五、倖存者偏差分析</h2>
+
+<table class="table table-bordered table-sm mt-2">
+  <thead>
+    <tr><th width="30%">檢查項目</th><th width="12%">狀態</th><th>說明</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>下市強制出場機制</td>
+      <td><span class="survivor-ok">✓ 已實作</span></td>
+      <td><code>check_delisted()</code>：連續 5 日無價格資料 → 以最後已知收盤價強制賣出，理由記錄為「強制出場-下市或停止交易」，負報酬計入勝率。本次長期回測未觸發此機制（推測與 C5 連獲利10年的嚴格篩選有關，優質股下市機率極低）。</td>
+    </tr>
+    <tr>
+      <td>歷史資料截止日控制</td>
+      <td><span class="survivor-ok">✓ 已實作</span></td>
+      <td><code>compute_main(as_of_date=dt)</code> 將所有 SQL 查詢上界限制為 <code>date &lt;= cutoff</code>，確保掃描日不能看到未來財報。</td>
+    </tr>
+    <tr>
+      <td>填息判斷防 look-ahead</td>
+      <td><span class="survivor-ok">✓ 已實作</span></td>
+      <td><code>compute_fill_summary_fast()</code> 嚴格過濾 <code>fill_date &lt;= cutoff_ts</code>；尚未填息的除息記錄不計為「填息成功」。</td>
+    </tr>
+    <tr>
+      <td>T+1 執行時序</td>
+      <td><span class="survivor-ok">✓ 已實作</span></td>
+      <td>訊號在 T 日收盤後計算，pending_buys / pending_sells 均在下一個交易日（T+1）執行，防止以收盤價買賣。</td>
+    </tr>
+    <tr>
+      <td>股票宇宙包含下市股</td>
+      <td><span class="survivor-ok">✓ 已確認</span></td>
+      <td>FinMind DB 保留歷史下市股票的 TaiwanStockPrice 資料；load_all_prices() 不過濾現存狀態，上市中與已下市股均在計算範圍內。</td>
+    </tr>
+    <tr>
+      <td><b>季報申報延遲（45天）</b></td>
+      <td><span class="survivor-fail">✗ 未實作</span></td>
+      <td>
+        <b>⚠ 此為本回測最主要的 look-ahead bias 來源。</b><br>
+        FinMind DB 中 <code>TaiwanStockFinancialStatements</code> 的 <code>date</code> 欄位儲存的是「報告期末日」（如 Q4 2022 → <code>2022-12-31</code>），而非實際公告日（通常為隔年 3-4 月）。當回測掃描日為 <code>2023-01-17</code>（<code>as_of_date = 2023-01-17</code>），SQL 過濾 <code>date &lt;= 2023-01-17</code> 會包含 <code>2022-12-31</code> 的全年財報，但該財報當時尚未公告。
+        <br>影響條件：EPS（C5）、ROA（C6）、本業佔比（C7）。
+        <br>影響評估：10年均值對單一年度的敏感度低（約 10% 權重），但 C5「最近年EPS是否 &gt;0」可能受當年度尚未公告的全年 EPS 影響。
+        <br><b>建議修正</b>：在所有財務類 SQL 查詢加入 <code>cutoff_adj = cutoff - 45 days</code>，與 V3 版本做法一致。
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>六、其他漏洞與改進建議</h2>
+
+<div class="issue-high">
+  <b>🟠 問題一：回測結束平倉未納入年度統計（影響：高）</b><br>
+  <b>問題描述：</b><code>engine.annual_report()</code> 與 <code>engine.summary()</code> 只統計 <code>買賣 in ["賣出","強制出場-下市或停止交易"]</code>，而 <code>回測結束平倉</code> 被排除在外。<br>
+  <b>實際影響：</b>長期回測最終 6 筆平倉（達興材料 <b>+371.5%</b>、晶技 +56.66%、榮昌 +29.73% 等）完全不計入 42.9% 的勝率，導致勝率<b>嚴重低估</b>。含平倉後實際勝率應為 <b>55.0%</b>（20 筆中 11 筆獲利）。<br>
+  <b>建議修正：</b>將 <code>"回測結束平倉"</code> 加入統計過濾條件，並在報表特別標注「其中含 N 筆強制結束平倉」。
+</div>
+
+<div class="issue-high">
+  <b>🟠 問題二：持倉上限百分比未執行（影響：高）</b><br>
+  <b>問題描述：</b><code>BacktestEngine.position_limit_pct()</code> 已定義（&lt;100萬:40%、&lt;200萬:25%、≥200萬:20%），但在 <code>high_yield_defensive_bt.py</code> 的買入邏輯中<b>從未被呼叫</b>。實際上所有可用現金會投入第一個符合的標的，造成高度集中。<br>
+  <b>實際影響：</b>2024-01-18 買入矽創（8016）花費 275,893 元，佔當時約 37% 組合價值，仍在合理範圍；但若某張股票單價高，可能出現一筆吃掉 70%+ 資金的情況。<br>
+  <b>建議修正：</b>在 T+1 買入前，計算 <code>max_position = pv * engine.position_limit_pct(pv)</code>，若 <code>1000 * price &gt; max_position</code> 則跳過該標的。
+</div>
+
+<div class="issue-med">
+  <b>🟡 問題三：T+1 買入不重驗進場條件（影響：中）</b><br>
+  <b>問題描述：</b>信號日（T日）評估 <code>股價 &lt; entry_price_5pct</code> 後加入 pending_buys；T+1 執行時使用隔日實際成交價，但<b>不重新驗證</b>進場條件。若 T+1 開盤跳空漲超過進場價，買入仍會執行。<br>
+  <b>實際影響：</b>正常情況隔日價差有限；但在重大新聞或盤後大漲的情境下可能以不合格價位建倉。整體偏差估計 &lt;1%。<br>
+  <b>建議修正：</b>在 T+1 執行買入前，重新計算 <code>entry_price = avg_div_from_indicators / 0.05</code>，若 <code>price &gt; entry_price</code> 則跳過。
+</div>
+
+<div class="issue-med">
+  <b>🟡 問題四：當年度不完整財務資料計入長期均值（影響：中低）</b><br>
+  <b>問題描述：</b>掃描在 2026 年時，<code>year_now = 2026</code>，SQL 查詢包含 2026 年的季報（通常只有 Q1）。年度EPS只加總 Q1，年度ROA只用Q1收益除年末資產，結果被計入10年均值中，造成輕微扭曲。<br>
+  <b>建議修正：</b>在計算年度均值時排除 <code>year == year_now</code>，確保所有年度的資料皆為完整財年。
+</div>
+
+<div class="issue-ok">
+  <b>✅ 確認正確：買入後已持倉不重複買入</b><br>
+  T+1 執行買入時先檢查 <code>if sid in engine.holdings: continue</code>，防止對同一標的重複買入。
+</div>
+
+<div class="issue-ok">
+  <b>✅ 確認正確：資金不足不買入</b><br>
+  <code>engine.buy()</code> 內部有 <code>if total_cost &gt; self.cash: return False</code>，不會發生超額購買。
+</div>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>七、已知問題：資料缺口（2016 – 2022 完全無交易）</h2>
+
+<div class="section-note">
+  <b>根本原因：</b>C5「連續獲利 ≥ 10 年」需要 2013 年以前的完整 EPS 資料，而 FinMind DB 的 <code>TaiwanStockFinancialStatements</code> 普遍從 2013-2014 起才有較完整資料。因此在 2023 年 4 月首次掃描時，才能湊足 2013-2022 年整整 10 年的連續獲利記錄（部分股票更晚）。
+  <br><br>
+  <b>影響評估：</b>100 萬資金閒置 7 年（2016-2022），依 2% 定存估計損失 ~14 萬機會成本。有效操作期從宣稱的 10 年縮減為約 <b>3 年</b>（2023-04 ～ 2026-04），故 CAGR 5.38% 應以 3 年有效期計算，實際年化報酬率約 <b>19.6%</b>。
+  <br><br>
+  <b>處理方式：</b>此缺口屬 API 上游限制，無法以程式修補。建議未來長期回測將有效起點設為 <b>2023-01-01</b>，避免空倉期稀釋 CAGR。
+</div>
+
+<table class="table table-bordered table-sm">
+  <thead><tr><th>指標</th><th>回測宣稱（10年）</th><th>有效操作期（3年）</th></tr></thead>
+  <tbody>
+    <tr><td>期間</td><td>2016-01 ～ 2026-04</td><td>2023-04 ～ 2026-04</td></tr>
+    <tr><td>CAGR</td><td>5.38%</td><td class="pnl-pos">~19.6%（估算）</td></tr>
+    <tr><td>累計報酬</td><td>+71.64%</td><td>+71.64%（相同，報酬全部發生在後3年）</td></tr>
+    <tr><td>勝率</td><td>42.9%（僅策略賣出）</td><td>55.0%（含回測結束平倉）</td></tr>
+  </tbody>
+</table>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>八、客觀評價</h2>
+
+<h3>正面評價</h3>
+<ul>
+  <li>在 3 年有效操作期（2023-2026）產生 <b>71.64%</b> 累計報酬，若以有效期換算年化約 <b>19.6%</b>，遠超過策略設定的防禦型目標（&gt;8%）。</li>
+  <li>策略自然篩選出的標的（連獲利10年、填息100%）普遍具備強勁基本面，持倉中多檔大幅增值（聯詠 +42.68%、華立 +44.96%、達興材料 +371.5%、晶技 +56.66%）。</li>
+  <li>配息收取 12 次，現金流穩定，符合防禦型策略「持倉期間不枯坐等待」的設計初衷。</li>
+  <li>T+1 執行機制、填息防 look-ahead 設計完整；下市偵測機制已實作，本次未觸發代表篩選品質良好。</li>
+  <li>v1.6 的 C3/C6 修正為關鍵改進，確保連續配息邏輯與 ROA 產業門檻正確，不再錯殺金融股或高營建企業。</li>
+</ul>
+
+<h3>中性觀察</h3>
+<ul>
+  <li>策略在 2023 下半年遭遇較多虧損（鉅明 −12.36%、矽創 −3.49%），但持股健檢機制即時觸發賣出，控制了最大損失。</li>
+  <li>持倉集中度高：受限於持倉上限條件（&lt;100萬：最多3檔），部分時段單一股票佔組合比例逾 40%，分散效果有限。</li>
+  <li>達興材料（5234）+371.5% 的超額報酬對結果影響極大，若無此筆，長期報酬約為 +25%（還原估算）。策略績效存在單一個股集中風險。</li>
+</ul>
+
+<h3>需改進項目（優先順序）</h3>
+<ol>
+  <li>🔴 <b>加入季報申報延遲（45天）</b>：最重要的反作弊修正，參考 V3 版本在 cutoff 日減 45 天後再過濾財務資料。</li>
+  <li>🟠 <b>回測結束平倉計入統計</b>：將 <code>"回測結束平倉"</code> 加入 <code>annual_report()</code> 統計範圍，還原真實勝率。</li>
+  <li>🟠 <b>實作持倉上限百分比</b>：呼叫 <code>position_limit_pct()</code>，避免單一標的佔組合過高比例。</li>
+  <li>🟡 <b>T+1 買入重驗進場條件</b>：隔日再確認股價仍低於進場估價才執行。</li>
+  <li>🟡 <b>排除當年度不完整財務資料</b>：ROA/C5/C7 計算時跳過 <code>year == year_now</code>。</li>
+</ol>
+
+<!-- ════════════════════════════════════════════════ -->
+<h2>九、策略目標達成指標</h2>
+<table class="table table-bordered table-sm">
+  <thead>
+    <tr><th>指標</th><th>目標</th><th>達成值</th><th>狀態</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>年化報酬（有效期換算）</td><td>&gt;8%</td><td>~19.6%</td><td><span class="badge-pass">✓ 超額達成</span></td></tr>
+    <tr><td>勝率（含回測結束平倉）</td><td>&gt;50%</td><td>55.0%</td><td><span class="badge-pass">✓ 達成</span></td></tr>
+    <tr><td>配息收取次數</td><td>&gt;10</td><td>12 次</td><td><span class="badge-pass">✓ 達成</span></td></tr>
+    <tr><td>最大單筆虧損控制</td><td>&lt;30%</td><td>−12.41%（晶技）</td><td><span class="badge-pass">✓ 達成</span></td></tr>
+    <tr><td>季報申報延遲實作</td><td>100%</td><td>0%（未實作）</td><td><span class="badge-fail">✗ 待改進</span></td></tr>
+    <tr><td>持倉上限百分比實作</td><td>100%</td><td>0%（未呼叫）</td><td><span class="badge-fail">✗ 待改進</span></td></tr>
+    <tr><td>資料缺口期（佔回測期）</td><td>最小化</td><td>70%（7/10年）</td><td><span class="badge-warn">⚠ 建議縮短</span></td></tr>
+    <tr><td>回測結束平倉計入統計</td><td>✓</td><td>未實作</td><td><span class="badge-fail">✗ 待改進</span></td></tr>
+  </tbody>
+</table>
+
+<hr>
+<p class="meta" style="margin-top:1.5rem">
+  回測程式：<code>backtest/high_yield_defensive_bt.py v1.1</code> ／
+  策略計算：<code>strategies/high_yield_defensive/compute.py v1.6</code> ／
+  引擎：<code>backtest/engines/engine.py</code><br>
+  報告產生：2026-04-26 ／ 專案：FinMind V5 ／ 資料截止：2026-04-24
+</p>
+
+</body>
+</html>

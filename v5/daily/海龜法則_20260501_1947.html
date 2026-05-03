@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>海龜交易法則策略 報表</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background:#f8f9fa; padding:20px; }
+    h1 { font-size:1.6rem; font-weight:bold; color:#1a1a2e; }
+    .badge-stat { border-radius:8px; padding:10px 18px; display:inline-block; margin:6px; }
+    .badge-stat .num { font-size:2rem; font-weight:bold; display:block; }
+    .badge-stat .lbl { font-size:.8rem; color:#555; }
+    .section-title { font-size:1.1rem; font-weight:bold; margin-top:28px; padding:6px 14px;
+                      background:#1a1a2e; color:#fff; border-radius:4px; }
+    .section-title.sys2 { background:#7b1c1c; }
+    .section-title.sys1 { background:#1a3a5c; }
+    .criteria-box { background:#fff; border:1px solid #dee2e6; border-radius:6px;
+                     padding:14px; margin-bottom:18px; }
+    .criteria-box li { margin:4px 0; font-size:.9rem; }
+    table td, table th { vertical-align: middle !important; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <h1>🐢 海龜交易法則策略 報表</h1>
+  <p class="text-muted">
+    掃描時間：2026-05-01 19:47 &nbsp;｜&nbsp; 資料來源：本地 FinMind DB
+    &nbsp;｜&nbsp; 資料庫最新日期：2026-04-30
+  </p>
+
+  <!-- 摘要統計 -->
+  <div class="my-3">
+    <div class="badge-stat" style="background:#fdedec;color:#7b1c1c">
+      <span class="num">38</span>
+      <span class="lbl">System 2 訊號</span>
+    </div>
+    <div class="badge-stat" style="background:#e3f2fd;color:#0d47a1">
+      <span class="num">8</span>
+      <span class="lbl">System 1 訊號</span>
+    </div>
+    <div class="badge-stat" style="background:#fff3e0;color:#e65100">
+      <span class="num">16</span>
+      <span class="lbl">優質黑馬 (Excellent)</span>
+    </div>
+    <div class="badge-stat" style="background:#e8f5e9;color:#1b5e20">
+      <span class="num">46</span>
+      <span class="lbl">總訊號數</span>
+    </div>
+  </div>
+
+  <!-- 策略說明 -->
+  <div class="criteria-box">
+    <b>基本面評級說明：</b>
+    <span class="badge bg-danger">Excellent</span>: 營收 YoY > 15% 且 MoM 連續成長 | 
+    <span class="badge bg-warning text-dark">Good</span>: 符合任一項 | 
+    <span class="badge bg-light text-muted">Normal</span>: 僅技術突破。
+    <br>
+    <small class="text-muted">排行優先序：評級 > 系統等級 (SYS2優先) > 成交量比。</small>
+  </div>
+    <ul class="mt-2">
+      <li>
+        <b>System 2（強勢訊號）</b>：收盤突破前 55 日最高；
+        出場參考線 = 前 20 日最低
+      </li>
+      <li>
+        <b>System 1</b>：收盤突破前 20 日最高；
+        出場參考線 = 前 10 日最低
+      </li>
+      <li>
+        N 值 = Wilder ATR(20 日)；
+        止損 = 收盤 − 2N；
+        建議張數 = (帳戶 × 1%) ÷ (N × 1000)
+      </li>
+      <li>流動性門檻：近 20 日均量 ≥ 500 張；僅涵蓋四位數字代碼普通股</li>
+    </ul>
+    <small class="text-muted">
+      突破計算：adj_high.shift(1).rolling(N).max()，防未來資訊洩漏。
+      出場參考線僅供參考，實際出場以個人判斷為準。
+    </small>
+  </div>
+
+  
+  <div class="section-title sys2">▲ System 2 — 55 日突破（強勢訊號）</div>
+  <div class="mt-2 mb-4">
+    <table id="tbl_sys2" class="display table table-bordered table-sm" style="width:100%">
+      <thead><tr>
+        <th>排行</th><th>股票代號</th><th>股票名稱</th><th>產業別</th>
+        <th class="text-end">股價</th>
+        <th class="text-center">評級</th>
+        <th class="text-end">營收YoY</th>
+        <th class="text-end">N值(ATR)</th>
+        <th class="text-end">突破點</th>
+        <th class="text-end">止損</th>
+        <th class="text-end">建議張數</th>
+        <th class="text-end">均量(張)</th>
+      </tr></thead>
+      <tbody><tr><td>1</td><td><b>6147</b></td><td>頎邦</td><td>半導體業</td><td class='text-end'>163.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>19.3%</td><td class='text-end'>10.01</td><td class='text-end'>158.00</td><td class='text-end text-danger fw-bold'>142.97</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:46px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>39,848</td></tr>
+<tr><td>2</td><td><b>2486</b></td><td>一詮</td><td>電子工業</td><td class='text-end'>270.50</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>34.9%</td><td class='text-end'>14.82</td><td class='text-end'>253.50</td><td class='text-end text-danger fw-bold'>240.87</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:12px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>10,441</td></tr>
+<tr><td>3</td><td><b>3605</b></td><td>宏致</td><td>電子零組件業</td><td class='text-end'>87.10</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>17.8%</td><td class='text-end'>3.63</td><td class='text-end'>84.30</td><td class='text-end text-danger fw-bold'>79.85</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:9px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>8,156</td></tr>
+<tr><td>4</td><td><b>6197</b></td><td>佳必琪</td><td>電子工業</td><td class='text-end'>208.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>30.9%</td><td class='text-end'>10.46</td><td class='text-end'>206.50</td><td class='text-end text-danger fw-bold'>187.09</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:5px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>5,139</td></tr>
+<tr><td>5</td><td><b>4949</b></td><td>有成精密</td><td>光電業</td><td class='text-end'>105.50</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>27.8%</td><td class='text-end'>6.02</td><td class='text-end'>102.50</td><td class='text-end text-danger fw-bold'>93.46</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:5px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>4,684</td></tr>
+<tr><td>6</td><td><b>4908</b></td><td>前鼎</td><td>通信網路業</td><td class='text-end'>214.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>66.9%</td><td class='text-end'>12.77</td><td class='text-end'>210.00</td><td class='text-end text-danger fw-bold'>188.46</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>4,310</td></tr>
+<tr><td>7</td><td><b>6218</b></td><td>豪勉</td><td>通信網路業</td><td class='text-end'>41.15</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>24.5%</td><td class='text-end'>2.31</td><td class='text-end'>39.30</td><td class='text-end text-danger fw-bold'>36.53</td><td class='text-end'>4</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>3,529</td></tr>
+<tr><td>8</td><td><b>5864</b></td><td>致和證</td><td>金融業</td><td class='text-end'>28.50</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>8548.7%</td><td class='text-end'>0.94</td><td class='text-end'>27.80</td><td class='text-end text-danger fw-bold'>26.61</td><td class='text-end'>10</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>3,096</td></tr>
+<tr><td>9</td><td><b>3167</b></td><td>大量</td><td>電機機械</td><td class='text-end'>861.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>119.6%</td><td class='text-end'>51.21</td><td class='text-end'>816.00</td><td class='text-end text-danger fw-bold'>758.58</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,699</td></tr>
+<tr><td>10</td><td><b>6861</b></td><td>睿生光電</td><td>化學生技醫療</td><td class='text-end'>328.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>45.5%</td><td class='text-end'>16.69</td><td class='text-end'>300.00</td><td class='text-end text-danger fw-bold'>294.62</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,109</td></tr>
+<tr><td>11</td><td><b>2465</b></td><td>麗臺</td><td>電子工業</td><td class='text-end'>74.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>73.4%</td><td class='text-end'>3.64</td><td class='text-end'>73.00</td><td class='text-end text-danger fw-bold'>66.72</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,016</td></tr>
+<tr><td>12</td><td><b>6683</b></td><td>雍智科技</td><td>半導體業</td><td class='text-end'>2,125.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>46.7%</td><td class='text-end'>143.61</td><td class='text-end'>2,005.00</td><td class='text-end text-danger fw-bold'>1,837.78</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,139</td></tr>
+<tr><td>17</td><td><b>8046</b></td><td>南電</td><td>電子零組件業</td><td class='text-end'>1,005.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>45.0%</td><td class='text-end'>54.28</td><td class='text-end'>977.00</td><td class='text-end text-danger fw-bold'>896.44</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:27px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>23,259</td></tr>
+<tr><td>18</td><td><b>8064</b></td><td>東捷</td><td>光電業</td><td class='text-end'>104.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>35.1%</td><td class='text-end'>6.48</td><td class='text-end'>94.90</td><td class='text-end text-danger fw-bold'>91.04</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:18px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>16,173</td></tr>
+<tr><td>19</td><td><b>8027</b></td><td>鈦昇</td><td>電機機械</td><td class='text-end'>193.50</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>43.4%</td><td class='text-end'>12.07</td><td class='text-end'>179.00</td><td class='text-end text-danger fw-bold'>169.37</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:15px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>13,839</td></tr>
+<tr><td>20</td><td><b>4540</b></td><td>全球傳動</td><td>電機機械</td><td class='text-end'>68.50</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>85.1%</td><td class='text-end'>3.66</td><td class='text-end'>66.70</td><td class='text-end text-danger fw-bold'>61.19</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:9px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>8,164</td></tr>
+<tr><td>21</td><td><b>6234</b></td><td>高僑</td><td>光電業</td><td class='text-end'>52.80</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>31.1%</td><td class='text-end'>2.46</td><td class='text-end'>48.05</td><td class='text-end text-danger fw-bold'>47.89</td><td class='text-end'>4</td><td class='text-end'><span style="display:inline-block;height:8px;width:6px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>6,008</td></tr>
+<tr><td>22</td><td><b>3016</b></td><td>嘉晶</td><td>半導體業</td><td class='text-end'>89.70</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>18.8%</td><td class='text-end'>4.88</td><td class='text-end'>81.60</td><td class='text-end text-danger fw-bold'>79.94</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:5px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>4,967</td></tr>
+<tr><td>23</td><td><b>1597</b></td><td>直得</td><td>電機機械</td><td class='text-end'>143.50</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>39.9%</td><td class='text-end'>7.81</td><td class='text-end'>133.50</td><td class='text-end text-danger fw-bold'>127.87</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:5px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>4,649</td></tr>
+<tr><td>24</td><td><b>4576</b></td><td>大銀微系統</td><td>電機機械</td><td class='text-end'>222.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>69.8%</td><td class='text-end'>12.33</td><td class='text-end'>215.00</td><td class='text-end text-danger fw-bold'>197.34</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>4,464</td></tr>
+<tr><td>25</td><td><b>3680</b></td><td>家登</td><td>半導體業</td><td class='text-end'>537.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>62.7%</td><td class='text-end'>28.45</td><td class='text-end'>519.00</td><td class='text-end text-danger fw-bold'>480.10</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>3,963</td></tr>
+<tr><td>26</td><td><b>6658</b></td><td>聯策</td><td>電子工業</td><td class='text-end'>149.50</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>44.1%</td><td class='text-end'>6.19</td><td class='text-end'>146.50</td><td class='text-end text-danger fw-bold'>137.13</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,697</td></tr>
+<tr><td>27</td><td><b>6405</b></td><td>悅城</td><td>電子工業</td><td class='text-end'>50.90</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-39.6%</td><td class='text-end'>2.48</td><td class='text-end'>46.30</td><td class='text-end text-danger fw-bold'>45.94</td><td class='text-end'>4</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,132</td></tr>
+<tr><td>28</td><td><b>3088</b></td><td>艾訊</td><td>電腦及週邊設備業</td><td class='text-end'>108.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>50.0%</td><td class='text-end'>3.47</td><td class='text-end'>105.00</td><td class='text-end text-danger fw-bold'>101.06</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,762</td></tr>
+<tr><td>29</td><td><b>6224</b></td><td>聚鼎</td><td>電子工業</td><td class='text-end'>73.30</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>10.0%</td><td class='text-end'>2.72</td><td class='text-end'>66.80</td><td class='text-end text-danger fw-bold'>67.86</td><td class='text-end'>3</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,240</td></tr>
+<tr><td>30</td><td><b>7750</b></td><td>新代</td><td>電機機械</td><td class='text-end'>2,575.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>0.0%</td><td class='text-end'>122.22</td><td class='text-end'>2,475.00</td><td class='text-end text-danger fw-bold'>2,330.55</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>640</td></tr>
+<tr><td>31</td><td><b>6823</b></td><td>濾能</td><td>半導體業</td><td class='text-end'>96.80</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>28.2%</td><td class='text-end'>5.18</td><td class='text-end'>92.00</td><td class='text-end text-danger fw-bold'>86.45</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>636</td></tr>
+<tr><td>33</td><td><b>4958</b></td><td>臻鼎-KY</td><td>電子零組件業</td><td class='text-end'>421.00</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>0.7%</td><td class='text-end'>21.06</td><td class='text-end'>396.00</td><td class='text-end text-danger fw-bold'>378.88</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:60px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>51,644</td></tr>
+<tr><td>34</td><td><b>5443</b></td><td>均豪</td><td>半導體業</td><td class='text-end'>129.50</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>-5.4%</td><td class='text-end'>7.84</td><td class='text-end'>126.00</td><td class='text-end text-danger fw-bold'>113.82</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:12px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>11,007</td></tr>
+<tr><td>35</td><td><b>3455</b></td><td>由田</td><td>光電業</td><td class='text-end'>243.00</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>-7.9%</td><td class='text-end'>13.31</td><td class='text-end'>239.00</td><td class='text-end text-danger fw-bold'>216.38</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>4,011</td></tr>
+<tr><td>36</td><td><b>6207</b></td><td>雷科</td><td>電子零組件業</td><td class='text-end'>64.50</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>-9.2%</td><td class='text-end'>3.54</td><td class='text-end'>63.20</td><td class='text-end text-danger fw-bold'>57.41</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>3,233</td></tr>
+<tr><td>37</td><td><b>1595</b></td><td>川寶</td><td>電子零組件業</td><td class='text-end'>72.80</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>12.1%</td><td class='text-end'>3.71</td><td class='text-end'>72.40</td><td class='text-end text-danger fw-bold'>65.38</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,822</td></tr>
+<tr><td>38</td><td><b>4764</b></td><td>雙鍵</td><td>化學生技醫療</td><td class='text-end'>258.00</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>1.3%</td><td class='text-end'>17.41</td><td class='text-end'>255.00</td><td class='text-end text-danger fw-bold'>223.17</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,753</td></tr>
+<tr><td>39</td><td><b>2417</b></td><td>圓剛</td><td>電子工業</td><td class='text-end'>47.15</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>3.7%</td><td class='text-end'>1.79</td><td class='text-end'>43.50</td><td class='text-end text-danger fw-bold'>43.58</td><td class='text-end'>5</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,821</td></tr>
+<tr><td>40</td><td><b>7866</b></td><td>丹立</td><td>半導體業</td><td class='text-end'>231.50</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>0.0%</td><td class='text-end'>17.12</td><td class='text-end'>225.00</td><td class='text-end text-danger fw-bold'>197.26</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>926</td></tr>
+<tr><td>41</td><td><b>6775</b></td><td>穎台科技</td><td>光電業</td><td class='text-end'>40.55</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>0.0%</td><td class='text-end'>2.57</td><td class='text-end'>38.00</td><td class='text-end text-danger fw-bold'>35.41</td><td class='text-end'>3</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>766</td></tr>
+<tr><td>42</td><td><b>2256</b></td><td>歐特明</td><td>其他電子業</td><td class='text-end'>91.20</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>0.0%</td><td class='text-end'>8.18</td><td class='text-end'>87.90</td><td class='text-end text-danger fw-bold'>74.83</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>661</td></tr>
+<tr><td>43</td><td><b>4951</b></td><td>精拓科</td><td>半導體業</td><td class='text-end'>119.00</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>-0.4%</td><td class='text-end'>3.75</td><td class='text-end'>108.50</td><td class='text-end text-danger fw-bold'>111.51</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>660</td></tr></tbody>
+    </table>
+  </div>
+  
+  <div class="section-title sys1">▲ System 1 — 20 日突破</div>
+  <div class="mt-2 mb-4">
+    <table id="tbl_sys1" class="display table table-bordered table-sm" style="width:100%">
+      <thead><tr>
+        <th>排行</th><th>股票代號</th><th>股票名稱</th><th>產業別</th>
+        <th class="text-end">股價</th>
+        <th class="text-center">評級</th>
+        <th class="text-end">營收YoY</th>
+        <th class="text-end">N值(ATR)</th>
+        <th class="text-end">突破點</th>
+        <th class="text-end">止損</th>
+        <th class="text-end">建議張數</th>
+        <th class="text-end">均量(張)</th>
+      </tr></thead>
+      <tbody><tr><td>13</td><td><b>3707</b></td><td>漢磊</td><td>半導體業</td><td class='text-end'>66.20</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>25.0%</td><td class='text-end'>3.82</td><td class='text-end'>63.80</td><td class='text-end text-danger fw-bold'>58.56</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:10px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>8,800</td></tr>
+<tr><td>14</td><td><b>1722</b></td><td>台肥</td><td>化學工業</td><td class='text-end'>50.70</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>23.0%</td><td class='text-end'>1.06</td><td class='text-end'>48.70</td><td class='text-end text-danger fw-bold'>48.58</td><td class='text-end'>9</td><td class='text-end'><span style="display:inline-block;height:8px;width:6px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>5,366</td></tr>
+<tr><td>15</td><td><b>3029</b></td><td>零壹</td><td>資訊服務業</td><td class='text-end'>102.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>31.5%</td><td class='text-end'>3.26</td><td class='text-end'>99.80</td><td class='text-end text-danger fw-bold'>95.48</td><td class='text-end'>3</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,506</td></tr>
+<tr><td>16</td><td><b>4542</b></td><td>科嶠</td><td>電子零組件業</td><td class='text-end'>199.00</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>96.7%</td><td class='text-end'>12.31</td><td class='text-end'>196.00</td><td class='text-end text-danger fw-bold'>174.37</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,102</td></tr>
+<tr><td>32</td><td><b>2233</b></td><td>宇隆</td><td>汽車工業</td><td class='text-end'>300.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-3.1%</td><td class='text-end'>14.64</td><td class='text-end'>274.50</td><td class='text-end text-danger fw-bold'>270.72</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,527</td></tr>
+<tr><td>44</td><td><b>2328</b></td><td>廣宇</td><td>電子工業</td><td class='text-end'>49.55</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>-14.6%</td><td class='text-end'>1.77</td><td class='text-end'>47.90</td><td class='text-end text-danger fw-bold'>46.02</td><td class='text-end'>5</td><td class='text-end'><span style="display:inline-block;height:8px;width:5px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>4,900</td></tr>
+<tr><td>45</td><td><b>6026</b></td><td>福邦證</td><td>金融業</td><td class='text-end'>15.35</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>-85.8%</td><td class='text-end'>0.31</td><td class='text-end'>15.30</td><td class='text-end text-danger fw-bold'>14.74</td><td class='text-end'>32</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,579</td></tr>
+<tr><td>46</td><td><b>6485</b></td><td>點序</td><td>半導體業</td><td class='text-end'>87.60</td><td class='text-center'><span class='badge bg-light text-muted'>Normal</span></td><td class='text-end'>10.5%</td><td class='text-end'>4.65</td><td class='text-end'>86.00</td><td class='text-end text-danger fw-bold'>78.31</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>627</td></tr></tbody>
+    </table>
+  </div>
+
+  <p class="text-muted text-center mt-4" style="font-size:.8rem">
+    FinMind V5 · 海龜交易法則策略 · 資料來源：本地 FinMind DB
+    · 僅供研究參考，不構成投資建議
+  </p>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      ['tbl_sys2', 'tbl_sys1'].forEach(function(id) {
+        if ($('#' + id + ' tbody tr td').length > 1) {
+          $('#' + id).DataTable({
+            pageLength: 25,
+            order: [[0, 'asc']],
+            language: { url: '' }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

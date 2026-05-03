@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETF 定期定額建議 — 2026-05-02</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+  background: #f0f2f5; color: #333; font-size: 14px; line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #0d3b66, #1a6fa3);
+  color: #fff; padding: 28px 48px;
+}
+header h1 { font-size: 1.7rem; font-weight: 800; margin-bottom: 6px; }
+header p  { opacity: .8; font-size: .9rem; }
+.badge {
+  display: inline-block; background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25); border-radius: 20px;
+  padding: 3px 12px; font-size: .75rem; margin-top: 10px; margin-right: 6px;
+}
+
+main { max-width: 1100px; margin: 28px auto; padding: 0 24px; }
+
+.section { margin-bottom: 32px; }
+.section-title {
+  font-size: 1rem; font-weight: 700; color: #0d3b66;
+  margin-bottom: 14px; padding: 6px 14px;
+  background: #e8f4fd; border-radius: 6px; display: inline-block;
+}
+
+/* 季配拼圖 */
+.puzzle-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 860px) { .puzzle-grid { grid-template-columns: 1fr; } }
+
+.group-card {
+  background: #fff; border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.07); overflow: hidden;
+}
+.group-header {
+  background: #0d3b66; color: #fff;
+  padding: 10px 16px; font-weight: 700; font-size: .9rem;
+}
+.group-body { padding: 14px 16px; }
+
+.candidate {
+  border: 1px solid #e0e0e0; border-radius: 8px;
+  padding: 10px 14px; margin-bottom: 10px;
+  position: relative;
+}
+.candidate.recommend { border-color: #1a6fa3; background: #f0f7ff; }
+.recommend-badge {
+  position: absolute; top: 8px; right: 10px;
+  background: #1a6fa3; color: #fff;
+  font-size: .7rem; padding: 2px 8px; border-radius: 10px;
+}
+.cname { font-weight: 700; color: #0d3b66; font-size: .95rem; }
+.csub  { font-size: .8rem; color: #666; margin-top: 2px; }
+.kpi-row { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+.kpi { text-align: center; min-width: 60px; }
+.kpi-val { font-size: 1.05rem; font-weight: 700; color: #0d3b66; display: block; }
+.kpi-lbl { font-size: .7rem; color: #888; }
+.green-val { color: #2e7d32; }
+.red-val   { color: #c62828; }
+.orange-val{ color: #e65100; }
+
+/* 月配組合 */
+.monthly-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 760px) { .monthly-grid { grid-template-columns: 1fr; } }
+
+.monthly-card {
+  background: #fff; border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,.06); padding: 16px;
+  border-top: 4px solid #1a6fa3;
+}
+.monthly-card.top { border-top-color: #2e7d32; }
+.monthly-card.obs { border-top-color: #bdbdbd; }
+
+/* 正2 燈號 */
+.signal-box {
+  background: #fff; border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.07);
+  padding: 20px 24px; display: flex; align-items: center; gap: 24px;
+  flex-wrap: wrap;
+}
+.signal-light {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; flex-shrink: 0;
+}
+.light-green  { background: #e8f5e9; }
+.light-yellow { background: #fff9c4; }
+.light-red    { background: #ffebee; }
+.signal-detail { flex: 1; }
+.signal-title { font-weight: 700; font-size: 1rem; color: #0d3b66; }
+.signal-desc  { font-size: .85rem; color: #555; margin-top: 4px; }
+.ma-row { display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
+.ma-item { font-size: .85rem; }
+
+/* Watchlist 對比 */
+.watch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 680px) { .watch-grid { grid-template-columns: 1fr; } }
+
+.watch-card {
+  background: #fff; border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.07); padding: 18px 22px;
+}
+.watch-ticker { font-size: 1.4rem; font-weight: 900; color: #0d3b66; }
+.watch-name   { font-size: .85rem; color: #888; margin-top: 2px; }
+.watch-price  { font-size: 2rem; font-weight: 800; color: #1a1a2e; margin: 8px 0 4px; }
+.watch-kpi-row { display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+.watch-kpi { text-align: center; flex: 1; min-width: 72px; }
+.watch-kpi-val { font-size: 1.1rem; font-weight: 700; color: #0d3b66; display: block; }
+.watch-kpi-lbl { font-size: .7rem; color: #999; }
+.tag { display: inline-block; font-size: .72rem; border-radius: 4px; padding: 1px 8px; font-weight: 600; margin-top: 6px; }
+.tag-blue  { background: #e8f4fd; color: #1a6fa3; }
+.tag-green { background: #e8f5e9; color: #2e7d32; }
+.tag-gray  { background: #f5f5f5; color: #757575; }
+
+.note-box {
+  background: #fff8e1; border-left: 4px solid #f9a825;
+  border-radius: 6px; padding: 10px 14px; margin-top: 12px;
+  font-size: .82rem; color: #555;
+}
+
+footer { text-align: center; color: #bbb; font-size: .75rem; padding: 28px 0 36px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📅 ETF 定期定額建議系統</h1>
+  <p>季配拼圖 · 月配組合 · 正2 警示燈 · 長期觀察追蹤</p>
+  <div style="margin-top:10px">
+    <span class="badge">資料日期 2026-05-02</span>
+    <span class="badge">季配 A:0056 B:00878 C:00919</span>
+    <span class="badge">月配推薦 00940</span>
+    <span class="badge">⚪ 正2：無訊號</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- 季配拼圖 -->
+  <div class="section">
+    <div class="section-title">🧩 季配拼圖（A+B+C 組合 → 月月有配息）</div>
+    <div class="puzzle-grid">
+<div class="group-card">
+  <div class="group-header" style="background:#0d3b66">
+    A 組（除息月：1 / 4 / 7 / 10 月）
+  </div>
+  <div class="group-body">
+    
+<div class="candidate recommend">
+  <span class="recommend-badge">推薦</span>
+  <div class="cname">0056 元大高股息</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <span class="kpi-val green-val">9.47%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val orange-val">砍息1次</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">5761.2億</span>
+      <span class="kpi-lbl">市值</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">8.0</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="group-card">
+  <div class="group-header" style="background:#1a5276">
+    B 組（除息月：2 / 5 / 8 / 11 月）
+  </div>
+  <div class="group-body">
+    
+<div class="candidate recommend">
+  <span class="recommend-badge">推薦</span>
+  <div class="cname">00878 國泰永續高股息</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <span class="kpi-val green-val">6.97%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val green-val">無砍息</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">4835.6億</span>
+      <span class="kpi-lbl">市值</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">10.0</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="group-card">
+  <div class="group-header" style="background:#154360">
+    C 組（除息月：3 / 6 / 9 / 12 月）
+  </div>
+  <div class="group-body">
+    
+<div class="candidate recommend">
+  <span class="recommend-badge">推薦</span>
+  <div class="cname">00919 群益台灣精選高息</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <span class="kpi-val green-val">10.91%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val green-val">無砍息</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">4465.5億</span>
+      <span class="kpi-lbl">市值</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">10.0</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div>
+<div class="candidate">
+  
+  <div class="cname">00713 元大台灣高息低波</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <span class="kpi-val green-val">7.68%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val green-val">無砍息</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">1088.2億</span>
+      <span class="kpi-lbl">市值</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">10.0</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div>
+<div class="candidate">
+  
+  <div class="cname">00915 凱基優選高股息30</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <span class="kpi-val green-val">4.96%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val red-val">砍息3次</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">176.3億</span>
+      <span class="kpi-lbl">市值</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">5.5</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div>
+  </div>
+</div></div>
+  </div>
+
+  <!-- 月配組合 -->
+  <div class="section">
+    <div class="section-title">📆 月配組合候選</div>
+    <div class="monthly-grid">
+<div class="monthly-card obs">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <div class="cname">00940 元大台灣價值高息</div>
+      <div class="csub">月配息 ETF</div>
+    </div>
+    <span class="tag tag-gray">觀察中</span>
+  </div>
+  <div class="kpi-row" style="margin-top:12px">
+    <div class="kpi">
+      <span class="kpi-val green-val">1.74%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val green-val">無砍息</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">7.9</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div>
+<div class="monthly-card top">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <div class="cname">00929 復華台灣科技優息</div>
+      <div class="csub">月配息 ETF</div>
+    </div>
+    <span class="tag tag-green">主選</span>
+  </div>
+  <div class="kpi-row" style="margin-top:12px">
+    <div class="kpi">
+      <span class="kpi-val green-val">1.75%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val orange-val">砍息1次</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">5.9</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div>
+<div class="monthly-card monthly-card">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <div class="cname">00934 中信成長高股息</div>
+      <div class="csub">月配息 ETF</div>
+    </div>
+    <span class="tag tag-blue">備選</span>
+  </div>
+  <div class="kpi-row" style="margin-top:12px">
+    <div class="kpi">
+      <span class="kpi-val green-val">2.14%</span>
+      <span class="kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val red-val">砍息2次</span>
+      <span class="kpi-lbl">穩定度</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val ">無資料</span>
+      <span class="kpi-lbl">折溢價</span>
+    </div>
+    <div class="kpi">
+      <span class="kpi-val">4.1</span>
+      <span class="kpi-lbl">評分</span>
+    </div>
+  </div>
+</div></div>
+  </div>
+
+  <!-- 正2 警示燈 -->
+  <div class="section">
+    <div class="section-title">⚠️ 正2 ETF 持有訊號（00631L 元大台灣50正2）</div>
+    
+<div class="signal-box">
+  <div class="signal-light light-green">🟢</div>
+  <div class="signal-detail">
+    <div class="signal-title" style="color:#2e7d32">✅ 可進場（條件滿足）</div>
+    <div class="signal-desc">目前無退出訊號，可依計劃持有或加碼</div>
+    <div class="ma-row">
+      <div class="ma-item">TAIEX <b>38,927</b></div>
+      <div class="ma-item green-val">MA60 <b>34,265</b></div>
+      <div class="ma-item green-val">MA120 <b>31,354</b></div>
+      <div class="ma-item green-val">融資維持率 <b>185.5%</b></div>
+    </div>
+  </div>
+</div>
+  </div>
+
+  <!-- Watchlist -->
+  <div class="section">
+    <div class="section-title">🔍 長期觀察：0050 vs 009816 凱基台灣TOP50</div>
+    <div class="watch-grid">
+<div class="watch-card">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div>
+      <div class="watch-ticker">0050</div>
+      <div class="watch-name">元大台灣50</div>
+    </div>
+    <span class="tag tag-green">含配息再投入</span>
+  </div>
+  <div class="watch-price">90.50 <span style="font-size:.9rem;color:#888">元</span></div>
+  <div style="font-size:.78rem;color:#aaa">52週 46.28 ~ 188.9</div>
+
+  <div class="watch-kpi-row">
+    <div class="watch-kpi">
+      <span class="watch-kpi-val" style="color:#2e7d32;font-weight:700">+24.06%</span>
+      <span class="watch-kpi-lbl">自2026-02-03起</span>
+    </div>
+    <div class="watch-kpi">
+      <span class="watch-kpi-val" style="color:#2e7d32;font-weight:700">+35.18%</span>
+      <span class="watch-kpi-lbl">YTD</span>
+    </div>
+    <div class="watch-kpi">
+      <span class="watch-kpi-val">7.8%</span>
+      <span class="watch-kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="watch-kpi">
+      <span class="watch-kpi-val">16738億</span>
+      <span class="watch-kpi-lbl">規模</span>
+    </div>
+  </div>
+</div>
+<div class="watch-card">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start">
+    <div>
+      <div class="watch-ticker">009816</div>
+      <div class="watch-name">凱基台灣TOP50</div>
+    </div>
+    <span class="tag tag-blue">累積型・不配息</span>
+  </div>
+  <div class="watch-price">13.05 <span style="font-size:.9rem;color:#888">元</span></div>
+  <div style="font-size:.78rem;color:#aaa">52週 9.95 ~ 13.35</div>
+
+  <div class="watch-kpi-row">
+    <div class="watch-kpi">
+      <span class="watch-kpi-val" style="color:#2e7d32;font-weight:700">+27.07%</span>
+      <span class="watch-kpi-lbl">自2026-02-03起</span>
+    </div>
+    <div class="watch-kpi">
+      <span class="watch-kpi-val" style="color:#2e7d32;font-weight:700">+27.07%</span>
+      <span class="watch-kpi-lbl">YTD</span>
+    </div>
+    <div class="watch-kpi">
+      <span class="watch-kpi-val">N/A（不配息）</span>
+      <span class="watch-kpi-lbl">年化殖利率</span>
+    </div>
+    <div class="watch-kpi">
+      <span class="watch-kpi-val">1049億</span>
+      <span class="watch-kpi-lbl">規模</span>
+    </div>
+  </div>
+</div></div>
+<div class="note-box">
+  📌 <b>比較說明</b>：0050 報酬含除息日配息再投入（總報酬），009816 凱基台灣TOP50 為累積型 ETF（不配息，配息直接反映在淨值成長），
+  兩者自 2026-02-03（009816 上市日）起以相同起點比較，可判斷低費率累積型（年費 0.097%）vs 配息型（年費 ~0.335%）的實際差距。
+</div>
+  </div>
+
+</main>
+
+<footer>
+  ETF 定期定額建議系統 · FinMind V5 · 資料日期 2026-05-02 · 僅供個人投資參考
+</footer>
+
+</body>
+</html>

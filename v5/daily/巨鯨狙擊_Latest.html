@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>巨鯨狙擊策略 報表</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { font-family: "Microsoft JhengHei", sans-serif; background: #f4f7fa; padding: 20px; }
+    .page-header {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      color: #fff; border-radius: 12px; padding: 28px 36px; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: #fff; border-radius: 10px; padding: 16px 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06); text-align: center;
+    }
+    .stat-card .num { font-size: 2.2rem; font-weight: 800; color: #b21f1f; }
+    .stat-card .lbl { font-size: .8rem; color: #6c757d; }
+    .section-title {
+      font-size: 1rem; font-weight: 700; margin: 24px 0 12px;
+      padding: 6px 14px; background: #1a2a6c; color: #fff; border-radius: 6px;
+    }
+    table td, table th { text-align: center !important; vertical-align: middle !important; }
+    #whale_table_wrapper { background: #fff; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .criteria-list { font-size: 0.85rem; color: #444; }
+    .badge { font-size: 0.75rem; padding: 4px 8px; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>🐋 巨鯨狙擊策略</h1>
+  <div class="sub">追蹤 1000 張大戶每週異動 · 結合技術面與營收動能 · 掃描時間：2026-05-02 23:11</div>
+  <div class="sub mt-1">股權分散表最新日期：2026-04-17</div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="stat-card">
+      <div class="num">7</div>
+      <div class="lbl">符合條件標的</div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="stat-card text-start">
+      <div class="lbl fw-bold mb-2">篩選邏輯：</div>
+      <div class="criteria-list row">
+        <div class="col-md-6">
+          • C1 大戶：當週持股增幅 +1.5% ~ +10.0%<br>
+          • C2 連3：連續 3 週大戶持股未出清 (增幅≥0)<br>
+          • C3 散戶：當週散戶持股增幅 ≤ +0.3%<br>
+          • C4 技術：收盤價 > 前日收盤 或 > SMA20
+        </div>
+        <div class="col-md-6">
+          • C5 位置：股價 < 52週均價之 1.5 倍<br>
+          • C6 追高：3 週內漲幅 ≤ 15%<br>
+          • C7 營收：評級為 <span class="badge bg-danger">Excellent</span> 或 <span class="badge bg-success">Good</span><br>
+          • <small class="text-muted">Excellent: YoY>15% & MoM增 | Good: YoY>0 或 MoM增</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">✅ 全部通過標的（依大戶增幅排行）</div>
+<div id="whale_table_wrapper">
+  <table border="1" class="dataframe table table-bordered table-hover table-sm" id="whale_table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>排行</th>
+      <th>股票代號</th>
+      <th>股票名稱</th>
+      <th>產業別</th>
+      <th>基本面</th>
+      <th>股價</th>
+      <th>大戶增幅%</th>
+      <th>散戶增幅%</th>
+      <th>大戶持股%</th>
+      <th>SMA20</th>
+      <th>營收YoY%</th>
+      <th>通過條件</th>
+      <th>C1大戶</th>
+      <th>C2連3</th>
+      <th>C3散戶</th>
+      <th>C4技術</th>
+      <th>C5位置</th>
+      <th>C6追高</th>
+      <th>C7營收</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>3057</td>
+      <td>喬鼎</td>
+      <td>電子工業</td>
+      <td><span class='badge bg-danger'>Excellent</span></td>
+      <td>18.60</td>
+      <td>8.83</td>
+      <td>-3.32</td>
+      <td>29.32</td>
+      <td>16.97</td>
+      <td>15.7</td>
+      <td>7</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>6222</td>
+      <td>立軒</td>
+      <td>光電業</td>
+      <td><span class='badge bg-success'>Good</span></td>
+      <td>20.75</td>
+      <td>5.50</td>
+      <td>-0.57</td>
+      <td>84.52</td>
+      <td>20.72</td>
+      <td>-30.0</td>
+      <td>7</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>8437</td>
+      <td>大地-KY</td>
+      <td>其他</td>
+      <td><span class='badge bg-success'>Good</span></td>
+      <td>12.50</td>
+      <td>2.19</td>
+      <td>-0.08</td>
+      <td>25.18</td>
+      <td>12.63</td>
+      <td>13.0</td>
+      <td>7</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>2488</td>
+      <td>漢平</td>
+      <td>其他電子業</td>
+      <td><span class='badge bg-success'>Good</span></td>
+      <td>50.80</td>
+      <td>2.11</td>
+      <td>-0.27</td>
+      <td>45.33</td>
+      <td>49.12</td>
+      <td>31.9</td>
+      <td>7</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>5284</td>
+      <td>jpp-KY</td>
+      <td>其他</td>
+      <td><span class='badge bg-danger'>Excellent</span></td>
+      <td>318.50</td>
+      <td>2.06</td>
+      <td>-2.13</td>
+      <td>49.81</td>
+      <td>290.77</td>
+      <td>38.5</td>
+      <td>7</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>1527</td>
+      <td>鑽全</td>
+      <td>電機機械</td>
+      <td><span class='badge bg-success'>Good</span></td>
+      <td>33.00</td>
+      <td>1.83</td>
+      <td>-0.05</td>
+      <td>25.79</td>
+      <td>32.57</td>
+      <td>-18.0</td>
+      <td>7</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>6753</td>
+      <td>龍德造船</td>
+      <td>航運業</td>
+      <td><span class='badge bg-success'>Good</span></td>
+      <td>138.50</td>
+      <td>1.54</td>
+      <td>-0.58</td>
+      <td>55.42</td>
+      <td>130.22</td>
+      <td>16.6</td>
+      <td>7</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>✓</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script>
+$(document).ready(function() {
+  if ($('#whale_table tbody tr').length > 0) {
+    $('#whale_table').DataTable({
+      language: { url: "//cdn.datatables.net/plug-ins/1.13.7/i18n/zh-HANT.json" },
+      pageLength: 25,
+      scrollX: true,
+      order: [[0, 'asc']]
+    });
+  }
+});
+</script>
+</body>
+</html>

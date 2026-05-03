@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>策略績效中控台 - Strategy Hub</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { font-family: "Microsoft JhengHei", sans-serif; background:#f4f7f6; padding:30px; }
+    .header { margin-bottom:40px; text-align:center; }
+    .header h1 { font-weight:bold; color:#1a1a2e; }
+
+    .strategy-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap:25px; }
+    .strategy-card {
+        background:#fff; border-radius:15px; overflow:hidden;
+        box-shadow:0 10px 20px rgba(0,0,0,0.05); transition:transform 0.3s;
+        border: none;
+    }
+    .strategy-card:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.1); }
+    .card-header { background:#1a1a2e; color:#fff; padding:15px 20px; font-weight:bold; font-size:1.1rem; border:none; }
+    .card-header.disabled { background:#9e9e9e; }
+    .card-body { padding:20px; }
+    .card-body.disabled { opacity:.55; }
+
+    .kpi-row { display:flex; justify-content:space-between; margin-bottom:15px; }
+    .kpi-item { text-align:center; flex:1; }
+    .kpi-val { display:block; font-size:1.4rem; font-weight:bold; color:#1a1a2e; }
+    .kpi-lbl { font-size:0.75rem; color:#888; text-transform:uppercase; font-weight:bold; }
+
+    .btn-detail {
+        display:block; width:100%; padding:10px; text-align:center;
+        background:#f8f9fa; color:#1a1a2e; text-decoration:none;
+        border-radius:8px; font-weight:bold; margin-top:15px;
+        transition: background 0.2s;
+    }
+    .btn-detail:hover { background:#e9ecef; }
+
+    .pos-val { color:#26A069; }
+    .neg-val { color:#E53935; }
+    .badge-status { float:right; font-size:0.7rem; padding:4px 8px; border-radius:20px; background:rgba(255,255,255,0.2); }
+
+    .divider-label {
+        display:flex; align-items:center; gap:14px;
+        margin: 40px 0 24px; color:#9e9e9e; font-size:.85rem; font-weight:700;
+        letter-spacing:.08em; text-transform:uppercase;
+    }
+    .divider-label::before, .divider-label::after {
+        content:""; flex:1; height:1px; background:#d0d0d0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🚀 策略績效中控台 (Strategy Performance Hub)</h1>
+    <p class="text-muted">資料更新時間：2026-05-02 23:11:22</p>
+  </div>
+
+  <div class="container">
+    <div class="strategy-grid">
+      
+    <div class="strategy-card">
+      <div class="card-header">
+        高殖利率_防禦型
+        <span class="badge-status">RUNNING</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small" style="height:40px;">篩選穩定配息、財務健全之價值標的。</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val">12</span>
+            <span class="kpi-lbl">觀測中</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val pos-val">0.57%</span>
+            <span class="kpi-lbl">平均 Alpha</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val">0%</span>
+            <span class="kpi-lbl">結算勝率</span>
+          </div>
+        </div>
+        <a href="observatory_high_yield_defensive.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    <div class="strategy-card">
+      <div class="card-header">
+        法人追蹤策略
+        <span class="badge-status">RUNNING</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small" style="height:40px;">外資連買 3 日 + MA20 + 大盤濾網 + 月營收年增率 + 量能確認。</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val">21</span>
+            <span class="kpi-lbl">觀測中</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val neg-val">-0.2%</span>
+            <span class="kpi-lbl">平均 Alpha</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val">0%</span>
+            <span class="kpi-lbl">結算勝率</span>
+          </div>
+        </div>
+        <a href="observatory_institutional_tracker.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    <div class="strategy-card">
+      <div class="card-header">
+        🐢 海龜法則策略
+        <span class="badge-status">RUNNING</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small" style="height:40px;">SYS1（20日）× SYS2（55日）趨勢突破 · ATR 止損 · 大盤濾網。</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val">25</span>
+            <span class="kpi-lbl">觀測中</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val neg-val">0.0%</span>
+            <span class="kpi-lbl">平均 Alpha</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val">0%</span>
+            <span class="kpi-lbl">結算勝率</span>
+          </div>
+        </div>
+        <a href="observatory_turtle_trading.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    <div class="strategy-card">
+      <div class="card-header">
+        🚀 底部二度突破
+        <span class="badge-status">RUNNING</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small" style="height:40px;">60 日盤整 + 帶量突破 + 回踩 Peak A 再突破。純技術面捕捉黑馬股。</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val">6</span>
+            <span class="kpi-lbl">觀測中</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val neg-val">0.0%</span>
+            <span class="kpi-lbl">平均 Alpha</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val">0%</span>
+            <span class="kpi-lbl">結算勝率</span>
+          </div>
+        </div>
+        <a href="observatory_bottom_breakout.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    <div class="strategy-card">
+      <div class="card-header">
+        💎 價值投資策略
+        <span class="badge-status">RUNNING</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small" style="height:40px;">DCF 巴菲特量化篩選 · 七大條件全通過 · 尋找安全邊際。</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val">10</span>
+            <span class="kpi-lbl">觀測中</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val neg-val">0.0%</span>
+            <span class="kpi-lbl">平均 Alpha</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val">0%</span>
+            <span class="kpi-lbl">結算勝率</span>
+          </div>
+        </div>
+        <a href="observatory_value_investing.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    <div class="strategy-card">
+      <div class="card-header">
+        🐋 巨鯨狙擊策略
+        <span class="badge-status">RUNNING</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small" style="height:40px;">追蹤 1000 張大戶每週異動，捕捉主力建倉訊號。</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val">13</span>
+            <span class="kpi-lbl">觀測中</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val pos-val">2.39%</span>
+            <span class="kpi-lbl">平均 Alpha</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val">0%</span>
+            <span class="kpi-lbl">結算勝率</span>
+          </div>
+        </div>
+        <a href="observatory_whale_sniper.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    </div>
+
+    <div class="divider-label">ETF 策略</div>
+
+    <div class="strategy-grid">
+      
+    <div class="strategy-card">
+      <div class="card-header">
+        ETF 定期定額建議
+        <span class="badge-status">RUNNING</span>
+      </div>
+      <div class="card-body">
+        <p class="text-muted small" style="height:40px;">季配拼圖 (A+B+C) + 月配組合 + 正2 警示燈。以 0050 總報酬作為績效基準。</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val pos-val">24.06%</span>
+            <span class="kpi-lbl">自起點報酬</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val pos-val">35.18%</span>
+            <span class="kpi-lbl">YTD 報酬</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val" style="color:#26A069;font-weight:bold;">可進場</span>
+            <span class="kpi-lbl">正2 訊號</span>
+          </div>
+        </div>
+        <a href="etf_dca_observatory.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    </div>
+
+    <div class="divider-label">停用策略</div>
+
+    <div class="strategy-grid">
+      
+    <div class="strategy-card">
+      <div class="card-header disabled">
+        法人動能意圖策略
+        <span class="badge-status">停用</span>
+      </div>
+      <div class="card-body disabled">
+        <p class="text-muted small" style="height:40px;">籌碼三位一體：法人連買 + 借券回補 + 融資退場。（已停用：網格搜索全 12 組合報酬接近零）</p>
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <span class="kpi-val">33</span>
+            <span class="kpi-lbl">觀測中</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val neg-val">-0.61%</span>
+            <span class="kpi-lbl">平均 Alpha</span>
+          </div>
+          <div class="kpi-item">
+            <span class="kpi-val">0%</span>
+            <span class="kpi-lbl">結算勝率</span>
+          </div>
+        </div>
+        <a href="observatory_institutional_momentum.html" class="btn-detail">查看完整分析 →</a>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+
+  <footer class="mt-5 text-center text-muted" style="font-size:0.8rem;">
+    FinMind V5 Performance Monitoring System &copy; 2026
+  </footer>
+</body>
+</html>

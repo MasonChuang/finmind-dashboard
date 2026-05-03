@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法人追蹤策略 - FinMind V5</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+       background: #f4f7fa; color: #333; font-size: 16px; }
+.header {
+  background: linear-gradient(135deg, #0d3b66, #1a6fa3);
+  color: #fff; padding: 32px 48px; border-radius: 0 0 16px 16px;
+}
+.header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 6px; }
+.header p  { opacity: .85; font-size: .9rem; }
+.stats-row { display: flex; flex-wrap: wrap; gap: 14px; padding: 20px 48px 0; }
+.stat-card {
+  background: #fff; border-radius: 10px; padding: 14px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06); min-width: 150px; flex: 1;
+}
+.stat-card .label { font-size: .75rem; color: #888; margin-bottom: 4px; }
+.stat-card .value { font-size: 1.5rem; font-weight: 800; color: #0d3b66; }
+.section { padding: 24px 48px 0; }
+.section h2 {
+  font-size: .95rem; font-weight: 700;
+  margin-bottom: 12px; padding: 6px 12px;
+  background: #e8f4fd; color: #0d3b66;
+  border-radius: 6px; display: inline-block;
+}
+table { width: 100%; border-collapse: collapse; background: #fff;
+        border-radius: 12px; overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+th {
+  background: #f0f4f8; color: #555; font-size: .88rem;
+  font-weight: 700; padding: 12px 14px; text-align: left;
+  border-bottom: 2px solid #e0e8f0; white-space: nowrap;
+}
+td { padding: 12px 14px; border-bottom: 1px solid #f0f4f8;
+     vertical-align: middle; font-size: .95rem; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafcff; }
+td.right { text-align: right; font-variant-numeric: tabular-nums; }
+td.center { text-align: center; }
+.rank { font-size: 1.1rem; font-weight: 800; color: #0d3b66; }
+.stock-id   { font-size: 1rem; font-weight: 700; color: #0d3b66; }
+.stock-name { font-size: .9rem; color: #555; }
+.score-bar {
+  display: inline-block; height: 8px; background: #1a6fa3;
+  border-radius: 4px; vertical-align: middle; margin-right: 4px;
+}
+.note-box {
+  background: #e8f4fd; border-left: 4px solid #1a6fa3;
+  padding: 14px 18px; border-radius: 6px; font-size: .85rem;
+  line-height: 1.7; margin-bottom: 16px; color: #555;
+}
+.no-signal { text-align: center; padding: 32px; color: #aaa; font-size: .95rem; }
+.footer {
+  margin: 28px 48px 36px; text-align: center;
+  color: #bbb; font-size: .76rem;
+}
+@media (max-width: 768px) {
+  .header, .section, .stats-row, .footer { padding-left: 16px; padding-right: 16px; }
+  table { font-size: .8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>法人追蹤策略</h1>
+  <p>三大法人買超追蹤 · 外資連買 + MA20 + 大盤濾網 + 月營收年增 + 量能確認</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="label">入場候選股數</div>
+    <div class="value">30</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">外資連買天數門檻</div>
+    <div class="value" style="font-size:1.1rem">3 天</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">固定停損</div>
+    <div class="value" style="font-size:1.1rem">15%</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">動態停利</div>
+    <div class="value" style="font-size:1.1rem">20%</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">法人資料截至</div>
+    <div class="value" style="font-size:1rem">2026-04-30</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">掃描時間</div>
+    <div class="value" style="font-size:.9rem">2026-04-30 22:13</div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <div class="note-box">
+    <strong>入場條件：</strong>
+    外資連續 3 天淨買超
+    ＋ 個股收盤 &gt; MA20
+    ＋ 大盤 TAIEX &gt; MA20
+    ＋ 月營收年增率 &gt; 0%
+    ＋ 買超日成交量 &gt; 20日均量 × 1.2x。
+    <br>
+    <strong>評分：</strong>外資近 3 日累積淨買超（投信加分 20%、自營商加分 5%）。
+    <br>
+    <strong>出場：</strong>固定停損 15% ／
+    動態停利 20% ／
+    外資連續 2 日賣超。
+  </div>
+</div>
+
+<div class="section">
+  <h2>入場候選股（依評分排序）</h2>
+  
+    <table>
+      <thead><tr>
+        <th class="center">排行</th>
+        <th>股票代號</th>
+        <th>股票名稱</th>
+        <th>產業別</th>
+        <th class="right">收盤價</th>
+        <th class="right">MA20</th>
+        <th class="right">評分</th>
+        <th class="right">外資近3日淨買超</th>
+        <th class="right">投信近3日</th>
+        <th class="right">自營商</th>
+        <th class="right">外資連買天數</th>
+      </tr></thead>
+      <tbody>
+    
+        <tr>
+          <td class="center"><span class="rank">#1</span></td>
+          <td><span class="stock-id">2883</span></td>
+          <td><span class="stock-name">凱基金</span></td>
+          <td>金融保險</td>
+          <td class="right">21.50</td>
+          <td class="right">20.83</td>
+          <td class="right"><span class="score-bar" style="width:60px"></span>92,771,572</td>
+          <td class="right">88,353,878</td>
+          <td class="right">-5,248,350</td>
+          <td class="right">210,244</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#2</span></td>
+          <td><span class="stock-id">1560</span></td>
+          <td><span class="stock-name">中砂</span></td>
+          <td>電機機械</td>
+          <td class="right">540.00</td>
+          <td class="right">514.70</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>2,735,070</td>
+          <td class="right">2,188,056</td>
+          <td class="right">243,000</td>
+          <td class="right">127,004</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#3</span></td>
+          <td><span class="stock-id">6015</span></td>
+          <td><span class="stock-name">宏遠證</span></td>
+          <td>金融業</td>
+          <td class="right">14.20</td>
+          <td class="right">13.49</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>2,409,700</td>
+          <td class="right">2,409,700</td>
+          <td class="right">0</td>
+          <td class="right">0</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#4</span></td>
+          <td><span class="stock-id">3498</span></td>
+          <td><span class="stock-name">陽程</span></td>
+          <td>其他電子類</td>
+          <td class="right">87.70</td>
+          <td class="right">81.12</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>2,385,600</td>
+          <td class="right">2,272,000</td>
+          <td class="right">0</td>
+          <td class="right">62,982</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#5</span></td>
+          <td><span class="stock-id">3023</span></td>
+          <td><span class="stock-name">信邦</span></td>
+          <td>電子工業</td>
+          <td class="right">283.50</td>
+          <td class="right">275.40</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>2,373,385</td>
+          <td class="right">2,260,367</td>
+          <td class="right">-593,406</td>
+          <td class="right">30,332</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#6</span></td>
+          <td><span class="stock-id">3680</span></td>
+          <td><span class="stock-name">家登</span></td>
+          <td>半導體業</td>
+          <td class="right">537.00</td>
+          <td class="right">438.43</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>2,273,758</td>
+          <td class="right">2,165,484</td>
+          <td class="right">0</td>
+          <td class="right">136,528</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#7</span></td>
+          <td><span class="stock-id">5864</span></td>
+          <td><span class="stock-name">致和證</span></td>
+          <td>金融業</td>
+          <td class="right">28.50</td>
+          <td class="right">25.21</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>2,184,886</td>
+          <td class="right">2,184,886</td>
+          <td class="right">0</td>
+          <td class="right">0</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#8</span></td>
+          <td><span class="stock-id">6197</span></td>
+          <td><span class="stock-name">佳必琪</span></td>
+          <td>電子工業</td>
+          <td class="right">208.00</td>
+          <td class="right">182.15</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>1,729,185</td>
+          <td class="right">1,729,185</td>
+          <td class="right">0</td>
+          <td class="right">-162,898</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#9</span></td>
+          <td><span class="stock-id">6446</span></td>
+          <td><span class="stock-name">藥華藥</span></td>
+          <td>生技醫療業</td>
+          <td class="right">661.00</td>
+          <td class="right">641.15</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>1,243,888</td>
+          <td class="right">1,036,573</td>
+          <td class="right">54,160</td>
+          <td class="right">-9,506</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#10</span></td>
+          <td><span class="stock-id">6412</span></td>
+          <td><span class="stock-name">群電</span></td>
+          <td>電子工業</td>
+          <td class="right">81.00</td>
+          <td class="right">77.85</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>1,102,646</td>
+          <td class="right">1,050,139</td>
+          <td class="right">-1,523,402</td>
+          <td class="right">12,225</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#11</span></td>
+          <td><span class="stock-id">6125</span></td>
+          <td><span class="stock-name">廣運</span></td>
+          <td>光電業</td>
+          <td class="right">55.80</td>
+          <td class="right">54.81</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>654,202</td>
+          <td class="right">623,050</td>
+          <td class="right">0</td>
+          <td class="right">3,875</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#12</span></td>
+          <td><span class="stock-id">4542</span></td>
+          <td><span class="stock-name">科嶠</span></td>
+          <td>電子零組件業</td>
+          <td class="right">199.00</td>
+          <td class="right">173.78</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>570,600</td>
+          <td class="right">570,600</td>
+          <td class="right">0</td>
+          <td class="right">-6,229</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#13</span></td>
+          <td><span class="stock-id">5464</span></td>
+          <td><span class="stock-name">霖宏</span></td>
+          <td>電子零組件業</td>
+          <td class="right">33.00</td>
+          <td class="right">30.33</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>426,000</td>
+          <td class="right">426,000</td>
+          <td class="right">0</td>
+          <td class="right">0</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#14</span></td>
+          <td><span class="stock-id">4543</span></td>
+          <td><span class="stock-name">萬在</span></td>
+          <td>電機機械</td>
+          <td class="right">38.50</td>
+          <td class="right">36.00</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>405,000</td>
+          <td class="right">405,000</td>
+          <td class="right">0</td>
+          <td class="right">-654</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#15</span></td>
+          <td><span class="stock-id">4949</span></td>
+          <td><span class="stock-name">有成精密</span></td>
+          <td>光電業</td>
+          <td class="right">105.50</td>
+          <td class="right">85.83</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>389,025</td>
+          <td class="right">370,500</td>
+          <td class="right">-1,000</td>
+          <td class="right">26,966</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#16</span></td>
+          <td><span class="stock-id">6937</span></td>
+          <td><span class="stock-name">天虹</span></td>
+          <td>半導體業</td>
+          <td class="right">331.00</td>
+          <td class="right">295.50</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>380,872</td>
+          <td class="right">362,735</td>
+          <td class="right">0</td>
+          <td class="right">100,211</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#17</span></td>
+          <td><span class="stock-id">2850</span></td>
+          <td><span class="stock-name">新產</span></td>
+          <td>金融保險</td>
+          <td class="right">133.00</td>
+          <td class="right">123.50</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>372,750</td>
+          <td class="right">355,000</td>
+          <td class="right">-146,000</td>
+          <td class="right">12,017</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#18</span></td>
+          <td><span class="stock-id">1591</span></td>
+          <td><span class="stock-name">駿吉-KY</span></td>
+          <td>電機機械</td>
+          <td class="right">64.90</td>
+          <td class="right">56.33</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>268,000</td>
+          <td class="right">268,000</td>
+          <td class="right">0</td>
+          <td class="right">-35,513</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#19</span></td>
+          <td><span class="stock-id">6579</span></td>
+          <td><span class="stock-name">研揚</span></td>
+          <td>電子工業</td>
+          <td class="right">121.50</td>
+          <td class="right">117.33</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>256,200</td>
+          <td class="right">244,000</td>
+          <td class="right">0</td>
+          <td class="right">1,000</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#20</span></td>
+          <td><span class="stock-id">3057</span></td>
+          <td><span class="stock-name">喬鼎</span></td>
+          <td>電子工業</td>
+          <td class="right">20.15</td>
+          <td class="right">18.05</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>199,000</td>
+          <td class="right">199,000</td>
+          <td class="right">0</td>
+          <td class="right">-14,000</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#21</span></td>
+          <td><span class="stock-id">9940</span></td>
+          <td><span class="stock-name">信義</span></td>
+          <td>其他</td>
+          <td class="right">20.00</td>
+          <td class="right">19.99</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>195,000</td>
+          <td class="right">195,000</td>
+          <td class="right">0</td>
+          <td class="right">-5,000</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#22</span></td>
+          <td><span class="stock-id">2425</span></td>
+          <td><span class="stock-name">承啟</span></td>
+          <td>電子工業</td>
+          <td class="right">30.30</td>
+          <td class="right">29.13</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>179,550</td>
+          <td class="right">171,000</td>
+          <td class="right">0</td>
+          <td class="right">3,000</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#23</span></td>
+          <td><span class="stock-id">6204</span></td>
+          <td><span class="stock-name">艾華</span></td>
+          <td>電子零組件業</td>
+          <td class="right">71.50</td>
+          <td class="right">64.34</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>164,850</td>
+          <td class="right">157,000</td>
+          <td class="right">0</td>
+          <td class="right">216</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#24</span></td>
+          <td><span class="stock-id">8121</span></td>
+          <td><span class="stock-name">越峰</span></td>
+          <td>電子零組件業</td>
+          <td class="right">28.50</td>
+          <td class="right">26.07</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>151,000</td>
+          <td class="right">151,000</td>
+          <td class="right">0</td>
+          <td class="right">-720</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#25</span></td>
+          <td><span class="stock-id">8071</span></td>
+          <td><span class="stock-name">能率網通</span></td>
+          <td>電子零組件業</td>
+          <td class="right">16.40</td>
+          <td class="right">16.13</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>135,000</td>
+          <td class="right">135,000</td>
+          <td class="right">0</td>
+          <td class="right">0</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#26</span></td>
+          <td><span class="stock-id">6118</span></td>
+          <td><span class="stock-name">建達</span></td>
+          <td>電子通路業</td>
+          <td class="right">17.85</td>
+          <td class="right">17.44</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>120,000</td>
+          <td class="right">120,000</td>
+          <td class="right">0</td>
+          <td class="right">-66</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#27</span></td>
+          <td><span class="stock-id">5203</span></td>
+          <td><span class="stock-name">訊連</span></td>
+          <td>資訊服務業</td>
+          <td class="right">65.40</td>
+          <td class="right">63.55</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>107,000</td>
+          <td class="right">107,000</td>
+          <td class="right">0</td>
+          <td class="right">-1,000</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#28</span></td>
+          <td><span class="stock-id">5474</span></td>
+          <td><span class="stock-name">聰泰</span></td>
+          <td>電腦及週邊設備業</td>
+          <td class="right">154.00</td>
+          <td class="right">140.05</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>106,000</td>
+          <td class="right">106,000</td>
+          <td class="right">0</td>
+          <td class="right">-2,648</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#29</span></td>
+          <td><span class="stock-id">6101</span></td>
+          <td><span class="stock-name">寬魚國際</span></td>
+          <td>文化創意業</td>
+          <td class="right">40.45</td>
+          <td class="right">39.40</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>32,000</td>
+          <td class="right">32,000</td>
+          <td class="right">0</td>
+          <td class="right">0</td>
+          <td class="right">3</td>
+        </tr>
+        <tr>
+          <td class="center"><span class="rank">#30</span></td>
+          <td><span class="stock-id">2035</span></td>
+          <td><span class="stock-name">唐榮</span></td>
+          <td>鋼鐵工業</td>
+          <td class="right">28.30</td>
+          <td class="right">15.47</td>
+          <td class="right"><span class="score-bar" style="width:4px"></span>3,000</td>
+          <td class="right">3,000</td>
+          <td class="right">0</td>
+          <td class="right">0</td>
+          <td class="right">3</td>
+        </tr></tbody></table>
+</div>
+
+<div class="footer">
+  報告產出時間：2026-04-30 22:13 · FinMind V5 · 僅供參考，不構成投資建議
+</div>
+
+</body>
+</html>
