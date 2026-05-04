@@ -1,9 +1,12 @@
 <!DOCTYPE html><html lang="zh-TW"><head><meta charset="UTF-8"><title>持倉離場檢核 - FinMind V5</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     body{font-family:"Microsoft JhengHei",sans-serif;background:#f4f7f6;padding:30px}
-    .grand-total{background:#1a1a2e;color:#fff;border-radius:15px;padding:25px;margin-bottom:40px;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+    .grand-total{background:#1a1a2e;color:#fff;border-radius:15px;padding:25px;margin-bottom:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+    .ind-chart-container{background:#fff;border-radius:15px;padding:20px;margin-bottom:40px;box-shadow:0 4px 15px rgba(0,0,0,0.05);max-width:600px;margin-left:auto;margin-right:auto}
     .strategy-section{background:#fff;border-radius:15px;padding:25px;box-shadow:0 4px 15px rgba(0,0,0,0.05)}
+    .criteria-box{background:#fff9f0;border-left:5px solid #ffc107;color:#856404;border-radius:0 8px 8px 0}
     .text-danger{color:#e44d26!important}
     .text-success{color:#27ae60!important}
     .badge{padding:6px 12px;font-weight:600}
@@ -15,17 +18,34 @@
         background-color: #ffffff !important;
     }
 </style></head>
-<body><div class="container-fluid"><div class="d-flex justify-content-between align-items-center mb-4"><h1 class="fw-bold mb-0">🚩 持倉離場檢核</h1><div class="text-end text-muted small">最後更新：2026-05-03 22:32</div></div>
-<div class="grand-total"><div class="row text-center"><div class="col-md-4 border-end border-secondary"><div class="opacity-75 small mb-1">總投入概算</div><div class="h2 fw-bold">NT$ 2,125,275</div></div><div class="col-md-4 border-end border-secondary"><div class="opacity-75 small mb-1">目前總價值</div><div class="h2 fw-bold">NT$ 2,503,444</div></div><div class="col-md-4"><div class="opacity-75 small mb-1">預估總報酬</div><div class="h2 fw-bold text-danger">+17.79%</div></div></div></div>
+<body><div class="container-fluid"><div class="d-flex justify-content-between align-items-center mb-4"><h1 class="fw-bold mb-0">🚩 持倉離場檢核</h1><div class="text-end text-muted small">最後更新：2026-05-04 21:57</div></div>
+<div class="grand-total"><div class="row text-center"><div class="col-md-4 border-end border-secondary"><div class="opacity-75 small mb-1">總投入概算</div><div class="h2 fw-bold">NT$ 1,917,965</div></div><div class="col-md-4 border-end border-secondary"><div class="opacity-75 small mb-1">目前總價值</div><div class="h2 fw-bold">NT$ 2,327,707</div></div><div class="col-md-4"><div class="opacity-75 small mb-1">預估總報酬</div><div class="h2 fw-bold text-danger">+21.36%</div></div></div></div>
+
+<div class="ind-chart-container">
+    <h5 class="text-center fw-bold mb-3">Sector Distribution (Investment Amt)</h5>
+    <canvas id="industryChart"></canvas>
+</div>
+
 
         <div class="strategy-section mb-5">
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold mb-0">🛠️ 策略：ETF</h3>
                 <div class="subtotal-kpi d-flex gap-4">
-                    <span>投入: <b>NT$ 676,610</b></span><span>現值: <b>NT$ 995,500</b></span>
-                    <span>報酬: <b class="text-danger">+47.13%</b></span>
+                    <span>投入: <b>NT$ 676,610</b></span><span>現值: <b>NT$ 1,040,600</b></span>
+                    <span>報酬: <b class="text-danger">+53.80%</b></span>
                 </div>
             </div>
+            
+            <div class="criteria-box mb-3 p-3 small">
+                <div class="fw-bold mb-1">📌 離場與觀察條件：</div>
+                
+        <ul class="mb-0">
+            <li><b>WATCH/EXIT</b>：溢價過高 (&gt;3%)；(00631L) 正二大盤破月線風險規避。</li>
+            <li><b>策略</b>：長期定期定額持有，不因短期波動輕易出場。</li>
+        </ul>
+    
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped align-middle">
                     <thead class="table-light">
@@ -39,8 +59,8 @@
                     <tbody>
             <tr>
               <td><b>0050</b></td><td>元大台灣50</td><td>ETF</td>
-              <td class="text-end fw-bold">90.50</td><td class="text-end">61.51</td>
-              <td class="text-end text-danger fw-bold">+47.13%</td>
+              <td class="text-end fw-bold">94.60</td><td class="text-end">61.51</td>
+              <td class="text-end text-danger fw-bold">+53.80%</td>
               <td class="text-center"><span class="badge bg-success">定期定額</span></td>
               <td><small>持續扣款</small></td>
             </tr>
@@ -53,10 +73,21 @@
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold mb-0">🛠️ 策略：高殖利率</h3>
                 <div class="subtotal-kpi d-flex gap-4">
-                    <span>投入: <b>NT$ 1,249,905</b></span><span>現值: <b>NT$ 1,324,244</b></span>
-                    <span>報酬: <b class="text-danger">+5.95%</b></span>
+                    <span>投入: <b>NT$ 1,042,595</b></span><span>現值: <b>NT$ 1,103,707</b></span>
+                    <span>報酬: <b class="text-danger">+5.86%</b></span>
                 </div>
             </div>
+            
+            <div class="criteria-box mb-3 p-3 small">
+                <div class="fw-bold mb-1">📌 離場與觀察條件：</div>
+                
+        <ul class="mb-0">
+            <li><b>WATCH (觀察)</b>：殖利率 &lt; 4%、股價低於年線且基本面轉弱、填息紀錄不佳、<b>盈餘發放率 &gt; 100% (吃老本)</b>。</li>
+            <li><b>EXIT (離場)</b>：去年 EPS &le; 0、多項觀察條件同時觸發。</li>
+        </ul>
+    
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped align-middle">
                     <thead class="table-light">
@@ -69,75 +100,59 @@
                     </thead>
                     <tbody>
             <tr>
-              <td><b>2393</b></td><td>億光</td><td>電子工業</td>
-              <td class="text-end fw-bold">71.10</td><td class="text-end">51.07</td>
-              <td class="text-end text-danger fw-bold">+39.22%</td>
-              <td class="text-center"><span class="badge bg-warning text-dark">止盈觀察</span></td>
-              <td><small>獲利已達 39%</small></td><td class="text-center ">上升</td><td class="text-center ">65天</td><td class="text-center ">5/7</td>
-            </tr>
-            
-            <tr>
               <td><b>3526</b></td><td>凡甲</td><td>電子零組件業</td>
-              <td class="text-end fw-bold">330.00</td><td class="text-end">300.00</td>
-              <td class="text-end text-danger fw-bold">+10.00%</td>
-              <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
-              <td><small>穩定收息</small></td><td class="text-center ">上升</td><td class="text-center ">34天</td><td class="text-center ">6/7</td>
+              <td class="text-end fw-bold">363.00</td><td class="text-end">300.00</td>
+              <td class="text-end text-danger fw-bold">+21.00%</td>
+              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
+              <td><small>殖利率 2.7% 過低</small></td><td class="text-center ">上升</td><td class="text-center ">34天</td><td class="text-center ">7/8</td>
             </tr>
             
             <tr>
               <td><b>2412</b></td><td>中華電</td><td>電子工業</td>
-              <td class="text-end fw-bold">136.00</td><td class="text-end">130.00</td>
-              <td class="text-end text-danger fw-bold">+4.62%</td>
-              <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
-              <td><small>穩定收息</small></td><td class="text-center ">連續上升</td><td class="text-center ">106天</td><td class="text-center ">5/7</td>
-            </tr>
-            
-            <tr>
-              <td><b>5519</b></td><td>隆大</td><td>建材營造</td>
-              <td class="text-end fw-bold">32.55</td><td class="text-end">32.23</td>
-              <td class="text-end text-danger fw-bold">+0.99%</td>
-              <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
-              <td><small>穩定收息</small></td><td class="text-center ">連續上升</td><td class="text-center ">89天</td><td class="text-center ">7/7</td>
-            </tr>
-            
-            <tr>
-              <td><b>4536</b></td><td>拓凱</td><td>運動休閒</td>
-              <td class="text-end fw-bold">149.50</td><td class="text-end">151.50</td>
-              <td class="text-end text-success fw-bold">-1.32%</td>
-              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
-              <td><small>跌破月線</small></td><td class="text-center ">上升</td><td class="text-center ">40天</td><td class="text-center ">7/7</td>
+              <td class="text-end fw-bold">135.50</td><td class="text-end">130.00</td>
+              <td class="text-end text-danger fw-bold">+4.23%</td>
+              <td class="text-center"><span class="badge bg-danger">建議離場</span></td>
+              <td><small>殖利率 3.5% 過低 + 填息紀錄不佳 + 發放率 100.8% 過高</small></td><td class="text-center ">連續上升</td><td class="text-center ">106天</td><td class="text-center ">5/8</td>
             </tr>
             
             <tr>
               <td><b>3217</b></td><td>優群</td><td>電子零組件業</td>
-              <td class="text-end fw-bold">166.50</td><td class="text-end">169.00</td>
-              <td class="text-end text-success fw-bold">-1.48%</td>
+              <td class="text-end fw-bold">170.00</td><td class="text-end">169.00</td>
+              <td class="text-end text-danger fw-bold">+0.59%</td>
+              <td class="text-center"><span class="badge bg-danger">建議離場</span></td>
+              <td><small>殖利率 3.7% 過低 + 填息紀錄不佳</small></td><td class="text-center ">上升</td><td class="text-center ">24天</td><td class="text-center ">6/8</td>
+            </tr>
+            
+            <tr>
+              <td><b>5519</b></td><td>隆大</td><td>建材營造</td>
+              <td class="text-end fw-bold">32.35</td><td class="text-end">32.23</td>
+              <td class="text-end text-danger fw-bold">+0.37%</td>
               <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
-              <td><small>穩定收息</small></td><td class="text-center ">上升</td><td class="text-center ">24天</td><td class="text-center ">5/7</td>
+              <td><small>穩定收息</small></td><td class="text-center ">連續上升</td><td class="text-center ">89天</td><td class="text-center ">8/8</td>
+            </tr>
+            
+            <tr>
+              <td><b>4536</b></td><td>拓凱</td><td>運動休閒</td>
+              <td class="text-end fw-bold">151.00</td><td class="text-end">151.50</td>
+              <td class="text-end text-success fw-bold">-0.33%</td>
+              <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
+              <td><small>穩定收息</small></td><td class="text-center ">上升</td><td class="text-center ">40天</td><td class="text-center ">8/8</td>
             </tr>
             
             <tr>
               <td><b>9911</b></td><td>櫻花</td><td>居家生活</td>
-              <td class="text-end fw-bold">83.20</td><td class="text-end">85.50</td>
-              <td class="text-end text-success fw-bold">-2.69%</td>
+              <td class="text-end fw-bold">82.60</td><td class="text-end">85.50</td>
+              <td class="text-end text-success fw-bold">-3.39%</td>
               <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
-              <td><small>穩定收息</small></td><td class="text-center ">連續上升</td><td class="text-center ">42天</td><td class="text-center ">7/7</td>
+              <td><small>穩定收息</small></td><td class="text-center ">連續上升</td><td class="text-center ">42天</td><td class="text-center ">8/8</td>
             </tr>
             
             <tr>
               <td><b>2002</b></td><td>中鋼</td><td>鋼鐵工業</td>
-              <td class="text-end fw-bold">18.75</td><td class="text-end">20.18</td>
-              <td class="text-end text-success fw-bold">-7.09%</td>
-              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
-              <td><small>跌破月線</small></td><td class="text-center ">上升</td><td class="text-center ">35天</td><td class="text-center ">3/7</td>
-            </tr>
-            
-            <tr>
-              <td><b>4417</b></td><td>金洲</td><td>紡織纖維</td>
-              <td class="text-end fw-bold">47.15</td><td class="text-end">54.10</td>
-              <td class="text-end text-success fw-bold">-12.85%</td>
-              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
-              <td><small>跌破月線</small></td><td class="text-center ">上升</td><td class="text-center ">40天</td><td class="text-center ">6/7</td>
+              <td class="text-end fw-bold">18.60</td><td class="text-end">20.18</td>
+              <td class="text-end text-success fw-bold">-7.83%</td>
+              <td class="text-center"><span class="badge bg-danger">建議離場</span></td>
+              <td><small>長期獲利能力轉負</small></td><td class="text-center ">上升</td><td class="text-center ">35天</td><td class="text-center ">4/8</td>
             </tr>
             </tbody>
                 </table>
@@ -148,10 +163,21 @@
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold mb-0">🛠️ 策略：巨鯨狙擊</h3>
                 <div class="subtotal-kpi d-flex gap-4">
-                    <span>投入: <b>NT$ 67,160</b></span><span>現值: <b>NT$ 58,000</b></span>
-                    <span>報酬: <b class="text-success">-13.64%</b></span>
+                    <span>投入: <b>NT$ 67,160</b></span><span>現值: <b>NT$ 58,400</b></span>
+                    <span>報酬: <b class="text-success">-13.04%</b></span>
                 </div>
             </div>
+            
+            <div class="criteria-box mb-3 p-3 small">
+                <div class="fw-bold mb-1">📌 離場與觀察條件：</div>
+                
+        <ul class="mb-0">
+            <li><b>EXIT (離場)</b>：固定停損 (-15%)、移動止盈 (高點回落 20%)、籌碼退場 (大戶連減+破月線)。</li>
+            <li><b>WATCH (觀察)</b>：高點回落達 10% 預警。</li>
+        </ul>
+    
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped align-middle">
                     <thead class="table-light">
@@ -165,10 +191,10 @@
                     <tbody>
             <tr>
               <td><b>2324</b></td><td>仁寶</td><td>電腦及週邊設備業</td>
-              <td class="text-end fw-bold">29.00</td><td class="text-end">33.58</td>
-              <td class="text-end text-success fw-bold">-13.64%</td>
+              <td class="text-end fw-bold">29.20</td><td class="text-end">33.58</td>
+              <td class="text-end text-success fw-bold">-13.04%</td>
               <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
-              <td><small>高點回落 13.6%</small></td><td class="text-center ">-0.79%</td><td class="text-center ">Good</td><td class="text-center ">5/7</td>
+              <td><small>高點回落 13.0%</small></td><td class="text-center ">-0.79%</td><td class="text-center ">Good</td><td class="text-center ">5/7</td>
             </tr>
             </tbody>
                 </table>
@@ -179,10 +205,21 @@
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold mb-0">🛠️ 策略：價值投資</h3>
                 <div class="subtotal-kpi d-flex gap-4">
-                    <span>投入: <b>NT$ 131,600</b></span><span>現值: <b>NT$ 125,700</b></span>
-                    <span>報酬: <b class="text-success">-4.48%</b></span>
+                    <span>投入: <b>NT$ 131,600</b></span><span>現值: <b>NT$ 125,000</b></span>
+                    <span>報酬: <b class="text-success">-5.02%</b></span>
                 </div>
             </div>
+            
+            <div class="criteria-box mb-3 p-3 small">
+                <div class="fw-bold mb-1">📌 離場與觀察條件：</div>
+                
+        <ul class="mb-0">
+            <li><b>EXIT (離場)</b>：移動止盈 (自最高點回落 20%)。</li>
+            <li><b>WATCH (觀察)</b>：基本面 7 大條件（ROE、毛利、現金流等）未全數通過。</li>
+        </ul>
+    
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-hover table-striped align-middle">
                     <thead class="table-light">
@@ -196,18 +233,18 @@
                     <tbody>
             <tr>
               <td><b>4105</b></td><td>東洋</td><td>生技醫療業</td>
-              <td class="text-end fw-bold">74.20</td><td class="text-end">74.00</td>
-              <td class="text-end text-danger fw-bold">+0.27%</td>
-              <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
-              <td><small>價值成長中</small></td><td class="text-center ">157.0</td><td class="text-center text-danger fw-bold">+52.8%</td><td class="text-center ">5/7</td>
+              <td class="text-end fw-bold">73.80</td><td class="text-end">74.00</td>
+              <td class="text-end text-success fw-bold">-0.27%</td>
+              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
+              <td><small>基本面評分下降 (5/7)</small></td><td class="text-center ">156.2</td><td class="text-center text-danger fw-bold">+52.8%</td><td class="text-center ">5/7</td>
             </tr>
             
             <tr>
               <td><b>9904</b></td><td>寶成</td><td>運動休閒</td>
-              <td class="text-end fw-bold">25.75</td><td class="text-end">28.80</td>
-              <td class="text-end text-success fw-bold">-10.59%</td>
-              <td class="text-center"><span class="badge bg-success">繼續持有</span></td>
-              <td><small>價值成長中</small></td><td class="text-center ">185.1</td><td class="text-center text-danger fw-bold">+86.1%</td><td class="text-center ">3/7</td>
+              <td class="text-end fw-bold">25.60</td><td class="text-end">28.80</td>
+              <td class="text-end text-success fw-bold">-11.11%</td>
+              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
+              <td><small>基本面評分下降 (3/7)</small></td><td class="text-center ">184.0</td><td class="text-center text-danger fw-bold">+86.1%</td><td class="text-center ">3/7</td>
             </tr>
             </tbody>
                 </table>
@@ -219,8 +256,42 @@
             <div class="table-responsive">
                 <table class="table table-sm table-striped table-hover">
                     <thead><tr><th>代號</th><th>名稱</th><th>策略</th><th class="text-end">買入價</th><th class="text-end">結算價</th><th class="text-end">報酬</th><th class="text-center">狀態</th><th>備註</th></tr></thead>
-                    <tbody><tr style="opacity:0.7;"><td>6613</td><td>朋億*</td><td>高殖利率</td><td class="text-end">210.00</td><td class="text-end">217.00</td><td class="text-end text-danger">+3.33%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-10 出場</small></td></tr><tr style="opacity:0.7;"><td>3551</td><td>世禾</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">207.00</td><td class="text-end text-danger">+59.23%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>3162</td><td>精確</td><td>巨鯨狙擊_個股</td><td class="text-end">66.60</td><td class="text-end">69.30</td><td class="text-end text-danger">+4.05%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>3551</td><td>世禾</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">210.00</td><td class="text-end text-danger">+61.54%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>3551</td><td>世禾</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">212.00</td><td class="text-end text-danger">+63.08%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>2412</td><td>中華電</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">137.00</td><td class="text-end text-danger">+5.38%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-22 出場</small></td></tr></tbody>
+                    <tbody><tr style="opacity:0.7;"><td>6613</td><td>朋億*</td><td>高殖利率</td><td class="text-end">210.00</td><td class="text-end">217.00</td><td class="text-end text-danger">+3.33%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-10 出場</small></td></tr><tr style="opacity:0.7;"><td>3551</td><td>世禾</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">207.00</td><td class="text-end text-danger">+59.23%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>3162</td><td>精確</td><td>巨鯨狙擊_個股</td><td class="text-end">66.60</td><td class="text-end">69.30</td><td class="text-end text-danger">+4.05%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>3551</td><td>世禾</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">210.00</td><td class="text-end text-danger">+61.54%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>3551</td><td>世禾</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">212.00</td><td class="text-end text-danger">+63.08%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-21 出場</small></td></tr><tr style="opacity:0.7;"><td>2412</td><td>中華電</td><td>高殖利率</td><td class="text-end">130.00</td><td class="text-end">137.00</td><td class="text-end text-danger">+5.38%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-04-22 出場</small></td></tr><tr style="opacity:0.7;"><td>2393</td><td>億光</td><td>高殖利率</td><td class="text-end">51.07</td><td class="text-end">71.70</td><td class="text-end text-danger">+40.40%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-05-04 出場</small></td></tr><tr style="opacity:0.7;"><td>4417</td><td>金洲</td><td>高殖利率</td><td class="text-end">54.10</td><td class="text-end">46.80</td><td class="text-end text-success">-13.49%</td><td class="text-center"><span class="badge bg-secondary">已結算</span></td><td><small>於 2026-05-04 出場</small></td></tr></tbody>
                 </table>
             </div>
         </div>
-        </div></body></html>
+        </div>
+
+<script>
+    const ctx = document.getElementById('industryChart');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['ETF', '電子零組件業', '運動休閒', '建材營造', '居家生活', '生技醫療業', '電腦及週邊設備業', '電子工業', '鋼鐵工業'],
+            datasets: [{
+                data: [676610.0, 638000.0, 209100.0, 96689.99999999999, 85500.0, 74000.0, 67160.0, 39000.0, 31904.579999999998],
+                backgroundColor: [
+                    '#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40', '#c9cbcf', '#ff99cc', '#99ffcc'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'right' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            let value = context.raw || 0;
+                            let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            let percentage = (value / total * 100).toFixed(1);
+                            return label + ': NT$ ' + value.toLocaleString() + ' (' + percentage + '%)';
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body></html>
