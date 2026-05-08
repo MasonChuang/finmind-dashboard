@@ -18,7 +18,7 @@
         background-color: #ffffff !important;
     }
 </style></head>
-<body><div class="container-fluid"><div class="d-flex justify-content-between align-items-center mb-4"><h1 class="fw-bold mb-0">🚩 持倉離場檢核</h1><div class="text-end text-muted small">最後更新：2026-05-07 22:40</div></div>
+<body><div class="container-fluid"><div class="d-flex justify-content-between align-items-center mb-4"><h1 class="fw-bold mb-0">🚩 持倉離場檢核</h1><div class="text-end text-muted small">最後更新：2026-05-08 08:02</div></div>
 <div class="grand-total"><div class="row text-center"><div class="col-md-4 border-end border-secondary"><div class="opacity-75 small mb-1">總投入概算</div><div class="h2 fw-bold">NT$ 2,135,905</div></div><div class="col-md-4 border-end border-secondary"><div class="opacity-75 small mb-1">目前總價值</div><div class="h2 fw-bold">NT$ 2,610,182</div></div><div class="col-md-4"><div class="opacity-75 small mb-1">預估總報酬</div><div class="h2 fw-bold text-danger">+22.20%</div></div></div></div>
 
 <div class="row mb-4 g-4">
@@ -30,8 +30,8 @@
     </div>
     <div class="col-md-6">
         <div class="chart-card h-100">
-            <h5 class="text-center fw-bold mb-3">估計現金股利</h5>
-            <p class="text-center text-muted small mb-2">近 12 個月除息金額 × 持股數｜合計約 NT$ 81,747</p>
+            <h5 class="text-center fw-bold mb-3">估計現金股利（ETF、高殖利率、價值投資）</h5>
+            <p class="text-center text-muted small mb-2">近 12 個月除息金額 × 持股數｜合計約 NT$ 77,462</p>
             <canvas id="dividendChart"></canvas>
         </div>
     </div>
@@ -188,48 +188,6 @@
         
         <div class="strategy-section mb-5">
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                <h3 class="fw-bold mb-0">🛠️ 策略：巨鯨狙擊</h3>
-                <div class="subtotal-kpi d-flex gap-4">
-                    <span>投入: <b>NT$ 67,160</b></span><span>現值: <b>NT$ 58,900</b></span>
-                    <span>報酬: <b class="text-success">-12.30%</b></span>
-                </div>
-            </div>
-            
-            <div class="criteria-box mb-3 p-3 small">
-                <div class="fw-bold mb-1">📌 離場與觀察條件：</div>
-                
-        <ul class="mb-0">
-            <li><b>EXIT (離場)</b>：固定停損 (-15%)、移動止盈 (高點回落 20%)、籌碼退場 (大戶連減+破月線)。</li>
-            <li><b>WATCH (觀察)</b>：高點回落達 10% 預警。</li>
-        </ul>
-    
-            </div>
-
-            <div class="table-responsive">
-                <table class="table table-hover table-striped align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>股票代號</th><th>股票名稱</th><th>產業別</th>
-                            <th class="text-end">現價</th><th class="text-end">買入價</th>
-                            <th class="text-end">報酬率</th><th class="text-center">狀態</th><th>觸發的原因</th>
-                            <th class="text-center bg-light">大戶變動</th><th class="text-center bg-light">評級</th><th class="text-center bg-light">通過</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            <tr>
-              <td><b>2324</b></td><td>仁寶</td><td>電腦及週邊設備業</td>
-              <td class="text-end fw-bold">29.45</td><td class="text-end">33.58</td>
-              <td class="text-end text-success fw-bold">-12.30%</td>
-              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
-              <td><small>高點回落 12.2%</small></td><td class="text-center ">-0.79%</td><td class="text-center text-danger fw-bold">Excellent</td><td class="text-center ">5/7</td>
-            </tr>
-            </tbody>
-                </table>
-            </div>
-        </div>
-        
-        <div class="strategy-section mb-5">
-            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold mb-0">🛠️ 策略：價值投資</h3>
                 <div class="subtotal-kpi d-flex gap-4">
                     <span>投入: <b>NT$ 131,600</b></span><span>現值: <b>NT$ 126,400</b></span>
@@ -280,6 +238,48 @@
         
         <div class="strategy-section mb-5">
             <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                <h3 class="fw-bold mb-0">🛠️ 策略：巨鯨狙擊</h3>
+                <div class="subtotal-kpi d-flex gap-4">
+                    <span>投入: <b>NT$ 67,160</b></span><span>現值: <b>NT$ 58,900</b></span>
+                    <span>報酬: <b class="text-success">-12.30%</b></span>
+                </div>
+            </div>
+            
+            <div class="criteria-box mb-3 p-3 small">
+                <div class="fw-bold mb-1">📌 離場與觀察條件：</div>
+                
+        <ul class="mb-0">
+            <li><b>EXIT (離場)</b>：固定停損 (-15%)、移動止盈 (高點回落 20%)、籌碼退場 (大戶連減+破月線)。</li>
+            <li><b>WATCH (觀察)</b>：高點回落達 10% 預警。</li>
+        </ul>
+    
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>股票代號</th><th>股票名稱</th><th>產業別</th>
+                            <th class="text-end">現價</th><th class="text-end">買入價</th>
+                            <th class="text-end">報酬率</th><th class="text-center">狀態</th><th>觸發的原因</th>
+                            <th class="text-center bg-light">大戶變動</th><th class="text-center bg-light">評級</th><th class="text-center bg-light">通過</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            <tr>
+              <td><b>2324</b></td><td>仁寶</td><td>電腦及週邊設備業</td>
+              <td class="text-end fw-bold">29.45</td><td class="text-end">33.58</td>
+              <td class="text-end text-success fw-bold">-12.30%</td>
+              <td class="text-center"><span class="badge bg-warning text-dark">留意觀察</span></td>
+              <td><small>高點回落 12.2%</small></td><td class="text-center ">-0.79%</td><td class="text-center text-danger fw-bold">Excellent</td><td class="text-center ">5/7</td>
+            </tr>
+            </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="strategy-section mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                 <h3 class="fw-bold mb-0">🛠️ 策略：底部突破</h3>
                 <div class="subtotal-kpi d-flex gap-4">
                     <span>投入: <b>NT$ 42,600</b></span><span>現值: <b>NT$ 42,900</b></span>
@@ -289,7 +289,12 @@
             
             <div class="criteria-box mb-3 p-3 small">
                 <div class="fw-bold mb-1">📌 離場與觀察條件：</div>
-                暫無說明
+                
+        <ul class="mb-0">
+            <li><b>EXIT (離場)</b>：固定止損 (-8%)、移動止盈 (高點回落 15%)。</li>
+            <li><b>WATCH (觀察)</b>：獲利達 +20% 止盈觀察、高點回落 8–15% 預警。</li>
+        </ul>
+    
             </div>
 
             <div class="table-responsive">
@@ -355,6 +360,6 @@
     }
 
     makePie('industryChart', ['ETF', '電子零組件業', '電子工業', '運動休閒', '建材營造', '居家生活', '生技醫療業', '電腦及週邊設備業', '鋼鐵工業'], [704950.0, 638000.0, 228600.0, 209100.0, 96689.99999999999, 85500.0, 74000.0, 67160.0, 31904.579999999998], 'NT$ ');
-    makePie('dividendChart', ['優群', '凡甲', '拓凱', '隆大', '敦陽科', '櫻花', '東洋', '元大台灣50', '寶成', '仁寶', '威健', '中華電', '中鋼'], [17626.0, 13533.0, 11000.0, 9000.0, 7422.0, 5000.0, 4500.0, 3960.0, 3400.0, 2200.0, 2084.0, 1500.0, 522.0], 'NT$ ');
+    makePie('dividendChart', ['優群', '凡甲', '拓凱', '隆大', '敦陽科', '櫻花', '東洋', '元大台灣50', '寶成', '中華電', '中鋼'], [17626.0, 13533.0, 11000.0, 9000.0, 7422.0, 5000.0, 4500.0, 3960.0, 3400.0, 1500.0, 522.0], 'NT$ ');
 </script>
 </body></html>
