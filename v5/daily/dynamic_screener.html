@@ -405,6 +405,33 @@
         </div>
       </div>
 
+      <!-- 金融業評分說明框 -->
+      <div v-if="finMode" class="bg-blue-50 border-b border-blue-200 px-4 py-2.5 shrink-0">
+        <div class="text-sm font-bold text-blue-800 mb-1.5">🏦 金融業專屬評分系統（已啟用 8條件評級）</div>
+        <div class="flex flex-wrap gap-x-5 gap-y-0.5 text-xs text-blue-700 mb-2">
+          <span><b>C1</b> 殖利率(5Y均) &gt; 4%</span>
+          <span><b>C2</b> 所有年度皆填息（嚴格）</span>
+          <span><b>C3</b> 連續配息 ≥ 5年 <span class="text-red-500 font-semibold">必通</span></span>
+          <span><b>C4</b> 上市年數 ≥ 10年</span>
+          <span><b>C5</b> 連續獲利 ≥ 8年 <span class="text-red-500 font-semibold">必通</span></span>
+          <span><b>C6</b> ROA ≥ 0.5%（金融門檻）</span>
+          <span><b>C7</b> 本業佔比（自動通過）</span>
+          <span><b>C8</b> 盈餘發放率 ≤ 100%</span>
+        </div>
+        <div class="flex items-center gap-3 text-xs flex-wrap">
+          <span class="badge-elite px-2 py-0.5 rounded font-semibold">精選：8/8</span>
+          <span class="badge-premium px-2 py-0.5 rounded font-semibold">優選：7/8</span>
+          <span class="badge-basic px-2 py-0.5 rounded font-semibold">入選：≥6/8（C3+C5 必通）</span>
+          <span class="text-gray-500 text-xs ml-1">子類別：
+            <span class="px-1.5 py-0.5 bg-blue-100 text-blue-700 rounded mx-0.5">銀行</span>
+            <span class="px-1.5 py-0.5 bg-indigo-100 text-indigo-700 rounded mx-0.5">金控</span>
+            <span class="px-1.5 py-0.5 bg-purple-100 text-purple-700 rounded mx-0.5">壽險</span>
+            <span class="px-1.5 py-0.5 bg-cyan-100 text-cyan-700 rounded mx-0.5">租賃</span>
+            <span class="px-1.5 py-0.5 bg-teal-100 text-teal-700 rounded mx-0.5">證券</span>
+          </span>
+        </div>
+      </div>
+
       <!-- 表格 -->
       <div class="flex-1 overflow-auto">
         <table class="w-full text-left text-xs">
@@ -427,6 +454,8 @@
               <th @click="setSort('cons_div_years')" class="p-2.5 cursor-pointer hover:bg-gray-100 text-right whitespace-nowrap">連配</th>
               <th @click="setSort('cons_profit_years')" class="p-2.5 cursor-pointer hover:bg-gray-100 text-right whitespace-nowrap">連利</th>
               <th @click="setSort('roa_avg_10y')" class="p-2.5 cursor-pointer hover:bg-gray-100 text-right whitespace-nowrap">ROA%</th>
+              <th v-if="finMode" @click="setSort('roe_5y_mean')"
+                  class="p-2.5 cursor-pointer hover:bg-blue-100 bg-blue-50 text-right whitespace-nowrap">ROE%(5Y)</th>
               <th @click="setSort('listing_years')" class="p-2.5 cursor-pointer hover:bg-gray-100 text-right whitespace-nowrap">上市年</th>
               <th class="p-2.5 text-center whitespace-nowrap">頻率</th>
               <th @click="setSort('rev_yoy')" class="p-2.5 cursor-pointer hover:bg-gray-100 text-right whitespace-nowrap">YoY%</th>
@@ -453,22 +482,46 @@
               </td>
               <!-- 評級 -->
               <td class="p-2.5 text-center">
-                <span class="text-xs px-2 py-0.5 rounded font-bold" :class="{
-                  'badge-elite':   s.rating==='精選',
-                  'badge-premium': s.rating==='優選',
-                  'badge-basic':   s.rating==='入選',
-                  'badge-none':    s.rating==='未入選' || !s.rating,
-                }">{{ s.rating || '-' }}</span>
+                <template v-if="finMode && s.industry_type === '金融'">
+                  <span class="text-xs px-2 py-0.5 rounded font-bold block mb-0.5" :class="{
+                    'badge-elite':   s.fin_rating==='精選',
+                    'badge-premium': s.fin_rating==='優選',
+                    'badge-basic':   s.fin_rating==='入選',
+                    'badge-none':    s.fin_rating==='未入選' || !s.fin_rating,
+                  }">{{ s.fin_rating || '-' }}</span>
+                  <span v-if="s.sub_category"
+                    class="text-xs px-1.5 py-0.5 rounded-full border inline-block"
+                    :class="subCatCls(s.sub_category)">{{ s.sub_category }}</span>
+                </template>
+                <template v-else>
+                  <span class="text-xs px-2 py-0.5 rounded font-bold" :class="{
+                    'badge-elite':   s.rating==='精選',
+                    'badge-premium': s.rating==='優選',
+                    'badge-basic':   s.rating==='入選',
+                    'badge-none':    s.rating==='未入選' || !s.rating,
+                  }">{{ s.rating || '-' }}</span>
+                </template>
               </td>
               <!-- 分數條 -->
               <td class="p-2.5 min-w-[80px]">
-                <div class="flex items-center gap-1.5">
-                  <div class="flex-1 bg-gray-100 rounded-full overflow-hidden" style="height:5px;">
-                    <div class="score-bar" :class="scoreBarCls(s)"
-                         :style="{width: (s.pass_count / s.score_max * 100) + '%'}"></div>
+                <template v-if="finMode && s.industry_type === '金融' && s.fin_pass_count != null">
+                  <div class="flex items-center gap-1.5">
+                    <div class="flex-1 bg-gray-100 rounded-full overflow-hidden" style="height:5px;">
+                      <div class="score-bar" :class="scoreBarCls(s)"
+                           :style="{width: (s.fin_pass_count / 8 * 100) + '%'}"></div>
+                    </div>
+                    <span class="font-mono text-gray-500" style="min-width:28px;">{{ s.fin_pass_count }}/8</span>
                   </div>
-                  <span class="font-mono text-gray-500" style="min-width:28px;">{{ s.pass_count }}/{{ s.score_max }}</span>
-                </div>
+                </template>
+                <template v-else>
+                  <div class="flex items-center gap-1.5">
+                    <div class="flex-1 bg-gray-100 rounded-full overflow-hidden" style="height:5px;">
+                      <div class="score-bar" :class="scoreBarCls(s)"
+                           :style="{width: (s.pass_count / s.score_max * 100) + '%'}"></div>
+                    </div>
+                    <span class="font-mono text-gray-500" style="min-width:28px;">{{ s.pass_count }}/{{ s.score_max }}</span>
+                  </div>
+                </template>
               </td>
               <!-- 加權信心分數（加權模式才顯示）-->
               <td v-if="mode==='weighted'" class="p-2.5 min-w-[70px]">
@@ -521,6 +574,13 @@
               <td class="p-2.5 text-right font-mono"
                   :class="s.roa_avg_10y >= 8 ? 'text-red-500 font-bold' : s.roa_avg_10y >= 5 ? 'text-orange-500' : 'text-gray-600'">
                 {{ fmtP(s.roa_avg_10y) }}
+              </td>
+              <!-- ROE（金融模式）-->
+              <td v-if="finMode" class="p-2.5 text-right font-mono bg-blue-50/30"
+                  :class="s.roe_5y_mean != null && s.roe_5y_mean >= 10 ? 'text-red-500 font-bold'
+                         : s.roe_5y_mean != null && s.roe_5y_mean >= 5  ? 'text-orange-500'
+                         : 'text-gray-400'">
+                {{ s.roe_5y_mean != null ? fmtP(s.roe_5y_mean) : '-' }}
               </td>
               <!-- 上市年 -->
               <td class="p-2.5 text-right font-mono text-gray-500">{{ fmtN(s.listing_years) }}</td>
@@ -597,6 +657,7 @@ createApp({
     const showEntryPrice = ref(false);
     const showCost360k  = ref(false);
     const showCondDots  = ref(false);
+    const finMode       = ref(false);
     const activePreset  = ref('');
 
     const groupOpen = ref({
@@ -672,7 +733,8 @@ createApp({
       },
       {
         label: '金融高殖',  icon: '🏦',
-        filters: { industryType: '金融', minYield: 4, ratings: ['精選','優選','入選'] }
+        filters: { industryType: '金融', minYield: 3 },
+        activateFinMode: true,
       },
       {
         label: '食品電信傳產', icon: '🏭',
@@ -706,6 +768,7 @@ createApp({
       Object.assign(filters.value, p.filters);
       if (p.filters.showCost360k) showCost360k.value = true;
       if (p.filters.showCondDots) showCondDots.value = true;
+      finMode.value = !!p.activateFinMode;
       // 加權模式場景自動切換排序
       if (p.label === '36萬計劃') {
         mode.value   = 'weighted';
@@ -728,6 +791,7 @@ createApp({
       });
       showEntryPrice.value = false;
       showCost360k.value   = false;
+      finMode.value        = false;
     };
 
     const setSort = (key) => {
@@ -743,8 +807,11 @@ createApp({
     const filteredStocks = computed(() => {
       const f = filters.value;
       return stocks.value.filter(s => {
-        // 評級
-        if (f.ratings.length > 0 && !f.ratings.includes(s.rating)) return false;
+        // 評級（金融模式下金融股改用 fin_rating）
+        if (f.ratings.length > 0) {
+          const effRating = (finMode.value && s.industry_type === '金融') ? s.fin_rating : s.rating;
+          if (!f.ratings.includes(effRating)) return false;
+        }
         // MA240 乖離
         if (f.biasMin !== null && f.biasMin !== '') {
           if (s.ma240_bias == null || s.ma240_bias < f.biasMin) return false;
@@ -804,8 +871,11 @@ createApp({
       return [...filteredStocks.value].sort((a, b) => {
         let va, vb;
         if (sortKey.value === 'rating') {
-          // 加權模式 → 依 weighted_score; 嚴格模式 → 依評級
-          if (mode.value === 'weighted') {
+          // 金融模式 → 依 fin_pass_count; 加權模式 → 依 weighted_score; 嚴格模式 → 依評級
+          if (finMode.value && a.industry_type === '金融') {
+            va = a.fin_pass_count ?? -1;
+            vb = b.fin_pass_count ?? -1;
+          } else if (mode.value === 'weighted') {
             va = a.weighted_score ?? -1;
             vb = b.weighted_score ?? -1;
           } else {
@@ -827,11 +897,21 @@ createApp({
 
     // ── 工具函式 ──────────────────────────────────────────────────────────
     const scoreBarCls = (s) => {
-      const pct = s.pass_count / s.score_max;
-      if (s.rating === '精選') return 'bar-elite';
-      if (s.rating === '優選') return 'bar-premium';
-      if (s.rating === '入選') return 'bar-basic';
+      const r = (finMode.value && s.industry_type === '金融') ? s.fin_rating : s.rating;
+      if (r === '精選') return 'bar-elite';
+      if (r === '優選') return 'bar-premium';
+      if (r === '入選') return 'bar-basic';
       return 'bar-weak';
+    };
+    const subCatCls = (cat) => {
+      const m = {
+        '銀行': 'bg-blue-100 text-blue-700 border-blue-200',
+        '金控': 'bg-indigo-100 text-indigo-700 border-indigo-200',
+        '壽險': 'bg-purple-100 text-purple-700 border-purple-200',
+        '租賃': 'bg-cyan-100 text-cyan-700 border-cyan-200',
+        '證券': 'bg-teal-100 text-teal-700 border-teal-200',
+      };
+      return m[cat] || 'bg-gray-100 text-gray-500 border-gray-200';
     };
     const confBarCls = (v) => {
       if (v >= 70) return 'conf-high';
@@ -864,7 +944,7 @@ createApp({
       yield_avg_5y:'殖利率(5Y)', est_yield:'預估殖利率', latest_div:'股利',
       fill_avg:'填息天數', cons_div_years:'連配', cons_profit_years:'連利',
       roa_avg_10y:'ROA', listing_years:'上市年', rev_yoy:'YoY', rev_mom:'MoM',
-      cost_360k:'36萬成本',
+      cost_360k:'36萬成本', roe_5y_mean:'ROE%(5Y)',
     };
     const sortLabel = computed(() =>
       (sortLabelMap[sortKey.value] || sortKey.value) + (sortDesc.value ? ' ↓' : ' ↑')
@@ -876,11 +956,12 @@ createApp({
       if (showEntryPrice.value) n++;
       if (showCost360k.value) n++;
       if (showCondDots.value) n++;
+      if (finMode.value) n++;
       return n;
     });
 
     return {
-      stocks, meta, mode, filters, showEntryPrice, showCost360k, showCondDots,
+      stocks, meta, mode, filters, showEntryPrice, showCost360k, showCondDots, finMode,
       activePreset, groupOpen, presets, ratingOptions, industryTypes,
       condFields, condLabels,
       sortKey, sortDesc, sortLabel, colSpan,
@@ -888,7 +969,7 @@ createApp({
       totalCount:    computed(() => stocks.value.length),
       filteredCount: computed(() => filteredStocks.value.length),
       toggleGroup, applyPreset, resetFilters, setSort,
-      scoreBarCls, confBarCls, colorCls,
+      scoreBarCls, confBarCls, colorCls, subCatCls,
       fmtN, fmtP, fmtPct, condDotsTitle,
     };
   }
