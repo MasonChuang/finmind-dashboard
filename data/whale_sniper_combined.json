@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-05-11 21:41:43",
-  "report_file": "BigData_Scanner_20260511.csv",
+  "last_update": "2026-05-12 21:59:24",
+  "report_file": "BigData_Scanner_20260512.csv",
   "candidates": [
     {
       "rank": 1,
@@ -418,51 +418,6 @@
     },
     {
       "rank": 47,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 48,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 49,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 50,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 51,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 52,
       "stock_id": "",
       "name": "",
       "industry": "其他",
