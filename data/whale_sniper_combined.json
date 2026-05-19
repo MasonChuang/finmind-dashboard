@@ -1,6 +1,6 @@
 {
-  "last_update": "2026-05-18 21:48:23",
-  "report_file": "BigData_Scanner_20260518.csv",
+  "last_update": "2026-05-19 21:44:42",
+  "report_file": "BigData_Scanner_20260519.csv",
   "candidates": [
     {
       "rank": 1,
@@ -301,96 +301,6 @@
     },
     {
       "rank": 34,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 35,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 36,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 37,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 38,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 39,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 40,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 41,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 42,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 43,
-      "stock_id": "",
-      "name": "",
-      "industry": "其他",
-      "price": 0.0,
-      "afass_score": 0,
-      "chip_score": 0
-    },
-    {
-      "rank": 44,
       "stock_id": "",
       "name": "",
       "industry": "其他",
