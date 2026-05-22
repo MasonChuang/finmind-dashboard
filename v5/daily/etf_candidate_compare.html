@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ETF 候選比較分析</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+  background: #f0f2f5; color: #333; font-size: 14px; line-height: 1.6;
+}
+header {
+  background: linear-gradient(135deg, #0d4f2e, #1a8a50);
+  color: #fff; padding: 28px 48px;
+}
+header h1 { font-size: 1.7rem; font-weight: 800; margin-bottom: 6px; }
+header p  { opacity: .8; font-size: .9rem; }
+.badge {
+  display: inline-block; background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3); border-radius: 20px;
+  padding: 3px 12px; font-size: .75rem; margin-top: 10px; margin-right: 6px;
+}
+main { max-width: 1100px; margin: 28px auto; padding: 0 24px 48px; }
+.section { margin-bottom: 36px; }
+.section-title {
+  font-size: 1rem; font-weight: 700; color: #0d4f2e;
+  margin-bottom: 14px; padding: 6px 14px;
+  background: #e6f7ed; border-radius: 6px; display: inline-block;
+}
+/* 摘要卡片 */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.card {
+  background: #fff; border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.07);
+  padding: 18px 20px; position: relative;
+}
+.card.highlight { border: 2px solid #1a8a50; }
+.card-code { font-size: 1.4rem; font-weight: 800; color: #0d4f2e; }
+.card-name { font-size: .85rem; color: #666; margin-bottom: 12px; }
+.card-metric { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: .88rem; }
+.card-metric .label { color: #777; }
+.card-metric .val   { font-weight: 600; }
+.card-metric .val.green { color: #1a8a50; }
+.card-metric .val.red   { color: #c0392b; }
+.card-metric .val.orange{ color: #e67e22; }
+.recommend-tag {
+  position: absolute; top: 12px; right: 12px;
+  background: #1a8a50; color: #fff;
+  font-size: .7rem; padding: 2px 8px; border-radius: 10px;
+}
+/* 表格 */
+table { width: 100%; border-collapse: collapse; background: #fff;
+        border-radius: 10px; overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,.07); }
+th { background: #0d4f2e; color: #fff; padding: 10px 14px; text-align: center; font-size: .85rem; }
+td { padding: 9px 14px; text-align: center; border-bottom: 1px solid #f0f0f0; font-size: .88rem; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f6fdf9; }
+td.name-col { text-align: left; font-weight: 600; }
+td.ref { color: #999; font-style: italic; }
+/* 費用率 bar */
+.fee-bar-wrap { background: #fff; border-radius: 10px;
+                box-shadow: 0 3px 10px rgba(0,0,0,.07); padding: 20px 24px; }
+.fee-row { display: flex; align-items: center; margin-bottom: 14px; }
+.fee-label { width: 130px; font-size: .88rem; font-weight: 600; flex-shrink: 0; }
+.fee-bar-bg { flex: 1; background: #f0f0f0; border-radius: 4px; height: 20px;
+              position: relative; overflow: hidden; }
+.fee-bar-fill { height: 100%; border-radius: 4px; transition: width .4s; }
+.fee-val { width: 60px; text-align: right; font-size: .88rem; margin-left: 10px; font-weight: 600; }
+/* 配息時程 */
+.schedule-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.schedule-card { background: #fff; border-radius: 10px;
+                 box-shadow: 0 3px 10px rgba(0,0,0,.07); padding: 16px 18px; }
+.schedule-card h4 { font-size: .9rem; color: #0d4f2e; font-weight: 700; margin-bottom: 10px; }
+.schedule-item { font-size: .83rem; color: #555; padding: 3px 0; border-bottom: 1px solid #f5f5f5; }
+/* 注意欄 */
+.notice { background: #fff8e1; border-left: 4px solid #f0a500;
+          border-radius: 6px; padding: 12px 16px; font-size: .83rem;
+          color: #7a5800; margin-top: 20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 ETF 候選比較分析</h1>
+  <p>36 萬現金股利計劃｜第 2 批進場前選標參考</p>
+  <span class="badge">更新：2026-05-22 17:03</span>
+  <span class="badge">費用率資料年份：2024</span>
+</header>
+<main>
+
+  <div class="section">
+    <div class="section-title">📋 候選標的概覽</div>
+    <div class="cards">
+        <div class="card highlight">
+          <div class="recommend-tag">★ 淨殖利率最高</div>
+          <div class="card-code">0056</div>
+          <div class="card-name">元大高股息</div>
+          <div class="card-metric"><span class="label">現價</span><span class="val">$45.44</span></div>
+          <div class="card-metric"><span class="label">市值規模</span><span class="val">6,054 億</span></div>
+          <div class="card-metric"><span class="label">配息頻率</span><span class="val">季配（1月、4月、7月、10月）</span></div>
+          <div class="card-metric"><span class="label">總費用率</span><span class="val red">0.44%</span></div>
+          <div class="card-metric"><span class="label">近3年均殖</span><span class="val green">7.18% 前後</span></div>
+          <div class="card-metric"><span class="label">淨殖利率（-費）</span><span class="val green">6.74%</span></div>
+        </div>
+        <div class="card">
+          
+          <div class="card-code">00878</div>
+          <div class="card-name">國泰永續高股息</div>
+          <div class="card-metric"><span class="label">現價</span><span class="val">$27.71</span></div>
+          <div class="card-metric"><span class="label">市值規模</span><span class="val">5,102 億</span></div>
+          <div class="card-metric"><span class="label">配息頻率</span><span class="val">季配（2月、5月、8月、11月）</span></div>
+          <div class="card-metric"><span class="label">總費用率</span><span class="val red">0.35%</span></div>
+          <div class="card-metric"><span class="label">近3年均殖</span><span class="val green">6.28% 前後</span></div>
+          <div class="card-metric"><span class="label">淨殖利率（-費）</span><span class="val green">5.93%</span></div>
+        </div>
+        <div class="card">
+          
+          <div class="card-code">00713</div>
+          <div class="card-name">元大台灣高息低波</div>
+          <div class="card-metric"><span class="label">現價</span><span class="val">$55.65</span></div>
+          <div class="card-metric"><span class="label">市值規模</span><span class="val">1,047 億</span></div>
+          <div class="card-metric"><span class="label">配息頻率</span><span class="val">季配（3月、6月、9月、12月）</span></div>
+          <div class="card-metric"><span class="label">總費用率</span><span class="val red">0.40%</span></div>
+          <div class="card-metric"><span class="label">近3年均殖</span><span class="val green">6.26% 前後</span></div>
+          <div class="card-metric"><span class="label">淨殖利率（-費）</span><span class="val green">5.86%</span></div>
+        </div>
+        <div class="card">
+          <div class="recommend-tag" style="background:#757575">參考基準</div>
+          <div class="card-code">0050</div>
+          <div class="card-name">元大台灣50</div>
+          <div class="card-metric"><span class="label">現價</span><span class="val">$95.85</span></div>
+          <div class="card-metric"><span class="label">市值規模</span><span class="val">17,424 億</span></div>
+          <div class="card-metric"><span class="label">配息頻率</span><span class="val">半年配（1月、7月）</span></div>
+          <div class="card-metric"><span class="label">總費用率</span><span class="val red">0.43%</span></div>
+          <div class="card-metric"><span class="label">近3年均殖</span><span class="val ">2.47% 前後</span></div>
+          <div class="card-metric"><span class="label">淨殖利率（-費）</span><span class="val orange">2.04%</span></div>
+        </div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚖️ 綜合比較表（候選 × 基準）</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left">ETF</th>
+          <th>配息頻率</th>
+          <th>總費用率</th>
+          <th>除息月份</th>
+          <th>市值規模</th>
+          <th>近3年均殖</th>
+          <th>淨殖利率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:#f0fdf5">
+          <td class="name-col">0056 元大高股息</td>
+          <td>季配</td>
+          <td>0.44%</td>
+          <td>1月、4月、7月、10月</td>
+          <td>6,054 億</td>
+          <td><span class="val green">7.18%</span></td>
+          <td><span class="val green">6.74%</span></td>
+        </tr>
+        <tr>
+          <td class="name-col">00878 國泰永續高股息</td>
+          <td>季配</td>
+          <td>0.35%</td>
+          <td>2月、5月、8月、11月</td>
+          <td>5,102 億</td>
+          <td><span class="val green">6.28%</span></td>
+          <td><span class="val orange">5.93%</span></td>
+        </tr>
+        <tr>
+          <td class="name-col">00713 元大台灣高息低波</td>
+          <td>季配</td>
+          <td>0.40%</td>
+          <td>3月、6月、9月、12月</td>
+          <td>1,047 億</td>
+          <td><span class="val green">6.26%</span></td>
+          <td><span class="val orange">5.86%</span></td>
+        </tr></tbody>
+    </table>
+    <div class="notice">
+      淨殖利率 = 近3年平均殖利率 − 總費用率。殖利率以「年度配息總額 ÷ 除息前均價」計算，實際報酬仍取決於填息表現。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💸 費用率比較（總費用率）</div>
+    <div class="fee-bar-wrap">
+      <div class="fee-row"><div class="fee-label">0056</div><div class="fee-bar-bg"><div class="fee-bar-fill" style="width:100.0%;background:#1a8a50"></div></div><div class="fee-val">0.44%</div></div><div class="fee-row"><div class="fee-label">00878</div><div class="fee-bar-bg"><div class="fee-bar-fill" style="width:79.5%;background:#1565c0"></div></div><div class="fee-val">0.35%</div></div><div class="fee-row"><div class="fee-label">00713</div><div class="fee-bar-bg"><div class="fee-bar-fill" style="width:90.9%;background:#6a1b9a"></div></div><div class="fee-val">0.40%</div></div><div class="fee-row"><div class="fee-label">0050</div><div class="fee-bar-bg"><div class="fee-bar-fill" style="width:97.7%;background:#757575"></div></div><div class="fee-val">0.43%</div></div>
+    </div>
+    <br>
+    <table>
+      <thead>
+        <tr><th style="text-align:left">ETF</th><th>管理費/年</th><th>保管費/年</th><th>總費用率</th><th>備註</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="name-col">0056 元大高股息</td>
+          <td>0.320%</td>
+          <td>0.035%</td>
+          <td><strong>0.44%</strong></td>
+          <td class="ref">總費用率含交易成本，2024年報數字</td>
+        </tr>
+        <tr>
+          <td class="name-col">00878 國泰永續高股息</td>
+          <td>0.300%</td>
+          <td>0.035%</td>
+          <td><strong>0.35%</strong></td>
+          <td class="ref">總費用率含交易成本，2024年報數字</td>
+        </tr>
+        <tr>
+          <td class="name-col">00713 元大台灣高息低波</td>
+          <td>0.300%</td>
+          <td>0.035%</td>
+          <td><strong>0.40%</strong></td>
+          <td class="ref">總費用率含交易成本，2024年報數字</td>
+        </tr>
+        <tr>
+          <td class="name-col">0050 元大台灣50</td>
+          <td>0.320%</td>
+          <td>0.035%</td>
+          <td><strong>0.43%</strong></td>
+          <td class="ref">總費用率含交易成本，2024年報數字</td>
+        </tr></tbody>
+    </table>
+    <div class="notice">
+      ⚠️ 費用率為靜態資料（2024 年報），每年 Q1 人工更新。
+      最新數字請查閱各投信官網公開說明書。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📈 年度殖利率歷史</div>
+    <table>
+      <thead><tr><th>年度</th><th style="background:#1a8a50">0056<br><small>元大高股息</small></th><th style="background:#1565c0">00878<br><small>國泰永續高股息</small></th><th style="background:#6a1b9a">00713<br><small>元大台灣高息低波</small></th><th style="background:#757575">0050<br><small>元大台灣50</small></th></tr></thead>
+      <tbody><tr><td>2026</td><td><span class="val">2.28%</span> <small style='color:#aaa'>×1</small></td><td><span class="val">1.75%</span> <small style='color:#aaa'>×1</small></td><td><span class="val">1.49%</span> <small style='color:#aaa'>×1</small></td><td><span class="val">1.39%</span> <small style='color:#aaa'>×1</small></td></tr><tr><td>2025</td><td><span class="val green">10.95%</span> <small style='color:#aaa'>×4</small></td><td><span class="val green">8.19%</span> <small style='color:#aaa'>×4</small></td><td><span class="val green">7.74%</span> <small style='color:#aaa'>×4</small></td><td><span class="val">2.45%</span> <small style='color:#aaa'>×2</small></td></tr><tr><td>2024</td><td><span class="val green">9.27%</span> <small style='color:#aaa'>×4</small></td><td><span class="val green">8.75%</span> <small style='color:#aaa'>×4</small></td><td><span class="val green">9.28%</span> <small style='color:#aaa'>×4</small></td><td><span class="val">2.44%</span> <small style='color:#aaa'>×2</small></td></tr><tr><td>2023</td><td><span class="val green">6.21%</span> <small style='color:#aaa'>×2</small></td><td><span class="val green">6.42%</span> <small style='color:#aaa'>×4</small></td><td><span class="val green">6.54%</span> <small style='color:#aaa'>×4</small></td><td><span class="val">3.60%</span> <small style='color:#aaa'>×2</small></td></tr><tr><td>2022</td><td><span class="val green">8.13%</span> <small style='color:#aaa'>×1</small></td><td><span class="val green">6.58%</span> <small style='color:#aaa'>×4</small></td><td><span class="val green">7.34%</span> <small style='color:#aaa'>×2</small></td><td><span class="val">3.78%</span> <small style='color:#aaa'>×2</small></td></tr><tr><td>2021</td><td><span class="val orange">5.56%</span> <small style='color:#aaa'>×1</small></td><td><span class="val orange">5.45%</span> <small style='color:#aaa'>×4</small></td><td><span class="val green">6.81%</span> <small style='color:#aaa'>×1</small></td><td><span class="val">2.43%</span> <small style='color:#aaa'>×2</small></td></tr><tr><td>2020</td><td><span class="val orange">5.39%</span> <small style='color:#aaa'>×1</small></td><td><span class="val">0.33%</span> <small style='color:#aaa'>×1</small></td><td><span class="val orange">4.80%</span> <small style='color:#aaa'>×1</small></td><td><span class="val">3.81%</span> <small style='color:#aaa'>×2</small></td></tr></tbody>
+    </table>
+    <div class="notice">殖利率以「當年配息總和 ÷ 各次除息前均價」計算。×N 表示當年除息次數。</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📅 配息時程（TWSE etfDiv 即時資料）</div>
+    <div class="schedule-grid">
+        <div class="schedule-card">
+          <h4>0056 元大高股息</h4>
+          <div class="schedule-item">00939 | 統一台灣高息動能 | 115年06月02日 | 115年06月08日 | 115年06月25日 | 本基金可分配收益，除應符合下列規定外，並應經</div><div class="schedule-item">00946 | 群益科技高息成長 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並應經金管</div><div class="schedule-item">00953B | 群益優選非投等債 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並應經金</div><div class="schedule-item">00984D | 主動聯博全球非投 | 115年06月02日 | 115年06月08日 | 115年06月25日 | 1.本基金每受益權單位可分配之收益，係指以</div><div class="schedule-item">00985B | 群益ESG投等債0-5 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並</div><div class="schedule-item">00930 | 永豐ESG低碳高息 | 115年05月26日 | 115年06月01日 | 115年06月18日 | 0.31 | 1.本基金可分配收益，應符合</div>
+        </div>
+        <div class="schedule-card">
+          <h4>00878 國泰永續高股息</h4>
+          <div class="schedule-item">00939 | 統一台灣高息動能 | 115年06月02日 | 115年06月08日 | 115年06月25日 | 本基金可分配收益，除應符合下列規定外，並應經</div><div class="schedule-item">00946 | 群益科技高息成長 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並應經金管</div><div class="schedule-item">00953B | 群益優選非投等債 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並應經金</div><div class="schedule-item">00984D | 主動聯博全球非投 | -1893年06月02日 | 115年06月08日 | 115年06月25日 | 1.本基金每受益權單位可分配之收益，係</div><div class="schedule-item">00985B | 群益ESG投等債0-5 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並</div><div class="schedule-item">00930 | 永豐ESG低碳高息 | 115年05月26日 | 115年06月01日 | 106年06月18日 | 0.31 | 1.本基金可分配收益，應符合</div>
+        </div>
+        <div class="schedule-card">
+          <h4>00713 元大台灣高息低波</h4>
+          <div class="schedule-item">00939 | 統一台灣高息動能 | 115年06月02日 | 115年06月08日 | 115年06月25日 | 本基金可分配收益，除應符合下列規定外，並應經</div><div class="schedule-item">00946 | 群益科技高息成長 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並應經金管</div><div class="schedule-item">00953B | 群益優選非投等債 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並應經金</div><div class="schedule-item">00984D | 主動聯博全球非投 | 115年06月02日 | 115年06月08日 | 115年06月25日 | 1.本基金每受益權單位可分配之收益，係指以</div><div class="schedule-item">00985B | 群益ESG投等債0-5 | 115年06月02日 | 115年06月08日 | 115年06月29日 | 本基金可分配收益，應符合下列規定，並</div><div class="schedule-item">00930 | 永豐ESG低碳高息 | 115年05月26日 | 115年06月01日 | 115年06月18日 | 0.31 | 1.本基金可分配收益，應符合</div>
+        </div></div>
+    <div class="notice">資料來源：TWSE etfDiv API。欄位順序：股票代號｜股票簡稱｜停止過戶日｜除息交易日｜配息發放日。</div>
+  </div>
+
+</main>
+</body>
+</html>
