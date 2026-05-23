@@ -45,6 +45,23 @@ footer { text-align: center; color: #bbb; font-size: .76rem; padding: 28px 0 36p
   main    { padding: 0 16px; }
   header h1 { font-size: 1.4rem; }
 }
+
+a.card.signal-active {
+  border: 2px solid #2e7d32 !important;
+  box-shadow: 0 0 14px rgba(46,125,50,.35) !important;
+}
+a.card.signal-none {
+  opacity: .45;
+  border: 1px solid #bbb !important;
+}
+.signal-badge {
+  display: inline-block; font-size: .72rem; border-radius: 4px;
+  padding: 1px 7px; font-weight: 600;
+  background: #e8f5e9; color: #2e7d32; margin-top: 4px;
+}
+.signal-badge.no-signal {
+  background: #f5f5f5; color: #999;
+}
 </style>
 </head>
 <body>
@@ -54,7 +71,7 @@ footer { text-align: center; color: #bbb; font-size: .76rem; padding: 28px 0 36p
   <p>台股策略研究與追蹤系統 · 個人投資決策輔助工具</p>
   <div style="margin-top:10px">
     <span class="badge">資料截至 2026-05-22</span>
-    <span class="badge">更新時間 20:18</span>
+    <span class="badge">更新時間 21:02</span>
     <span class="badge">V5 · 本地端</span>
   </div>
 </header>
@@ -125,11 +142,11 @@ footer { text-align: center; color: #bbb; font-size: .76rem; padding: 28px 0 36p
         <div class="card-desc">季配拼圖（A+B+C）· 月配組合 · 正2 訊號 · 0050 vs 009816 追蹤</div>
         <span class="tag tag-green">月月領息 · 長期觀察</span>
       </a>
-      <a class="card" href="daily/底部突破_Latest.html">
+      <a class="card" href="daily/底部突破意圖_Latest.html">
         <div class="card-icon">🚀</div>
-        <div class="card-title">底部二度突破策略</div>
-        <div class="card-desc">60 日盤整 + 帶量突破 + 回踩 Peak A 再突破 · 純技術面黑馬股</div>
-        <span class="tag tag-orange">勝率 37.2%</span>
+        <div class="card-title">底部突破×意圖因子 策略</div>
+        <div class="card-desc">60日盤整突破 × 基本面Good/Excellent × 意圖因子≥0.30 · TAIEX MA20 濾網</div>
+        <span class="tag tag-green">CAGR +17.95%</span>
       </a>
       <a class="card" href="daily/海龜法則_Latest.html">
         <div class="card-icon">🐢</div>
@@ -197,10 +214,10 @@ footer { text-align: center; color: #bbb; font-size: .76rem; padding: 28px 0 36p
         <div class="card-desc">SYS1 & SYS2 訊號追蹤 · ATR 止損監控 · 趨勢持倉管理</div>
         <span class="tag tag-orange">自動化追蹤</span>
       </a>
-      <a class="card" href="daily/observatory_bottom_breakout.html">
+      <a class="card" href="daily/observatory_bottom_breakout_intent.html">
         <div class="card-icon">🔭</div>
-        <div class="card-title">底部二度突破 觀測站</div>
-        <div class="card-desc">黑馬股追蹤 · +20% 止盈 / -8% 止損 · 基本面拐點監控</div>
+        <div class="card-title">底部突破×意圖因子 觀測站</div>
+        <div class="card-desc">移動止盈高點追蹤 · 180天複合出場監控 · Alpha vs TAIEX</div>
         <span class="tag tag-orange">全新上線</span>
       </a>
       <a class="card" href="daily/observatory_value_investing.html">
@@ -239,11 +256,11 @@ footer { text-align: center; color: #bbb; font-size: .76rem; padding: 28px 0 36p
         <div class="card-desc">4 項修正版回測 — 倖存者偏差修正 + EOD 執行</div>
         <span class="tag tag-orange">v2 修正版</span>
       </a>
-      <a class="card" href="backtest/底部突破_回測報告.html">
+      <a class="card" href="backtest/底部突破意圖_回測報告.html">
         <div class="card-icon">📄</div>
-        <div class="card-title">底部二度突破 回測報告</div>
-        <div class="card-desc">2016–2026 長期，31,202 筆交易 · 正期望值技術策略</div>
-        <span class="tag tag-green">累加回報 118,441%</span>
+        <div class="card-title">底部突破×意圖因子 回測報告</div>
+        <div class="card-desc">2016–2026 長期，117 筆 · 基本面+意圖因子雙重過濾 · 移動止盈</div>
+        <span class="tag tag-green">CAGR +17.95% · 勝率 50.4%</span>
       </a>
       <a class="card" href="backtest/海龜法則v5_回測報告.html">
         <div class="card-icon">📄</div>
@@ -270,6 +287,29 @@ footer { text-align: center; color: #bbb; font-size: .76rem; padding: 28px 0 36p
 <footer>
   FinMind V5 · 本地端 Dashboard · 資料截至 2026-05-22 · 僅供個人投資參考，不構成投資建議
 </footer>
+
+<script>
+var _bbiStatus = {"count": 0, "date": "2026-05-23"};
+(function() {
+  var today = new Date().toISOString().slice(0, 10);
+  var card  = document.querySelector('a.card[href="daily/底部突破意圖_Latest.html"]');
+  if (!card) return;
+  if (_bbiStatus.date !== today) return; // 批次今天尚未執行，維持預設
+  if (_bbiStatus.count > 0) {
+    card.classList.add('signal-active');
+    var badge = document.createElement('span');
+    badge.className = 'signal-badge';
+    badge.textContent = '🔔 ' + _bbiStatus.count + ' 筆訊號';
+    card.appendChild(badge);
+  } else {
+    card.classList.add('signal-none');
+    var badge = document.createElement('span');
+    badge.className = 'signal-badge no-signal';
+    badge.textContent = '今日無訊號';
+    card.appendChild(badge);
+  }
+})();
+</script>
 
 </body>
 </html>
