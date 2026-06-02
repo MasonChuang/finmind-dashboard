@@ -20,13 +20,13 @@
             <h1 class="fw-bold mb-0">🗄️ 資料庫狀態監控 (Local DB Monitor)</h1>
             <p class="text-muted mb-0">自動掃描 finmind_data.db | 依據資料屬性自動計算更新健康度</p>
         </div>
-        <div class="text-muted small">最後掃描：2026-06-01 21:48</div>
+        <div class="text-muted small">最後掃描：2026-06-02 22:04</div>
     </div>
 
     <div class="db-info row text-center g-0">
         <div class="col-md-4 border-end border-secondary">
             <div class="small opacity-75">資料庫總量</div>
-            <div class="h3 fw-bold">32671.2 MB</div>
+            <div class="h3 fw-bold">32706.6 MB</div>
         </div>
         <div class="col-md-4 border-end border-secondary">
             <div class="small opacity-75">監控表數量</div>
@@ -44,6 +44,7 @@
                 <tr>
                     <th>資料表 (Table)</th>
                     <th>中文名稱 / 作用</th>
+                    <th class="text-center">線上版更新時間</th>
                     <th class="text-center">來源</th>
                     <th class="text-center">週期</th>
                     <th class="text-end">總筆數</th>
@@ -58,6 +59,7 @@
         <tr>
             <td><code class="small">ETF_NAV</code></td>
             <td>ETF 淨值與折溢價(每日)</td>
+            <td class="text-center small text-muted">N/A (自建)</td>
             <td class="text-center"><span class="badge bg-info text-dark">自建 / TWSE</span></td>
             <td class="text-center small">日</td>
             <td class="text-end">0</td>
@@ -70,9 +72,10 @@
         <tr>
             <td><code class="small">StockListingDate</code></td>
             <td>股票上市日期對照表</td>
+            <td class="text-center small text-muted">N/A (自建)</td>
             <td class="text-center"><span class="badge bg-info text-dark">自建 / FinMind</span></td>
             <td class="text-center small">年</td>
-            <td class="text-end">2,193</td>
+            <td class="text-end">2,211</td>
             <td class="text-center small">-</td>
             <td class="text-center fw-bold">-</td>
             <td class="text-center small">-</td>
@@ -82,30 +85,33 @@
         <tr>
             <td><code class="small">TaiwanBusinessIndicator</code></td>
             <td>每月景氣對策信號(燈號)</td>
+            <td class="text-center small text-muted">每月 25 日後</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">月</td>
             <td class="text-end">532</td>
             <td class="text-center small">1982-01-01</td>
             <td class="text-center fw-bold">2026-04-01</td>
-            <td class="text-center small">2026-06-01 21:46:09</td>
+            <td class="text-center small">2026-06-02 22:01:29</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanDailyShortSaleBalances</code></td>
             <td>信用額度總量管制餘額</td>
+            <td class="text-center small text-muted">週一~五 21:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">6,607,851</td>
+            <td class="text-end">6,610,042</td>
             <td class="text-center small">2010-01-04</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:08</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:27</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockBalanceSheet</code></td>
             <td>資產負債表</td>
+            <td class="text-center small text-muted">季報公告後</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">季報</td>
             <td class="text-end">6,436,587</td>
@@ -118,6 +124,7 @@
         <tr>
             <td><code class="small">TaiwanStockCashFlowsStatement</code></td>
             <td>現金流量表</td>
+            <td class="text-center small text-muted">季報公告後</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">季報</td>
             <td class="text-end">2,311,915</td>
@@ -130,18 +137,20 @@
         <tr>
             <td><code class="small">TaiwanStockDayTrading</code></td>
             <td>當日沖銷交易</td>
+            <td class="text-center small text-muted">週一~五 21:30</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">4,312,976</td>
+            <td class="text-end">4,314,963</td>
             <td class="text-center small">2014-01-06</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:52</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:02:11</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockDelisting</code></td>
             <td>股票下市櫃表</td>
+            <td class="text-center small text-muted">不定期</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
             <td class="text-end">12</td>
@@ -154,6 +163,7 @@
         <tr>
             <td><code class="small">TaiwanStockDispositionSecuritiesPeriod</code></td>
             <td>處置有價證券表</td>
+            <td class="text-center small text-muted">不定期</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
             <td class="text-end">396</td>
@@ -166,18 +176,20 @@
         <tr>
             <td><code class="small">TaiwanStockDividend</code></td>
             <td>股利政策表</td>
+            <td class="text-center small text-muted">股東會決議後</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">年</td>
-            <td class="text-end">29,407</td>
+            <td class="text-end">29,415</td>
             <td class="text-center small">2005-05-23</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 13:51:31</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:02:07</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockDividendResult</code></td>
             <td>除權除息結果表</td>
+            <td class="text-center small text-muted">除權息日後</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">年</td>
             <td class="text-end">13,147</td>
@@ -190,6 +202,7 @@
         <tr>
             <td><code class="small">TaiwanStockFinancialStatements</code></td>
             <td>綜合損益表(季報/EPS)</td>
+            <td class="text-center small text-muted">季報公告後</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">季報</td>
             <td class="text-end">1,360,123</td>
@@ -202,6 +215,7 @@
         <tr>
             <td><code class="small">TaiwanStockHoldingSharesPer</code></td>
             <td>股權持股分級表 (正式表)</td>
+            <td class="text-center small text-muted">週一~五 21:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">週</td>
             <td class="text-end">22,564,556</td>
@@ -214,18 +228,20 @@
         <tr>
             <td><code class="small">TaiwanStockIndustryChain</code></td>
             <td>個股產業鏈分類</td>
+            <td class="text-center small text-muted">不定期</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">月</td>
             <td class="text-end">6,815</td>
             <td class="text-center small">2025-03-30</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:02</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:19</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockInfo</code></td>
             <td>台股總覽</td>
+            <td class="text-center small text-muted">週一~五 17:30</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
             <td class="text-end">4,089</td>
@@ -238,42 +254,46 @@
         <tr>
             <td><code class="small">TaiwanStockInstitutionalInvestorsBuySell</code></td>
             <td>個股三大法人買賣超</td>
+            <td class="text-center small text-muted">週一~五 20:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">71,338,733</td>
+            <td class="text-end">71,444,136</td>
             <td class="text-center small">2005-01-03</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:01</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:18</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockMarginPurchaseShortSale</code></td>
             <td>個股融資融券異動</td>
+            <td class="text-center small text-muted">週一~五 21:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">8,105,761</td>
+            <td class="text-end">8,107,935</td>
             <td class="text-center small">2001-01-05</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:18</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:35</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockMarketValue</code></td>
             <td>股價市值表</td>
+            <td class="text-center small text-muted">週一~五 23:30</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">6,968,557</td>
+            <td class="text-end">6,970,898</td>
             <td class="text-center small">2010-01-04</td>
-            <td class="text-center fw-bold">2026-05-29</td>
-            <td class="text-center small">2026-05-30 08:21:18</td>
+            <td class="text-center fw-bold">2026-06-01</td>
+            <td class="text-center small">2026-06-02 22:01:23</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockMonthRevenue</code></td>
             <td>月營收表</td>
+            <td class="text-center small text-muted">每月 10 日後</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">月</td>
             <td class="text-end">443,594</td>
@@ -286,54 +306,59 @@
         <tr>
             <td><code class="small">TaiwanStockPER</code></td>
             <td>本益比 / 殖利率 / 淨值比</td>
+            <td class="text-center small text-muted">週一~五 18:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">7,667,101</td>
+            <td class="text-end">7,669,065</td>
             <td class="text-center small">2005-09-02</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:15</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:34</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockPrice</code></td>
             <td>股價日成交資訊</td>
+            <td class="text-center small text-muted">週一~五 17:30</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">63,475,526</td>
+            <td class="text-end">63,517,393</td>
             <td class="text-center small">1998-01-03</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:45:52</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:00</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockPriceLimit</code></td>
             <td>每日漲跌停價</td>
+            <td class="text-center small text-muted">週一~五 18:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">8,172,044</td>
+            <td class="text-end">8,175,140</td>
             <td class="text-center small">2010-01-04</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:51</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:02:10</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockPrice_Adj</code></td>
             <td>TaiwanStockPrice_Adj</td>
+            <td class="text-center small text-muted">-</td>
             <td class="text-center"><span class="badge bg-info text-dark">未知</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">9,669,335</td>
+            <td class="text-end">9,672,085</td>
             <td class="text-center small">1998-01-03</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:05</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:21</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockSecuritiesLending</code></td>
             <td>借券成交明細</td>
+            <td class="text-center small text-muted">週一~五 15:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
             <td class="text-end">576,484</td>
@@ -346,6 +371,7 @@
         <tr>
             <td><code class="small">TaiwanStockShareholding</code></td>
             <td>股權持股分級表 (與舊表相容)</td>
+            <td class="text-center small text-muted">週一~五 21:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">週</td>
             <td class="text-end">17,845,159</td>
@@ -358,6 +384,7 @@
         <tr>
             <td><code class="small">TaiwanStockTotalInstitutionalInvestors</code></td>
             <td>整體市場三大法人</td>
+            <td class="text-center small text-muted">週一~五 15:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
             <td class="text-end">26,560</td>
@@ -370,30 +397,33 @@
         <tr>
             <td><code class="small">TaiwanStockTotalMarginPurchaseShortSale</code></td>
             <td>整體市場融資融券</td>
+            <td class="text-center small text-muted">週一~五 21:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">18,783</td>
+            <td class="text-end">18,786</td>
             <td class="text-center small">2001-01-03</td>
-            <td class="text-center fw-bold">2026-06-01</td>
-            <td class="text-center small">2026-06-01 21:46:18</td>
+            <td class="text-center fw-bold">2026-06-02</td>
+            <td class="text-center small">2026-06-02 22:01:36</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockTradingDate</code></td>
             <td>台股交易日曆</td>
+            <td class="text-center small text-muted">不定期</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
             <td class="text-end">6,937</td>
             <td class="text-center small">1999-01-05</td>
             <td class="text-center fw-bold">2026-12-31</td>
-            <td class="text-center small">2026-06-01 21:46:01</td>
+            <td class="text-center small">2026-06-02 22:01:18</td>
             <td class="text-center"></td>
         </tr>
         
         <tr>
             <td><code class="small">TaiwanStockWeekPrice</code></td>
             <td>週 K 線資料</td>
+            <td class="text-center small text-muted">週一~五 17:30</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">週</td>
             <td class="text-end">1,472,997</td>
@@ -406,12 +436,13 @@
         <tr>
             <td><code class="small">TaiwanTotalExchangeMarginMaintenance</code></td>
             <td>大盤融資維持率</td>
+            <td class="text-center small text-muted">週一~五 21:00</td>
             <td class="text-center"><span class="badge bg-primary">FinMind</span></td>
             <td class="text-center small">日</td>
-            <td class="text-end">4,000</td>
+            <td class="text-end">4,001</td>
             <td class="text-center small">2010-01-04</td>
-            <td class="text-center fw-bold">2026-05-29</td>
-            <td class="text-center small">2026-05-30 08:21:24</td>
+            <td class="text-center fw-bold">2026-06-01</td>
+            <td class="text-center small">2026-06-02 22:01:29</td>
             <td class="text-center"></td>
         </tr>
         
