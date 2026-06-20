@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ETF 健檢報告 — 2026-06-19</title>
+<title>ETF 健檢報告 — 2026-06-18</title>
 <style>
 * { box-sizing:border-box; margin:0; padding:0; }
 body { font-family:'Segoe UI','Microsoft JhengHei',sans-serif;
@@ -50,6 +50,15 @@ main { max-width:1100px; margin:24px auto; padding:0 24px; }
 .reason-yellow::before { color:#f57f17; }
 .reason-red::before    { color:#c62828; }
 .no-issue { font-size:.8rem; color:#81c784; padding:4px 0; }
+.intel-table { width:100%; border-collapse:collapse; font-size:.84rem; background:#fff; }
+.intel-table th { background:#f8fafc; color:#0d3b66; font-weight:700; padding:8px 10px; text-align:center; border-bottom:2px solid #e0e8ef; }
+.intel-table td { padding:8px 10px; border-bottom:1px solid #f0f0f0; vertical-align:top; }
+.intel-status { display:inline-block; border-radius:999px; padding:2px 8px; font-size:.72rem; font-weight:700; }
+.intel-ready { background:#e8f5e9; color:#2e7d32; }
+.intel-sample { background:#fff7ed; color:#c2410c; }
+.intel-missing { background:#f3f4f6; color:#6b7280; }
+.intel-link { color:#2563eb; text-decoration:none; font-weight:700; }
+.intel-note { color:#64748b; font-size:.78rem; line-height:1.45; }
 
 /* 換手建議 */
 .switch-card { background:#fff; border-radius:10px;
@@ -88,7 +97,7 @@ footer { text-align:center; color:#bbb; font-size:.74rem; padding:24px 0 36px; }
   <h1>🏥 ETF 定期定額 — 健檢報告</h1>
   <p>市值趨勢 · 配息變化 · 折溢價 · 換手建議</p>
   <div>
-    <span class="badge">健檢日期 2026-06-19</span>
+    <span class="badge">健檢日期 2026-06-18</span>
     <span class="badge" style="background:rgba(198,40,40,.3)">🔴 1 檔需行動</span>
     <span class="badge">🟢 健康 7  🟡 注意 3  🔴 行動 1</span>
     <span class="badge">換手建議 1 項</span>
@@ -405,7 +414,7 @@ footer { text-align:center; color:#bbb; font-size:.74rem; padding:24px 0 36px; }
       </div>
       
     <div class="metric">
-      <span class="metric-val green-val">+83.2%</span>
+      <span class="metric-val green-val">+85.2%</span>
       <span class="metric-lbl">年度報酬</span>
     </div>
     </div>
@@ -440,7 +449,7 @@ footer { text-align:center; color:#bbb; font-size:.74rem; padding:24px 0 36px; }
       </div>
       
     <div class="metric">
-      <span class="metric-val green-val">+63.6%</span>
+      <span class="metric-val green-val">+67.4%</span>
       <span class="metric-lbl">年度報酬</span>
     </div>
     </div>
@@ -475,7 +484,7 @@ footer { text-align:center; color:#bbb; font-size:.74rem; padding:24px 0 36px; }
       </div>
       
     <div class="metric">
-      <span class="metric-val green-val">+46.6%</span>
+      <span class="metric-val green-val">+48.9%</span>
       <span class="metric-lbl">年度報酬</span>
     </div>
     </div>
@@ -522,10 +531,102 @@ footer { text-align:center; color:#bbb; font-size:.74rem; padding:24px 0 36px; }
 </div>
   </div>
 
+  <div class="section">
+    <div class="section-title">🧠 Gideon ETF Intelligence（成分股與持倉追蹤狀態）</div>
+    
+<table class="intel-table">
+<thead><tr><th>代號</th><th>名稱</th><th>追蹤模式</th><th>持倉</th><th>Gideon Intelligence</th><th>摘要/狀態</th></tr></thead>
+<tbody>
+<tr>
+  <td><b>0050</b></td>
+  <td>元大台灣50</td>
+  <td>固定＋持倉</td>
+  <td>是</td>
+  <td><span class="intel-status intel-sample">範例資料</span><br><a class="intel-link" href="../etf_intelligence/0050_latest.html">開啟報告</a></td>
+  <td class="intel-note">這是 Phase 1 的合約範例檔，用於驗證 Python loader 與未來 dashboard 銜接；尚未代表 0050 的官方成分股分析。</td>
+</tr>
+<tr>
+  <td><b>0056</b></td>
+  <td>元大高股息</td>
+  <td>固定＋持倉</td>
+  <td>是</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>00878</b></td>
+  <td>國泰永續高股息</td>
+  <td>固定追蹤</td>
+  <td>否</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>00919</b></td>
+  <td>群益台灣精選高息</td>
+  <td>固定追蹤</td>
+  <td>否</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>009816</b></td>
+  <td>凱基台灣TOP50</td>
+  <td>固定＋持倉</td>
+  <td>是</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>00645</b></td>
+  <td>富邦日本</td>
+  <td>固定＋持倉</td>
+  <td>是</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>00646</b></td>
+  <td>元大S&amp;P500</td>
+  <td>固定＋持倉</td>
+  <td>是</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>00709</b></td>
+  <td>富邦歐洲</td>
+  <td>固定追蹤</td>
+  <td>否</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>VTI</b></td>
+  <td>Vanguard Total Stock Market ETF</td>
+  <td>持倉追蹤</td>
+  <td>是</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr>
+<tr>
+  <td><b>VXUS</b></td>
+  <td>Vanguard Total International Stock ETF</td>
+  <td>持倉追蹤</td>
+  <td>是</td>
+  <td><span class="intel-status intel-missing">尚未建立</span><br>—</td>
+  <td class="intel-note">Gideon Intelligence：尚未建立</td>
+</tr></tbody>
+</table>
+<div class="intel-note" style="margin-top:10px">
+  ※ ETF 成分股變更不發 Telegram；後續會在 dashboard 觀察價格、報酬曲線、殖利率等變化後提示可能影響。
+</div>
+  </div>
+
 </main>
 
 <footer>
-  ETF 健檢報告 · FinMind V5 · 健檢日期 2026-06-19 · 僅供個人投資參考
+  ETF 健檢報告 · FinMind V5 · 健檢日期 2026-06-18 · 僅供個人投資參考
 </footer>
 </body>
 </html>
