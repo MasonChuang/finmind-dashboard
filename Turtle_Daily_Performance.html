@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-06-19</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-06-20</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -148,8 +148,8 @@
             <div class="card text-white bg-primary mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>掃描總數 (全組)</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">3439 <small style="font-size:16px;">筆</small></h2>
-                    <p class="card-text"><small>2024-12-19 至今</small></p>
+                    <h2 class="card-title mb-0">3429 <small style="font-size:16px;">筆</small></h2>
+                    <p class="card-text"><small>2024-12-20 至今</small></p>
                 </div>
             </div>
         </div>
@@ -174,7 +174,7 @@
             <div class="card text-white bg-info mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>全排序單筆平均</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+7.20%</h2>
+                    <h2 class="card-title mb-0">+7.23%</h2>
                     <p class="card-text"><small>全部名次獨立停損結算</small></p>
                     <div style="margin-top:8px;border-top:1px solid rgba(255,255,255,0.2);padding-top:6px;">
             <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px;">
@@ -191,7 +191,7 @@
             <div class="card text-white bg-danger mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>Group A 專屬績效</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+9.27% <small style="font-size:16px;">(勝率 45.7%)</small></h2>
+                    <h2 class="card-title mb-0">+9.32% <small style="font-size:16px;">(勝率 45.8%)</small></h2>
                     <p class="card-text"><small>猛暴突破組專屬平均</small></p>
                 </div>
             </div>
@@ -219,18 +219,26 @@
                         
                 <tr>
                     <td><strong>名次 1</strong></td>
-                    <td class="text-dark">44.8%</td>
-                    <td class="text-danger">9.14%</td>
-                    <td>31.7</td>
-                    <td>339</td>
+                    <td class="text-dark">45.3%</td>
+                    <td class="text-danger">9.28%</td>
+                    <td>31.8</td>
+                    <td>338</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 2</strong></td>
-                    <td class="text-dark">46.4%</td>
-                    <td class="text-danger">8.87%</td>
+                    <td class="text-dark">46.6%</td>
+                    <td class="text-danger">9.38%</td>
                     <td>30.7</td>
-                    <td>336</td>
+                    <td>335</td>
+                </tr>
+            
+                <tr>
+                    <td><strong>名次 3</strong></td>
+                    <td class="text-dark">48.8%</td>
+                    <td class="text-danger">9.40%</td>
+                    <td>31.9</td>
+                    <td>330</td>
                 </tr>
             
                 <tr>
@@ -243,18 +251,18 @@
             
                 <tr>
                     <td><strong>名次 4</strong></td>
-                    <td class="text-dark">42.6%</td>
-                    <td class="text-danger">5.06%</td>
-                    <td>31.0</td>
-                    <td>324</td>
+                    <td class="text-dark">41.2%</td>
+                    <td class="text-danger">4.53%</td>
+                    <td>30.8</td>
+                    <td>323</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 5</strong></td>
-                    <td class="text-dark">36.2%</td>
-                    <td class="text-danger">4.68%</td>
+                    <td class="text-dark">36.4%</td>
+                    <td class="text-danger">4.81%</td>
                     <td>29.3</td>
-                    <td>326</td>
+                    <td>324</td>
                 </tr>
             
                     </tbody>
@@ -323,7 +331,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"], "wr": [18.9, 42.3, 30.5, 8.3, 40.7, 50.5, 49.5, 53.0, 53.8, 36.2, 35.5, 42.8, 59.4, 47.6, 59.5, 57.2, 45.1, 31.6, 0.0], "roi": [-4.59, 0.47, -2.01, -10.82, -2.08, 9.46, 13.84, 14.74, 6.16, 1.61, -0.7, 10.0, 15.91, 12.97, 36.99, 19.32, 6.4, -4.6, -21.26], "grpA_roi": [-6.16, 3.45, -1.38, -17.91, -1.86, 6.27, 20.07, 8.84, 5.3, 0.77, -0.36, 20.39, 18.71, 14.54, 40.88, 20.95, 3.28, -4.83, -21.33], "rank_roi": {"Rank 1": [-8.32, 1.6, -4.88, -14.7, -3.42, 3.04, 31.0, 10.53, 6.16, -3.61, -1.17, 14.27, 15.46, 29.05, 42.23, 37.59, 7.19, -3.86, 0.0], "Rank 2": [-1.26, -0.17, 0.14, -11.23, -0.41, 5.94, 22.79, 9.92, 5.53, -14.02, -1.24, 14.31, 15.38, 22.86, 52.57, 39.73, 3.15, -5.13, 0.0], "Rank 3": [-6.75, 0.7, -5.05, -12.95, 1.16, 16.08, 15.06, 25.83, 13.0, 12.24, -2.15, -1.26, 17.19, 18.42, 49.46, 23.21, 5.0, -4.34, 0.0], "Rank 4": [-3.93, -0.69, 3.24, -14.74, -0.5, 14.55, 9.83, 7.98, 1.68, 2.52, -0.96, 13.57, 17.49, 10.52, 42.07, 2.58, -6.3, -6.87, 0.0], "Rank 5": [-6.61, -5.97, -1.52, -19.45, -7.13, 10.87, 0.07, 13.31, 2.1, -9.57, -5.27, 34.31, 24.85, -4.92, 20.51, 21.05, 11.62, -5.01, -18.11]}, "rank_wr": {"Rank 1": [11.1, 40.0, 26.3, 10.0, 41.2, 55.0, 61.9, 43.5, 52.4, 33.3, 40.0, 45.0, 63.6, 52.4, 58.3, 71.4, 45.0, 35.3, 0.0], "Rank 2": [22.2, 53.3, 26.3, 15.0, 43.8, 40.0, 57.1, 47.8, 61.9, 19.0, 45.0, 50.0, 72.7, 47.6, 66.7, 68.2, 50.0, 35.7, 0.0], "Rank 3": [22.2, 53.3, 10.5, 10.0, 50.0, 60.0, 66.7, 65.2, 57.1, 52.4, 40.0, 36.8, 59.1, 47.6, 63.6, 72.7, 50.0, 33.3, 0.0], "Rank 4": [22.2, 33.3, 57.9, 10.0, 54.5, 35.0, 38.1, 47.8, 47.6, 42.9, 30.0, 61.1, 68.2, 52.4, 45.5, 36.4, 41.2, 30.8, 0.0], "Rank 5": [22.2, 33.3, 31.6, 5.0, 11.1, 55.0, 33.3, 65.2, 42.9, 23.8, 25.0, 50.0, 54.5, 20.0, 33.3, 54.5, 36.8, 23.1, 0.0]}};
+                var chartData = {"labels": ["2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"], "wr": [18.8, 42.3, 30.5, 8.3, 40.7, 50.5, 49.5, 53.0, 53.8, 36.2, 35.5, 42.8, 59.4, 47.6, 59.5, 57.2, 45.1, 31.6, 0.0], "roi": [-5.59, 0.47, -2.01, -10.82, -2.08, 9.46, 13.84, 14.74, 6.29, 1.61, -0.7, 10.0, 15.91, 12.97, 36.99, 19.32, 6.4, -4.6, -22.14], "grpA_roi": [-6.47, 3.45, -1.38, -17.91, -1.86, 6.27, 20.07, 8.84, 5.47, 0.77, -0.36, 20.39, 18.71, 14.54, 40.88, 20.95, 3.28, -4.83, -22.44], "rank_roi": {"Rank 1": [-8.76, 1.6, -4.88, -14.7, -3.42, 3.04, 31.0, 10.53, 6.16, -1.32, -1.17, 14.27, 15.46, 29.05, 42.23, 37.59, 7.19, -4.75, 0.0], "Rank 2": [-1.24, -0.17, 0.14, -11.23, -0.41, 5.14, 22.79, 9.92, 5.53, -6.39, -1.24, 14.31, 15.38, 22.86, 52.57, 39.73, 3.15, -3.89, 0.0], "Rank 3": [-7.37, 0.7, -5.05, -12.95, 1.16, 16.88, 15.06, 25.83, 15.91, 5.92, -2.15, -1.26, 17.19, 18.42, 49.46, 23.21, 4.26, -3.56, 0.0], "Rank 4": [-6.31, -0.69, 3.24, -14.74, -0.5, 14.55, 9.83, 7.98, -1.22, -1.07, -0.96, 13.57, 17.49, 10.52, 42.07, 2.58, -6.89, -7.93, 0.0], "Rank 5": [-5.44, -5.97, -1.52, -19.45, -7.13, 10.87, 0.07, 13.31, 2.1, -9.95, -5.91, 34.31, 24.85, -4.92, 20.51, 21.05, 12.92, -5.01, -23.83]}, "rank_wr": {"Rank 1": [12.5, 40.0, 26.3, 10.0, 41.2, 55.0, 61.9, 43.5, 52.4, 38.1, 40.0, 45.0, 63.6, 52.4, 58.3, 71.4, 45.0, 35.3, 0.0], "Rank 2": [25.0, 53.3, 26.3, 15.0, 43.8, 35.0, 57.1, 47.8, 61.9, 23.8, 45.0, 50.0, 72.7, 47.6, 66.7, 68.2, 50.0, 35.7, 0.0], "Rank 3": [25.0, 53.3, 10.5, 10.0, 50.0, 65.0, 66.7, 65.2, 61.9, 47.6, 40.0, 36.8, 59.1, 47.6, 63.6, 72.7, 45.0, 40.0, 0.0], "Rank 4": [12.5, 33.3, 57.9, 10.0, 54.5, 35.0, 38.1, 47.8, 42.9, 38.1, 30.0, 61.1, 68.2, 52.4, 45.5, 36.4, 35.3, 23.1, 0.0], "Rank 5": [25.0, 33.3, 31.6, 5.0, 11.1, 55.0, 33.3, 65.2, 42.9, 19.0, 20.0, 50.0, 54.5, 20.0, 33.3, 54.5, 47.4, 23.1, 0.0]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -2162,15 +2170,15 @@
       <td>和成</td>
       <td>玻璃陶瓷</td>
       <td>22.60</td>
-      <td>0.00</td>
+      <td>0.20</td>
       <td>1.09</td>
       <td>N/A</td>
       <td>N/A</td>
-      <td>19.8</td>
-      <td><span style='color:#198754;font-weight:bold;'>-12.39%</span></td>
+      <td>N/A</td>
+      <td><span style='color:#198754;font-weight:bold;'>-11.06%</span></td>
       <td>13</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
+      <td>-</td>
+      <td>Open</td>
     </tr>
     <tr>
       <td>2026-06-05</td>
@@ -3850,6 +3858,24 @@
       <td>2026-05-25</td>
       <td>9</td>
       <td>Group A</td>
+      <td>2327</td>
+      <td>國巨*</td>
+      <td>電子零組件業</td>
+      <td>691.00</td>
+      <td>6.00</td>
+      <td>1.10</td>
+      <td>745.0</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>57.16%</span></td>
+      <td>24</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-05-25</td>
+      <td>10</td>
+      <td>Group A</td>
       <td>3042</td>
       <td>晶技</td>
       <td>電子工業</td>
@@ -3860,24 +3886,6 @@
       <td>N/A</td>
       <td>N/A</td>
       <td><span style='color:#dc3545;font-weight:bold;'>11.63%</span></td>
-      <td>24</td>
-      <td>-</td>
-      <td>Open</td>
-    </tr>
-    <tr>
-      <td>2026-05-25</td>
-      <td>10</td>
-      <td>Group A</td>
-      <td>2484</td>
-      <td>希華</td>
-      <td>電子零組件業</td>
-      <td>54.20</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>55.3</td>
-      <td>N/A</td>
-      <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>31.37%</span></td>
       <td>24</td>
       <td>-</td>
       <td>Open</td>
@@ -3904,6 +3912,24 @@
       <td>2026-05-22</td>
       <td>2</td>
       <td>Group A</td>
+      <td>2327</td>
+      <td>國巨*</td>
+      <td>電子零組件業</td>
+      <td>629.00</td>
+      <td>6.00</td>
+      <td>1.10</td>
+      <td>763.0</td>
+      <td>N/A</td>
+      <td>N/A</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>72.65%</span></td>
+      <td>27</td>
+      <td>-</td>
+      <td>Open</td>
+    </tr>
+    <tr>
+      <td>2026-05-22</td>
+      <td>3</td>
+      <td>Group A</td>
       <td>6173</td>
       <td>信昌電</td>
       <td>電子零組件業</td>
@@ -3914,24 +3940,6 @@
       <td>N/A</td>
       <td>N/A</td>
       <td><span style='color:#dc3545;font-weight:bold;'>64.16%</span></td>
-      <td>27</td>
-      <td>-</td>
-      <td>Open</td>
-    </tr>
-    <tr>
-      <td>2026-05-22</td>
-      <td>3</td>
-      <td>Group A</td>
-      <td>2327</td>
-      <td>國巨*</td>
-      <td>電子零組件業</td>
-      <td>629.00</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>769.0</td>
-      <td>N/A</td>
-      <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>71.7%</span></td>
       <td>27</td>
       <td>-</td>
       <td>Open</td>
@@ -4786,6 +4794,24 @@
       <td>2026-05-15</td>
       <td>1</td>
       <td>Group A</td>
+      <td>8028</td>
+      <td>昇陽半導體</td>
+      <td>電子工業</td>
+      <td>287.50</td>
+      <td>0.00</td>
+      <td>1.10</td>
+      <td>324.3</td>
+      <td>315.0</td>
+      <td>302.0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.04%</span></td>
+      <td>27</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2026-05-15</td>
+      <td>2</td>
+      <td>Group A</td>
       <td>3048</td>
       <td>益登</td>
       <td>電子通路業</td>
@@ -4802,7 +4828,7 @@
     </tr>
     <tr>
       <td>2026-05-15</td>
-      <td>2</td>
+      <td>3</td>
       <td>Group A</td>
       <td>8091</td>
       <td>翔名</td>
@@ -4820,7 +4846,7 @@
     </tr>
     <tr>
       <td>2026-05-15</td>
-      <td>3</td>
+      <td>4</td>
       <td>Group A</td>
       <td>3498</td>
       <td>陽程</td>
@@ -4833,24 +4859,6 @@
       <td>136.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.72%</span></td>
       <td>19</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2026-05-15</td>
-      <td>4</td>
-      <td>Group A</td>
-      <td>8028</td>
-      <td>昇陽半導體</td>
-      <td>電子工業</td>
-      <td>287.50</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>327.0</td>
-      <td>315.0</td>
-      <td>302.0</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.04%</span></td>
-      <td>27</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -5114,12 +5122,12 @@
       <td>國巨*</td>
       <td>電子零組件業</td>
       <td>462.00</td>
-      <td>0.00</td>
-      <td>1.07</td>
-      <td>742.0</td>
-      <td>842.0</td>
+      <td>6.00</td>
+      <td>1.08</td>
+      <td>736.0</td>
+      <td>836.0</td>
       <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>133.77%</span></td>
+      <td><span style='color:#dc3545;font-weight:bold;'>135.06%</span></td>
       <td>35</td>
       <td>-</td>
       <td>Open</td>
@@ -9502,6 +9510,24 @@
       <td>2026-04-08</td>
       <td>3</td>
       <td>Group A</td>
+      <td>6739</td>
+      <td>竹陞科技</td>
+      <td>其他電子類</td>
+      <td>1555.00</td>
+      <td>0.00</td>
+      <td>1.10</td>
+      <td>1607.0</td>
+      <td>1357.0</td>
+      <td>1380.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-11.25%</span></td>
+      <td>27</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2026-04-08</td>
+      <td>4</td>
+      <td>Group A</td>
       <td>4760</td>
       <td>勤凱</td>
       <td>其他電子類</td>
@@ -9518,7 +9544,7 @@
     </tr>
     <tr>
       <td>2026-04-08</td>
-      <td>4</td>
+      <td>5</td>
       <td>Group A</td>
       <td>6285</td>
       <td>啟碁</td>
@@ -9531,24 +9557,6 @@
       <td>217.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>0.23%</span></td>
       <td>16</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2026-04-08</td>
-      <td>5</td>
-      <td>Group A</td>
-      <td>6739</td>
-      <td>竹陞科技</td>
-      <td>其他電子類</td>
-      <td>1555.00</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>1620.0</td>
-      <td>1370.0</td>
-      <td>1380.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-11.25%</span></td>
-      <td>27</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -9700,6 +9708,24 @@
       <td>2026-04-07</td>
       <td>4</td>
       <td>Group A</td>
+      <td>6739</td>
+      <td>竹陞科技</td>
+      <td>其他電子類</td>
+      <td>1415.00</td>
+      <td>0.00</td>
+      <td>1.07</td>
+      <td>1697.0</td>
+      <td>1442.0</td>
+      <td>1380.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.47%</span></td>
+      <td>28</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2026-04-07</td>
+      <td>5</td>
+      <td>Group A</td>
       <td>7825</td>
       <td>和亞智慧</td>
       <td>其他電子業</td>
@@ -9711,24 +9737,6 @@
       <td>139.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>10.76%</span></td>
       <td>20</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2026-04-07</td>
-      <td>5</td>
-      <td>Group A</td>
-      <td>6739</td>
-      <td>竹陞科技</td>
-      <td>其他電子類</td>
-      <td>1415.00</td>
-      <td>0.00</td>
-      <td>1.07</td>
-      <td>1710.0</td>
-      <td>1455.0</td>
-      <td>1380.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.47%</span></td>
-      <td>28</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -16420,8 +16428,8 @@
       <td>896.00</td>
       <td>0.00</td>
       <td>1.07</td>
-      <td>937.0</td>
-      <td>935.0</td>
+      <td>924.0</td>
+      <td>922.0</td>
       <td>1380.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>54.02%</span></td>
       <td>96</td>
@@ -19606,8 +19614,8 @@
       <td>205.00</td>
       <td>0.00</td>
       <td>1.09</td>
-      <td>182.0</td>
-      <td>164.5</td>
+      <td>179.3</td>
+      <td>161.8</td>
       <td>183.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-10.49%</span></td>
       <td>14</td>
@@ -24790,8 +24798,8 @@
       <td>621.00</td>
       <td>0.00</td>
       <td>1.02</td>
-      <td>588.0</td>
-      <td>581.0</td>
+      <td>568.0</td>
+      <td>561.0</td>
       <td>587.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-5.48%</span></td>
       <td>12</td>
@@ -24952,7 +24960,7 @@
       <td>607.00</td>
       <td>0.00</td>
       <td>1.01</td>
-      <td>588.0</td>
+      <td>568.0</td>
       <td>0.01</td>
       <td>587.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-3.29%</span></td>
@@ -25240,8 +25248,8 @@
       <td>601.00</td>
       <td>0.00</td>
       <td>1.02</td>
-      <td>589.0</td>
-      <td>602.0</td>
+      <td>569.0</td>
+      <td>582.0</td>
       <td>587.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-2.33%</span></td>
       <td>16</td>
@@ -27880,6 +27888,24 @@
       <td>2025-10-27</td>
       <td>5</td>
       <td>Group A</td>
+      <td>2327</td>
+      <td>國巨*</td>
+      <td>電子零組件業</td>
+      <td>248.50</td>
+      <td>0.00</td>
+      <td>1.09</td>
+      <td>224.0</td>
+      <td>226.5</td>
+      <td>224.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.86%</span></td>
+      <td>23</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-10-27</td>
+      <td>6</td>
+      <td>Group A</td>
       <td>2337</td>
       <td>旺宏</td>
       <td>電子工業</td>
@@ -27891,24 +27917,6 @@
       <td>34.1</td>
       <td><span style='color:#dc3545;font-weight:bold;'>2.87%</span></td>
       <td>25</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-10-27</td>
-      <td>6</td>
-      <td>Group A</td>
-      <td>2327</td>
-      <td>國巨*</td>
-      <td>電子零組件業</td>
-      <td>248.50</td>
-      <td>0.00</td>
-      <td>1.09</td>
-      <td>230.0</td>
-      <td>232.5</td>
-      <td>224.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-9.86%</span></td>
-      <td>23</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -27993,9 +28001,9 @@
       <td>電子零組件業</td>
       <td>226.00</td>
       <td>0.00</td>
-      <td>1.08</td>
-      <td>234.5</td>
-      <td>229.0</td>
+      <td>1.09</td>
+      <td>228.5</td>
+      <td>223.0</td>
       <td>224.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-0.88%</span></td>
       <td>27</td>
@@ -30640,8 +30648,8 @@
       <td>944.00</td>
       <td>0.00</td>
       <td>1.04</td>
-      <td>809.0</td>
-      <td>743.0</td>
+      <td>796.0</td>
+      <td>730.0</td>
       <td>820.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-13.14%</span></td>
       <td>12</td>
@@ -31000,8 +31008,8 @@
       <td>75.00</td>
       <td>0.00</td>
       <td>1.01</td>
-      <td>70.2</td>
-      <td>54.3</td>
+      <td>69.82</td>
+      <td>53.92</td>
       <td>70.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-6.67%</span></td>
       <td>25</td>
@@ -31198,8 +31206,8 @@
       <td>70.20</td>
       <td>0.00</td>
       <td>1.03</td>
-      <td>74.2</td>
-      <td>55.8</td>
+      <td>73.82</td>
+      <td>55.42</td>
       <td>70.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-0.28%</span></td>
       <td>26</td>
@@ -31234,8 +31242,8 @@
       <td>67.90</td>
       <td>0.00</td>
       <td>1.10</td>
-      <td>73.5</td>
-      <td>58.7</td>
+      <td>73.12</td>
+      <td>58.32</td>
       <td>70.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>3.09%</span></td>
       <td>27</td>
@@ -31377,9 +31385,9 @@
       <td>其他電子類</td>
       <td>889.00</td>
       <td>0.00</td>
-      <td>1.03</td>
-      <td>850.0</td>
-      <td>735.0</td>
+      <td>1.04</td>
+      <td>837.0</td>
+      <td>722.0</td>
       <td>820.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-7.76%</span></td>
       <td>19</td>
@@ -31414,8 +31422,8 @@
       <td>61.80</td>
       <td>0.00</td>
       <td>1.10</td>
-      <td>74.5</td>
-      <td>59.8</td>
+      <td>74.12</td>
+      <td>59.42</td>
       <td>70.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>13.27%</span></td>
       <td>28</td>
@@ -31468,8 +31476,8 @@
       <td>859.00</td>
       <td>0.00</td>
       <td>1.08</td>
-      <td>882.0</td>
-      <td>750.0</td>
+      <td>869.0</td>
+      <td>737.0</td>
       <td>820.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-4.54%</span></td>
       <td>20</td>
@@ -31629,9 +31637,9 @@
       <td>電子零組件業</td>
       <td>56.20</td>
       <td>0.00</td>
-      <td>1.08</td>
-      <td>75.0</td>
-      <td>57.7</td>
+      <td>1.09</td>
+      <td>74.62</td>
+      <td>57.32</td>
       <td>70.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>24.56%</span></td>
       <td>29</td>
@@ -31900,8 +31908,8 @@
       <td>781.00</td>
       <td>0.00</td>
       <td>1.03</td>
-      <td>980.0</td>
-      <td>772.0</td>
+      <td>967.0</td>
+      <td>759.0</td>
       <td>820.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>4.99%</span></td>
       <td>24</td>
@@ -32740,6 +32748,24 @@
       <td>2025-09-12</td>
       <td>5</td>
       <td>Group B</td>
+      <td>2207</td>
+      <td>和泰車</td>
+      <td>汽車工業</td>
+      <td>604.00</td>
+      <td>0.00</td>
+      <td>1.04</td>
+      <td>568.0</td>
+      <td>548.0</td>
+      <td>578.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.3%</span></td>
+      <td>21</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-09-12</td>
+      <td>6</td>
+      <td>Group B</td>
       <td>2324</td>
       <td>仁寶</td>
       <td>電腦及週邊設備業</td>
@@ -32751,24 +32777,6 @@
       <td>30.9</td>
       <td><span style='color:#dc3545;font-weight:bold;'>3.69%</span></td>
       <td>31</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-09-12</td>
-      <td>6</td>
-      <td>Group B</td>
-      <td>2207</td>
-      <td>和泰車</td>
-      <td>汽車工業</td>
-      <td>604.00</td>
-      <td>0.00</td>
-      <td>1.04</td>
-      <td>588.0</td>
-      <td>568.0</td>
-      <td>578.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.3%</span></td>
-      <td>21</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -33568,6 +33576,24 @@
       <td>2025-09-05</td>
       <td>1</td>
       <td>Group A</td>
+      <td>6418</td>
+      <td>詠昇</td>
+      <td>電子零組件業</td>
+      <td>48.20</td>
+      <td>0.00</td>
+      <td>1.10</td>
+      <td>50.72</td>
+      <td>73.62</td>
+      <td>70.0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>45.23%</span></td>
+      <td>46</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-09-05</td>
+      <td>2</td>
+      <td>Group A</td>
       <td>5508</td>
       <td>永信建</td>
       <td>建材營造</td>
@@ -33584,7 +33610,7 @@
     </tr>
     <tr>
       <td>2025-09-05</td>
-      <td>2</td>
+      <td>3</td>
       <td>Group A</td>
       <td>7402</td>
       <td>邑錡</td>
@@ -33597,24 +33623,6 @@
       <td>144.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-3.68%</span></td>
       <td>21</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-09-05</td>
-      <td>3</td>
-      <td>Group A</td>
-      <td>6418</td>
-      <td>詠昇</td>
-      <td>電子零組件業</td>
-      <td>48.20</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>51.1</td>
-      <td>74.0</td>
-      <td>70.0</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>45.23%</span></td>
-      <td>46</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -33766,6 +33774,24 @@
       <td>2025-09-04</td>
       <td>2</td>
       <td>Group A</td>
+      <td>6418</td>
+      <td>詠昇</td>
+      <td>電子零組件業</td>
+      <td>43.85</td>
+      <td>0.00</td>
+      <td>1.10</td>
+      <td>50.72</td>
+      <td>73.72</td>
+      <td>70.0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>59.64%</span></td>
+      <td>47</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-09-04</td>
+      <td>3</td>
+      <td>Group A</td>
       <td>5314</td>
       <td>世紀*</td>
       <td>其他</td>
@@ -33777,24 +33803,6 @@
       <td>0.28</td>
       <td><span style='color:#198754;font-weight:bold;'>-99.71%</span></td>
       <td>40</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-09-04</td>
-      <td>3</td>
-      <td>Group A</td>
-      <td>6418</td>
-      <td>詠昇</td>
-      <td>電子零組件業</td>
-      <td>43.85</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>51.1</td>
-      <td>74.1</td>
-      <td>70.0</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>59.64%</span></td>
-      <td>47</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -33964,6 +33972,24 @@
       <td>2025-09-03</td>
       <td>3</td>
       <td>Group A</td>
+      <td>6418</td>
+      <td>詠昇</td>
+      <td>電子零組件業</td>
+      <td>39.90</td>
+      <td>0.00</td>
+      <td>1.10</td>
+      <td>50.22</td>
+      <td>70.72</td>
+      <td>70.0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>75.44%</span></td>
+      <td>48</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-09-03</td>
+      <td>4</td>
+      <td>Group A</td>
       <td>6143</td>
       <td>振曜</td>
       <td>通信網路業</td>
@@ -33975,24 +34001,6 @@
       <td>138.5</td>
       <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
       <td>15</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-09-03</td>
-      <td>4</td>
-      <td>Group A</td>
-      <td>6418</td>
-      <td>詠昇</td>
-      <td>電子零組件業</td>
-      <td>39.90</td>
-      <td>0.00</td>
-      <td>1.09</td>
-      <td>50.6</td>
-      <td>71.1</td>
-      <td>70.0</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>75.44%</span></td>
-      <td>48</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -35356,8 +35364,8 @@
       <td>609.00</td>
       <td>0.00</td>
       <td>1.06</td>
-      <td>657.0</td>
-      <td>781.0</td>
+      <td>644.0</td>
+      <td>768.0</td>
       <td>820.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>34.65%</span></td>
       <td>49</td>
@@ -35404,6 +35412,24 @@
       <td>2025-08-22</td>
       <td>3</td>
       <td>Group A</td>
+      <td>6739</td>
+      <td>竹陞科技</td>
+      <td>其他電子類</td>
+      <td>577.00</td>
+      <td>0.00</td>
+      <td>1.10</td>
+      <td>585.0</td>
+      <td>768.0</td>
+      <td>820.0</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>42.11%</span></td>
+      <td>52</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-08-22</td>
+      <td>4</td>
+      <td>Group A</td>
       <td>3708</td>
       <td>上緯投控</td>
       <td>綠能環保</td>
@@ -35415,24 +35441,6 @@
       <td>120.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-18.86%</span></td>
       <td>13</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-08-22</td>
-      <td>4</td>
-      <td>Group A</td>
-      <td>6739</td>
-      <td>竹陞科技</td>
-      <td>其他電子類</td>
-      <td>577.00</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>598.0</td>
-      <td>781.0</td>
-      <td>820.0</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>42.11%</span></td>
-      <td>52</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -36754,24 +36762,6 @@
       <td>2025-08-13</td>
       <td>8</td>
       <td>Group A</td>
-      <td>1810</td>
-      <td>和成</td>
-      <td>玻璃陶瓷</td>
-      <td>21.45</td>
-      <td>0.00</td>
-      <td>1.09</td>
-      <td>21.65</td>
-      <td>22.5</td>
-      <td>21.5</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.23%</span></td>
-      <td>29</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-08-13</td>
-      <td>9</td>
-      <td>Group A</td>
       <td>6215</td>
       <td>和椿</td>
       <td>電子工業</td>
@@ -36788,7 +36778,7 @@
     </tr>
     <tr>
       <td>2025-08-13</td>
-      <td>10</td>
+      <td>9</td>
       <td>Group A</td>
       <td>3694</td>
       <td>海華</td>
@@ -36801,6 +36791,24 @@
       <td>91.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>12.21%</span></td>
       <td>22</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-08-13</td>
+      <td>10</td>
+      <td>Group A</td>
+      <td>1717</td>
+      <td>長興</td>
+      <td>化學生技醫療</td>
+      <td>31.90</td>
+      <td>0.00</td>
+      <td>1.07</td>
+      <td>41.7</td>
+      <td>44.7</td>
+      <td>40.9</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>28.21%</span></td>
+      <td>41</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -37822,8 +37830,8 @@
       <td>164.00</td>
       <td>0.00</td>
       <td>1.06</td>
-      <td>142.5</td>
-      <td>159.5</td>
+      <td>139.8</td>
+      <td>156.8</td>
       <td>141.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-13.72%</span></td>
       <td>13</td>
@@ -38038,8 +38046,8 @@
       <td>154.50</td>
       <td>0.00</td>
       <td>1.07</td>
-      <td>141.5</td>
-      <td>153.5</td>
+      <td>138.8</td>
+      <td>150.8</td>
       <td>141.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.41%</span></td>
       <td>14</td>
@@ -39981,9 +39989,9 @@
       <td>其他電子類</td>
       <td>476.00</td>
       <td>0.00</td>
-      <td>1.03</td>
-      <td>420.0</td>
-      <td>475.5</td>
+      <td>1.04</td>
+      <td>407.0</td>
+      <td>462.5</td>
       <td>414.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-12.92%</span></td>
       <td>13</td>
@@ -41638,8 +41646,8 @@
       <td>403.50</td>
       <td>0.00</td>
       <td>1.01</td>
-      <td>482.0</td>
-      <td>426.0</td>
+      <td>469.0</td>
+      <td>413.0</td>
       <td>414.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>2.73%</span></td>
       <td>24</td>
@@ -43150,8 +43158,8 @@
       <td>373.00</td>
       <td>0.00</td>
       <td>1.08</td>
-      <td>388.0</td>
-      <td>462.0</td>
+      <td>375.0</td>
+      <td>449.0</td>
       <td>414.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>11.13%</span></td>
       <td>37</td>
@@ -43329,9 +43337,9 @@
       <td>其他電子類</td>
       <td>345.00</td>
       <td>0.00</td>
-      <td>1.09</td>
-      <td>403.5</td>
-      <td>482.0</td>
+      <td>1.10</td>
+      <td>390.5</td>
+      <td>469.0</td>
       <td>414.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>20.14%</span></td>
       <td>38</td>
@@ -43491,9 +43499,9 @@
       <td>其他電子類</td>
       <td>314.00</td>
       <td>0.00</td>
-      <td>1.07</td>
-      <td>368.0</td>
-      <td>476.0</td>
+      <td>1.08</td>
+      <td>355.0</td>
+      <td>463.0</td>
       <td>414.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>32.01%</span></td>
       <td>41</td>
@@ -48778,6 +48786,24 @@
       <td>2025-05-08</td>
       <td>2</td>
       <td>Group B</td>
+      <td>6739</td>
+      <td>竹陞科技</td>
+      <td>其他電子類</td>
+      <td>292.50</td>
+      <td>0.00</td>
+      <td>1.05</td>
+      <td>239.0</td>
+      <td>245.0</td>
+      <td>251.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-14.19%</span></td>
+      <td>19</td>
+      <td>跌破10日低點</td>
+      <td>Closed</td>
+    </tr>
+    <tr>
+      <td>2025-05-08</td>
+      <td>3</td>
+      <td>Group B</td>
       <td>3363</td>
       <td>上詮</td>
       <td>通信網路業</td>
@@ -48789,24 +48815,6 @@
       <td>223.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>1.83%</span></td>
       <td>20</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-05-08</td>
-      <td>3</td>
-      <td>Group B</td>
-      <td>6739</td>
-      <td>竹陞科技</td>
-      <td>其他電子類</td>
-      <td>292.50</td>
-      <td>0.00</td>
-      <td>1.05</td>
-      <td>252.0</td>
-      <td>258.0</td>
-      <td>251.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-14.19%</span></td>
-      <td>19</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
@@ -49281,15 +49289,15 @@
     <tr>
       <td>2025-05-06</td>
       <td>10</td>
-      <td>Group C</td>
+      <td>Group B</td>
       <td>2207</td>
       <td>和泰車</td>
       <td>汽車工業</td>
       <td>650.00</td>
       <td>0.00</td>
       <td>1.03</td>
-      <td>591.0</td>
-      <td>572.0</td>
+      <td>571.0</td>
+      <td>552.0</td>
       <td>620.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-4.62%</span></td>
       <td>13</td>
@@ -49756,8 +49764,8 @@
       <td>130.50</td>
       <td>0.00</td>
       <td>1.04</td>
-      <td>137.8</td>
-      <td>137.8</td>
+      <td>135.1</td>
+      <td>135.1</td>
       <td>135.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>3.83%</span></td>
       <td>33</td>
@@ -56037,9 +56045,9 @@
       <td>電子工業</td>
       <td>159.50</td>
       <td>0.00</td>
-      <td>1.09</td>
-      <td>148.3</td>
-      <td>138.3</td>
+      <td>1.10</td>
+      <td>145.6</td>
+      <td>135.6</td>
       <td>141.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-11.6%</span></td>
       <td>21</td>
@@ -56217,9 +56225,9 @@
       <td>其他電子類</td>
       <td>315.50</td>
       <td>0.00</td>
-      <td>1.10</td>
-      <td>296.0</td>
-      <td>235.5</td>
+      <td>1.11</td>
+      <td>283.0</td>
+      <td>222.5</td>
       <td>287.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.87%</span></td>
       <td>17</td>
@@ -56812,8 +56820,8 @@
       <td>271.00</td>
       <td>0.00</td>
       <td>1.07</td>
-      <td>319.5</td>
-      <td>237.5</td>
+      <td>306.5</td>
+      <td>224.5</td>
       <td>287.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>6.09%</span></td>
       <td>22</td>
@@ -62181,186 +62189,6 @@
       <td>119.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-4.03%</span></td>
       <td>20</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>1</td>
-      <td>Group A</td>
-      <td>8111</td>
-      <td>立碁</td>
-      <td>光電業</td>
-      <td>52.20</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>49.0</td>
-      <td>52.1</td>
-      <td>49.7</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.79%</span></td>
-      <td>25</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>2</td>
-      <td>Group A</td>
-      <td>4571</td>
-      <td>鈞興-KY</td>
-      <td>電機機械</td>
-      <td>245.50</td>
-      <td>0.00</td>
-      <td>1.10</td>
-      <td>238.82</td>
-      <td>207.32</td>
-      <td>242.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.43%</span></td>
-      <td>18</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>3</td>
-      <td>Group B</td>
-      <td>2374</td>
-      <td>佳能</td>
-      <td>電子工業</td>
-      <td>61.60</td>
-      <td>0.00</td>
-      <td>1.05</td>
-      <td>60.8</td>
-      <td>56.4</td>
-      <td>60.5</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.79%</span></td>
-      <td>21</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>4</td>
-      <td>Group B</td>
-      <td>2233</td>
-      <td>宇隆</td>
-      <td>汽車工業</td>
-      <td>218.50</td>
-      <td>0.00</td>
-      <td>1.04</td>
-      <td>264.0</td>
-      <td>213.0</td>
-      <td>251.5</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>15.1%</span></td>
-      <td>21</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>5</td>
-      <td>Group B</td>
-      <td>8467</td>
-      <td>波力-KY</td>
-      <td>運動休閒</td>
-      <td>345.50</td>
-      <td>0.00</td>
-      <td>1.04</td>
-      <td>287.94</td>
-      <td>250.94</td>
-      <td>290.5</td>
-      <td><span style='color:#198754;font-weight:bold;'>-15.92%</span></td>
-      <td>4</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>6</td>
-      <td>Group B</td>
-      <td>3019</td>
-      <td>亞光</td>
-      <td>電子工業</td>
-      <td>164.50</td>
-      <td>0.00</td>
-      <td>1.04</td>
-      <td>163.5</td>
-      <td>151.0</td>
-      <td>163.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-0.91%</span></td>
-      <td>21</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>7</td>
-      <td>Group B</td>
-      <td>4563</td>
-      <td>百德</td>
-      <td>電機機械</td>
-      <td>110.50</td>
-      <td>0.00</td>
-      <td>1.04</td>
-      <td>94.4</td>
-      <td>78.4</td>
-      <td>98.2</td>
-      <td><span style='color:#198754;font-weight:bold;'>-11.13%</span></td>
-      <td>14</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>8</td>
-      <td>Group B</td>
-      <td>6215</td>
-      <td>和椿</td>
-      <td>電子工業</td>
-      <td>76.10</td>
-      <td>0.00</td>
-      <td>1.04</td>
-      <td>101.5</td>
-      <td>104.5</td>
-      <td>123.5</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>62.29%</span></td>
-      <td>74</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>9</td>
-      <td>Group B</td>
-      <td>2417</td>
-      <td>圓剛</td>
-      <td>電腦及週邊設備業</td>
-      <td>47.60</td>
-      <td>0.00</td>
-      <td>1.03</td>
-      <td>46.7</td>
-      <td>47.6</td>
-      <td>46.55</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.21%</span></td>
-      <td>21</td>
-      <td>跌破10日低點</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-19</td>
-      <td>10</td>
-      <td>Group B</td>
-      <td>6188</td>
-      <td>廣明</td>
-      <td>電腦及週邊設備業</td>
-      <td>109.00</td>
-      <td>0.00</td>
-      <td>1.03</td>
-      <td>103.8</td>
-      <td>96.3</td>
-      <td>103.5</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.05%</span></td>
-      <td>21</td>
       <td>跌破10日低點</td>
       <td>Closed</td>
     </tr>
