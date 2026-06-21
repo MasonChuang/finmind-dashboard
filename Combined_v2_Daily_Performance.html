@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-06-20</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-06-21</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -150,8 +150,8 @@
             <div class="card text-white bg-primary mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>監控標的數</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">3556 <small style="font-size:16px;">筆</small></h2>
-                    <p class="card-text mb-0 mt-1"><span class="badge bg-secondary">已平倉: 3386</span> <span class="badge bg-warning text-dark">未平倉: 170</span></p>
+                    <h2 class="card-title mb-0">3546 <small style="font-size:16px;">筆</small></h2>
+                    <p class="card-text mb-0 mt-1"><span class="badge bg-secondary">已平倉: 3376</span> <span class="badge bg-warning text-dark">未平倉: 170</span></p>
                 </div>
             </div>
         </div>
@@ -196,7 +196,7 @@
             <div class="card text-white bg-danger mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>Top Group 專屬績效</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+1.61% <small style="font-size:16px;">(勝率 47.0%)</small></h2>
+                    <h2 class="card-title mb-0">+1.62% <small style="font-size:16px;">(勝率 47.0%)</small></h2>
                 </div>
             </div>
         </div>
@@ -220,58 +220,42 @@
                 <tbody>
                 <tr>
                     <td><strong>名次 1</strong></td>
-                    <td class="text-dark">44.4%</td>
-                    <td class="text-danger">1.03%</td>
+                    <td class="text-dark">44.5%</td>
+                    <td class="text-danger">1.04%</td>
                     <td>27.0</td>
-                    <td>338</td>
+                    <td>337</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 2</strong></td>
-                    <td class="text-dark">47.8%</td>
-                    <td class="text-danger">1.75%</td>
+                    <td class="text-dark">48.0%</td>
+                    <td class="text-danger">1.77%</td>
                     <td>25.4</td>
-                    <td>343</td>
-                </tr>
-            
-                <tr>
-                    <td><strong>名次 3</strong></td>
-                    <td class="text-dark">48.7%</td>
-                    <td class="text-danger">2.05%</td>
-                    <td>24.1</td>
-                    <td>341</td>
-                </tr>
-            
-                <tr>
-                    <td><strong>名次 4</strong></td>
-                    <td class="text-dark">49.3%</td>
-                    <td class="text-danger">1.63%</td>
-                    <td>25.3</td>
-                    <td>341</td>
-                </tr>
-            
-                <tr>
-                    <td><strong>名次 3</strong></td>
-                    <td class="text-dark">48.8%</td>
-                    <td class="text-danger">2.07%</td>
-                    <td>24.1</td>
                     <td>342</td>
                 </tr>
             
                 <tr>
+                    <td><strong>名次 3</strong></td>
+                    <td class="text-dark">48.5%</td>
+                    <td class="text-danger">2.03%</td>
+                    <td>24.0</td>
+                    <td>340</td>
+                </tr>
+            
+                <tr>
                     <td><strong>名次 4</strong></td>
-                    <td class="text-dark">49.1%</td>
-                    <td class="text-danger">1.61%</td>
+                    <td class="text-dark">49.4%</td>
+                    <td class="text-danger">1.66%</td>
                     <td>25.3</td>
-                    <td>342</td>
+                    <td>340</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 5</strong></td>
-                    <td class="text-dark">46.3%</td>
-                    <td class="text-danger">0.41%</td>
-                    <td>24.9</td>
-                    <td>335</td>
+                    <td class="text-dark">46.4%</td>
+                    <td class="text-danger">0.43%</td>
+                    <td>25.0</td>
+                    <td>334</td>
                 </tr>
             </tbody>
             </table>
@@ -337,7 +321,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"], "wr": [45.0, 37.3, 12.8, 3.8, 62.0, 48.0, 57.6, 53.0, 54.3, 51.9, 48.5, 58.0, 58.6, 38.1, 40.0, 48.6, 50.6, 64.8, 20.6], "roi": [-1.18, -0.01, -5.29, -10.05, 3.89, 0.08, 3.09, -5.65, 4.74, 3.41, 1.57, 6.14, 7.12, 1.94, 1.17, 2.37, 12.83, 10.8, -3.46], "grpA_roi": [-2.32, -0.67, -8.48, -9.54, 4.16, 2.56, 3.8, -7.29, 3.16, 3.98, 5.6, 6.3, 5.84, 4.24, 2.44, 1.8, 3.65, 12.58, -3.86], "rank_roi": {"Rank 1": [-3.97, 0.22, -9.17, -10.04, 2.09, 1.75, 6.05, -1.89, 1.67, 2.78, 1.53, 7.07, 1.93, 3.25, -2.84, 1.76, 7.45, 10.47, -9.8], "Rank 2": [-4.12, -1.53, -9.24, -10.8, 3.03, 5.93, 3.06, -6.82, 2.54, 2.81, 11.46, 3.0, 6.49, 4.04, 11.86, 2.68, 1.1, 9.6, -2.87], "Rank 3": [1.14, -0.71, -7.03, -7.77, 7.35, -0.01, 2.29, -13.16, 5.29, 6.34, 3.83, 8.82, 9.11, 5.43, -1.71, 0.96, 2.34, 16.91, 0.42], "Rank 4": [-2.16, 4.35, -3.88, -8.23, 0.55, -0.14, 4.96, -12.81, 3.5, 7.01, 1.36, 10.47, 2.48, 4.36, 2.07, 0.35, 6.52, 14.3, -2.3], "Rank 5": [0.04, -1.51, -5.65, -16.24, 3.3, -0.88, 2.49, -13.0, 5.73, 5.53, -2.6, 3.74, 11.16, 0.49, -0.38, -0.05, 8.23, 16.03, 1.32]}, "rank_wr": {"Rank 1": [25.0, 40.0, 0.0, 0.0, 65.0, 60.0, 61.9, 43.5, 33.3, 66.7, 45.0, 65.0, 45.5, 42.9, 25.0, 50.0, 61.1, 63.6, 0.0], "Rank 2": [25.0, 40.0, 0.0, 0.0, 50.0, 70.0, 52.4, 56.5, 47.6, 52.4, 80.0, 55.0, 50.0, 42.9, 75.0, 72.7, 33.3, 57.1, 20.0], "Rank 3": [75.0, 33.3, 5.3, 4.8, 80.0, 40.0, 57.1, 39.1, 61.9, 57.1, 55.0, 65.0, 63.6, 47.6, 25.0, 50.0, 41.2, 86.7, 33.3], "Rank 4": [50.0, 53.3, 21.1, 9.5, 40.0, 50.0, 61.9, 56.5, 52.4, 76.2, 35.0, 70.0, 36.4, 47.6, 50.0, 54.5, 58.8, 78.6, 25.0], "Rank 5": [50.0, 33.3, 10.5, 9.5, 60.0, 40.0, 61.9, 47.8, 52.4, 66.7, 45.0, 50.0, 68.2, 28.6, 33.3, 45.5, 62.5, 80.0, 33.3]}};
+                var chartData = {"labels": ["2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"], "wr": [45.7, 37.3, 12.8, 3.8, 62.0, 48.0, 57.6, 53.0, 54.3, 51.9, 48.5, 58.0, 58.6, 38.1, 40.0, 48.6, 50.6, 64.8, 20.6], "roi": [-1.38, -0.01, -5.29, -10.05, 3.89, 0.08, 3.09, -5.65, 4.74, 3.41, 1.57, 6.14, 7.12, 1.94, 1.17, 2.37, 12.82, 10.8, -3.46], "grpA_roi": [-2.55, -0.67, -8.48, -9.54, 4.16, 2.56, 3.8, -7.29, 3.16, 3.98, 5.6, 6.3, 5.84, 4.24, 2.44, 1.8, 3.65, 12.58, -3.86], "rank_roi": {"Rank 1": [-4.07, 0.22, -9.17, -10.04, 2.09, 1.75, 6.05, -1.89, 1.67, 2.78, 1.53, 7.07, 1.93, 3.25, -2.84, 1.76, 7.45, 10.47, -9.8], "Rank 2": [-3.61, -1.53, -9.24, -10.8, 3.03, 5.93, 3.06, -6.82, 2.54, 2.81, 11.46, 3.0, 6.49, 4.04, 11.86, 2.68, 1.1, 9.6, -2.87], "Rank 3": [0.02, -0.71, -7.03, -7.77, 7.35, -0.01, 2.29, -13.16, 5.29, 6.34, 3.83, 8.82, 9.11, 5.43, -1.71, 0.96, 2.34, 16.91, 0.42], "Rank 4": [-1.39, 4.35, -3.88, -8.23, 0.55, -0.14, 4.96, -12.81, 3.5, 7.01, 1.36, 10.47, 2.48, 4.36, 2.07, 0.35, 6.46, 14.3, -2.3], "Rank 5": [1.17, -1.51, -5.65, -16.24, 3.3, -0.88, 2.49, -13.0, 5.73, 5.53, -2.6, 3.74, 11.16, 0.49, -0.38, -0.05, 8.23, 16.03, 1.32]}, "rank_wr": {"Rank 1": [28.6, 40.0, 0.0, 0.0, 65.0, 60.0, 61.9, 43.5, 33.3, 66.7, 45.0, 65.0, 45.5, 42.9, 25.0, 50.0, 61.1, 63.6, 0.0], "Rank 2": [28.6, 40.0, 0.0, 0.0, 50.0, 70.0, 52.4, 56.5, 47.6, 52.4, 80.0, 55.0, 50.0, 42.9, 75.0, 72.7, 33.3, 57.1, 20.0], "Rank 3": [71.4, 33.3, 5.3, 4.8, 80.0, 40.0, 57.1, 39.1, 61.9, 57.1, 55.0, 65.0, 63.6, 47.6, 25.0, 50.0, 41.2, 86.7, 33.3], "Rank 4": [57.1, 53.3, 21.1, 9.5, 40.0, 50.0, 61.9, 56.5, 52.4, 76.2, 35.0, 70.0, 36.4, 47.6, 50.0, 54.5, 58.8, 78.6, 25.0], "Rank 5": [57.1, 33.3, 10.5, 9.5, 60.0, 40.0, 61.9, 47.8, 52.4, 66.7, 45.0, 50.0, 68.2, 28.6, 33.3, 45.5, 62.5, 80.0, 33.3]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -8678,10 +8662,10 @@
       <td>電子</td>
       <td>78.00</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>82.7</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>97.8</span></td>
-      <td>93.6</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>20.0%</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>78.69</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>93.79</span></td>
+      <td>92.8</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>18.97%</span></td>
       <td>40</td>
       <td>停利出場 (+20%)</td>
       <td>Closed</td>
@@ -8865,8 +8849,8 @@
       <td>電子</td>
       <td>78.20</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>83.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>91.2</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>78.99</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>87.19</span></td>
       <td>92.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>17.65%</span></td>
       <td>40</td>
@@ -9817,8 +9801,8 @@
       <td>電子</td>
       <td>76.40</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>80.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>80.7</span></td>
+      <td><span style='color:#198754;font-weight:600;'>75.99</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>76.69</span></td>
       <td>81.7</td>
       <td><span style='color:#dc3545;font-weight:bold;'>6.94%</span></td>
       <td>40</td>
@@ -10004,8 +9988,8 @@
       <td>電子</td>
       <td>75.70</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>79.6</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>79.1</span></td>
+      <td><span style='color:#198754;font-weight:600;'>75.59</span></td>
+      <td><span style='color:#198754;font-weight:600;'>75.09</span></td>
       <td>79.1</td>
       <td><span style='color:#dc3545;font-weight:bold;'>4.49%</span></td>
       <td>40</td>
@@ -15240,8 +15224,8 @@
       <td>電子</td>
       <td>70.60</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>70.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>79.6</span></td>
+      <td><span style='color:#198754;font-weight:600;'>66.49</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>75.59</span></td>
       <td>80.3</td>
       <td><span style='color:#dc3545;font-weight:bold;'>13.74%</span></td>
       <td>40</td>
@@ -15546,8 +15530,8 @@
       <td>電子</td>
       <td>70.90</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>70.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>78.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>65.99</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>73.99</span></td>
       <td>78.7</td>
       <td><span style='color:#dc3545;font-weight:bold;'>11.0%</span></td>
       <td>40</td>
@@ -16090,8 +16074,8 @@
       <td>電子</td>
       <td>190.00</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>193.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>198.5</span></td>
+      <td><span style='color:#198754;font-weight:600;'>182.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>187.0</span></td>
       <td>196.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>3.42%</span></td>
       <td>40</td>
@@ -16226,8 +16210,8 @@
       <td>電子</td>
       <td>119.50</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>117.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>123.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>109.8</span></td>
+      <td><span style='color:#198754;font-weight:600;'>115.8</span></td>
       <td>120.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>0.84%</span></td>
       <td>40</td>
@@ -16277,8 +16261,8 @@
       <td>電子</td>
       <td>70.80</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>69.9</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>80.7</span></td>
+      <td><span style='color:#198754;font-weight:600;'>65.89</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>76.69</span></td>
       <td>79.8</td>
       <td><span style='color:#dc3545;font-weight:bold;'>12.71%</span></td>
       <td>40</td>
@@ -16447,8 +16431,8 @@
       <td>電子</td>
       <td>71.30</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>69.7</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>77.4</span></td>
+      <td><span style='color:#198754;font-weight:600;'>65.69</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>73.39</span></td>
       <td>79.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>11.5%</span></td>
       <td>40</td>
@@ -16753,8 +16737,8 @@
       <td>電子</td>
       <td>71.30</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>70.1</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>76.4</span></td>
+      <td><span style='color:#198754;font-weight:600;'>66.09</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>72.39</span></td>
       <td>78.1</td>
       <td><span style='color:#dc3545;font-weight:bold;'>9.54%</span></td>
       <td>40</td>
@@ -16923,8 +16907,8 @@
       <td>電子</td>
       <td>71.40</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>70.6</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>75.7</span></td>
+      <td><span style='color:#198754;font-weight:600;'>66.59</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>71.69</span></td>
       <td>77.0</td>
       <td><span style='color:#dc3545;font-weight:bold;'>7.84%</span></td>
       <td>40</td>
@@ -17076,8 +17060,8 @@
       <td>電子</td>
       <td>70.20</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>70.3</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>77.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>66.29</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>72.99</span></td>
       <td>75.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>7.55%</span></td>
       <td>40</td>
@@ -27089,8 +27073,8 @@
       <td>零售百貨</td>
       <td>128.00</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>123.0</span></td>
-      <td><span style='color:#198754;font-weight:600;'>121.5</span></td>
+      <td><span style='color:#198754;font-weight:600;'>118.9</span></td>
+      <td><span style='color:#198754;font-weight:600;'>117.4</span></td>
       <td>119.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-6.64%</span></td>
       <td>40</td>
@@ -35249,8 +35233,8 @@
       <td>電子</td>
       <td>81.00</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>69.5</span></td>
-      <td><span style='color:#198754;font-weight:600;'>71.5</span></td>
+      <td><span style='color:#198754;font-weight:600;'>65.49</span></td>
+      <td><span style='color:#198754;font-weight:600;'>67.49</span></td>
       <td>74.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.64%</span></td>
       <td>5</td>
@@ -35453,8 +35437,8 @@
       <td>電子</td>
       <td>80.80</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>69.0</span></td>
-      <td><span style='color:#198754;font-weight:600;'>71.5</span></td>
+      <td><span style='color:#198754;font-weight:600;'>64.99</span></td>
+      <td><span style='color:#198754;font-weight:600;'>67.49</span></td>
       <td>74.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.42%</span></td>
       <td>6</td>
@@ -35589,8 +35573,8 @@
       <td>電子</td>
       <td>82.30</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>70.2</span></td>
-      <td><span style='color:#198754;font-weight:600;'>70.4</span></td>
+      <td><span style='color:#198754;font-weight:600;'>66.19</span></td>
+      <td><span style='color:#198754;font-weight:600;'>66.39</span></td>
       <td>74.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-10.09%</span></td>
       <td>7</td>
@@ -36252,10 +36236,10 @@
       <td>電子</td>
       <td>80.40</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>78.0</span></td>
-      <td><span style='color:#198754;font-weight:600;'>72.0</span></td>
-      <td>73.97</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.0%</span></td>
+      <td><span style='color:#198754;font-weight:600;'>73.99</span></td>
+      <td><span style='color:#198754;font-weight:600;'>67.99</span></td>
+      <td>74.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.96%</span></td>
       <td>11</td>
       <td>停損出場 (-8%)</td>
       <td>Closed</td>
@@ -37034,8 +37018,8 @@
       <td>電子</td>
       <td>82.10</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>80.8</span></td>
-      <td><span style='color:#198754;font-weight:600;'>69.7</span></td>
+      <td><span style='color:#198754;font-weight:600;'>76.79</span></td>
+      <td><span style='color:#198754;font-weight:600;'>65.69</span></td>
       <td>74.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-9.87%</span></td>
       <td>16</td>
@@ -47693,8 +47677,8 @@
       <td>電子</td>
       <td>199.50</td>
       <td>12.00</td>
-      <td><span style='color:#198754;font-weight:600;'>197.0</span></td>
-      <td><span style='color:#198754;font-weight:600;'>194.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>185.5</span></td>
+      <td><span style='color:#198754;font-weight:600;'>182.5</span></td>
       <td>196.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>4.51%</span></td>
       <td>40</td>
@@ -59848,8 +59832,8 @@
       <td>電子</td>
       <td>211.50</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>196.0</span></td>
-      <td><span style='color:#198754;font-weight:600;'>205.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>184.5</span></td>
+      <td><span style='color:#198754;font-weight:600;'>193.5</span></td>
       <td>217.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>2.84%</span></td>
       <td>40</td>
@@ -60754,176 +60738,6 @@
       <td>30.04</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.0%</span></td>
       <td>13</td>
-      <td>停損出場 (-8%)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>1</td>
-      <td>Group A</td>
-      <td>2618</td>
-      <td>長榮航</td>
-      <td>航運業</td>
-      <td>44.60</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>44.9</span></td>
-      <td><span style='color:#198754;font-weight:600;'>40.65</span></td>
-      <td>43.15</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.25%</span></td>
-      <td>40</td>
-      <td>時間停損(40日)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>2</td>
-      <td>Group A</td>
-      <td>2356</td>
-      <td>英業達</td>
-      <td>電子</td>
-      <td>49.45</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>50.8</span></td>
-      <td><span style='color:#198754;font-weight:600;'>46.25</span></td>
-      <td>45.63</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.72%</span></td>
-      <td>23</td>
-      <td>停損出場 (-8%)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>3</td>
-      <td>Group A</td>
-      <td>3014</td>
-      <td>聯陽</td>
-      <td>電子</td>
-      <td>145.50</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>138.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>149.0</span></td>
-      <td>158.5</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.93%</span></td>
-      <td>40</td>
-      <td>時間停損(40日)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>4</td>
-      <td>Group B</td>
-      <td>8070</td>
-      <td>長華*</td>
-      <td>電子</td>
-      <td>46.05</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>42.24</span></td>
-      <td><span style='color:#198754;font-weight:600;'>39.99</span></td>
-      <td>42.58</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.55%</span></td>
-      <td>13</td>
-      <td>停損出場 (-8%)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>5</td>
-      <td>Group B</td>
-      <td>5243</td>
-      <td>乙盛-KY</td>
-      <td>電子</td>
-      <td>70.40</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>65.5</span></td>
-      <td><span style='color:#198754;font-weight:600;'>59.5</span></td>
-      <td>64.89</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.83%</span></td>
-      <td>12</td>
-      <td>停損出場 (-8%)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>6</td>
-      <td>Group B</td>
-      <td>9941</td>
-      <td>裕融</td>
-      <td>其他</td>
-      <td>102.00</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>115.62</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>115.62</span></td>
-      <td>121.52</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>19.14%</span></td>
-      <td>11</td>
-      <td>停利出場 (+20%)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>7</td>
-      <td>Group C</td>
-      <td>6442</td>
-      <td>光聖</td>
-      <td>電子</td>
-      <td>578.00</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>563.38</span></td>
-      <td><span style='color:#198754;font-weight:600;'>502.38</span></td>
-      <td>532.45</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.88%</span></td>
-      <td>24</td>
-      <td>停損出場 (-8%)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>8</td>
-      <td>Group C</td>
-      <td>3596</td>
-      <td>智易</td>
-      <td>電子</td>
-      <td>176.50</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>162.5</span></td>
-      <td><span style='color:#198754;font-weight:600;'>171.0</span></td>
-      <td>191.0</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.22%</span></td>
-      <td>40</td>
-      <td>時間停損(40日)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>9</td>
-      <td>Group C</td>
-      <td>2885</td>
-      <td>元大金</td>
-      <td>金融</td>
-      <td>33.60</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>33.9</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>35.4</span></td>
-      <td>36.7</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>9.23%</span></td>
-      <td>40</td>
-      <td>時間停損(40日)</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2024-12-20</td>
-      <td>10</td>
-      <td>Group C</td>
-      <td>9802</td>
-      <td>鈺齊-KY</td>
-      <td>零售百貨</td>
-      <td>119.50</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>115.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>143.0</span></td>
-      <td>109.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.79%</span></td>
-      <td>14</td>
       <td>停損出場 (-8%)</td>
       <td>Closed</td>
     </tr>
