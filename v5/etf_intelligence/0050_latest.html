@@ -5,49 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>0050 元大台灣50 — ETF Intelligence Report</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; margin: 0; background: #f6f7fb; color: #1f2937; }
-    main { max-width: 920px; margin: 0 auto; padding: 32px 20px 56px; }
-    .card { background: #fff; border-radius: 16px; box-shadow: 0 8px 30px rgba(15,23,42,.08); padding: 28px; }
-    h1 { margin-top: 0; color: #0f172a; }
-    h2 { margin-top: 28px; color: #1e3a8a; border-bottom: 1px solid #e5e7eb; padding-bottom: 8px; }
-    .badge { display: inline-block; background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; border-radius: 999px; padding: 4px 12px; font-weight: 700; }
-    .warning { background: #fff7ed; border-left: 5px solid #f97316; padding: 14px 16px; border-radius: 10px; }
-    a { color: #2563eb; }
-    li { margin: 6px 0; }
-    footer { margin-top: 28px; color: #6b7280; font-size: .92rem; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif; margin:0; background:#f6f7fb; color:#1f2937; }
+    main { max-width: 1080px; margin:0 auto; padding:32px 20px 56px; }
+    .card { background:#fff; border-radius:16px; box-shadow:0 8px 30px rgba(15,23,42,.08); padding:28px; }
+    h1 { margin-top:0; color:#0f172a; } h2 { margin-top:28px; color:#1e3a8a; border-bottom:1px solid #e5e7eb; padding-bottom:8px; }
+    .badge { display:inline-block; background:#dcfce7; color:#166534; border:1px solid #86efac; border-radius:999px; padding:4px 12px; font-weight:700; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin:18px 0; }
+    .metric { background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; }
+    .metric .label { color:#64748b; font-size:.9rem; } .metric .value { font-size:1.35rem; font-weight:800; color:#0f172a; margin-top:4px; }
+    table { width:100%; border-collapse:collapse; margin-top:12px; } th,td { border-bottom:1px solid #e5e7eb; padding:9px 10px; text-align:left; } th { background:#f8fafc; } .num { text-align:right; font-variant-numeric: tabular-nums; }
+    .warning { background:#fff7ed; border-left:5px solid #f97316; padding:14px 16px; border-radius:10px; }
+    a { color:#2563eb; } footer { margin-top:28px; color:#6b7280; font-size:.92rem; }
   </style>
 </head>
-<body>
-  <main>
-    <article class="card">
-      <p><a href="../daily/etf_dca_observatory.html">← 回 ETF 績效觀測站</a></p>
-      <h1>0050 元大台灣50 — ETF Intelligence Report</h1>
-      <p><span class="badge">Phase 1 範例資料</span></p>
-
-      <h2>狀態</h2>
-      <p>此檔是 Phase 1 的合約範例檔，用於驗證 JSON schema、Python intelligence loader，以及未來 dashboard 連結與 HTML 報告格式。</p>
-
-      <h2>重要限制</h2>
-      <div class="warning">
-        <strong>資料品質：sample</strong><br>
-        此檔尚未由 Gideon 使用官方來源查核 0050 成分股後產出，不可視為正式 ETF 成分股分析，也不可作為投資依據。
-      </div>
-
-      <h2>後續正式報告應包含</h2>
-      <ol>
-        <li>官方資料來源與查詢時間</li>
-        <li>前十大成分股</li>
-        <li>台積電權重、前 5 / 10 / 20 大集中度</li>
-        <li>產業與區域曝險</li>
-        <li>與 Mason 目前 ETF 持倉的重疊關係</li>
-        <li>成分股異動後的延遲觀察事項</li>
-      </ol>
-
-      <h2>Phase 1 驗證目標</h2>
-      <p>若 dashboard 或 loader 能讀到此檔並顯示「範例資料 / 尚待正式查核」，即表示 Phase 1 合約成立。</p>
-
-      <footer>FinMind V5 · ETF Intelligence · generated for contract validation</footer>
-    </article>
-  </main>
-</body>
-</html>
+<body><main><article class="card">
+  <p><a href="../daily/etf_dca_observatory.html">← 回 ETF 績效觀測站</a></p>
+  <h1>0050 元大台灣50 — ETF Intelligence Report</h1>
+  <p><span class="badge">正式資料：元大官方來源</span></p>
+  <p>資料日期：<strong>2026-06-22</strong>　官方更新時間：2026-06-22 16:30:00　產生時間：2026-06-23T09:35:29+08:00</p>
+  <h2>摘要</h2><p>0050 目前官方成分股 50 檔，股票權重合計約 99.59%。台積電權重 57.57%，前十大權重 80.24%，HHI 約 0.3405，等效持股數約 2.94 檔。</p>
+  <div class="grid">
+    <div class="metric"><div class="label">台積電權重</div><div class="value">57.57%</div></div>
+    <div class="metric"><div class="label">前十大權重</div><div class="value">80.24%</div></div>
+    <div class="metric"><div class="label">HHI</div><div class="value">0.3405</div></div>
+    <div class="metric"><div class="label">等效持股數</div><div class="value">2.94</div></div>
+  </div>
+  <h2>集中度指標</h2>
+  <ul>
+    <li>成分股檔數：50</li><li>股票權重合計：99.59%</li>
+    <li>前 3 / 5 / 10 / 20 大權重：67.69% / 72.86% / 80.24% / 88.73%</li>
+    <li>排除台積電後其餘股票權重：42.02%</li>
+  </ul>
+  <h2>前 20 大成分股</h2><table><thead><tr><th>排名</th><th>代號</th><th>名稱</th><th class='num'>權重</th></tr></thead><tbody><tr><td>1</td><td>2330</td><td>台積電</td><td class='num'>57.57%</td></tr>
+<tr><td>2</td><td>2454</td><td>聯發科</td><td class='num'>6.20%</td></tr>
+<tr><td>3</td><td>2308</td><td>台達電</td><td class='num'>3.92%</td></tr>
+<tr><td>4</td><td>2317</td><td>鴻海</td><td class='num'>3.07%</td></tr>
+<tr><td>5</td><td>3711</td><td>日月光投控</td><td class='num'>2.10%</td></tr>
+<tr><td>6</td><td>2303</td><td>聯電</td><td class='num'>1.76%</td></tr>
+<tr><td>7</td><td>2383</td><td>台光電</td><td class='num'>1.59%</td></tr>
+<tr><td>8</td><td>2327</td><td>國巨*</td><td class='num'>1.58%</td></tr>
+<tr><td>9</td><td>3037</td><td>欣興</td><td class='num'>1.24%</td></tr>
+<tr><td>10</td><td>2345</td><td>智邦</td><td class='num'>1.21%</td></tr>
+<tr><td>11</td><td>2891</td><td>中信金</td><td class='num'>1.18%</td></tr>
+<tr><td>12</td><td>2881</td><td>富邦金</td><td class='num'>1.08%</td></tr>
+<tr><td>13</td><td>2882</td><td>國泰金</td><td class='num'>1.01%</td></tr>
+<tr><td>14</td><td>2382</td><td>廣達</td><td class='num'>0.94%</td></tr>
+<tr><td>15</td><td>2360</td><td>致茂</td><td class='num'>0.80%</td></tr>
+<tr><td>16</td><td>3017</td><td>奇鋐</td><td class='num'>0.73%</td></tr>
+<tr><td>17</td><td>2885</td><td>元大金</td><td class='num'>0.71%</td></tr>
+<tr><td>18</td><td>1303</td><td>南亞</td><td class='num'>0.70%</td></tr>
+<tr><td>19</td><td>2887</td><td>台新新光金</td><td class='num'>0.70%</td></tr>
+<tr><td>20</td><td>2344</td><td>華邦電</td><td class='num'>0.64%</td></tr></tbody></table>
+  <h2>Gideon 觀察</h2><div class="warning"><ul><li><strong>TSMC_CONCENTRATION_HIGH</strong>：台積電權重超過 50%，0050 實質曝險高度受單一權值股影響。</li><li><strong>TOP10_CONCENTRATION_HIGH</strong>：前十大成分股權重超過 75%，名義 50 檔但實質集中度偏高。</li><li>後續建立歷史快照後，再判斷台積電權重與前十大集中度是否持續變化。</li><li>若同時持有台積電或高科技/AI 供應鏈 ETF，應合併觀察重複曝險。</li></ul></div>
+  <h2>資料來源與限制</h2>
+  <ul><li><a href="https://www.yuantaetfs.com/product/detail/0050/ratio">元大投信 0050 持股比重官方頁面</a></li><li>元大投信 ETF API PCF/Daily</li><li>資料取自元大投信官方 ETF ratio API；僅代表該查詢時間點的成分股權重。</li><li>單一快照不能推論長期趨勢；趨勢判斷需與後續或歷史快照比較。</li></ul>
+  <footer>FinMind V5 · ETF Intelligence · generated from official Yuanta ETF data</footer>
+</article></main></body></html>
