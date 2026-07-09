@@ -1,0 +1,121 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>記憶體主題股票資料庫</title><style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#172033;--muted:#607089;--line:#dfe5ef;--blue:#2563eb;--green:#15803d;--orange:#c2410c;--purple:#7e22ce;}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;line-height:1.55}
+header{background:linear-gradient(135deg,#111827,#1d4ed8);color:white;padding:34px 28px} header h1{margin:0 0 8px;font-size:30px} header p{margin:4px 0;color:#dbeafe}
+main{max-width:1280px;margin:0 auto;padding:24px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(15,23,42,.05)}
+.metric{font-size:30px;font-weight:750}.label{color:var(--muted);font-size:13px}.pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:650;background:#eef2ff;color:#3730a3;margin:2px}.pill.core{background:#dcfce7;color:#166534}.pill.adjacent{background:#ffedd5;color:#9a3412}.pill.candidate{background:#fef3c7;color:#92400e}.pill.direct{background:#dbeafe;color:#1d4ed8}.pill.enabling{background:#f3e8ff;color:#6b21a8}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.toolbar input,.toolbar select{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:white;min-width:180px}table{width:100%;border-collapse:separate;border-spacing:0;background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14px}th{background:#f8fafc;text-align:left;position:sticky;top:0;z-index:1}tr:last-child td{border-bottom:0}.small{font-size:12px;color:var(--muted)}.company{font-weight:750}.score{font-weight:750;color:var(--blue)}
+section{margin:24px 0}h2{font-size:22px;margin:0 0 12px}.note{background:#fff7ed;border:1px solid #fed7aa;color:#7c2d12;border-radius:14px;padding:14px}.taglist{max-width:420px}.src a{word-break:break-all;color:var(--blue)}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}main{padding:14px}th,td{font-size:12px;padding:8px}.hide-mobile{display:none}}@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><h1>記憶體主題股票資料庫</h1><p>中立主題知識庫：股票 → 屬於哪些主題；主題 → 包含哪些股票</p><p class="small" style="color:#bfdbfe">產生時間：2026-07-09T10:22:21+08:00 ｜ ETF 僅作輔助佐證，不作唯一分類依據</p></header>
+<main>
+<section class="grid">
+<div class="card"><div class="metric">12</div><div class="label">公司主檔</div></div>
+<div class="card"><div class="metric">30</div><div class="label">主題標籤</div></div>
+<div class="card"><div class="metric">9</div><div class="label">Core 公司</div></div>
+<div class="card"><div class="metric">8</div><div class="label">ETF 輔助佐證</div></div>
+</section>
+<section class="card"><h2>資料品質與使用邊界</h2><div class="note">本報表不是自動選股或買賣訊號；目前不混入 Mason 持股狀態。多數公司未揭露可直接切分的記憶體營收曝險，因此以 qualitative / unknown 保守處理。00407A 為主動式台股 ETF，非記憶體專門 ETF，其持股只作範圍校準與弱佐證。</div></section>
+<section class="card"><h2>子題分布</h2><span class="pill">SSD / 企業儲存 6</span> <span class="pill">記憶體模組 6</span> <span class="pill">工控 / 車用 / 邊緣儲存 3</span> <span class="pill">DRAM 2</span> <span class="pill">NOR Flash 2</span> <span class="pill">NAND Flash 2</span> <span class="pill">通路 / 品牌 2</span> <span class="pill">控制晶片 1</span> <span class="pill">記憶體封測 1</span> <span class="pill">記憶體 IP / 嵌入式非揮發性記憶體 1</span> <span class="pill">DRAM / DDR5 周邊 IP 1</span> <span class="pill">高速記憶體 / VHM 1</span> <span class="pill">低功耗記憶體 / IoTRAM 1</span> <span class="pill">記憶體 IP / 客製化記憶體 1</span></section>
+<section><h2>公司與主題標籤總覽</h2><div class="toolbar"><input id="q" placeholder="搜尋代號、公司、摘要、產品"><select id="scope"><option value="">全部範圍</option><option value="core">core</option><option value="adjacent">adjacent</option><option value="candidate">candidate</option></select></div>
+<table id="tbl"><thead><tr><th>公司</th><th>最高分</th><th>子題 / 關聯</th><th>公司摘要</th><th class="hide-mobile">供應鏈角色</th><th>來源 / 註記</th></tr></thead><tbody><tr data-scope="core" data-text="2337 旺宏 旺宏電子為全球非揮發性記憶體整合元件廠商，公司官網公司簡介說明其提供 rom 唯讀記憶體、nor 型快閃記憶體以及 nand 型快閃記憶體解決方案，產品應用涵蓋消費、通訊、電腦、工業、汽車電子、網通等領域。 nor flash|serial nor flash|parallel nor flash|octabus memory|nand flash|slc nand flash|serial nand flash|e.mmc|rom|mcp" data-score="95">
+<td><div class="company">2337 旺宏</div><span class="pill core">core</span></td>
+<td class="score">95</td>
+<td class="taglist"><span class="pill">NOR Flash</span><span class="pill">NAND Flash</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>旺宏電子為全球非揮發性記憶體整合元件廠商，公司官網公司簡介說明其提供 ROM 唯讀記憶體、NOR 型快閃記憶體以及 NAND 型快閃記憶體解決方案，產品應用涵蓋消費、通訊、電腦、工業、汽車電子、網通等領域。<div class="small">主要產品：NOR Flash|Serial NOR Flash|Parallel NOR Flash|OctaBus Memory|NAND Flash|SLC NAND Flash|Serial NAND Flash|e.MMC|ROM|MCP</div></td>
+<td class="hide-mobile">非揮發性記憶體 IDM / 快閃記憶體解決方案供應商<div class="small">上市別：上市；掛牌日：1995-03-15</div></td>
+<td class="src"><a href="https://www.macronix.com/zh-tw/about/Pages/Company-Overview.aspx" target="_blank">來源</a> <a href="https://www.macronix.com/zh-tw/products/NOR-Flash/Pages/default.aspx" target="_blank">來源</a><div class="small">營收曝險先採 qualitative；後續若整理年報營收分部可再細化 NOR/NAND/ROM 比重。</div></td>
+</tr>
+<tr data-scope="core" data-text="2408 南亞科 南亞科專注於 dram 的研發、設計、製造與銷售；公司官網說明其為 dram 製造商，產品組合涵蓋標準型 dram、低功耗 dram、kgd、mcp、模組與 elixir 品牌等。 dram|standard dram|low power dram|kgd|mcp|dram module|elixir brand" data-score="95">
+<td><div class="company">2408 南亞科</div><span class="pill core">core</span><div class='small'>00407A: 1.6% / rank 31（弱佐證）</div></td>
+<td class="score">95</td>
+<td class="taglist"><span class="pill">DRAM</span><br><span class="pill direct">direct</span></td>
+<td>南亞科專注於 DRAM 的研發、設計、製造與銷售；公司官網說明其為 DRAM 製造商，產品組合涵蓋標準型 DRAM、低功耗 DRAM、KGD、MCP、模組與 Elixir 品牌等。<div class="small">主要產品：DRAM|Standard DRAM|Low Power DRAM|KGD|MCP|DRAM Module|Elixir Brand</div></td>
+<td class="hide-mobile">DRAM 設計與製造商<div class="small">上市別：上市；掛牌日：2000-08-17</div></td>
+<td class="src"><a href="https://www.nanya.com/en/About" target="_blank">來源</a> <a href="https://www.nanya.com/en/Product/" target="_blank">來源</a><div class="small">營收曝險先採 qualitative；後續若整理年報營收分部可再細化。</div></td>
+</tr>
+<tr data-scope="core" data-text="8299 群聯 群聯電子官網公司介紹指出，公司由 usb 快閃記憶體隨身碟控制晶片起家，已成為快閃記憶體控制晶片以及儲存解決方案供應商；技術頁說明其以 nand 控制晶片及各式儲存技術 ip 為核心，產品/解決方案涵蓋 ssd、ufs、emmc、記憶儲存卡與 usb。 nand 控制晶片|ssd 控制器 / ssd 解決方案|ufs|emmc|memory cards|usb storage|nand storage ip" data-score="95">
+<td><div class="company">8299 群聯</div><span class="pill core">core</span><div class='small'>00407A: 0.14% / rank 49（弱佐證）</div></td>
+<td class="score">95</td>
+<td class="taglist"><span class="pill">控制晶片</span><span class="pill">SSD / 企業儲存</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>群聯電子官網公司介紹指出，公司由 USB 快閃記憶體隨身碟控制晶片起家，已成為快閃記憶體控制晶片以及儲存解決方案供應商；技術頁說明其以 NAND 控制晶片及各式儲存技術 IP 為核心，產品/解決方案涵蓋 SSD、UFS、eMMC、記憶儲存卡與 USB。<div class="small">主要產品：NAND 控制晶片|SSD 控制器 / SSD 解決方案|UFS|eMMC|Memory Cards|USB storage|NAND storage IP</div></td>
+<td class="hide-mobile">NAND Flash 控制晶片與儲存解決方案供應商<div class="small">上市別：上櫃；掛牌日：2004-12-06</div></td>
+<td class="src"><a href="https://www.phison.com/zh-tw/company/about" target="_blank">來源</a> <a href="https://www.phison.com/zh-tw/technology" target="_blank">來源</a><div class="small">營收曝險先採 qualitative；後續若加入年報或法說，可再細分控制晶片、模組與整體儲存解決方案。</div></td>
+</tr>
+<tr data-scope="core" data-text="2344 華邦電 華邦電官網公司簡介指出，華邦是少數同時擁有記憶體及邏輯積體電路自有產品與技術的公司；核心產品包含 code storage flash memory、trustme secure flash、customized memory solution，並提供邏輯 ic 產品及解決方案。 code storage flash memory|secure flash|nor flash|nand flash|customized memory solution|dram|logic ic" data-score="90">
+<td><div class="company">2344 華邦電</div><span class="pill core">core</span><div class='small'>00407A: 1.72% / rank 26（弱佐證）</div></td>
+<td class="score">90</td>
+<td class="taglist"><span class="pill">NOR Flash</span><span class="pill">NAND Flash</span><span class="pill">DRAM</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>華邦電官網公司簡介指出，華邦是少數同時擁有記憶體及邏輯積體電路自有產品與技術的公司；核心產品包含 Code Storage Flash Memory、TrustME Secure Flash、Customized Memory Solution，並提供邏輯 IC 產品及解決方案。<div class="small">主要產品：Code Storage Flash Memory|Secure Flash|NOR Flash|NAND Flash|Customized Memory Solution|DRAM|Logic IC</div></td>
+<td class="hide-mobile">特殊記憶體 / 快閃記憶體 / 客製化記憶體解決方案供應商<div class="small">上市別：上市；掛牌日：1995-10-18</div></td>
+<td class="src"><a href="https://www.winbond.com/hq/about-winbond/company-profile/overview/?__locale=zh_TW" target="_blank">來源</a> <a href="https://www.winbond.com/hq/product/customized-memory-solution/?__locale=zh_TW" target="_blank">來源</a><div class="small">先建立核心樣板；若後續加入年報或法說，可細化 NOR/NAND/DRAM 營收曝險。</div></td>
+</tr>
+<tr data-scope="core" data-text="3260 威剛 威剛科技官網公司簡介說明其專注於引領未來的創新產業；產品分類頁明列記憶體模組與 ssd 固態硬碟，記憶體模組涵蓋 ddr5、ddr4、ddr3 等桌上型/筆記型/工作站記憶體，ssd 分類涵蓋內接式與外接式 ssd、pcie / sata 等產品。 ddr5 記憶體模組|ddr4 記憶體模組|ddr3 記憶體模組|ssd 固態硬碟|外接式儲存|記憶卡|工業級記憶體模組" data-score="90">
+<td><div class="company">3260 威剛</div><span class="pill core">core</span><div class='small'>00407A: 0.17% / rank 47（弱佐證）</div></td>
+<td class="score">90</td>
+<td class="taglist"><span class="pill">記憶體模組</span><span class="pill">SSD / 企業儲存</span><span class="pill">通路 / 品牌</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>威剛科技官網公司簡介說明其專注於引領未來的創新產業；產品分類頁明列記憶體模組與 SSD 固態硬碟，記憶體模組涵蓋 DDR5、DDR4、DDR3 等桌上型/筆記型/工作站記憶體，SSD 分類涵蓋內接式與外接式 SSD、PCIe / SATA 等產品。<div class="small">主要產品：DDR5 記憶體模組|DDR4 記憶體模組|DDR3 記憶體模組|SSD 固態硬碟|外接式儲存|記憶卡|工業級記憶體模組</div></td>
+<td class="hide-mobile">記憶體模組 / SSD / 品牌與通路供應商<div class="small">上市別：上櫃；掛牌日：2004-10-08</div></td>
+<td class="src"><a href="https://www.adata.com/tw/about/" target="_blank">來源</a> <a href="https://www.adata.com/tw/consumer/category/computer-memory/" target="_blank">來源</a><div class="small">ADATA 部分產品頁為動態頁；本批以瀏覽器可見官方頁面文字與 TPEx 官方基本資料為依據。營收曝險先採 qualitative / unknown。</div></td>
+</tr>
+<tr data-scope="core" data-text="5289 宜鼎 宜鼎官方網站以 intelligence 應用與工業/邊緣場景呈現產品組合，官方產品導覽明列嵌入式儲存與記憶體模組；嵌入式儲存包含 pcie m.2、u.2、cfexpress、edsff、sata m.2、2.5 吋 ssd、satadom、msata、cfast、nanossd、compactflash、sd / microsd、usb / usb edc 等，記憶體模組包含 cxl、ddr5、ddr4、ddr3、ddr2、ddr、sdram，並另列 ai 記憶體系列與 dram pro 系列。 嵌入式儲存|pcie m.2|u.2|cfexpress|edsff|sata ssd|satadom|msata|cfast|nanossd|sd / microsd|usb edc|記憶體模組|cxl|ddr5|ddr4|ddr3|ai 記憶體系列|dram pro" data-score="90">
+<td><div class="company">5289 宜鼎</div><span class="pill core">core</span><div class='small'>00407A: 0.19% / rank 45（弱佐證）</div></td>
+<td class="score">90</td>
+<td class="taglist"><span class="pill">SSD / 企業儲存</span><span class="pill">記憶體模組</span><span class="pill">工控 / 車用 / 邊緣儲存</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>宜鼎官方網站以 Intelligence 應用與工業/邊緣場景呈現產品組合，官方產品導覽明列嵌入式儲存與記憶體模組；嵌入式儲存包含 PCIe M.2、U.2、CFexpress、EDSFF、SATA M.2、2.5 吋 SSD、SATADOM、mSATA、CFast、nanoSSD、CompactFlash、SD / microSD、USB / USB EDC 等，記憶體模組包含 CXL、DDR5、DDR4、DDR3、DDR2、DDR、SDRAM，並另列 AI 記憶體系列與 DRAM PRO 系列。<div class="small">主要產品：嵌入式儲存|PCIe M.2|U.2|CFexpress|EDSFF|SATA SSD|SATADOM|mSATA|CFast|nanoSSD|SD / microSD|USB EDC|記憶體模組|CXL|DDR5|DDR4|DDR3|AI 記憶體系列|DRAM PRO</div></td>
+<td class="hide-mobile">工業級嵌入式儲存 / 記憶體模組 / 邊緣 AI 儲存與記憶體解決方案供應商<div class="small">上市別：上櫃；掛牌日：2013-11-27</div></td>
+<td class="src"><a href="https://www.innodisk.com/cht" target="_blank">來源</a> <a href="https://www.innodisk.com/cht/group-intro" target="_blank">來源</a><div class="small">Innodisk 官網部分頁面為 Nuxt 動態頁；本批以官方頁面可見文字、產品導覽與 TPEx 官方基本資料為依據。營收曝險先採 qualitative / unknown。</div></td>
+</tr>
+<tr data-scope="core" data-text="2451 創見 創見資訊官網公司簡介說明其為全球消費性電子與工業用產品領導廠商，提供超過 2000 款產品，包含各式記憶體、記憶卡、隨身碟、可攜式硬碟、固態硬碟與工業用產品；官方產品頁另列記憶體模組 ddr5/ddr4/ddr3、內接式固態硬碟與嵌入式/工業用記憶體模組等。 記憶體模組|ddr5|ddr4|ddr3|記憶卡|usb 隨身碟|內接式 ssd|行動 ssd|工業用記憶體模組|工業用儲存" data-score="88">
+<td><div class="company">2451 創見</div><span class="pill core">core</span><div class='small'>00407A: 0.14% / rank 48（弱佐證）</div></td>
+<td class="score">88</td>
+<td class="taglist"><span class="pill">記憶體模組</span><span class="pill">工控 / 車用 / 邊緣儲存</span><span class="pill">SSD / 企業儲存</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>創見資訊官網公司簡介說明其為全球消費性電子與工業用產品領導廠商，提供超過 2000 款產品，包含各式記憶體、記憶卡、隨身碟、可攜式硬碟、固態硬碟與工業用產品；官方產品頁另列記憶體模組 DDR5/DDR4/DDR3、內接式固態硬碟與嵌入式/工業用記憶體模組等。<div class="small">主要產品：記憶體模組|DDR5|DDR4|DDR3|記憶卡|USB 隨身碟|內接式 SSD|行動 SSD|工業用記憶體模組|工業用儲存</div></td>
+<td class="hide-mobile">記憶體模組 / 消費與工業儲存品牌供應商<div class="small">上市別：上市；掛牌日：2001-05-03</div></td>
+<td class="src"><a href="https://tw.transcend-info.com/about/company" target="_blank">來源</a> <a href="https://tw.transcend-info.com/product/dram-module" target="_blank">來源</a><div class="small">營收曝險先採 qualitative / unknown；後續若整理年報可再細分消費性與工業用產品比重。</div></td>
+</tr>
+<tr data-scope="core" data-text="4967 十銓 十銓科技官網企業願景頁說明其為世界級記憶體品牌，旗下擁有 teamgroup、t-force、t-create、teamgroup industrial 等品牌；官方頁面列示產品包含記憶體、記憶卡、隨身碟、固態硬碟、週邊產品與工規產品，產品分類頁明列記憶體與 ssd 固態硬碟。 記憶體模組|ddr5 / ddr4 桌上型記憶體|筆記型記憶體|工作站記憶體|ssd 固態硬碟|m.2 ssd|2.5 吋 ssd|外接式 ssd|記憶卡|usb 隨身碟|工規產品" data-score="88">
+<td><div class="company">4967 十銓</div><span class="pill core">core</span></td>
+<td class="score">88</td>
+<td class="taglist"><span class="pill">記憶體模組</span><span class="pill">SSD / 企業儲存</span><span class="pill">通路 / 品牌</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>十銓科技官網企業願景頁說明其為世界級記憶體品牌，旗下擁有 TEAMGROUP、T-FORCE、T-CREATE、TEAMGROUP Industrial 等品牌；官方頁面列示產品包含記憶體、記憶卡、隨身碟、固態硬碟、週邊產品與工規產品，產品分類頁明列記憶體與 SSD 固態硬碟。<div class="small">主要產品：記憶體模組|DDR5 / DDR4 桌上型記憶體|筆記型記憶體|工作站記憶體|SSD 固態硬碟|M.2 SSD|2.5 吋 SSD|外接式 SSD|記憶卡|USB 隨身碟|工規產品</div></td>
+<td class="hide-mobile">記憶體模組 / SSD / 儲存品牌與工規產品供應商<div class="small">上市別：上市；掛牌日：2019-01-14</div></td>
+<td class="src"><a href="https://www.teamgroupinc.com/tw/about/vision/" target="_blank">來源</a> <a href="https://www.teamgroupinc.com/tw/product-category/memory/" target="_blank">來源</a><div class="small">TEAMGROUP 官網部分產品頁為動態頁；本批以官方企業願景、產品分類頁可見文字與 TWSE 官方基本資料交叉查證。營收曝險先採 qualitative / unknown。</div></td>
+</tr>
+<tr data-scope="core" data-text="8271 宇瞻 宇瞻科技官方網站以工控解決方案與個人/商務解決方案呈現其產品組合；工控解決方案頁說明宇瞻持續開發工業應用 ssd 和 dram 解決方案，並提供嵌入式固態硬碟儲存模組。官方產品導覽列有固態硬碟、pcie ssd、sata、emmc、企業級 ssd，以及記憶體模組、embedded memory、udimm、sodimm、rdimm、ecc 與工規寬溫記憶體等。 工業應用 ssd|pcie ssd|sata ssd|emmc|企業級 ssd|記憶體模組|embedded memory|udimm|sodimm|rdimm|ecc dram|工規寬溫記憶體" data-score="88">
+<td><div class="company">8271 宇瞻</div><span class="pill core">core</span></td>
+<td class="score">88</td>
+<td class="taglist"><span class="pill">記憶體模組</span><span class="pill">SSD / 企業儲存</span><span class="pill">工控 / 車用 / 邊緣儲存</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span><span class="pill direct">direct</span></td>
+<td>宇瞻科技官方網站以工控解決方案與個人/商務解決方案呈現其產品組合；工控解決方案頁說明宇瞻持續開發工業應用 SSD 和 DRAM 解決方案，並提供嵌入式固態硬碟儲存模組。官方產品導覽列有固態硬碟、PCIe SSD、SATA、eMMC、企業級 SSD，以及記憶體模組、Embedded Memory、UDIMM、SODIMM、RDIMM、ECC 與工規寬溫記憶體等。<div class="small">主要產品：工業應用 SSD|PCIe SSD|SATA SSD|eMMC|企業級 SSD|記憶體模組|Embedded Memory|UDIMM|SODIMM|RDIMM|ECC DRAM|工規寬溫記憶體</div></td>
+<td class="hide-mobile">工業儲存 / 記憶體模組 / 嵌入式儲存解決方案供應商<div class="small">上市別：上市；掛牌日：2010-12-29</div></td>
+<td class="src"><a href="https://www.apacer.com/zh-tw" target="_blank">來源</a> <a href="https://www.apacer.com/zh-tw/industrialoverview/industrial-overview" target="_blank">來源</a><div class="small">Apacer 部分頁面為動態導覽；本批以官方首頁/工控解決方案可見文字、產品分類連結與 TWSE 官方基本資料為依據。營收曝險先採 qualitative / unknown。</div></td>
+</tr>
+<tr data-scope="adjacent" data-text="6239 力成 力成科技官網 about pti 說明其為全球 osat，服務包含 chip bumping、chip probing、ic assembly、final testing、burn in 與 system level assembly，並稱其為全球領先的 memory packaging and testing solution provider；服務頁另明列 memory and logic devices 的 chip probing，以及 dram、nor flash、nand flash、mcp 與 logic devices 的 final test。 chip probing|final test|ic assembly|packaging|burn-in|system level assembly|memory packaging and testing|module assembly" data-score="76">
+<td><div class="company">6239 力成</div><span class="pill adjacent">adjacent</span></td>
+<td class="score">76</td>
+<td class="taglist"><span class="pill">記憶體封測</span><span class="pill">記憶體模組</span><br><span class="pill enabling">enabling</span><span class="pill enabling">enabling</span></td>
+<td>力成科技官網 About PTI 說明其為全球 OSAT，服務包含 chip bumping、chip probing、IC assembly、final testing、burn in 與 system level assembly，並稱其為全球領先的 memory packaging and testing solution provider；服務頁另明列 Memory and Logic devices 的 chip probing，以及 DRAM、NOR Flash、NAND Flash、MCP 與 Logic devices 的 final test。<div class="small">主要產品：Chip probing|Final test|IC assembly|Packaging|Burn-in|System level assembly|Memory packaging and testing|Module Assembly</div></td>
+<td class="hide-mobile">半導體 OSAT / 記憶體封裝測試 adjacent 供應鏈服務商<div class="small">上市別：上市；掛牌日：2004-11-08</div></td>
+<td class="src"><a href="https://www.pti.com.tw/en/about/about" target="_blank">來源</a> <a href="https://www.pti.com.tw/en/service/service/chip-probing" target="_blank">來源</a><div class="small">力成為記憶體供應鏈相鄰封測 / OSAT 角色，不視為記憶體產品本體；故 inclusion_status=adjacent。營收曝險先採 qualitative / unknown。</div></td>
+</tr>
+<tr data-scope="adjacent" data-text="6531 愛普* 愛普科技官網公司概況說明其為全球 fabless semiconductor company，提供 customized memory design and ip solutions；產品頁列 iotram 與 s-sicap，iotram 包含 psram 與 lpddr；vhm 解決方案頁說明 vhm 為以 wow 3d stacking 技術與 soc 協作的 dram，面向高頻寬與高效能運算需求。 iotram|psram|lpddr|vhm|vhmstack|vhminterposer|customized memory design|memory ip solutions|s-sicap" data-score="74">
+<td><div class="company">6531 愛普*</div><span class="pill adjacent">adjacent</span><div class='small'>00407A: 1.56% / rank 32（弱佐證）</div></td>
+<td class="score">74</td>
+<td class="taglist"><span class="pill">高速記憶體 / VHM</span><span class="pill">低功耗記憶體 / IoTRAM</span><span class="pill">記憶體 IP / 客製化記憶體</span><br><span class="pill direct">direct</span><span class="pill direct">direct</span><span class="pill enabling">enabling</span></td>
+<td>愛普科技官網公司概況說明其為全球 fabless semiconductor company，提供 customized memory design and IP solutions；產品頁列 IoTRAM 與 S-SiCap，IoTRAM 包含 PSRAM 與 LPDDR；VHM 解決方案頁說明 VHM 為以 WoW 3D stacking 技術與 SoC 協作的 DRAM，面向高頻寬與高效能運算需求。<div class="small">主要產品：IoTRAM|PSRAM|LPDDR|VHM|VHMStack|VHMInterposer|Customized memory design|Memory IP solutions|S-SiCap</div></td>
+<td class="hide-mobile">客製化記憶體設計 / 高頻寬記憶體 / AI &amp; HPC 記憶體解決方案供應商<div class="small">上市別：上市；掛牌日：2016-05-31</div></td>
+<td class="src"><a href="https://www.apmemory.com/en/about/company" target="_blank">來源</a> <a href="https://www.apmemory.com/en/product" target="_blank">來源</a><div class="small">愛普具直接記憶體產品與 IP 解決方案，但本批依 Mason 的 adjacent-candidate 定位，先不列為核心記憶體產品股。營收曝險先採 qualitative / unknown。</div></td>
+</tr>
+<tr data-scope="adjacent" data-text="3529 力旺 力旺電子官網公司簡介說明其專注於半導體 ip，具 logic non-volatile memory 專長；產品頁列示 logic nvm silicon ip 平台，包含 neobit、neofuse、neomtp、neoee、ecobit、neoflash、rram、mram 與 neopuf 等，應用頁另列 dram 與 ddr5 use cases。 logic nvm silicon ip|otp ip|mtp ip|eflash ip|neoflash|rram|mram|neopuf|secure otp|dram / ddr5 use-case ip" data-score="68">
+<td><div class="company">3529 力旺</div><span class="pill adjacent">adjacent</span><div class='small'>00407A: 1.75% / rank 25（弱佐證）</div></td>
+<td class="score">68</td>
+<td class="taglist"><span class="pill">記憶體 IP / 嵌入式非揮發性記憶體</span><span class="pill">DRAM / DDR5 周邊 IP</span><br><span class="pill enabling">enabling</span><span class="pill enabling">enabling</span></td>
+<td>力旺電子官網公司簡介說明其專注於半導體 IP，具 Logic Non-Volatile Memory 專長；產品頁列示 Logic NVM silicon IP 平台，包含 NeoBit、NeoFuse、NeoMTP、NeoEE、EcoBit、NeoFlash、RRAM、MRAM 與 NeoPUF 等，應用頁另列 DRAM 與 DDR5 use cases。<div class="small">主要產品：Logic NVM silicon IP|OTP IP|MTP IP|eFlash IP|NeoFlash|RRAM|MRAM|NeoPUF|Secure OTP|DRAM / DDR5 use-case IP</div></td>
+<td class="hide-mobile">嵌入式非揮發性記憶體 IP / 安全 IP / 記憶體周邊使能 IP 供應商<div class="small">上市別：上櫃；掛牌日：2011-01-24</div></td>
+<td class="src"><a href="https://www.ememory.com.tw/en/about" target="_blank">來源</a> <a href="https://www.ememory.com.tw/en/products" target="_blank">來源</a><div class="small">力旺不是 DRAM/NAND/NOR 等記憶體產品本體；本批保守列為 adjacent / enabling。營收曝險先採 qualitative / unknown。</div></td>
+</tr></tbody></table></section>
+<section class="card"><h2>已輸出檔案</h2><ul><li><code>主題股票資料庫/data/memory_theme_latest.json</code></li><li><code>主題股票資料庫/reports/memory_theme_report.md</code></li><li><code>主題股票資料庫/reports/memory_theme_report.html</code></li><li><code>v5/data/processed/theme_intelligence/memory/memory_theme_latest.json</code></li><li><code>v5/reports/theme_intelligence/memory/memory_theme_report.html</code></li></ul></section>
+</main><script>
+function filt(){const q=document.getElementById('q').value.toLowerCase();const s=document.getElementById('scope').value;document.querySelectorAll('#tbl tbody tr').forEach(tr=>{const okq=!q||tr.dataset.text.includes(q);const oks=!s||tr.dataset.scope===s;tr.style.display=(okq&&oks)?'':'none';})}
+document.getElementById('q').addEventListener('input',filt);document.getElementById('scope').addEventListener('change',filt);
+</script></body></html>
