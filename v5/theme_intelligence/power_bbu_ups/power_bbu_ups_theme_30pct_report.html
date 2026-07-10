@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>電源 / BBU / UPS 主題 30% 初版</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif;background:#f6f7fb;color:#1f2937;margin:0;padding:24px}
+.card{background:white;border-radius:16px;padding:20px;margin:0 auto 18px;max-width:1120px;box-shadow:0 8px 24px rgba(15,23,42,.08)}
+h1{margin-top:0} table{border-collapse:collapse;width:100%;font-size:14px} th,td{border-bottom:1px solid #e5e7eb;padding:10px;text-align:left;vertical-align:top} th{background:#f3f4f6} .pill{display:inline-block;background:#fff7ed;color:#c2410c;border-radius:999px;padding:4px 10px;font-size:12px;margin-right:6px} .warn{background:#fffbeb;border-left:4px solid #f59e0b;padding:12px;border-radius:8px}
+</style></head><body>
+<div class="card"><h1>電源 / BBU / UPS 主題 30% 初版評估</h1><p><span class="pill">2026-07-09</span><span class="pill">完成度估計 30%</span><span class="pill">正式樣板 6 檔</span><span class="pill">標籤 11 筆</span></p><p>主題群：AI 基礎建設 / 電力基礎設施 / 資料中心</p></div>
+<div class="card"><h2>評估結論</h2><p>本主題適合獨立建立，不能混在記憶體或 AI Server 裡。30% 初版先採高可信核心樣板策略，建立 PSU / 資料中心電力平台 / UPS / BBU 的基本分類。</p><div class="warn">注意：AI 資料中心 BBU、GB200、power shelf 等高熱度敘事，本批不直接寫成事實；後續需公司官方、法說或可信來源補證。</div></div>
+<div class="card"><h2>正式樣板</h2><table><thead><tr><th>代號</th><th>公司</th><th>scope</th><th>最高分</th><th>sub_theme</th><th>來源品質</th></tr></thead><tbody><tr><td>2301</td><td>光寶科</td><td>core</td><td>90</td><td>伺服器電源 / Server Power；電源模組 / Power Supply Module</td><td>high</td></tr>
+<tr><td>2308</td><td>台達電</td><td>core</td><td>92</td><td>電源管理 / Power and System；資料中心電力平台</td><td>high</td></tr>
+<tr><td>6282</td><td>康舒</td><td>adjacent/core</td><td>86</td><td>伺服器 / 資料中心 PSU；工業 / 通訊 / EV 電源</td><td>medium</td></tr>
+<tr><td>6409</td><td>旭隼</td><td>core</td><td>95</td><td>UPS / 不斷電系統</td><td>high</td></tr>
+<tr><td>6412</td><td>群電</td><td>core</td><td>86</td><td>伺服器 / 雲端電源；交換式電源 / Switching PSU</td><td>high</td></tr>
+<tr><td>6781</td><td>AES-KY</td><td>adjacent/core</td><td>90</td><td>BBU / Battery Backup Solution；鋰電池模組 / 儲能</td><td>high</td></tr></tbody></table></div>
+<div class="card"><h2>候選母體</h2><table><thead><tr><th>代號</th><th>公司</th><th>tier</th><th>理由</th></tr></thead><tbody><tr><td>2308</td><td>台達電</td><td>formal_core</td><td>電源管理、資料中心與能源基礎設施平台；本批已建正式 rows。</td></tr>
+<tr><td>2301</td><td>光寶科</td><td>formal_core</td><td>Data Center Power Supply System、Server Power、Networking Power；本批已建正式 rows。</td></tr>
+<tr><td>6282</td><td>康舒</td><td>formal_core</td><td>企業/工業/資料中心 PSU 與 EV/通訊電源；本批已建正式 rows，但官網 403，需補強來源。</td></tr>
+<tr><td>6412</td><td>群電</td><td>formal_core</td><td>交換式電源、伺服器/雲端/資料中心電源應用；本批已建正式 rows。</td></tr>
+<tr><td>6409</td><td>旭隼</td><td>formal_core</td><td>UPS / 不斷電系統核心；本批已建正式 rows。</td></tr>
+<tr><td>6781</td><td>AES-KY</td><td>formal_core</td><td>Battery Backup Solution / 電池備援與鋰電池模組；本批已建正式 rows。</td></tr>
+<tr><td>2457</td><td>飛宏</td><td>next_candidate</td><td>電源供應器、adapter、EV charger 相關；待查證是否列 core 或 adjacent。</td></tr>
+<tr><td>3323</td><td>加百裕</td><td>next_candidate</td><td>電池模組供應商；可能屬 BBU/儲能 adjacent，需查資料中心 BBU 證據。</td></tr>
+<tr><td>6121</td><td>新普</td><td>next_candidate</td><td>電池模組供應商；需與 BBU / 資料中心備援關聯分開查證。</td></tr>
+<tr><td>3211</td><td>順達</td><td>next_candidate</td><td>電池模組/電池包供應鏈候選；需查證 BBU 相關產品與資料中心客戶。</td></tr>
+<tr><td>3015</td><td>全漢</td><td>next_candidate</td><td>電源供應器公司候選；需查證工業/伺服器/資料中心比重。</td></tr>
+<tr><td>2436</td><td>偉詮電</td><td>adjacent_candidate</td><td>電源管理 IC / USB-PD 控制等可能 adjacent；不是 PSU/BBU/UPS 本體。</td></tr>
+<tr><td>6415</td><td>矽力*-KY</td><td>adjacent_candidate</td><td>電源管理 IC 公司；屬 power management IC adjacent，需避免與電源系統核心混同。</td></tr>
+<tr><td>3443</td><td>創意</td><td>watch_excluded_likely</td><td>若出現在 AI 供應鏈，偏 ASIC/IP，不是本主題核心。</td></tr>
+<tr><td>6669</td><td>緯穎</td><td>watch_adjacent</td><td>AI server / rack system 應用端，可能與 BBU/電源櫃整合相關，但不是電源供應器本體。</td></tr></tbody></table></div>
+<div class="card"><h2>下一步</h2><ul><li>補 2457 飛宏、3015 全漢電源供應器正式樣板。</li><li>補 3323 加百裕、6121 新普、3211 順達 BBU/電池模組候選查證。</li><li>補康舒/群電 high-power server PSU、power shelf 或資料中心電源證據來源。</li><li>若要到 60%，加入 ETF/主題產品佐證與互動 HTML 篩選。</li></ul></div>
+</body></html>
