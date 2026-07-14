@@ -1,7 +1,7 @@
 # VTI Vanguard Total Stock Market ETF — ETF Intelligence Report
 
 - 資料日期：2026-05-31
-- 產生時間：2026-07-13T21:52:23+08:00
+- 產生時間：2026-07-14T21:51:16+08:00
 - 來源：Vanguard 官方 profile / portfolio-holding API
 - 費用率：0.03%
 
