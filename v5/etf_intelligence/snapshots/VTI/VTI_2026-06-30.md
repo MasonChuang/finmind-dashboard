@@ -1,7 +1,7 @@
 # VTI Vanguard Total Stock Market ETF — ETF Intelligence Report
 
 - 資料日期：2026-06-30
-- 產生時間：2026-07-15T21:51:35+08:00
+- 產生時間：2026-07-16T21:46:34+08:00
 - 來源：Vanguard 官方 profile / portfolio-holding API
 - 費用率：0.03%
 
@@ -46,7 +46,7 @@ VTI 目前 Vanguard 官方股票持股 3494 檔，資料日期 2026-06-30。最�
 
 - 重疊檔數：5
 - 本 ETF 權重中屬於重疊持股：約 0.21%
-- VXUS 權重中屬於重疊持股：約 0.20%
+- VXUS 權重中屬於重疊持股：約 0.22%
 
 ## Gideon 觀察
 
