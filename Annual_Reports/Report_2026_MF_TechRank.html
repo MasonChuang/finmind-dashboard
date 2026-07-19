@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-07-18</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-07-19</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -194,7 +194,7 @@
             <div class="card text-white bg-success mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史平均勝率 (已平倉)</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">46.3%</h2>
+                    <h2 class="card-title mb-0">46.2%</h2>
                     <p class="card-text"><small>(停損出場策略: FIXED_STOP)</small></p>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
@@ -213,7 +213,7 @@
             <div class="card text-white bg-info mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史單筆期望值</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+1.87%</h2>
+                    <h2 class="card-title mb-0">+1.86%</h2>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
                 <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px;">
@@ -279,9 +279,9 @@
             
                 <tr>
                     <td><strong>名次 4</strong></td>
-                    <td class="text-dark">47.7%</td>
-                    <td class="text-danger">1.98%</td>
-                    <td>7.6</td>
+                    <td class="text-dark">46.8%</td>
+                    <td class="text-danger">1.84%</td>
+                    <td>7.5</td>
                     <td>109</td>
                 </tr>
             
@@ -356,7 +356,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"], "wr": [37.2, 43.3, 42.5, 53.2, 63.1, 41.9, 29.3], "roi": [0.77, 1.32, 0.91, 2.77, 4.44, 1.32, 0.09], "grpA_roi": [0.7, 3.17, 0.97, 2.03, 5.68, 2.1, -2.39], "rank_roi": {"Rank 1": [-2.11, 1.27, 0.68, 1.61, 4.2, 1.88, -0.42], "Rank 2": [0.87, 5.66, 0.66, 1.06, 6.48, 1.56, -2.87], "Rank 3": [3.34, 2.58, 1.57, 3.44, 6.45, 2.85, -5.0], "Rank 4": [-1.03, 1.72, 2.21, 2.13, 3.69, 4.32, 0.0], "Rank 5": [2.64, -2.48, -0.42, 3.29, 2.81, -0.38, 0.0]}, "rank_wr": {"Rank 1": [19.0, 41.7, 40.9, 47.4, 60.0, 50.0, 28.6], "Rank 2": [38.1, 75.0, 40.9, 36.8, 77.8, 41.7, 14.3], "Rank 3": [47.6, 50.0, 45.5, 52.6, 75.0, 50.0, 0.0], "Rank 4": [23.8, 41.7, 52.4, 47.4, 60.0, 69.2, 33.3], "Rank 5": [50.0, 16.7, 36.4, 61.1, 50.0, 30.8, 33.3]}};
+                var chartData = {"labels": ["2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"], "wr": [37.2, 43.3, 42.0, 53.2, 63.1, 41.9, 29.3], "roi": [0.77, 1.32, 0.85, 2.77, 4.44, 1.33, -0.02], "grpA_roi": [0.7, 3.17, 0.97, 2.03, 5.68, 2.1, -2.39], "rank_roi": {"Rank 1": [-2.11, 1.27, 0.68, 1.61, 4.2, 1.88, -0.42], "Rank 2": [0.87, 5.66, 0.66, 1.06, 6.48, 1.56, -2.87], "Rank 3": [3.34, 2.58, 1.57, 3.44, 6.45, 2.85, -5.0], "Rank 4": [-1.02, 1.72, 1.5, 2.13, 3.69, 4.3, 0.0], "Rank 5": [2.64, -2.48, -0.42, 3.29, 2.81, -0.38, 0.0]}, "rank_wr": {"Rank 1": [19.0, 41.7, 40.9, 47.4, 60.0, 50.0, 28.6], "Rank 2": [38.1, 75.0, 40.9, 36.8, 77.8, 41.7, 14.3], "Rank 3": [47.6, 50.0, 45.5, 52.6, 75.0, 50.0, 0.0], "Rank 4": [23.8, 41.7, 47.6, 47.4, 60.0, 69.2, 33.3], "Rank 5": [50.0, 16.7, 36.4, 61.1, 50.0, 30.8, 33.3]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -2324,9 +2324,9 @@
       <td>0.00</td>
       <td><span style='color:#dc3545;font-weight:600;'>216.5</span></td>
       <td><span class='text-muted'>N/A</span></td>
-      <td>228.0</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>15.74%</span></td>
-      <td>2</td>
+      <td>216.2</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.75%</span></td>
+      <td>1</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
     </tr>
@@ -4090,10 +4090,10 @@
       <td>Unknown</td>
       <td>421.00</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>407.5</span></td>
+      <td><span style='color:#198754;font-weight:600;'>395.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>386.5</span></td>
-      <td>463.1</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.0%</span></td>
+      <td>461.87</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.71%</span></td>
       <td>13</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
@@ -4650,13 +4650,13 @@
       <td>炎洲</td>
       <td>Unknown</td>
       <td>15.85</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>15.9</span></td>
+      <td>0.70</td>
+      <td><span style='color:#198754;font-weight:600;'>15.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>14.75</span></td>
-      <td>15.0</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.36%</span></td>
+      <td>14.45</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.42%</span></td>
       <td>20</td>
-      <td>停損出場 (-5%)</td>
+      <td>時間停損(20日)</td>
       <td>Closed</td>
     </tr>
     <tr>
@@ -12454,10 +12454,10 @@
       <td>Unknown</td>
       <td>79.10</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>81.1</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>82.3</span></td>
-      <td>75.14</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.0%</span></td>
+      <td><span style='color:#198754;font-weight:600;'>76.9</span></td>
+      <td><span style='color:#198754;font-weight:600;'>78.1</span></td>
+      <td>75.35</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.73%</span></td>
       <td>5</td>
       <td>停損出場 (-5%)</td>
       <td>Closed</td>
@@ -14375,12 +14375,12 @@
       <td>Unknown</td>
       <td>70.50</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>77.3</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>78.8</span></td>
-      <td>77.55</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.0%</span></td>
-      <td>7</td>
-      <td>停利出場 (+10%)</td>
+      <td><span style='color:#dc3545;font-weight:600;'>73.1</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>74.6</span></td>
+      <td>67.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.96%</span></td>
+      <td>1</td>
+      <td>停損出場 (-5%)</td>
       <td>Closed</td>
     </tr>
     <tr>
@@ -20002,11 +20002,11 @@
       <td>Unknown</td>
       <td>14.30</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>13.85</span></td>
-      <td><span style='color:#198754;font-weight:600;'>13.6</span></td>
-      <td>13.58</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.0%</span></td>
-      <td>16</td>
+      <td><span style='color:#198754;font-weight:600;'>13.15</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.9</span></td>
+      <td>13.62</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.76%</span></td>
+      <td>15</td>
       <td>停損出場 (-5%)</td>
       <td>Closed</td>
     </tr>
@@ -20121,10 +20121,10 @@
       <td>Unknown</td>
       <td>14.35</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>13.85</span></td>
-      <td><span style='color:#198754;font-weight:600;'>13.45</span></td>
-      <td>13.63</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.0%</span></td>
+      <td><span style='color:#198754;font-weight:600;'>13.15</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.75</span></td>
+      <td>13.67</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.76%</span></td>
       <td>16</td>
       <td>停損出場 (-5%)</td>
       <td>Closed</td>
