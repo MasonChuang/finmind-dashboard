@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-07-31</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-08-01</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -159,7 +159,7 @@
             <div class="card text-white bg-success mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史平均勝率 (已平倉)</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">44.5%</h2>
+                    <h2 class="card-title mb-0">44.1%</h2>
                     <p class="card-text"><small>(停損出場策略: 2ATR_TRAIL)</small></p>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
@@ -178,7 +178,7 @@
             <div class="card text-white bg-info mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史單筆期望值</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+5.07%</h2>
+                    <h2 class="card-title mb-0">+5.05%</h2>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
                 <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px;">
@@ -196,7 +196,7 @@
             <div class="card text-white bg-danger mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>Top Group 專屬績效</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+5.66% <small style="font-size:16px;">(勝率 43.2%)</small></h2>
+                    <h2 class="card-title mb-0">+5.61% <small style="font-size:16px;">(勝率 41.9%)</small></h2>
                 </div>
             </div>
         </div>
@@ -220,32 +220,32 @@
                 <tbody>
                 <tr>
                     <td><strong>名次 1</strong></td>
-                    <td class="text-danger">53.8%</td>
-                    <td class="text-danger">10.73%</td>
+                    <td class="text-danger">51.9%</td>
+                    <td class="text-danger">10.71%</td>
                     <td>18.4</td>
                     <td>52</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 2</strong></td>
-                    <td class="text-dark">40.4%</td>
-                    <td class="text-danger">1.97%</td>
-                    <td>16.3</td>
+                    <td class="text-dark">38.5%</td>
+                    <td class="text-danger">1.87%</td>
+                    <td>16.5</td>
                     <td>52</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 3</strong></td>
                     <td class="text-dark">35.3%</td>
-                    <td class="text-danger">4.25%</td>
-                    <td>16.2</td>
+                    <td class="text-danger">4.21%</td>
+                    <td>16.3</td>
                     <td>51</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 4</strong></td>
                     <td class="text-dark">46.2%</td>
-                    <td class="text-danger">5.61%</td>
+                    <td class="text-danger">5.57%</td>
                     <td>22.2</td>
                     <td>52</td>
                 </tr>
@@ -253,7 +253,7 @@
                 <tr>
                     <td><strong>名次 5</strong></td>
                     <td class="text-dark">48.1%</td>
-                    <td class="text-danger">6.87%</td>
+                    <td class="text-danger">6.82%</td>
                     <td>20.1</td>
                     <td>52</td>
                 </tr>
@@ -321,7 +321,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"], "wr": [32.1, 23.1, 56.0, 33.3, 61.5, 62.5, 54.0, 37.5, 43.3, 42.5, 55.0, 38.0, 90.0, 27.5], "roi": [0.22, -4.24, 13.59, -2.18, 13.04, 16.93, 5.09, -2.41, 2.15, 9.05, 9.54, -0.02, 42.01, -1.97], "grpA_roi": [-2.57, -7.24, 0.09, -7.01, 19.7, 35.07, 3.16, 1.51, -3.62, 13.59, 5.75, -0.67, 53.9, 1.35], "rank_roi": {"Rank 1": [3.83, -7.62, 7.12, -8.07, 16.95, 46.7, 2.03, -1.51, 4.44, 24.32, 13.48, 3.78, 120.41, 6.34], "Rank 2": [-3.81, -9.94, -3.98, -5.75, 24.84, 19.81, 7.44, -5.46, -5.58, -4.11, -4.85, -2.02, 17.78, 9.81], "Rank 3": [-7.74, -4.16, -2.86, -7.2, 16.51, 38.71, 0.01, 11.51, -9.71, 20.54, 8.61, -3.77, 23.52, -12.11], "Rank 4": [7.53, 1.54, 44.87, 1.58, 19.42, 3.14, -1.55, 1.47, 9.18, -1.23, 8.45, -4.08, 14.03, -4.08], "Rank 5": [-9.92, 0.78, 20.06, -7.07, 22.78, 12.83, 3.6, -21.85, 0.31, 57.2, 14.99, -3.41, 20.66, -3.63]}, "rank_wr": {"Rank 1": [66.7, 0.0, 66.7, 0.0, 100.0, 50.0, 60.0, 50.0, 66.7, 75.0, 75.0, 60.0, 100.0, 25.0], "Rank 2": [33.3, 0.0, 33.3, 25.0, 50.0, 75.0, 60.0, 0.0, 33.3, 25.0, 25.0, 60.0, 100.0, 75.0], "Rank 3": [0.0, 50.0, 33.3, 0.0, 33.3, 75.0, 20.0, 75.0, 0.0, 75.0, 50.0, 20.0, 100.0, 0.0], "Rank 4": [33.3, 50.0, 66.7, 75.0, 75.0, 50.0, 20.0, 25.0, 66.7, 25.0, 75.0, 20.0, 100.0, 25.0], "Rank 5": [0.0, 50.0, 66.7, 0.0, 100.0, 75.0, 40.0, 50.0, 33.3, 100.0, 50.0, 20.0, 100.0, 25.0]}};
+                var chartData = {"labels": ["2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"], "wr": [25.0, 23.1, 56.0, 33.3, 61.5, 62.5, 54.0, 37.5, 43.3, 42.5, 55.0, 38.0, 90.0, 27.5], "roi": [-0.33, -4.19, 13.6, -2.18, 13.04, 16.93, 5.09, -2.41, 2.15, 9.05, 9.54, -0.02, 42.01, -1.97], "grpA_roi": [-3.58, -7.19, 0.1, -7.01, 19.7, 35.07, 3.16, 1.51, -3.62, 13.59, 5.75, -0.67, 53.9, 1.35], "rank_roi": {"Rank 1": [3.27, -7.55, 7.14, -8.07, 16.95, 46.7, 2.03, -1.51, 4.44, 24.32, 13.48, 3.78, 120.41, 6.34], "Rank 2": [-5.45, -9.93, -3.98, -5.75, 24.84, 19.81, 7.44, -5.46, -5.58, -4.11, -4.85, -2.02, 17.78, 9.81], "Rank 3": [-8.55, -4.08, -2.85, -7.2, 16.51, 38.71, 0.01, 11.51, -9.71, 20.54, 8.61, -3.77, 23.52, -12.11], "Rank 4": [6.69, 1.56, 44.91, 1.58, 19.42, 3.14, -1.55, 1.47, 9.18, -1.23, 8.45, -4.08, 14.03, -4.08], "Rank 5": [-10.64, 0.72, 20.07, -7.06, 22.78, 12.83, 3.6, -21.85, 0.31, 57.2, 14.99, -3.41, 20.66, -3.63]}, "rank_wr": {"Rank 1": [33.3, 0.0, 66.7, 0.0, 100.0, 50.0, 60.0, 50.0, 66.7, 75.0, 75.0, 60.0, 100.0, 25.0], "Rank 2": [0.0, 0.0, 33.3, 25.0, 50.0, 75.0, 60.0, 0.0, 33.3, 25.0, 25.0, 60.0, 100.0, 75.0], "Rank 3": [0.0, 50.0, 33.3, 0.0, 33.3, 75.0, 20.0, 75.0, 0.0, 75.0, 50.0, 20.0, 100.0, 0.0], "Rank 4": [33.3, 50.0, 66.7, 75.0, 75.0, 50.0, 20.0, 25.0, 66.7, 25.0, 75.0, 20.0, 100.0, 25.0], "Rank 5": [0.0, 50.0, 66.7, 0.0, 100.0, 75.0, 40.0, 50.0, 33.3, 100.0, 50.0, 20.0, 100.0, 25.0]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -5419,9 +5419,9 @@
       <td>Unknown</td>
       <td>87.10</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>87.3</span></td>
-      <td><span style='color:#198754;font-weight:600;'>66.3</span></td>
-      <td><span style='color:#198754;font-weight:600;'>57.7</span></td>
+      <td><span style='color:#198754;font-weight:600;'>85.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>64.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>55.4</span></td>
       <td>94.43</td>
       <td><span style='color:#dc3545;font-weight:bold;'>8.42%</span></td>
       <td>5</td>
@@ -6683,7 +6683,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>223.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>340.5</span></td>
       <td>172.92</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.26%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.27%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -6809,7 +6809,7 @@
       <td><span style='color:#198754;font-weight:600;'>123.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>135.1</span></td>
       <td>123.8</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.66%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.65%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -6844,7 +6844,7 @@
       <td><span style='color:#198754;font-weight:600;'>1215.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>207.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>164.0</span></td>
-      <td>1250.41</td>
+      <td>1250.4</td>
       <td><span style='color:#dc3545;font-weight:bold;'>0.84%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
@@ -6880,7 +6880,7 @@
       <td><span style='color:#198754;font-weight:600;'>245.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>412.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>326.0</span></td>
-      <td>262.37</td>
+      <td>262.36</td>
       <td><span style='color:#198754;font-weight:bold;'>-0.62%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
@@ -6934,7 +6934,7 @@
       <td><span style='color:#198754;font-weight:600;'>31.44</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>37.59</span></td>
       <td><span style='color:#198754;font-weight:600;'>28.29</span></td>
-      <td>39.25</td>
+      <td>39.24</td>
       <td><span style='color:#dc3545;font-weight:bold;'>15.09%</span></td>
       <td>13</td>
       <td>跌破 2-ATR</td>
@@ -6952,7 +6952,7 @@
       <td><span style='color:#198754;font-weight:600;'>205.52</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>293.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>303.0</span></td>
-      <td>194.58</td>
+      <td>194.59</td>
       <td><span style='color:#198754;font-weight:bold;'>-6.22%</span></td>
       <td>14</td>
       <td>跌破 2-ATR</td>
@@ -7024,7 +7024,7 @@
       <td><span style='color:#198754;font-weight:600;'>628.1</span></td>
       <td><span style='color:#198754;font-weight:600;'>677.1</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>878.1</span></td>
-      <td>646.79</td>
+      <td>646.8</td>
       <td><span style='color:#198754;font-weight:bold;'>-6.84%</span></td>
       <td>6</td>
       <td>跌破 2-ATR</td>
@@ -7078,7 +7078,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>317.01</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>306.51</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>389.01</span></td>
-      <td>282.23</td>
+      <td>282.22</td>
       <td><span style='color:#198754;font-weight:bold;'>-4.55%</span></td>
       <td>14</td>
       <td>跌破 2-ATR</td>
@@ -7093,9 +7093,9 @@
       <td>Unknown</td>
       <td>58.10</td>
       <td>1.48</td>
-      <td><span style='color:#dc3545;font-weight:600;'>58.12</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>84.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>62.8</span></td>
+      <td><span style='color:#198754;font-weight:600;'>55.82</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>82.2</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>60.5</span></td>
       <td>94.43</td>
       <td><span style='color:#dc3545;font-weight:bold;'>65.08%</span></td>
       <td>68</td>
@@ -7114,8 +7114,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>198.02</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>269.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>278.5</span></td>
-      <td>194.58</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.91%</span></td>
+      <td>194.59</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.92%</span></td>
       <td>21</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7133,7 +7133,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>76.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>79.8</span></td>
       <td>36.45</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.72%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.73%</span></td>
       <td>14</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7186,7 +7186,7 @@
       <td><span style='color:#198754;font-weight:600;'>211.84</span></td>
       <td><span style='color:#198754;font-weight:600;'>179.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>136.5</span></td>
-      <td>224.86</td>
+      <td>224.87</td>
       <td><span style='color:#dc3545;font-weight:bold;'>3.86%</span></td>
       <td>28</td>
       <td>跌破 2-ATR</td>
@@ -7258,7 +7258,7 @@
       <td><span style='color:#198754;font-weight:600;'>150.9</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>165.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>144.5</span></td>
-      <td>158.46</td>
+      <td>158.45</td>
       <td><span style='color:#198754;font-weight:bold;'>-0.34%</span></td>
       <td>31</td>
       <td>跌破 2-ATR</td>
@@ -7295,7 +7295,7 @@
       <td><span style='color:#198754;font-weight:600;'>135.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>160.2</span></td>
       <td>160.49</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.6%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.59%</span></td>
       <td>25</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7312,8 +7312,8 @@
       <td><span style='color:#198754;font-weight:600;'>138.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>124.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>87.3</span></td>
-      <td>152.74</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.27%</span></td>
+      <td>152.75</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.26%</span></td>
       <td>14</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7403,7 +7403,7 @@
       <td><span style='color:#198754;font-weight:600;'>19.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>21.75</span></td>
       <td>23.12</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.03%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-6.04%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7438,7 +7438,7 @@
       <td><span style='color:#198754;font-weight:600;'>90.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>85.4</span></td>
       <td><span style='color:#198754;font-weight:600;'>79.5</span></td>
-      <td>114.5</td>
+      <td>114.49</td>
       <td><span style='color:#198754;font-weight:bold;'>-9.49%</span></td>
       <td>5</td>
       <td>跌破 2-ATR</td>
@@ -7457,7 +7457,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>126.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>104.5</span></td>
       <td>83.54</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>2.88%</span></td>
+      <td><span style='color:#dc3545;font-weight:bold;'>2.89%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7546,8 +7546,8 @@
       <td><span style='color:#198754;font-weight:600;'>147.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>127.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>96.0</span></td>
-      <td>164.3</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.97%</span></td>
+      <td>164.33</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.96%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7618,7 +7618,7 @@
       <td><span style='color:#198754;font-weight:600;'>84.2</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>137.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>145.0</span></td>
-      <td>80.15</td>
+      <td>80.14</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.51%</span></td>
       <td>24</td>
       <td>跌破 2-ATR</td>
@@ -7636,7 +7636,7 @@
       <td><span style='color:#198754;font-weight:600;'>193.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>179.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>171.0</span></td>
-      <td>244.48</td>
+      <td>244.49</td>
       <td><span style='color:#198754;font-weight:bold;'>-6.15%</span></td>
       <td>13</td>
       <td>跌破 2-ATR</td>
@@ -7654,8 +7654,8 @@
       <td><span style='color:#198754;font-weight:600;'>36.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>43.1</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>51.6</span></td>
-      <td>39.28</td>
-      <td><span style='color:#198754;font-weight:bold;'>-10.02%</span></td>
+      <td>39.27</td>
+      <td><span style='color:#198754;font-weight:bold;'>-10.04%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7709,7 +7709,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>98.81</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>181.81</span></td>
       <td>94.6</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>7.01%</span></td>
+      <td><span style='color:#dc3545;font-weight:bold;'>7.02%</span></td>
       <td>19</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7780,8 +7780,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>52.98</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>59.18</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>69.0</span></td>
-      <td>52.81</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.97%</span></td>
+      <td>52.79</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>0.93%</span></td>
       <td>18</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7816,7 +7816,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>581.1</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>655.1</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>1043.1</span></td>
-      <td>646.79</td>
+      <td>646.8</td>
       <td><span style='color:#dc3545;font-weight:bold;'>25.82%</span></td>
       <td>41</td>
       <td>跌破 2-ATR</td>
@@ -7852,8 +7852,8 @@
       <td><span style='color:#198754;font-weight:600;'>157.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>136.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>125.0</span></td>
-      <td>178.01</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.55%</span></td>
+      <td>177.99</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.56%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7906,8 +7906,8 @@
       <td><span style='color:#198754;font-weight:600;'>85.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>83.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>78.1</span></td>
-      <td>85.32</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.93%</span></td>
+      <td>85.33</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.92%</span></td>
       <td>31</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -7978,8 +7978,8 @@
       <td><span style='color:#198754;font-weight:600;'>237.11</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>331.61</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>420.5</span></td>
-      <td>236.03</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.27%</span></td>
+      <td>236.04</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.26%</span></td>
       <td>18</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8015,7 +8015,7 @@
       <td><span style='color:#198754;font-weight:600;'>20.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>18.4</span></td>
       <td>25.05</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.12%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.1%</span></td>
       <td>24</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8033,7 +8033,7 @@
       <td><span style='color:#198754;font-weight:600;'>32.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>30.8</span></td>
       <td>30.23</td>
-      <td><span style='color:#198754;font-weight:bold;'>-9.9%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.88%</span></td>
       <td>13</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8086,8 +8086,8 @@
       <td><span style='color:#198754;font-weight:600;'>29.3</span></td>
       <td><span style='color:#198754;font-weight:600;'>28.7</span></td>
       <td><span style='color:#198754;font-weight:600;'>30.55</span></td>
-      <td>30.24</td>
-      <td><span style='color:#198754;font-weight:bold;'>-10.12%</span></td>
+      <td>30.25</td>
+      <td><span style='color:#198754;font-weight:bold;'>-10.11%</span></td>
       <td>14</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8104,8 +8104,8 @@
       <td><span style='color:#198754;font-weight:600;'>48.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>38.9</span></td>
       <td><span style='color:#198754;font-weight:600;'>31.8</span></td>
-      <td>43.86</td>
-      <td><span style='color:#198754;font-weight:bold;'>-11.03%</span></td>
+      <td>43.87</td>
+      <td><span style='color:#198754;font-weight:bold;'>-11.02%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8122,7 +8122,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>58.91</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>53.91</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>54.0</span></td>
-      <td>55.89</td>
+      <td>55.88</td>
       <td><span style='color:#dc3545;font-weight:bold;'>7.47%</span></td>
       <td>49</td>
       <td>跌破 2-ATR</td>
@@ -8158,7 +8158,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>44.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>45.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>32.25</span></td>
-      <td>42.66</td>
+      <td>42.67</td>
       <td><span style='color:#dc3545;font-weight:bold;'>5.61%</span></td>
       <td>21</td>
       <td>跌破 2-ATR</td>
@@ -8176,8 +8176,8 @@
       <td><span style='color:#198754;font-weight:600;'>25.35</span></td>
       <td><span style='color:#198754;font-weight:600;'>25.35</span></td>
       <td><span style='color:#198754;font-weight:600;'>20.9</span></td>
-      <td>27.54</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.2%</span></td>
+      <td>27.57</td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.1%</span></td>
       <td>19</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8212,8 +8212,8 @@
       <td><span style='color:#198754;font-weight:600;'>130.37</span></td>
       <td><span style='color:#198754;font-weight:600;'>126.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>105.7</span></td>
-      <td>135.62</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.08%</span></td>
+      <td>135.63</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.07%</span></td>
       <td>31</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8231,7 +8231,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>50.2</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>52.4</span></td>
       <td>53.32</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>17.2%</span></td>
+      <td><span style='color:#dc3545;font-weight:bold;'>17.19%</span></td>
       <td>41</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8248,8 +8248,8 @@
       <td><span style='color:#198754;font-weight:600;'>37.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>35.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>34.65</span></td>
-      <td>36.84</td>
-      <td><span style='color:#198754;font-weight:bold;'>-14.53%</span></td>
+      <td>36.85</td>
+      <td><span style='color:#198754;font-weight:bold;'>-14.5%</span></td>
       <td>6</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8266,8 +8266,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>70.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>66.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>56.2</span></td>
-      <td>57.76</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>23.81%</span></td>
+      <td>57.78</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>23.85%</span></td>
       <td>25</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8321,7 +8321,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>27.3</span></td>
       <td><span style='color:#198754;font-weight:600;'>24.75</span></td>
       <td>29.77</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>11.5%</span></td>
+      <td><span style='color:#dc3545;font-weight:bold;'>11.52%</span></td>
       <td>25</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8338,8 +8338,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>48.25</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>52.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>38.25</span></td>
-      <td>49.87</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>59.84%</span></td>
+      <td>49.88</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>59.87%</span></td>
       <td>27</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8357,7 +8357,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>16.3</span></td>
       <td><span style='color:#198754;font-weight:600;'>15.25</span></td>
       <td>18.85</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>18.53%</span></td>
+      <td><span style='color:#dc3545;font-weight:bold;'>18.55%</span></td>
       <td>40</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8374,8 +8374,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>34.55</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>30.4</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>43.4</span></td>
-      <td>36.17</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>24.53%</span></td>
+      <td>36.18</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>24.55%</span></td>
       <td>38</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8411,7 +8411,7 @@
       <td><span style='color:#dc3545;font-weight:600;'>36.75</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>32.9</span></td>
       <td>36.84</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>36.44%</span></td>
+      <td><span style='color:#dc3545;font-weight:bold;'>36.46%</span></td>
       <td>41</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8428,8 +8428,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>121.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>105.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>119.0</span></td>
-      <td>121.3</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.79%</span></td>
+      <td>121.31</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.8%</span></td>
       <td>24</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8554,8 +8554,8 @@
       <td><span style='color:#198754;font-weight:600;'>169.26</span></td>
       <td><span style='color:#198754;font-weight:600;'>155.26</span></td>
       <td><span style='color:#198754;font-weight:600;'>160.0</span></td>
-      <td>163.93</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.93%</span></td>
+      <td>163.91</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.94%</span></td>
       <td>3</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8590,8 +8590,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>66.15</span></td>
       <td><span style='color:#198754;font-weight:600;'>46.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>36.1</span></td>
-      <td>53.97</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.53%</span></td>
+      <td>54.04</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.42%</span></td>
       <td>5</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8608,8 +8608,8 @@
       <td><span style='color:#198754;font-weight:600;'>36.05</span></td>
       <td><span style='color:#198754;font-weight:600;'>50.9</span></td>
       <td><span style='color:#198754;font-weight:600;'>50.5</span></td>
-      <td>60.67</td>
-      <td><span style='color:#198754;font-weight:bold;'>-9.99%</span></td>
+      <td>60.5</td>
+      <td><span style='color:#198754;font-weight:bold;'>-10.24%</span></td>
       <td>4</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8680,8 +8680,8 @@
       <td><span style='color:#198754;font-weight:600;'>50.4</span></td>
       <td><span style='color:#198754;font-weight:600;'>51.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>61.0</span></td>
-      <td>68.92</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.84%</span></td>
+      <td>68.98</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.76%</span></td>
       <td>7</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8698,8 +8698,8 @@
       <td><span style='color:#198754;font-weight:600;'>29.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>26.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>27.4</span></td>
-      <td>41.96</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.33%</span></td>
+      <td>42.07</td>
+      <td><span style='color:#198754;font-weight:bold;'>-6.1%</span></td>
       <td>6</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8716,8 +8716,8 @@
       <td><span style='color:#198754;font-weight:600;'>43.2</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>72.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>144.5</span></td>
-      <td>58.82</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.67%</span></td>
+      <td>58.83</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.65%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8734,8 +8734,8 @@
       <td><span style='color:#198754;font-weight:600;'>74.1</span></td>
       <td><span style='color:#198754;font-weight:600;'>90.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>91.0</span></td>
-      <td>124.17</td>
-      <td><span style='color:#198754;font-weight:bold;'>-9.37%</span></td>
+      <td>124.25</td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.31%</span></td>
       <td>5</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8752,8 +8752,8 @@
       <td><span style='color:#198754;font-weight:600;'>143.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>182.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>236.0</span></td>
-      <td>191.98</td>
-      <td><span style='color:#198754;font-weight:bold;'>-11.12%</span></td>
+      <td>191.69</td>
+      <td><span style='color:#198754;font-weight:bold;'>-11.26%</span></td>
       <td>7</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8771,7 +8771,7 @@
       <td><span style='color:#198754;font-weight:600;'>17.65</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>21.0</span></td>
       <td>16.96</td>
-      <td><span style='color:#198754;font-weight:bold;'>-9.33%</span></td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.29%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8788,8 +8788,8 @@
       <td><span style='color:#198754;font-weight:600;'>70.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>82.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>145.5</span></td>
-      <td>86.75</td>
-      <td><span style='color:#198754;font-weight:bold;'>-1.08%</span></td>
+      <td>86.58</td>
+      <td><span style='color:#198754;font-weight:bold;'>-1.28%</span></td>
       <td>14</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8806,8 +8806,8 @@
       <td><span style='color:#198754;font-weight:600;'>36.35</span></td>
       <td><span style='color:#198754;font-weight:600;'>38.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>53.5</span></td>
-      <td>49.52</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.78%</span></td>
+      <td>49.55</td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.73%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8824,8 +8824,8 @@
       <td><span style='color:#198754;font-weight:600;'>31.95</span></td>
       <td><span style='color:#198754;font-weight:600;'>28.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>27.05</span></td>
-      <td>41.96</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.49%</span></td>
+      <td>42.07</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.73%</span></td>
       <td>13</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8860,8 +8860,8 @@
       <td><span style='color:#198754;font-weight:600;'>142.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>201.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>316.8</span></td>
-      <td>176.39</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.31%</span></td>
+      <td>176.45</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>5.35%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8878,8 +8878,8 @@
       <td><span style='color:#198754;font-weight:600;'>112.61</span></td>
       <td><span style='color:#198754;font-weight:600;'>124.11</span></td>
       <td><span style='color:#198754;font-weight:600;'>135.11</span></td>
-      <td>149.29</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.77%</span></td>
+      <td>149.35</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>4.8%</span></td>
       <td>12</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8896,8 +8896,8 @@
       <td><span style='color:#198754;font-weight:600;'>40.15</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>52.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>49.05</span></td>
-      <td>62.14</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>21.61%</span></td>
+      <td>61.96</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>21.25%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8914,8 +8914,8 @@
       <td><span style='color:#198754;font-weight:600;'>47.8</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>72.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>114.0</span></td>
-      <td>58.82</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>21.15%</span></td>
+      <td>58.83</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>21.17%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8932,8 +8932,8 @@
       <td><span style='color:#198754;font-weight:600;'>869.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>1528.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>1460.0</span></td>
-      <td>989.02</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.57%</span></td>
+      <td>995.47</td>
+      <td><span style='color:#198754;font-weight:bold;'>-6.97%</span></td>
       <td>14</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8950,9 +8950,9 @@
       <td><span style='color:#198754;font-weight:600;'>37.17</span></td>
       <td><span style='color:#198754;font-weight:600;'>41.77</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>62.8</span></td>
-      <td>41.74</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.46%</span></td>
-      <td>12</td>
+      <td>41.65</td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.66%</span></td>
+      <td>13</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -8968,8 +8968,8 @@
       <td><span style='color:#198754;font-weight:600;'>69.41</span></td>
       <td><span style='color:#198754;font-weight:600;'>93.11</span></td>
       <td><span style='color:#198754;font-weight:600;'>94.0</span></td>
-      <td>93.35</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.93%</span></td>
+      <td>94.12</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.17%</span></td>
       <td>4</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -8986,8 +8986,8 @@
       <td><span style='color:#198754;font-weight:600;'>740.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>986.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>67.7</span></td>
-      <td>1074.58</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.75%</span></td>
+      <td>1074.35</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.77%</span></td>
       <td>4</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9004,8 +9004,8 @@
       <td><span style='color:#198754;font-weight:600;'>36.1</span></td>
       <td><span style='color:#198754;font-weight:600;'>36.55</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>60.0</span></td>
-      <td>49.52</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>8.6%</span></td>
+      <td>49.55</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>8.66%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9022,8 +9022,8 @@
       <td><span style='color:#198754;font-weight:600;'>144.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>185.1</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>294.8</span></td>
-      <td>176.39</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>19.99%</span></td>
+      <td>176.45</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>20.04%</span></td>
       <td>24</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9040,8 +9040,8 @@
       <td><span style='color:#198754;font-weight:600;'>39.4</span></td>
       <td><span style='color:#198754;font-weight:600;'>46.8</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>50.7</span></td>
-      <td>62.14</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>24.53%</span></td>
+      <td>61.96</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>24.17%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9076,8 +9076,8 @@
       <td><span style='color:#198754;font-weight:600;'>17.06</span></td>
       <td><span style='color:#198754;font-weight:600;'>18.91</span></td>
       <td><span style='color:#198754;font-weight:600;'>20.6</span></td>
-      <td>22.04</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.2%</span></td>
+      <td>22.08</td>
+      <td><span style='color:#198754;font-weight:bold;'>-6.06%</span></td>
       <td>5</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9112,8 +9112,8 @@
       <td><span style='color:#198754;font-weight:600;'>147.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>190.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>192.0</span></td>
-      <td>180.6</td>
-      <td><span style='color:#198754;font-weight:bold;'>-10.6%</span></td>
+      <td>181.61</td>
+      <td><span style='color:#198754;font-weight:bold;'>-10.09%</span></td>
       <td>7</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9130,8 +9130,8 @@
       <td><span style='color:#198754;font-weight:600;'>26.35</span></td>
       <td><span style='color:#198754;font-weight:600;'>32.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>38.5</span></td>
-      <td>35.29</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.61%</span></td>
+      <td>35.45</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.19%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9148,8 +9148,8 @@
       <td><span style='color:#198754;font-weight:600;'>129.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>138.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>142.3</span></td>
-      <td>155.95</td>
-      <td><span style='color:#198754;font-weight:bold;'>-10.37%</span></td>
+      <td>156.8</td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.88%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9166,8 +9166,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>83.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>88.5</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>80.7</span></td>
-      <td>63.07</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.87%</span></td>
+      <td>63.15</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.76%</span></td>
       <td>4</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9184,8 +9184,8 @@
       <td><span style='color:#198754;font-weight:600;'>72.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>61.9</span></td>
       <td><span style='color:#198754;font-weight:600;'>66.2</span></td>
-      <td>81.44</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.67%</span></td>
+      <td>81.39</td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.73%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9202,8 +9202,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>175.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>184.6</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>277.8</span></td>
-      <td>176.39</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>33.13%</span></td>
+      <td>176.45</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>33.17%</span></td>
       <td>38</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9220,8 +9220,8 @@
       <td><span style='color:#198754;font-weight:600;'>116.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>102.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>105.0</span></td>
-      <td>153.3</td>
-      <td><span style='color:#198754;font-weight:bold;'>-11.13%</span></td>
+      <td>152.62</td>
+      <td><span style='color:#198754;font-weight:bold;'>-11.53%</span></td>
       <td>6</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9238,8 +9238,8 @@
       <td><span style='color:#198754;font-weight:600;'>65.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>48.2</span></td>
       <td><span style='color:#198754;font-weight:600;'>42.25</span></td>
-      <td>69.81</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.17%</span></td>
+      <td>68.77</td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.57%</span></td>
       <td>6</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9256,8 +9256,8 @@
       <td><span style='color:#198754;font-weight:600;'>52.3</span></td>
       <td><span style='color:#198754;font-weight:600;'>41.9</span></td>
       <td><span style='color:#198754;font-weight:600;'>44.6</span></td>
-      <td>58.25</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.71%</span></td>
+      <td>58.67</td>
+      <td><span style='color:#198754;font-weight:bold;'>-8.04%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9292,8 +9292,8 @@
       <td><span style='color:#198754;font-weight:600;'>45.85</span></td>
       <td><span style='color:#198754;font-weight:600;'>46.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>46.4</span></td>
-      <td>46.87</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.01%</span></td>
+      <td>47.37</td>
+      <td><span style='color:#198754;font-weight:bold;'>-6.01%</span></td>
       <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9310,8 +9310,8 @@
       <td><span style='color:#198754;font-weight:600;'>93.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>82.7</span></td>
       <td><span style='color:#198754;font-weight:600;'>98.3</span></td>
-      <td>105.08</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.6%</span></td>
+      <td>105.25</td>
+      <td><span style='color:#198754;font-weight:bold;'>-6.45%</span></td>
       <td>10</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9346,9 +9346,9 @@
       <td><span style='color:#dc3545;font-weight:600;'>74.3</span></td>
       <td><span style='color:#198754;font-weight:600;'>53.7</span></td>
       <td><span style='color:#198754;font-weight:600;'>40.6</span></td>
-      <td>71.1</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>0.14%</span></td>
-      <td>6</td>
+      <td>69.27</td>
+      <td><span style='color:#198754;font-weight:bold;'>-2.44%</span></td>
+      <td>13</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -9364,8 +9364,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>235.0</span></td>
       <td><span style='color:#198754;font-weight:600;'>193.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>173.0</span></td>
-      <td>225.79</td>
-      <td><span style='color:#198754;font-weight:bold;'>-3.51%</span></td>
+      <td>226.5</td>
+      <td><span style='color:#198754;font-weight:bold;'>-3.21%</span></td>
       <td>25</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9418,8 +9418,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>53.4</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>57.0</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>83.0</span></td>
-      <td>58.82</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>65.45%</span></td>
+      <td>58.83</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>65.48%</span></td>
       <td>45</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9454,8 +9454,8 @@
       <td><span style='color:#198754;font-weight:600;'>53.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>43.85</span></td>
       <td><span style='color:#198754;font-weight:600;'>40.5</span></td>
-      <td>59.15</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>5.62%</span></td>
+      <td>59.57</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.37%</span></td>
       <td>17</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9472,8 +9472,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>67.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>51.4</span></td>
       <td><span style='color:#198754;font-weight:600;'>51.8</span></td>
-      <td>70.05</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.45%</span></td>
+      <td>70.08</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>6.51%</span></td>
       <td>41</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9490,8 +9490,8 @@
       <td><span style='color:#198754;font-weight:600;'>130.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>107.5</span></td>
       <td><span style='color:#198754;font-weight:600;'>106.5</span></td>
-      <td>153.3</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>15.26%</span></td>
+      <td>152.62</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>14.75%</span></td>
       <td>13</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9508,9 +9508,9 @@
       <td><span style='color:#198754;font-weight:600;'>57.28</span></td>
       <td><span style='color:#198754;font-weight:600;'>48.93</span></td>
       <td><span style='color:#198754;font-weight:600;'>58.28</span></td>
-      <td>59.76</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.64%</span></td>
-      <td>24</td>
+      <td>58.49</td>
+      <td><span style='color:#198754;font-weight:bold;'>-0.53%</span></td>
+      <td>25</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -9526,9 +9526,9 @@
       <td><span style='color:#198754;font-weight:600;'>83.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>71.6</span></td>
       <td><span style='color:#198754;font-weight:600;'>74.6</span></td>
-      <td>91.63</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.69%</span></td>
-      <td>17</td>
+      <td>89.2</td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.16%</span></td>
+      <td>19</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -9544,9 +9544,9 @@
       <td><span style='color:#198754;font-weight:600;'>175.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>147.3</span></td>
       <td><span style='color:#198754;font-weight:600;'>191.35</span></td>
-      <td>220.37</td>
-      <td><span style='color:#198754;font-weight:bold;'>-12.03%</span></td>
-      <td>6</td>
+      <td>213.63</td>
+      <td><span style='color:#198754;font-weight:bold;'>-14.72%</span></td>
+      <td>11</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -9562,9 +9562,9 @@
       <td><span style='color:#198754;font-weight:600;'>44.35</span></td>
       <td><span style='color:#198754;font-weight:600;'>38.7</span></td>
       <td><span style='color:#198754;font-weight:600;'>40.3</span></td>
-      <td>44.96</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.85%</span></td>
-      <td>24</td>
+      <td>43.75</td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.41%</span></td>
+      <td>25</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -9580,8 +9580,8 @@
       <td><span style='color:#198754;font-weight:600;'>47.65</span></td>
       <td><span style='color:#198754;font-weight:600;'>44.1</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>49.7</span></td>
-      <td>44.89</td>
-      <td><span style='color:#198754;font-weight:bold;'>-8.57%</span></td>
+      <td>44.03</td>
+      <td><span style='color:#198754;font-weight:bold;'>-10.33%</span></td>
       <td>13</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9598,8 +9598,8 @@
       <td><span style='color:#dc3545;font-weight:600;'>27.85</span></td>
       <td><span style='color:#198754;font-weight:600;'>24.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>26.65</span></td>
-      <td>28.06</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>1.84%</span></td>
+      <td>28.04</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>1.78%</span></td>
       <td>32</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9616,8 +9616,8 @@
       <td><span style='color:#198754;font-weight:600;'>134.4</span></td>
       <td><span style='color:#198754;font-weight:600;'>119.4</span></td>
       <td><span style='color:#198754;font-weight:600;'>121.7</span></td>
-      <td>137.82</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.6%</span></td>
+      <td>138.5</td>
+      <td><span style='color:#198754;font-weight:bold;'>-5.14%</span></td>
       <td>32</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
@@ -9634,9 +9634,9 @@
       <td><span style='color:#198754;font-weight:600;'>187.17</span></td>
       <td><span style='color:#198754;font-weight:600;'>152.67</span></td>
       <td><span style='color:#198754;font-weight:600;'>151.0</span></td>
-      <td>216.1</td>
-      <td><span style='color:#198754;font-weight:bold;'>-10.33%</span></td>
-      <td>7</td>
+      <td>218.79</td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.22%</span></td>
+      <td>6</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -9652,9 +9652,9 @@
       <td><span style='color:#198754;font-weight:600;'>62.8</span></td>
       <td><span style='color:#198754;font-weight:600;'>47.05</span></td>
       <td><span style='color:#198754;font-weight:600;'>37.65</span></td>
-      <td>66.74</td>
-      <td><span style='color:#198754;font-weight:bold;'>-6.66%</span></td>
-      <td>5</td>
+      <td>66.0</td>
+      <td><span style='color:#198754;font-weight:bold;'>-7.69%</span></td>
+      <td>24</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
@@ -9670,9 +9670,9 @@
       <td><span style='color:#198754;font-weight:600;'>32.35</span></td>
       <td><span style='color:#198754;font-weight:600;'>29.2</span></td>
       <td><span style='color:#dc3545;font-weight:600;'>54.8</span></td>
-      <td>32.06</td>
-      <td><span style='color:#198754;font-weight:bold;'>-7.08%</span></td>
-      <td>31</td>
+      <td>31.1</td>
+      <td><span style='color:#198754;font-weight:bold;'>-9.86%</span></td>
+      <td>32</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
