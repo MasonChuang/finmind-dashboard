@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-08-01</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-08-02</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -321,7 +321,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"], "wr": [30.0, 10.0, 53.5, 37.0, 58.6, 55.3, 35.0, 51.7, 39.6, 43.2, 51.1, 37.2, 44.2, 42.5, 53.2, 62.6, 43.5, 27.9], "roi": [-1.15, -5.05, 0.96, -0.14, 2.41, 1.63, 0.06, 1.25, 0.63, 0.44, 2.4, 0.71, 1.39, 0.92, 2.76, 4.35, 1.4, -0.73], "grpA_roi": [-0.41, -5.37, 1.11, -0.21, 4.26, 0.67, 1.59, 1.8, 0.75, 0.85, 2.91, 0.57, 3.15, 0.96, 2.01, 5.41, 2.02, -1.47], "rank_roi": {"Rank 1": [2.16, -6.12, 0.21, 0.0, 5.86, -4.05, 0.87, 1.47, 0.84, 1.11, 4.02, -2.09, 1.29, 0.68, 1.65, 4.19, 1.63, -1.02], "Rank 2": [-2.75, -4.54, 1.93, 0.2, 5.6, 2.92, 0.86, -0.08, 1.3, -0.61, 2.68, 0.87, 5.63, 0.63, 1.01, 6.45, 1.62, -2.7], "Rank 3": [-0.65, -5.45, 1.2, -0.83, 1.33, 3.14, 3.0, 3.84, 0.15, 2.05, 2.06, 2.92, 2.51, 1.57, 3.36, 5.7, 2.76, -0.72], "Rank 4": [-2.83, -4.55, 2.19, -0.64, 1.91, 3.57, -0.33, 2.9, 1.18, 0.43, 5.75, -0.99, 1.69, 1.49, 2.13, 3.68, 4.37, 0.99], "Rank 5": [-1.86, -3.35, 0.9, 0.58, 1.61, 0.87, 1.17, 2.27, -1.16, -2.09, 1.8, 2.65, -2.46, -0.42, 3.3, 2.8, -0.16, -0.87]}, "rank_wr": {"Rank 1": [63.2, 9.5, 55.0, 25.0, 76.2, 34.8, 38.1, 42.9, 40.0, 55.0, 57.1, 19.0, 41.7, 40.9, 47.4, 60.0, 46.2, 28.6], "Rank 2": [21.1, 14.3, 65.0, 35.0, 76.2, 65.2, 40.0, 36.8, 47.4, 35.0, 68.2, 38.1, 75.0, 40.9, 36.8, 77.8, 46.2, 15.4], "Rank 3": [31.6, 4.8, 60.0, 30.0, 52.4, 73.9, 52.4, 66.7, 35.0, 55.0, 45.5, 47.6, 50.0, 45.5, 52.6, 70.0, 50.0, 30.8], "Rank 4": [21.1, 9.5, 70.0, 45.0, 57.1, 65.2, 28.6, 57.1, 42.1, 45.0, 72.7, 23.8, 41.7, 47.6, 47.4, 60.0, 71.4, 40.0], "Rank 5": [21.1, 19.0, 45.0, 45.0, 52.4, 43.5, 42.9, 55.0, 31.6, 35.0, 45.5, 50.0, 16.7, 36.4, 61.1, 50.0, 35.7, 28.6]}};
+                var chartData = {"labels": ["2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07"], "wr": [30.0, 10.0, 53.5, 37.0, 58.6, 55.3, 35.0, 51.7, 39.6, 43.2, 51.1, 37.2, 44.2, 42.5, 53.2, 62.6, 43.5, 27.9], "roi": [-1.15, -5.05, 0.96, -0.14, 2.41, 1.63, 0.06, 1.25, 0.63, 0.44, 2.4, 0.71, 1.39, 0.92, 2.76, 4.35, 1.4, -0.73], "grpA_roi": [-0.41, -5.37, 1.11, -0.21, 4.26, 0.67, 1.59, 1.8, 0.75, 0.85, 2.91, 0.57, 3.15, 0.96, 2.01, 5.41, 2.02, -1.47], "rank_roi": {"Rank 1": [2.16, -6.12, 0.21, 0.0, 5.86, -4.05, 0.87, 1.47, 0.84, 1.11, 4.02, -2.09, 1.29, 0.68, 1.64, 4.19, 1.63, -1.02], "Rank 2": [-2.75, -4.54, 1.93, 0.2, 5.6, 2.92, 0.86, -0.08, 1.3, -0.61, 2.68, 0.87, 5.63, 0.63, 1.01, 6.45, 1.62, -2.7], "Rank 3": [-0.65, -5.45, 1.2, -0.83, 1.33, 3.14, 3.0, 3.84, 0.15, 2.05, 2.06, 2.92, 2.51, 1.57, 3.36, 5.7, 2.76, -0.72], "Rank 4": [-2.83, -4.55, 2.19, -0.64, 1.91, 3.57, -0.33, 2.9, 1.18, 0.43, 5.75, -0.99, 1.69, 1.49, 2.13, 3.68, 4.37, 0.99], "Rank 5": [-1.86, -3.35, 0.9, 0.58, 1.61, 0.87, 1.17, 2.27, -1.16, -2.09, 1.8, 2.65, -2.46, -0.42, 3.3, 2.8, -0.16, -0.87]}, "rank_wr": {"Rank 1": [63.2, 9.5, 55.0, 25.0, 76.2, 34.8, 38.1, 42.9, 40.0, 55.0, 57.1, 19.0, 41.7, 40.9, 47.4, 60.0, 46.2, 28.6], "Rank 2": [21.1, 14.3, 65.0, 35.0, 76.2, 65.2, 40.0, 36.8, 47.4, 35.0, 68.2, 38.1, 75.0, 40.9, 36.8, 77.8, 46.2, 15.4], "Rank 3": [31.6, 4.8, 60.0, 30.0, 52.4, 73.9, 52.4, 66.7, 35.0, 55.0, 45.5, 47.6, 50.0, 45.5, 52.6, 70.0, 50.0, 30.8], "Rank 4": [21.1, 9.5, 70.0, 45.0, 57.1, 65.2, 28.6, 57.1, 42.1, 45.0, 72.7, 23.8, 41.7, 47.6, 47.4, 60.0, 71.4, 40.0], "Rank 5": [21.1, 19.0, 45.0, 45.0, 52.4, 43.5, 42.9, 55.0, 31.6, 35.0, 45.5, 50.0, 16.7, 36.4, 61.1, 50.0, 35.7, 28.6]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -9852,11 +9852,11 @@
       <td>Unknown</td>
       <td>20.10</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>21.8</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>30.2</span></td>
-      <td>22.2</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.45%</span></td>
-      <td>4</td>
+      <td><span style='color:#dc3545;font-weight:600;'>21.64</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>30.04</span></td>
+      <td>22.09</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.92%</span></td>
+      <td>3</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
     </tr>
@@ -10192,10 +10192,10 @@
       <td>Unknown</td>
       <td>19.35</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>22.3</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>26.95</span></td>
-      <td>21.29</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.0%</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>22.14</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>26.8</span></td>
+      <td>21.27</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.92%</span></td>
       <td>5</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
@@ -10464,8 +10464,8 @@
       <td>Unknown</td>
       <td>19.00</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>24.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>24.3</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>23.84</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>24.14</span></td>
       <td>20.9</td>
       <td><span style='color:#dc3545;font-weight:bold;'>10.0%</span></td>
       <td>7</td>
@@ -10634,8 +10634,8 @@
       <td>Unknown</td>
       <td>18.90</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>24.05</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>23.5</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>23.9</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>23.34</span></td>
       <td>20.9</td>
       <td><span style='color:#dc3545;font-weight:bold;'>10.58%</span></td>
       <td>8</td>
@@ -10770,10 +10770,10 @@
       <td>Unknown</td>
       <td>18.05</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>21.9</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>22.9</span></td>
-      <td>19.86</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.0%</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>21.74</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>22.74</span></td>
+      <td>19.84</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.91%</span></td>
       <td>6</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
@@ -15071,8 +15071,8 @@
       <td>Unknown</td>
       <td>237.00</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>328.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>456.0</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>328.28</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>455.78</span></td>
       <td>263.5</td>
       <td><span style='color:#dc3545;font-weight:bold;'>11.18%</span></td>
       <td>2</td>
@@ -15530,10 +15530,10 @@
       <td>Unknown</td>
       <td>17.55</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>17.4</span></td>
-      <td><span style='color:#198754;font-weight:600;'>16.95</span></td>
-      <td>16.67</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.0%</span></td>
+      <td><span style='color:#198754;font-weight:600;'>17.24</span></td>
+      <td><span style='color:#198754;font-weight:600;'>16.79</span></td>
+      <td>16.68</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.96%</span></td>
       <td>13</td>
       <td>停損出場 (-5%)</td>
       <td>Closed</td>
@@ -16176,8 +16176,8 @@
       <td>Unknown</td>
       <td>214.00</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>209.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>227.0</span></td>
+      <td><span style='color:#198754;font-weight:600;'>204.79</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>222.79</span></td>
       <td>196.5</td>
       <td><span style='color:#198754;font-weight:bold;'>-8.18%</span></td>
       <td>2</td>
@@ -17808,10 +17808,10 @@
       <td>Unknown</td>
       <td>400.50</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>428.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>476.5</span></td>
-      <td>440.55</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.0%</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>427.65</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>475.65</span></td>
+      <td>440.47</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.98%</span></td>
       <td>3</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
@@ -17961,10 +17961,10 @@
       <td>Unknown</td>
       <td>397.50</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>425.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>462.0</span></td>
-      <td>437.25</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>10.0%</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>424.65</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>461.15</span></td>
+      <td>437.17</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.98%</span></td>
       <td>4</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
@@ -25594,8 +25594,8 @@
       <td>Unknown</td>
       <td>13.10</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>12.9</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>13.15</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.74</span></td>
+      <td><span style='color:#198754;font-weight:600;'>13.0</span></td>
       <td>13.1</td>
       <td><span style='color:#198754;font-weight:bold;'>0.0%</span></td>
       <td>20</td>
@@ -32377,10 +32377,10 @@
       <td>Unknown</td>
       <td>13.25</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>12.85</span></td>
-      <td><span style='color:#198754;font-weight:600;'>12.65</span></td>
-      <td>12.59</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.0%</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.7</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.5</span></td>
+      <td>12.6</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.94%</span></td>
       <td>4</td>
       <td>停損出場 (-5%)</td>
       <td>Closed</td>
@@ -32581,8 +32581,8 @@
       <td>Unknown</td>
       <td>13.20</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>12.75</span></td>
-      <td><span style='color:#198754;font-weight:600;'>12.8</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.6</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.65</span></td>
       <td>12.75</td>
       <td><span style='color:#198754;font-weight:bold;'>-3.41%</span></td>
       <td>20</td>
@@ -32683,8 +32683,8 @@
       <td>Unknown</td>
       <td>13.15</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>12.75</span></td>
-      <td><span style='color:#198754;font-weight:600;'>12.8</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.6</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.65</span></td>
       <td>12.85</td>
       <td><span style='color:#198754;font-weight:bold;'>-2.28%</span></td>
       <td>20</td>
@@ -32904,8 +32904,8 @@
       <td>Unknown</td>
       <td>13.15</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>12.75</span></td>
-      <td><span style='color:#198754;font-weight:600;'>12.75</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.6</span></td>
+      <td><span style='color:#198754;font-weight:600;'>12.6</span></td>
       <td>12.8</td>
       <td><span style='color:#198754;font-weight:bold;'>-2.66%</span></td>
       <td>20</td>
@@ -40571,8 +40571,8 @@
       <td>Unknown</td>
       <td>49.60</td>
       <td>2.02</td>
-      <td><span style='color:#198754;font-weight:600;'>47.35</span></td>
-      <td><span style='color:#198754;font-weight:600;'>48.9</span></td>
+      <td><span style='color:#198754;font-weight:600;'>45.33</span></td>
+      <td><span style='color:#198754;font-weight:600;'>46.88</span></td>
       <td>45.0</td>
       <td><span style='color:#198754;font-weight:bold;'>-5.2%</span></td>
       <td>5</td>
