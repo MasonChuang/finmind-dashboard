@@ -1,19 +1,19 @@
 # 綠能環保排名狀態維護報告
 
-- 產出時間：2026-08-03T13:02:50+08:00
+- 產出時間：2026-08-10T13:02:00+08:00
 - 排名來源：`/run/user/1000/gvfs/smb-share:server=nas-816.local,share=finmind/v5/reports/daily/industry_rotation_radar.html`
-- 來源 mtime：2026-08-02T22:03:04+08:00
-- HTML 內可辨識資料日：2026-07-31
-- 本次使用最新排行：否；2026-08-03 13:00 排程早於 V5 夜間更新，使用最後可驗證 2026-07-31 產業層級摘要作背景，不空轉。
+- 來源 mtime：2026-08-09T22:02:37+08:00
+- HTML 內可辨識資料日：2026-08-07
+- 本次使用最新排行：否；13:00 排程早於 V5 夜間更新，使用最後可驗證 2026-08-07 產業層級摘要作背景，不空轉。
 - 本批處理：只刷新 `綠能環保` 既有 28 檔正式公司的 `ranking_context`。
 
 ## 排名摘要
 
-- 強勢輪動摘要：油電燃氣業、金融保險、航運業、貿易百貨
-- 弱勢 / 降溫摘要：綠能環保、金融業、其他電子類、玻璃陶瓷 等 5 類
-- 資金 / 價格分歧摘要：塑膠工業、金融業、電子零組件業、光電業
-- 綠能環保狀態：`latest_weak_cooling_summary_first_item_retained_existing_formal_companies`
-- 排名變化：`unchanged_weak_cooling_summary_position_1_from_2026_07_24_to_2026_07_31`
+- 強勢輪動摘要：塑膠工業、油電燃氣業、創新板股票、農業科技業
+- 弱勢 / 降溫摘要：金融業、貿易百貨、汽車工業、綠能環保 等 5 類
+- 資金 / 價格分歧摘要：食品工業、貿易百貨、半導體業、電子零組件業
+- 綠能環保狀態：`latest_weak_cooling_summary_visible_retained_existing_formal_companies`
+- 排名變化：`weakened_from_weak_cooling_position_1_on_2026_07_31_to_visible_in_weak_cooling_group_on_2026_08_07`
 - 個股前 20：目前產業輪動報表未提供，故不補缺口、不標記單一股票退出。
 
 ## 既有小主題覆蓋
