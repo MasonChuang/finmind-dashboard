@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-08-14</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-08-15</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -150,8 +150,8 @@
             <div class="card text-white bg-primary mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>監控標的數</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">502 <small style="font-size:16px;">筆</small></h2>
-                    <p class="card-text mb-0 mt-1"><span class="badge bg-secondary">已平倉: 500</span> <span class="badge bg-warning text-dark">未平倉: 2</span></p>
+                    <h2 class="card-title mb-0">492 <small style="font-size:16px;">筆</small></h2>
+                    <p class="card-text mb-0 mt-1"><span class="badge bg-secondary">已平倉: 491</span> <span class="badge bg-warning text-dark">未平倉: 1</span></p>
                 </div>
             </div>
         </div>
@@ -159,7 +159,7 @@
             <div class="card text-white bg-success mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史平均勝率 (已平倉)</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">44.6%</h2>
+                    <h2 class="card-title mb-0">44.4%</h2>
                     <p class="card-text"><small>(停損出場策略: 2ATR_TRAIL)</small></p>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
@@ -178,7 +178,7 @@
             <div class="card text-white bg-info mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史單筆期望值</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+5.27%</h2>
+                    <h2 class="card-title mb-0">+5.18%</h2>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
                 <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px;">
@@ -196,7 +196,7 @@
             <div class="card text-white bg-danger mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>Top Group 專屬績效</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+5.83% <small style="font-size:16px;">(勝率 42.1%)</small></h2>
+                    <h2 class="card-title mb-0">+5.86% <small style="font-size:16px;">(勝率 42.3%)</small></h2>
                 </div>
             </div>
         </div>
@@ -220,42 +220,42 @@
                 <tbody>
                 <tr>
                     <td><strong>名次 1</strong></td>
-                    <td class="text-danger">52.9%</td>
-                    <td class="text-danger">10.88%</td>
-                    <td>18.3</td>
-                    <td>51</td>
-                </tr>
-            
-                <tr>
-                    <td><strong>名次 2</strong></td>
-                    <td class="text-dark">37.3%</td>
-                    <td class="text-danger">2.03%</td>
-                    <td>16.6</td>
-                    <td>51</td>
-                </tr>
-            
-                <tr>
-                    <td><strong>名次 3</strong></td>
-                    <td class="text-dark">36.0%</td>
-                    <td class="text-danger">4.56%</td>
-                    <td>16.4</td>
+                    <td class="text-danger">52.0%</td>
+                    <td class="text-danger">10.70%</td>
+                    <td>18.1</td>
                     <td>50</td>
                 </tr>
             
                 <tr>
+                    <td><strong>名次 2</strong></td>
+                    <td class="text-dark">38.0%</td>
+                    <td class="text-danger">2.12%</td>
+                    <td>16.7</td>
+                    <td>50</td>
+                </tr>
+            
+                <tr>
+                    <td><strong>名次 3</strong></td>
+                    <td class="text-dark">36.7%</td>
+                    <td class="text-danger">4.74%</td>
+                    <td>16.3</td>
+                    <td>49</td>
+                </tr>
+            
+                <tr>
                     <td><strong>名次 4</strong></td>
-                    <td class="text-dark">47.1%</td>
-                    <td class="text-danger">5.81%</td>
-                    <td>22.2</td>
-                    <td>51</td>
+                    <td class="text-dark">48.0%</td>
+                    <td class="text-danger">6.04%</td>
+                    <td>22.3</td>
+                    <td>50</td>
                 </tr>
             
                 <tr>
                     <td><strong>名次 5</strong></td>
-                    <td class="text-dark">49.0%</td>
-                    <td class="text-danger">7.15%</td>
-                    <td>20.2</td>
-                    <td>51</td>
+                    <td class="text-danger">50.0%</td>
+                    <td class="text-danger">7.49%</td>
+                    <td>20.3</td>
+                    <td>50</td>
                 </tr>
             </tbody>
             </table>
@@ -321,7 +321,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"], "wr": [33.3, 23.1, 56.0, 30.8, 61.5, 62.5, 54.0, 37.5, 43.3, 42.5, 55.0, 38.0, 90.0, 27.5], "roi": [3.16, -4.29, 13.57, -2.25, 13.04, 16.93, 5.09, -2.41, 2.15, 9.05, 9.54, -0.02, 42.01, -1.97], "grpA_roi": [-1.77, -7.24, 0.07, -7.23, 19.7, 35.07, 3.16, 1.51, -3.62, 13.59, 5.75, -0.67, 53.9, 1.35], "rank_roi": {"Rank 1": [4.32, -7.62, 7.1, -8.07, 16.95, 46.7, 2.03, -1.51, 4.44, 24.32, 13.48, 3.78, 120.41, 6.34], "Rank 2": [-3.7, -9.93, -4.0, -6.41, 24.84, 19.81, 7.44, -5.46, -5.58, -4.11, -4.85, -2.02, 17.78, 9.81], "Rank 3": [-5.92, -4.15, -2.89, -7.21, 16.51, 38.71, 0.01, 11.51, -9.71, 20.54, 8.61, -3.77, 23.52, -12.11], "Rank 4": [13.55, 1.48, 44.9, 1.57, 19.42, 3.14, -1.55, 1.47, 9.18, -1.23, 8.45, -4.08, 14.03, -4.08], "Rank 5": [-10.69, 0.57, 20.07, -7.07, 22.78, 12.83, 3.6, -21.85, 0.31, 57.2, 14.99, -3.41, 20.66, -3.63]}, "rank_wr": {"Rank 1": [50.0, 0.0, 66.7, 0.0, 100.0, 50.0, 60.0, 50.0, 66.7, 75.0, 75.0, 60.0, 100.0, 25.0], "Rank 2": [0.0, 0.0, 33.3, 0.0, 50.0, 75.0, 60.0, 0.0, 33.3, 25.0, 25.0, 60.0, 100.0, 75.0], "Rank 3": [0.0, 50.0, 33.3, 0.0, 33.3, 75.0, 20.0, 75.0, 0.0, 75.0, 50.0, 20.0, 100.0, 0.0], "Rank 4": [50.0, 50.0, 66.7, 75.0, 75.0, 50.0, 20.0, 25.0, 66.7, 25.0, 75.0, 20.0, 100.0, 25.0], "Rank 5": [0.0, 50.0, 66.7, 0.0, 100.0, 75.0, 40.0, 50.0, 33.3, 100.0, 50.0, 20.0, 100.0, 25.0]}};
+                var chartData = {"labels": ["2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"], "wr": [11.1, 23.1, 56.0, 30.8, 61.5, 62.5, 54.0, 37.5, 43.3, 42.5, 55.0, 38.0, 90.0, 27.5], "roi": [-3.62, -4.29, 13.57, -2.25, 13.04, 16.93, 5.09, -2.41, 2.15, 9.05, 9.54, -0.02, 42.01, -1.97], "grpA_roi": [-8.06, -7.24, 0.07, -7.23, 19.7, 35.07, 3.16, 1.51, -3.62, 13.59, 5.75, -0.67, 53.9, 1.35], "rank_roi": {"Rank 1": [-11.58, -7.62, 7.1, -8.07, 16.95, 46.7, 2.03, -1.51, 4.44, 24.32, 13.48, 3.78, 120.41, 6.34], "Rank 2": [-4.95, -9.93, -4.0, -6.41, 24.84, 19.81, 7.44, -5.46, -5.58, -4.11, -4.85, -2.02, 17.78, 9.81], "Rank 3": [-7.66, -4.15, -2.89, -7.21, 16.51, 38.71, 0.01, 11.51, -9.71, 20.54, 8.61, -3.77, 23.52, -12.11], "Rank 4": [32.84, 1.48, 44.9, 1.57, 19.42, 3.14, -1.55, 1.47, 9.18, -1.23, 8.45, -4.08, 14.03, -4.08], "Rank 5": [-11.32, 0.57, 20.07, -7.07, 22.78, 12.83, 3.6, -21.85, 0.31, 57.2, 14.99, -3.41, 20.66, -3.63]}, "rank_wr": {"Rank 1": [0.0, 0.0, 66.7, 0.0, 100.0, 50.0, 60.0, 50.0, 66.7, 75.0, 75.0, 60.0, 100.0, 25.0], "Rank 2": [0.0, 0.0, 33.3, 0.0, 50.0, 75.0, 60.0, 0.0, 33.3, 25.0, 25.0, 60.0, 100.0, 75.0], "Rank 3": [0.0, 50.0, 33.3, 0.0, 33.3, 75.0, 20.0, 75.0, 0.0, 75.0, 50.0, 20.0, 100.0, 0.0], "Rank 4": [100.0, 50.0, 66.7, 75.0, 75.0, 50.0, 20.0, 25.0, 66.7, 25.0, 75.0, 20.0, 100.0, 25.0], "Rank 5": [0.0, 50.0, 66.7, 0.0, 100.0, 75.0, 40.0, 50.0, 33.3, 100.0, 50.0, 20.0, 100.0, 25.0]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -9313,186 +9313,6 @@
       <td>104.88</td>
       <td><span style='color:#198754;font-weight:bold;'>-6.77%</span></td>
       <td>10</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>1</td>
-      <td>Group A</td>
-      <td>4916</td>
-      <td>事欣科</td>
-      <td>Unknown</td>
-      <td>37.85</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>46.08</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>45.43</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>61.7</span></td>
-      <td>45.5</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>20.21%</span></td>
-      <td>25</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>2</td>
-      <td>Group A</td>
-      <td>8096</td>
-      <td>擎亞</td>
-      <td>Unknown</td>
-      <td>71.00</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>74.3</span></td>
-      <td><span style='color:#198754;font-weight:600;'>53.7</span></td>
-      <td><span style='color:#198754;font-weight:600;'>40.6</span></td>
-      <td>69.27</td>
-      <td><span style='color:#198754;font-weight:bold;'>-2.44%</span></td>
-      <td>13</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>3</td>
-      <td>Group A</td>
-      <td>3558</td>
-      <td>神準</td>
-      <td>Unknown</td>
-      <td>234.00</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>235.0</span></td>
-      <td><span style='color:#198754;font-weight:600;'>193.5</span></td>
-      <td><span style='color:#198754;font-weight:600;'>173.0</span></td>
-      <td>224.22</td>
-      <td><span style='color:#198754;font-weight:bold;'>-4.18%</span></td>
-      <td>25</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>4</td>
-      <td>Group B</td>
-      <td>6290</td>
-      <td>良維</td>
-      <td>Unknown</td>
-      <td>86.00</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>76.01</span></td>
-      <td><span style='color:#198754;font-weight:600;'>85.61</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>102.31</span></td>
-      <td>81.05</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.75%</span></td>
-      <td>17</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>5</td>
-      <td>Group B</td>
-      <td>2543</td>
-      <td>皇昌</td>
-      <td>Unknown</td>
-      <td>109.50</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>93.67</span></td>
-      <td><span style='color:#198754;font-weight:600;'>86.37</span></td>
-      <td><span style='color:#198754;font-weight:600;'>70.57</span></td>
-      <td>98.5</td>
-      <td><span style='color:#198754;font-weight:bold;'>-10.05%</span></td>
-      <td>18</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>6</td>
-      <td>Group B</td>
-      <td>2429</td>
-      <td>銘旺科</td>
-      <td>Unknown</td>
-      <td>35.55</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>53.4</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>57.0</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>83.0</span></td>
-      <td>58.83</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>65.48%</span></td>
-      <td>45</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>7</td>
-      <td>Group C</td>
-      <td>6495</td>
-      <td>納諾*-KY</td>
-      <td>Unknown</td>
-      <td>1.34</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>1.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>1.5</span></td>
-      <td><span style='color:#dc3545;font-weight:600;'>1.5</span></td>
-      <td>N/A</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>11.94%</span></td>
-      <td>546</td>
-      <td>-</td>
-      <td>Open</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>8</td>
-      <td>Group C</td>
-      <td>3594</td>
-      <td>磐儀</td>
-      <td>Unknown</td>
-      <td>56.00</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>53.6</span></td>
-      <td><span style='color:#198754;font-weight:600;'>43.85</span></td>
-      <td><span style='color:#198754;font-weight:600;'>40.5</span></td>
-      <td>58.57</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>4.6%</span></td>
-      <td>17</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>9</td>
-      <td>Group C</td>
-      <td>2606</td>
-      <td>裕民</td>
-      <td>Unknown</td>
-      <td>65.80</td>
-      <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>67.5</span></td>
-      <td><span style='color:#198754;font-weight:600;'>51.4</span></td>
-      <td><span style='color:#198754;font-weight:600;'>51.8</span></td>
-      <td>70.13</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>6.57%</span></td>
-      <td>41</td>
-      <td>跌破 2-ATR</td>
-      <td>Closed</td>
-    </tr>
-    <tr>
-      <td>2025-02-14</td>
-      <td>10</td>
-      <td>Group C</td>
-      <td>6206</td>
-      <td>飛捷</td>
-      <td>Unknown</td>
-      <td>133.00</td>
-      <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>130.5</span></td>
-      <td><span style='color:#198754;font-weight:600;'>107.5</span></td>
-      <td><span style='color:#198754;font-weight:600;'>106.5</span></td>
-      <td>152.97</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>15.01%</span></td>
-      <td>13</td>
       <td>跌破 2-ATR</td>
       <td>Closed</td>
     </tr>
