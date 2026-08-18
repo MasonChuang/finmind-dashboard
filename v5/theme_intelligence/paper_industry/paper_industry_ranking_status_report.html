@@ -1,1 +1,32 @@
-<!doctype html><html lang='zh-Hant'><head><meta charset='utf-8'><title>造紙工業排行狀態維護報告</title><style>body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;line-height:1.7;max-width:980px;margin:32px auto;padding:0 20px;color:#263238}code{background:#f4f6f8;padding:2px 5px;border-radius:4px}.card{border:1px solid #d9e2ec;border-radius:12px;padding:16px;margin:16px 0;background:#fbfdff}h1,h2{color:#102a43}</style></head><body><h1>造紙工業排行狀態維護報告</h1><div class='card'><p><strong>產出時間：</strong>2026-07-26T11:01:34+08:00</p><p><strong>來源 mtime：</strong><code>2026-07-25T22:01:07+08:00</code></p><p><strong>HTML 內資料日：</strong><code>2026-07-24</code></p><p><strong>本次使用最新排行：</strong>否；資料日未更新，使用最後可驗證排行作背景。</p><p><strong>造紙工業是否出現在 HTML：</strong><code>False</code></p></div><h2>判斷</h2><p>2026-07-26 為週日，industry_rotation_radar.html 檔案 mtime 雖更新，但 HTML 內資料日仍為 2026-07-24。本批不空轉等待，僅做既有主題低消耗排名背景維護。</p><h2>摘要證據</h2><ul><li>強勢輪動摘要：塑膠工業、油電燃氣業、創新板股票、紡織纖維 等 5 類</li><li>弱勢 / 降溫摘要：綠能環保、金融業、光電業、玻璃陶瓷 等 5 類</li><li>造紙工業未出現在 HTML 可辨識文字。</li></ul><h2>本批動作</h2><ul><li>刷新既有 7 檔正式公司的 ranking_context。</li><li>更新 paper_industry_ranking_status_latest.json 與 theme_ranking_status.csv。</li><li>不新增公司、不刪除公司、不更動 Mason 持股資料。</li></ul></body></html>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><title>造紙工業排行狀態維護報告</title><style>body{font-family:Microsoft JhengHei,Noto Sans TC,Arial,sans-serif;max-width:960px;margin:32px auto;line-height:1.65;color:#111827}code{background:#f3f4f6;padding:2px 4px;border-radius:4px}pre{white-space:pre-wrap}.card{border:1px solid #e5e7eb;border-radius:14px;padding:18px;background:#fff;box-shadow:0 6px 18px rgba(15,23,42,.06)}</style></head><body><article class="card"><pre># 造紙工業排行狀態維護報告
+
+- 產出時間：2026-08-17T13:03:22+08:00
+- 排行來源：`/run/user/1000/gvfs/smb-share:server=nas-816.local,share=finmind/v5/reports/daily/industry_rotation_radar.html`
+- 來源 mtime：`2026-08-16T22:04:06+08:00`
+- HTML 內資料日：`2026-08-14`
+- 本次使用最新排行：否（週一 13:00 仍早於 V5 夜間交易日更新；使用最後可驗證排行作背景）
+- 排名範圍：產業層級；目前無股票層級前 20
+- 造紙工業是否出現在 HTML：`False`
+
+## 判斷
+
+`industry_rotation_radar.html` 已重新生成到 `2026-08-16T22:04:06+08:00`，但資料日仍為 `2026-08-14`。本批視為同資料日再生成 / 無新交易日資料，不空轉等待，依 Mason 規則做既有主題低消耗維護。
+
+## 摘要證據
+
+- 強勢輪動摘要：電腦及週邊設備業
+- 弱勢 / 降溫摘要：居家生活、綠能環保、油電燃氣業、食品工業 等 5 類
+- 資金 / 價格分歧：資金強但價格未同步：油電燃氣業、塑膠工業、居家生活、創新板股票
+- 造紙工業：未出現在 HTML 可辨識文字。
+
+## 本批動作
+
+- 刷新 `paper_industry_theme_latest.json` 中既有 7 檔正式公司的 `ranking_context`。
+- 更新 `paper_industry_ranking_status_latest.json` 與 `theme_ranking_status.csv` 的造紙工業列。
+- 同步 V5-facing JSON / HTML / Markdown copies。
+- 不新增公司、不刪除公司、不更動 Mason 持股資料。
+
+## 下一步
+
+下一批若仍無個股前 20，避免重複刷新造紙工業；可依同一份 `2026-08-14` 摘要維護創新板股票分歧背景，或挑造紙工業剩餘候選公司補官方來源。
+</pre></article></body></html>
