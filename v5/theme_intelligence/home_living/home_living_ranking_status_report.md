@@ -1,17 +1,17 @@
 # 居家生活排行狀態維護
 
 - 主題：居家生活 (`home_living`)
-- 本次使用最新排行：是
-- 排行來源資料日：2026-08-19
-- 排行來源 mtime：2026-08-19T21:54:19+08:00
+- 本次使用最新排行：否（週日無新交易日；使用最後可驗證 `2026-08-21` 報表作低消耗維護）
+- 排行來源資料日：2026-08-21
+- 排行來源 mtime：2026-08-22T22:04:34+08:00
 - 弱勢 / 降溫摘要位置：第 1 項
-- 資金 / 價格分歧摘要位置：第 2 項
-- rank_change：`remained_weak_cooling_position_1_from_2026_08_18_to_2026_08_19_and_divergence_improved_from_position_3_to_2`
-- rank_status：`latest_weak_cooling_position_1_and_funding_price_divergence_position_2_retained_existing_formal_companies`
+- 資金 / 價格分歧摘要位置：第 1 項
+- rank_change：`remained_weak_cooling_position_1_from_2026_08_19_to_2026_08_21_and_divergence_improved_from_position_2_to_1`
+- rank_status：`latest_weak_cooling_position_1_and_funding_price_divergence_position_1_retained_existing_formal_companies`
 
 ## 依據
 
-`industry_rotation_radar.html` 內可辨識資料日為 `2026-08-19`；未發現 JSON/CSV sidecar。產業輪動摘要強勢輪動為「電腦及週邊設備業、創新板股票」；弱勢 / 降溫為「居家生活、綠能環保、油電燃氣業、金融業 等 5 類」；資金 / 價格分歧為「資金強但價格未同步：油電燃氣業、居家生活、塑膠工業」。
+`industry_rotation_radar.html` 內可辨識資料日為 `2026-08-21`；未發現 JSON/CSV sidecar。產業輪動摘要強勢輪動為「航運業、電腦及週邊設備業」；弱勢 / 降溫為「居家生活、金融業、油電燃氣業、其他電子類 等 5 類」；資金 / 價格分歧為「資金強但價格未同步：居家生活、油電燃氣業、塑膠工業、創新板股票」。
 
 ## 本批處理
 
@@ -23,4 +23,4 @@
 
 ## 下一步
 
-若下一批仍無個股前20，可依最新摘要刷新 `金融業` / `電腦及週邊設備業`，或回到造紙工業未完成官方來源補強。
+若下一批仍無個股前20，可依同一份 `2026-08-21` 摘要刷新 `油電燃氣業` / `金融業`，或回到造紙工業未完成官方來源補強。

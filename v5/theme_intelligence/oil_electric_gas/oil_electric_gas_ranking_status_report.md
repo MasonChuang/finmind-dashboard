@@ -1,35 +1,28 @@
 # 油電燃氣業排行狀態維護報告
 
-- 產出時間：2026-08-20T13:03:54+08:00
-- 主題：油電燃氣業
-- 排行來源：`v5/reports/daily/industry_rotation_radar.html`
-- HTML 內可辨識資料日：2026-08-19
-- 報表 mtime：2026-08-19T21:54:19+08:00
-- 報表大小：77453 bytes
-- JSON/CSV 版：本次檢查未見 `industry_rotation_radar.json` / `industry_rotation_radar.csv`
+- 更新時間：2026-08-23T13:02:32+08:00
+- 本次使用最新排行：否（週日無新交易日；使用最後可驗證資料日 2026-08-21）
+- 產業輪動報表：`/run/user/1000/gvfs/smb-share:server=nas-816.local,share=finmind/v5/reports/daily/industry_rotation_radar.html`
+- 報表 mtime：2026-08-22T22:04:34+08:00
+- HTML 可辨識資料日：2026-08-21
+- JSON/CSV 版：未存在（本批以 HTML 摘要文字為依據）
 
-## 最新產業輪動摘要
+## 排行摘要
 
-- 強勢輪動：電腦及週邊設備業、創新板股票
-- 弱勢 / 降溫：居家生活、綠能環保、油電燃氣業、金融業 等 5 類
-- 資金 / 價格分歧：資金強但價格未同步：油電燃氣業、居家生活、塑膠工業
+- 強勢輪動：航運業、電腦及週邊設備業
+- 弱勢 / 降溫：居家生活、金融業、油電燃氣業、其他電子類 等 5 類
+- 資金 / 價格分歧：居家生活、油電燃氣業、塑膠工業、創新板股票
 
 ## 本批處理
 
-本批只刷新既有正式主題的排行背景：油電燃氣業在 2026-08-19 報表仍列弱勢 / 降溫第 3 項，且維持資金 / 價格分歧第 1 項。
-
-- rank_status：`latest_weak_cooling_position_3_and_funding_price_divergence_position_1_retained_existing_formal_companies`
-- rank_change：`unchanged_weak_cooling_position_3_and_divergence_position_1_from_2026_08_18_to_2026_08_19`
-- stock_level_top20_status：`not_available_from_current_industry_rotation_report`
-- 刷新公司數：12
-
-## 邊界
-
-目前產業輪動報表仍為產業層級，未提供油電燃氣業個股前 20，因此本批不補個股缺口、不標記單一股票退出前 20；不新增公司、不刪除公司、不寫入 Mason 持股資料。
+- 主題：油電燃氣業
+- 處理方式：只刷新既有 12 檔正式公司的 ranking_context 與主題排行狀態。
+- 變化：油電燃氣業維持弱勢 / 降溫第 3；資金 / 價格分歧由 2026-08-19 第 1 移至 2026-08-21 第 2。
+- 限制：目前報表仍為產業層級，未提供個股前 20；因此不補個股缺口、不標記單一股票退出前 20。
+- 中立性：不新增 / 刪除公司，不寫入 Mason 持股資料。
 
 ## 驗證項目
 
-- `data/oil_electric_gas_theme_latest.json`：JSON 可解析，rank_source_date=2026-08-19。
-- `data/oil_electric_gas_ranking_status_latest.json`：JSON 可解析，rank_status 已更新。
-- `data/theme_ranking_status.csv`：油電燃氣業列已更新至資料日 2026-08-19。
-- V5-facing copy：同步至 `v5/data/processed/theme_intelligence/oil_electric_gas/`、`v5/reports/theme_intelligence/oil_electric_gas/` 與 `v5/reports/daily/`。
+- CSV 欄位寬度一致。
+- JSON 可解析。
+- HTML / V5-facing copy 存在並含 2026-08-21、油電燃氣業、分歧。
