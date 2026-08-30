@@ -127,7 +127,7 @@
             </div>
         </a>
         <div class="d-flex align-items-center gap-3">
-            <span class="text-muted small d-none d-md-block">Report Date: 2026-08-29</span>
+            <span class="text-muted small d-none d-md-block">Report Date: 2026-08-30</span>
             <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
         </div>
     </div>
@@ -194,7 +194,7 @@
             <div class="card text-white bg-success mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史平均勝率 (已平倉)</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">44.8%</h2>
+                    <h2 class="card-title mb-0">44.9%</h2>
                     <p class="card-text"><small>(停損出場策略: FIXED_STOP)</small></p>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
@@ -213,7 +213,7 @@
             <div class="card text-white bg-info mb-3 shadow-sm h-100 border-0">
                 <div class="card-header pb-0 border-0"><h5>歷史單筆期望值</h5></div>
                 <div class="card-body pt-1">
-                    <h2 class="card-title mb-0">+1.55%</h2>
+                    <h2 class="card-title mb-0">+1.56%</h2>
                     
             <div style="margin-top:8px; border-top:1px solid rgba(255,255,255,0.2); padding-top:6px;">
                 <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:3px;">
@@ -356,7 +356,7 @@
             // --- Chart.js Integration ---
             var ctx = document.getElementById('trendChart');
             if (ctx) {
-                var chartData = {"labels": ["2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08"], "wr": [37.2, 44.2, 42.5, 53.2, 62.6, 43.5, 36.9, 36.1], "roi": [0.71, 1.4, 0.87, 2.75, 4.33, 1.4, 0.16, 0.57], "grpA_roi": [0.57, 3.15, 0.96, 1.99, 5.42, 2.03, -0.5, -1.93], "rank_roi": {"Rank 1": [-2.09, 1.29, 0.69, 1.66, 4.2, 1.65, -2.15, -4.02], "Rank 2": [0.87, 5.65, 0.62, 1.02, 6.45, 1.63, 0.46, -2.0], "Rank 3": [2.93, 2.5, 1.59, 3.3, 5.7, 2.75, 0.2, 0.55], "Rank 4": [-0.98, 1.69, 1.49, 2.12, 3.67, 4.34, 1.62, 1.53], "Rank 5": [2.65, -2.46, -0.45, 3.27, 2.82, -0.18, 0.26, 1.94]}, "rank_wr": {"Rank 1": [19.0, 41.7, 40.9, 47.4, 60.0, 46.2, 18.2, 6.7], "Rank 2": [38.1, 75.0, 40.9, 36.8, 77.8, 46.2, 36.4, 20.0], "Rank 3": [47.6, 50.0, 45.5, 52.6, 70.0, 50.0, 36.4, 38.5], "Rank 4": [23.8, 41.7, 47.6, 47.4, 60.0, 71.4, 45.5, 42.9], "Rank 5": [50.0, 16.7, 36.4, 61.1, 50.0, 35.7, 40.9, 46.2]}};
+                var chartData = {"labels": ["2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08"], "wr": [37.2, 44.2, 42.5, 53.2, 62.6, 44.2, 36.9, 36.1], "roi": [0.71, 1.4, 0.87, 2.75, 4.33, 1.49, 0.16, 0.57], "grpA_roi": [0.57, 3.15, 0.96, 1.99, 5.42, 2.03, -0.5, -1.93], "rank_roi": {"Rank 1": [-2.09, 1.29, 0.69, 1.66, 4.2, 1.65, -2.15, -4.02], "Rank 2": [0.87, 5.65, 0.62, 1.02, 6.45, 1.63, 0.46, -2.0], "Rank 3": [2.93, 2.5, 1.59, 3.3, 5.7, 2.75, 0.2, 0.55], "Rank 4": [-0.98, 1.69, 1.49, 2.12, 3.67, 4.34, 1.62, 1.53], "Rank 5": [2.65, -2.46, -0.45, 3.27, 2.82, -0.18, 0.26, 1.94]}, "rank_wr": {"Rank 1": [19.0, 41.7, 40.9, 47.4, 60.0, 46.2, 18.2, 6.7], "Rank 2": [38.1, 75.0, 40.9, 36.8, 77.8, 46.2, 36.4, 20.0], "Rank 3": [47.6, 50.0, 45.5, 52.6, 70.0, 50.0, 36.4, 38.5], "Rank 4": [23.8, 41.7, 47.6, 47.4, 60.0, 71.4, 45.5, 42.9], "Rank 5": [50.0, 16.7, 36.4, 61.1, 50.0, 35.7, 40.9, 46.2]}};
                 new Chart(ctx, {
                     type: 'line',
                     data: {
@@ -7473,8 +7473,8 @@
       <td>Unknown</td>
       <td>79.80</td>
       <td>0.00</td>
-      <td><span style='color:#dc3545;font-weight:600;'>89.6</span></td>
-      <td><span style='color:#198754;font-weight:600;'>57.6</span></td>
+      <td><span style='color:#dc3545;font-weight:600;'>89.1</span></td>
+      <td><span style='color:#198754;font-weight:600;'>57.1</span></td>
       <td>93.9</td>
       <td><span style='color:#dc3545;font-weight:bold;'>17.67%</span></td>
       <td>2</td>
@@ -9428,12 +9428,12 @@
       <td>Unknown</td>
       <td>61.20</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>46.55</span></td>
-      <td><span style='color:#198754;font-weight:600;'>44.0</span></td>
-      <td>58.14</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.0%</span></td>
-      <td>3</td>
-      <td>停損出場 (-5%)</td>
+      <td><span style='color:#198754;font-weight:600;'>46.05</span></td>
+      <td><span style='color:#198754;font-weight:600;'>43.5</span></td>
+      <td>67.27</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.92%</span></td>
+      <td>1</td>
+      <td>停利出場 (+10%)</td>
       <td>Closed</td>
     </tr>
     <tr>
@@ -9666,11 +9666,11 @@
       <td>Unknown</td>
       <td>57.50</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>47.55</span></td>
-      <td><span style='color:#198754;font-weight:600;'>45.75</span></td>
-      <td>64.7</td>
-      <td><span style='color:#dc3545;font-weight:bold;'>12.52%</span></td>
-      <td>2</td>
+      <td><span style='color:#198754;font-weight:600;'>47.05</span></td>
+      <td><span style='color:#198754;font-weight:600;'>45.25</span></td>
+      <td>63.2</td>
+      <td><span style='color:#dc3545;font-weight:bold;'>9.91%</span></td>
+      <td>1</td>
       <td>停利出場 (+10%)</td>
       <td>Closed</td>
     </tr>
@@ -9785,10 +9785,10 @@
       <td>Unknown</td>
       <td>59.60</td>
       <td>0.00</td>
-      <td><span style='color:#198754;font-weight:600;'>50.6</span></td>
-      <td><span style='color:#198754;font-weight:600;'>45.3</span></td>
-      <td>56.62</td>
-      <td><span style='color:#198754;font-weight:bold;'>-5.0%</span></td>
+      <td><span style='color:#198754;font-weight:600;'>50.1</span></td>
+      <td><span style='color:#198754;font-weight:600;'>44.8</span></td>
+      <td>56.64</td>
+      <td><span style='color:#198754;font-weight:bold;'>-4.96%</span></td>
       <td>1</td>
       <td>停損出場 (-5%)</td>
       <td>Closed</td>
