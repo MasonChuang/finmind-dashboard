@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3706 神達 - 財報深度分析</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <style>
+        body { font-family: 'Microsoft JhengHei', Arial, sans-serif; background-color: #f8f9fa; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 0; }
+        .info-card { border-left: 4px solid #667eea; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; }
+        .afass-score { font-size: 2.5rem; font-weight: bold; margin: 10px 0; }
+        
+        /* 表格優化 */
+        .table th, .table td {
+            text-align: center !important;
+            vertical-align: middle !important;
+            font-size: 0.95rem;
+        }
+        .table thead th {
+            background-color: #667eea;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        .table-responsive {
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1><b>3706 神達</b></h1>
+            <p class="mb-0">財報深度分析 | 產業: ELECTRONICS</p>
+        </div>
+    </div>
+    
+    <div class="container my-4">
+        <!-- AFASS 摘要 -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card info-card">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">📊 AFASS 評分摘要</h5>
+                        <div class="row">
+                <div class="col-md-2">
+                    <div class="text-center">
+                        <small class="text-muted">1Q (最新季)</small>
+                        <div class="afass-score text-danger">14.7</div>
+                        <small>穩定→</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="text-center">
+                        <small class="text-muted">2Q (近兩季)</small>
+                        <div class="afass-score text-danger">39.0</div>
+                        <small>上升↗</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="text-center">
+                        <small class="text-muted">1Y (近一年)</small>
+                        <div class="afass-score text-danger">32.5</div>
+                        <small>上升↗</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="text-center">
+                        <small class="text-muted">3Y (近三年)</small>
+                        <div class="afass-score text-danger">27.2</div>
+                        <small>穩定→</small>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div class="text-center">
+                        <small class="text-muted">5Y (近五年)</small>
+                        <div class="afass-score text-danger">34.2</div>
+                        <small>穩定→</small>
+                    </div>
+                </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 圖表 -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-1">
+                         <div style="height:1200px; width:100%;">                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.6.0.min.js" integrity="sha256-QaOVwtVY0T02VaHrr6pnoHLCwayMJp4O5n4YyaE3rJk=" crossorigin="anonymous"></script>                <div id="210ea2da-7546-408f-b3a6-9171e6f38f7a" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("210ea2da-7546-408f-b3a6-9171e6f38f7a")) {                    Plotly.newPlot(                        "210ea2da-7546-408f-b3a6-9171e6f38f7a",                        [{"line":{"color":"#3498db","width":2},"mode":"lines+markers","name":"\u71df\u6536","x":["2021-03-31","2021-06-30","2021-09-30","2021-12-31","2022-03-31","2022-06-30","2022-09-30","2022-12-31","2023-03-31","2023-06-30","2023-09-30","2023-12-31","2024-03-31","2024-06-30","2024-09-30","2024-12-31","2025-03-31","2025-06-30","2025-09-30","2025-12-31"],"y":{"dtype":"f8","bdata":"9ihcj8JRxkCPwvUoXIXHQJHtfD+1IcJAhetRuA5swkApXI\u002fChRjGQHnpJjGYjcZAdZMYBIYcyEAMAiuH1qnIQFTjpZv078BASgwCK7cIwkC28\u002f3UGBnDQDEIrBx6rL5AtvP91PjawkCNl24S05nJQEjhehTuls1Ax0s3iRnm1kAEVg4tShzXQGDl0CILANpALbKd73cu2ECgGi\u002fddM\u002fdQA=="},"type":"scatter","xaxis":"x","yaxis":"y"},{"line":{"color":"#2ecc71","width":2},"mode":"lines+markers","name":"EPS","x":["2021-03-31","2021-06-30","2021-09-30","2021-12-31","2022-03-31","2022-06-30","2022-09-30","2022-12-31","2023-03-31","2023-06-30","2023-09-30","2023-12-31","2024-03-31","2024-06-30","2024-09-30","2024-12-31","2025-03-31","2025-06-30","2025-09-30","2025-12-31"],"y":{"dtype":"f8","bdata":"PQrXo3A94j+uR+F6FK4DQB+F61G4HhpAzczMzMzM3D8pXI\u002fC9SjcPylcj8L1KNw\u002frkfhehSuHECPwvUoXI\u002fSv6RwPQrXo8A\u002f4XoUrkfh4j+kcD0K16PgP7gehetRuM4\u002fPQrXo3A94j9xPQrXo3DtP2ZmZmZmZu4\u002f4XoUrkfh6j\u002fD9Shcj8LxP65H4XoUrvM\u002fcT0K16Nw9T+F61G4HoX3Pw=="},"type":"scatter","xaxis":"x2","yaxis":"y2"},{"line":{"color":"#f39c12","width":2},"mode":"lines+markers","name":"\u6bdb\u5229\u7387","x":["2021-03-31","2021-06-30","2021-09-30","2021-12-31","2022-03-31","2022-06-30","2022-09-30","2022-12-31","2023-03-31","2023-06-30","2023-09-30","2023-12-31","2024-03-31","2024-06-30","2024-09-30","2024-12-31","2025-03-31","2025-06-30","2025-09-30","2025-12-31"],"y":{"dtype":"f8","bdata":"Q90RvPtMIkBW0OkoAfkiQH\u002fxMmKosSVApdU8WPm9KECGa+bj4wolQEKqVU6GViJAB2l2560oKEAvqH0OwTfoP\u002fJpELXMlChAfOkOkXY4JkAQnO4J5QknQH6FPq0AMjBATA3gKakSK0BtWkjct+UpQFCz3tPmoyhAkUTMBx1OJUBq3lz9eH0nQM0eiG4PcSVAUv1Tw1WJKkC0kh+XmQ0kQA=="},"type":"scatter","xaxis":"x3","yaxis":"y3"},{"line":{"color":"#e74c3c","width":2},"mode":"lines+markers","name":"AFASS \u8a55\u5206","x":["2025-12-31","2025-09-30","2025-06-30","2025-03-31","2024-12-31","2024-09-30","2024-06-30","2024-03-31","2023-12-31","2023-09-30","2023-06-30","2023-03-31","2022-12-31","2022-09-30","2022-06-30","2022-03-31","2021-12-31","2021-09-30","2021-06-30","2021-03-31"],"y":[14.73,63.38,10.06,41.79,16.84,9.88,34.05,7.34,59.35,55.76,7.1,6.14,50.38,57.85,4.58,23.25,56.93,55.42,55.21,54.0],"type":"scatter","xaxis":"x4","yaxis":"y4"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0]},"yaxis":{"anchor":"x","domain":[0.79,1.0],"title":{"text":"\u71df\u6536(\u767e\u842c)"}},"xaxis2":{"anchor":"y2","domain":[0.0,1.0]},"yaxis2":{"anchor":"x2","domain":[0.48,0.69],"title":{"text":"EPS(\u5143)"}},"xaxis3":{"anchor":"y3","domain":[0.0,1.0]},"yaxis3":{"anchor":"x3","domain":[0.24,0.38],"title":{"text":"\u6bdb\u5229\u7387(%)"}},"xaxis4":{"anchor":"y4","domain":[0.0,1.0]},"yaxis4":{"anchor":"x4","domain":[0.0,0.13999999999999999],"title":{"text":"AFASS\u5206\u6578"}},"annotations":[{"font":{"size":16},"showarrow":false,"text":"\u71df\u6536\u8da8\u52e2\uff08\u767e\u842c\u5143\uff09","x":0.5,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"EPS \u8da8\u52e2\uff08\u5143\uff09","x":0.5,"xanchor":"center","xref":"paper","y":0.69,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"\u6bdb\u5229\u7387\u8da8\u52e2\uff08%\uff09","x":0.5,"xanchor":"center","xref":"paper","y":0.38,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"AFASS \u8a55\u5206\u8da8\u52e2","x":0.5,"xanchor":"center","xref":"paper","y":0.13999999999999999,"yanchor":"bottom","yref":"paper"},{"showarrow":false,"text":"\u512a\u826f\u9580\u6abb(70)","x":1,"xanchor":"right","xref":"x4 domain","y":70,"yanchor":"bottom","yref":"y4"},{"showarrow":false,"text":"\u53ca\u683c\u9580\u6abb(50)","x":1,"xanchor":"right","xref":"x4 domain","y":50,"yanchor":"bottom","yref":"y4"}],"shapes":[{"line":{"color":"green","dash":"dash"},"type":"line","x0":0,"x1":1,"xref":"x4 domain","y0":70,"y1":70,"yref":"y4"},{"line":{"color":"orange","dash":"dash"},"type":"line","x0":0,"x1":1,"xref":"x4 domain","y0":50,"y1":50,"yref":"y4"}],"title":{"font":{"size":20},"text":"\u003cb\u003e3706 \u795e\u9054\u003c\u002fb\u003e - \u8ca1\u5831\u6df1\u5ea6\u5206\u6790\uff0820\u5b63\uff09"},"font":{"family":"Microsoft JhengHei, Arial","size":11},"height":1200,"showlegend":true,"hovermode":"x unified"},                        {"responsive": true}                    )                };            </script>        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 財報資料表 -->
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h5 class="fw-bold mb-3">📑 季度財報數據 (近20季)</h5>
+                <div class="table-responsive">
+                    
+        <table class="table table-striped table-sm table-bordered text-center table-hover">
+            <thead><tr><th>日期</th><th>營收(千元)</th><th>EPS(元)</th><th>稅後淨利(千元)</th><th>毛利(千元)</th><th>毛利率(%)</th></tr></thead>
+            <tbody><tr><td>2025-12-31 </td><td>30,525,826,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1.47 <i class="bi bi-arrow-up-short text-danger"></i></td><td>2,032,545,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>3,060,691,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>10.03 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2025-09-30 </td><td>24,761,874,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>1.34 <i class="bi bi-arrow-up-short text-danger"></i></td><td>2,143,881,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>3,285,463,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>13.27 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2025-06-30 </td><td>26,624,174,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1.23 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,538,597,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>2,854,330,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>10.72 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2025-03-31 </td><td>23,665,159,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1.11 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,391,891,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>2,779,488,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>11.75 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2024-12-31 </td><td>23,448,399,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.84 <i class="bi bi-arrow-down-short text-success"></i></td><td>1,017,175,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>2,497,856,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>10.65 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2024-09-30 </td><td>15,149,860,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.95 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,149,647,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,866,481,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>12.32 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2024-06-30 </td><td>13,107,649,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.92 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,113,826,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,697,266,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>12.95 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2024-03-31 </td><td>9,653,944,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.57 <i class="bi bi-arrow-up-short text-danger"></i></td><td>693,161,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,306,801,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>13.54 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2023-12-31 </td><td>7,852,477,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>0.24 <i class="bi bi-arrow-down-short text-success"></i></td><td>297,604,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>1,271,734,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>16.20 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2023-09-30 </td><td>9,778,194,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.52 <i class="bi bi-arrow-down-short text-success"></i></td><td>624,984,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>1,126,382,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>11.52 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2023-06-30 </td><td>9,233,431,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.59 <i class="bi bi-arrow-up-short text-danger"></i></td><td>711,401,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,025,860,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>11.11 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2023-03-31 </td><td>8,671,911,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>0.13 <i class="bi bi-arrow-up-short text-danger"></i></td><td>153,456,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,065,832,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>12.29 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2022-12-31 </td><td>12,627,676,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>-0.29 <i class="bi bi-arrow-down-short text-success"></i></td><td>-346,298,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>95,567,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>0.76 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2022-09-30 </td><td>12,345,047,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>7.17 <i class="bi bi-arrow-up-short text-danger"></i></td><td>8,582,968,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,491,214,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>12.08 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2022-06-30 </td><td>11,547,189,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.44 </td><td>527,079,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>1,058,761,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>9.17 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2022-03-31 </td><td>11,313,045,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.44 <i class="bi bi-arrow-down-short text-success"></i></td><td>533,142,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>1,190,276,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>10.52 <i class="bi bi-arrow-down-short text-success"></i></td></tr><tr><td>2021-12-31 </td><td>9,432,115,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>0.45 <i class="bi bi-arrow-down-short text-success"></i></td><td>539,910,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>1,166,851,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>12.37 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2021-09-30 </td><td>9,283,416,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>6.53 <i class="bi bi-arrow-up-short text-danger"></i></td><td>7,797,512,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,006,971,000 <i class="bi bi-arrow-down-short text-success"></i></td><td>10.85 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2021-06-30 </td><td>12,042,720,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>2.46 <i class="bi bi-arrow-up-short text-danger"></i></td><td>2,947,718,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>1,142,413,000 <i class="bi bi-arrow-up-short text-danger"></i></td><td>9.49 <i class="bi bi-arrow-up-short text-danger"></i></td></tr><tr><td>2021-03-31 </td><td>11,427,520,000 </td><td>0.57 </td><td>676,341,000 </td><td>1,045,659,000 </td><td>9.15 </td></tr></tbody>
+        </table>
+        
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-md-12 text-center text-muted">
+                <small>生成時間: 2026-09-01 22:56:13 | FinMind Antigravity</small>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
