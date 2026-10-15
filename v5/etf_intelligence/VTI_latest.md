@@ -1,51 +1,51 @@
 # VTI Vanguard Total Stock Market ETF — ETF Intelligence Report
 
-- 資料日期：2026-08-31
-- 產生時間：2026-10-14T22:03:34+08:00
+- 資料日期：2026-09-30
+- 產生時間：2026-10-15T22:02:24+08:00
 - 來源：Vanguard 官方 profile / portfolio-holding API
 - 費用率：0.03%
 
 ## 摘要
 
-VTI 目前 Vanguard 官方股票持股 3471 檔，資料日期 2026-08-31。最大持股 NVDA NVIDIA Corp. 6.87%，前十大權重 33.41%，HHI 約 0.0168，等效持股數約 59.38 檔。 這代表 VTI 雖然是美國全市場 ETF，但目前仍明顯受大型科技股與大型成長股影響。
+VTI 目前 Vanguard 官方股票持股 3484 檔，資料日期 2026-09-30。最大持股 NVDA NVIDIA Corp. 7.13%，前十大權重 34.65%，HHI 約 0.0180，等效持股數約 55.68 檔。 這代表 VTI 雖然是美國全市場 ETF，但目前仍明顯受大型科技股與大型成長股影響。
 
 ## 集中度指標
 
-- 股票持股檔數：3471
-- 股票權重合計：98.11%
-- 最大持股：NVDA NVIDIA Corp. — 6.87%
+- 股票持股檔數：3484
+- 股票權重合計：98.07%
+- 最大持股：NVDA NVIDIA Corp. — 7.13%
 - 台積電權重：0.00%
-- 前 10 大權重：33.41%
-- HHI：0.0168
-- 等效持股數：59.38
+- 前 10 大權重：34.65%
+- HHI：0.0180
+- 等效持股數：55.68
 
 ## 前 20 大成分股
 
-1. NVDA NVIDIA Corp. — 6.87%
-2. AAPL Apple Inc. — 6.30%
-3. MSFT Microsoft Corp. — 5.10%
-4. AMZN Amazon.com Inc. — 3.40%
-5. GOOGL Alphabet Inc. Class A — 2.69%
-6. AVGO Broadcom Inc. — 2.37%
-7. GOOG Alphabet Inc. Class C — 2.12%
-8. META Facebook Inc. Class A — 1.70%
-9. MU Micron Technology Inc. — 1.46%
-10. TSLA Tesla Inc. — 1.40%
-11. LLY Eli Lilly & Co. — 1.33%
-12. JPM JPMorgan Chase & Co. — 1.29%
-13. BRK.B Berkshire Hathaway Inc. Class B — 1.23%
-14. AMD Advanced Micro Devices Inc. — 1.04%
-15. XOM ExxonMobil Holdings Corp. — 0.90%
+1. NVDA NVIDIA Corp. — 7.13%
+2. AAPL Apple Inc. — 6.63%
+3. MSFT Microsoft Corp. — 5.19%
+4. AMZN Amazon.com Inc. — 3.30%
+5. GOOGL Alphabet Inc. Class A — 2.76%
+6. AVGO Broadcom Inc. — 2.28%
+7. META Facebook Inc. Class A — 2.18%
+8. GOOG Alphabet Inc. Class C — 2.18%
+9. MU Micron Technology Inc. — 1.64%
+10. TSLA Tesla Inc. — 1.36%
+11. AMD Advanced Micro Devices Inc. — 1.36%
+12. LLY Eli Lilly & Co. — 1.34%
+13. BRK B Berkshire Hathaway Inc. Class B — 1.21%
+14. JPM JPMorgan Chase & Co. — 1.20%
+15. XOM ExxonMobil Holdings Corp. — 0.92%
 16. JNJ Johnson & Johnson — 0.87%
-17. V Visa Inc. Class A — 0.85%
-18. MA Mastercard Inc. Class A — 0.63%
-19. WMT Walmart Inc. — 0.62%
-20. ABBV AbbVie Inc. — 0.61%
+17. V Visa Inc. Class A — 0.83%
+18. INTC Intel Corp. — 0.74%
+19. ABBV AbbVie Inc. — 0.63%
+20. WMT Walmart Inc. — 0.62%
 
 ## 與 VXUS 重疊
 
 - 重疊檔數：5
-- 本 ETF 權重中屬於重疊持股：約 0.19%
+- 本 ETF 權重中屬於重疊持股：約 0.18%
 - VXUS 權重中屬於重疊持股：約 0.19%
 
 ## Gideon 觀察
