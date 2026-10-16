@@ -1,35 +1,35 @@
 # 00709 富邦歐洲 — ETF Intelligence Report
 
-- 資料日期：2026-10-14
-- 產生時間：2026-10-15T22:02:18+08:00
+- 資料日期：2026-10-15
+- 產生時間：2026-10-16T21:57:04+08:00
 - 資料品質：official
 - 來源：富邦富時歐洲ETF證券投資信託基金 官方持股資料
 
 ## 摘要
 
-00709 富邦歐洲 官方資料顯示股票持股 430 檔，股票權重合計約 97.97%，最大持股 ASML NA ASML Holding NV 4.69%，前十大權重 21.07%，HHI 約 0.0087，等效持股數約 114.59 檔。 另有期貨部位約 2.02%，解讀股票權重時需一併留意。
+00709 富邦歐洲 官方資料顯示股票持股 430 檔，股票權重合計約 97.96%，最大持股 ASML NA ASML Holding NV 4.48%，前十大權重 21.00%，HHI 約 0.0086，等效持股數約 116.50 檔。 另有期貨部位約 2.02%，解讀股票權重時需一併留意。
 
 ## 集中度指標
 
 - 成分股檔數：430
-- 股票權重合計：97.97%
+- 股票權重合計：97.96%
 - 期貨權重合計：2.02%
-- 前 10 大權重：21.07%
-- HHI：0.0087
-- 等效持股數：114.59
+- 前 10 大權重：21.00%
+- HHI：0.0086
+- 等效持股數：116.50
 
 ## 前十大成分股
 
-1. ASML NA ASML Holding NV — 4.69%
-2. HSBA LN HSBC Holdings PLC — 2.25%
-3. ROP SE ROCHE HOLDING AG — 2.17%
-4. SHEL LN SHELL PLC — 2.15%
-5. NOVN SE Novartis AG — 1.90%
-6. AZN LN AstraZeneca PLC — 1.70%
-7. NESN SE Nestle SA — 1.69%
-8. SAP GY SAP SE — 1.57%
-9. SIE GY Siemens AG — 1.57%
-10. SAN SQ Banco Santander SA — 1.39%
+1. ASML NA ASML Holding NV — 4.48%
+2. HSBA LN HSBC Holdings PLC — 2.23%
+3. ROP SE ROCHE HOLDING AG — 2.22%
+4. SHEL LN SHELL PLC — 2.14%
+5. NOVN SE Novartis AG — 1.95%
+6. AZN LN AstraZeneca PLC — 1.74%
+7. NESN SE Nestle SA — 1.73%
+8. SAP GY SAP SE — 1.60%
+9. SIE GY Siemens AG — 1.54%
+10. SAN SQ Banco Santander SA — 1.37%
 
 ## Gideon 觀察
 
