@@ -1,35 +1,35 @@
 # 00646 元大S&P500 — ETF Intelligence Report
 
-- 資料日期：2026-10-15
-- 產生時間：2026-10-18T22:07:41+08:00
+- 資料日期：2026-10-16
+- 產生時間：2026-10-19T22:01:47+08:00
 - 資料品質：official
 - 來源：元大標普500證券投資信託基金 官方持股資料
 
 ## 摘要
 
-00646 元大S&P500 官方資料顯示股票持股 504 檔，股票權重合計約 98.58%，最大持股 NVDA UQ NVIDIA CORP 7.76%，前十大權重 38.07%，HHI 約 0.0219，等效持股數約 45.68 檔。 另有期貨部位約 1.52%，解讀股票權重時需一併留意。
+00646 元大S&P500 官方資料顯示股票持股 503 檔，股票權重合計約 98.57%，最大持股 NVDA UQ NVIDIA CORP 7.74%，前十大權重 37.80%，HHI 約 0.0218，等效持股數約 45.78 檔。 另有期貨部位約 1.52%，解讀股票權重時需一併留意。
 
 ## 集中度指標
 
-- 成分股檔數：504
-- 股票權重合計：98.58%
+- 成分股檔數：503
+- 股票權重合計：98.57%
 - 期貨權重合計：1.52%
-- 前 10 大權重：38.07%
-- HHI：0.0219
-- 等效持股數：45.68
+- 前 10 大權重：37.80%
+- HHI：0.0218
+- 等效持股數：45.78
 
 ## 前十大成分股
 
-1. NVDA UQ NVIDIA CORP — 7.76%
-2. AAPL UQ APPLE INC — 7.37%
-3. MSFT UQ MICROSOFT CORP — 5.92%
-4. AMZN UQ AMAZON.COM INC — 3.69%
-5. GOOGL UQ ALPHABET INC-CL A — 3.03%
-6. AVGO UQ BROADCOM INC — 2.42%
-7. GOOG UQ ALPHABET INC-CL C — 2.42%
-8. META UQ META PLATFORMS INC-CLASS A — 2.40%
-9. MU UQ MICRON TECHNOLOGY INC — 1.55%
-10. TSLA UQ TESLA INC — 1.51%
+1. NVDA UQ NVIDIA CORP — 7.74%
+2. AAPL UQ APPLE INC — 7.49%
+3. MSFT UQ MICROSOFT CORP — 5.87%
+4. AMZN UQ AMAZON.COM INC — 3.66%
+5. GOOGL UQ ALPHABET INC-CL A — 2.98%
+6. GOOG UQ ALPHABET INC-CL C — 2.39%
+7. AVGO UQ BROADCOM INC — 2.34%
+8. META UQ META PLATFORMS INC-CLASS A — 2.34%
+9. LLY UN ELI LILLY & CO — 1.50%
+10. TSLA UQ TESLA INC — 1.49%
 
 ## Gideon 觀察
 
