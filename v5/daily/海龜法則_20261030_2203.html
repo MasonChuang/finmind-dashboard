@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>海龜交易法則策略 報表</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background:#f8f9fa; padding:20px; }
+    h1 { font-size:1.6rem; font-weight:bold; color:#1a1a2e; }
+    .badge-stat { border-radius:8px; padding:10px 18px; display:inline-block; margin:6px; }
+    .badge-stat .num { font-size:2rem; font-weight:bold; display:block; }
+    .badge-stat .lbl { font-size:.8rem; color:#555; }
+    .section-title { font-size:1.1rem; font-weight:bold; margin-top:28px; padding:6px 14px;
+                      background:#1a1a2e; color:#fff; border-radius:4px; }
+    .section-title.sys2 { background:#7b1c1c; }
+    .section-title.sys1 { background:#1a3a5c; }
+    .criteria-box { background:#fff; border:1px solid #dee2e6; border-radius:6px;
+                     padding:14px; margin-bottom:18px; }
+    .criteria-box li { margin:4px 0; font-size:.9rem; }
+    table td, table th { vertical-align: middle !important; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <h1>🐢 海龜交易法則策略 報表</h1>
+  <p class="text-muted">
+    掃描時間：2026-10-30 22:03 &nbsp;｜&nbsp; 資料來源：本地 FinMind DB
+    &nbsp;｜&nbsp; 資料庫最新日期：2026-10-30
+  </p>
+
+  <!-- 摘要統計 -->
+  <div class="my-3">
+    <div class="badge-stat" style="background:#fdedec;color:#7b1c1c">
+      <span class="num">11</span>
+      <span class="lbl">System 2 訊號</span>
+    </div>
+    <div class="badge-stat" style="background:#e3f2fd;color:#0d47a1">
+      <span class="num">0</span>
+      <span class="lbl">System 1 訊號</span>
+    </div>
+    <div class="badge-stat" style="background:#fff3e0;color:#e65100">
+      <span class="num">3</span>
+      <span class="lbl">優質黑馬 (Excellent)</span>
+    </div>
+    <div class="badge-stat" style="background:#e8f5e9;color:#1b5e20">
+      <span class="num">11</span>
+      <span class="lbl">總訊號數</span>
+    </div>
+  </div>
+
+  <!-- 策略說明 -->
+  <div class="criteria-box">
+    <b>基本面評級說明：</b>
+    <span class="badge bg-danger">Excellent</span>: 營收 YoY > 15% 且 MoM 連續成長 | 
+    <span class="badge bg-warning text-dark">Good</span>: 符合任一項 | 
+    <span class="badge bg-light text-muted">Normal</span>: 僅技術突破。
+    <br>
+    <small class="text-muted">排行優先序：評級 > 系統等級 (SYS2優先) > 成交量比。</small>
+  </div>
+    <ul class="mt-2">
+      <li>
+        <b>System 2（強勢訊號）</b>：收盤突破前 55 日最高；
+        出場參考線 = 前 20 日最低
+      </li>
+      <li>
+        <b>System 1</b>：收盤突破前 20 日最高；
+        出場參考線 = 前 10 日最低
+      </li>
+      <li>
+        N 值 = Wilder ATR(20 日)；
+        止損 = 收盤 − 2N；
+        建議張數 = (帳戶 × 1%) ÷ (N × 1000)
+      </li>
+      <li>流動性門檻：近 20 日均量 ≥ 500 張；僅涵蓋四位數字代碼普通股</li>
+    </ul>
+    <small class="text-muted">
+      突破計算：adj_high.shift(1).rolling(N).max()，防未來資訊洩漏。
+      出場參考線僅供參考，實際出場以個人判斷為準。
+    </small>
+  </div>
+
+  
+  <div class="section-title sys2">▲ System 2 — 55 日突破（強勢訊號）</div>
+  <div class="mt-2 mb-4">
+    <table id="tbl_sys2" class="display table table-bordered table-sm" style="width:100%">
+      <thead><tr>
+        <th>排行</th><th>股票代號</th><th>股票名稱</th><th>產業別</th>
+        <th class="text-end">股價</th>
+        <th class="text-center">評級</th>
+        <th class="text-end">營收YoY</th>
+        <th class="text-end">N值(ATR)</th>
+        <th class="text-end">突破點</th>
+        <th class="text-end">止損</th>
+        <th class="text-end">建議張數</th>
+        <th class="text-end">均量(張)</th>
+      </tr></thead>
+      <tbody><tr><td>1</td><td><b>2801</b></td><td>彰銀</td><td>金融保險</td><td class='text-end'>30.70</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>23.7%</td><td class='text-end'>0.64</td><td class='text-end'>30.50</td><td class='text-end text-danger fw-bold'>29.43</td><td class='text-end'>15</td><td class='text-end'><span style="display:inline-block;height:8px;width:60px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>18,777</td></tr>
+<tr><td>2</td><td><b>6199</b></td><td>天品</td><td>其他</td><td class='text-end'>160.50</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>2278.9%</td><td class='text-end'>4.59</td><td class='text-end'>159.00</td><td class='text-end text-danger fw-bold'>151.33</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:22px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>7,131</td></tr>
+<tr><td>3</td><td><b>8099</b></td><td>大世科</td><td>資訊服務業</td><td class='text-end'>111.50</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>70.7%</td><td class='text-end'>3.66</td><td class='text-end'>102.50</td><td class='text-end text-danger fw-bold'>104.18</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,045</td></tr>
+<tr><td>4</td><td><b>4526</b></td><td>東台</td><td>電機機械</td><td class='text-end'>56.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-34.1%</td><td class='text-end'>2.32</td><td class='text-end'>54.60</td><td class='text-end text-danger fw-bold'>51.36</td><td class='text-end'>4</td><td class='text-end'><span style="display:inline-block;height:8px;width:59px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>18,697</td></tr>
+<tr><td>5</td><td><b>2603</b></td><td>長榮</td><td>航運業</td><td class='text-end'>271.50</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-17.9%</td><td class='text-end'>7.73</td><td class='text-end'>270.50</td><td class='text-end text-danger fw-bold'>256.04</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:45px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>14,171</td></tr>
+<tr><td>6</td><td><b>2352</b></td><td>佳世達</td><td>電腦及週邊設備業</td><td class='text-end'>33.80</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>10.3%</td><td class='text-end'>1.06</td><td class='text-end'>32.80</td><td class='text-end text-danger fw-bold'>31.67</td><td class='text-end'>9</td><td class='text-end'><span style="display:inline-block;height:8px;width:39px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>12,559</td></tr>
+<tr><td>7</td><td><b>2412</b></td><td>中華電</td><td>通信網路業</td><td class='text-end'>160.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>7.6%</td><td class='text-end'>2.41</td><td class='text-end'>159.50</td><td class='text-end text-danger fw-bold'>155.17</td><td class='text-end'>4</td><td class='text-end'><span style="display:inline-block;height:8px;width:36px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>11,333</td></tr>
+<tr><td>8</td><td><b>2466</b></td><td>冠西電</td><td>光電業</td><td class='text-end'>354.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-47.1%</td><td class='text-end'>17.91</td><td class='text-end'>343.50</td><td class='text-end text-danger fw-bold'>318.19</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:10px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>3,345</td></tr>
+<tr><td>9</td><td><b>6233</b></td><td>旺玖</td><td>半導體業</td><td class='text-end'>32.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>9.4%</td><td class='text-end'>1.00</td><td class='text-end'>30.90</td><td class='text-end text-danger fw-bold'>30.01</td><td class='text-end'>10</td><td class='text-end'><span style="display:inline-block;height:8px;width:6px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,932</td></tr>
+<tr><td>10</td><td><b>1201</b></td><td>味全</td><td>食品工業</td><td class='text-end'>13.55</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-5.0%</td><td class='text-end'>0.24</td><td class='text-end'>12.50</td><td class='text-end text-danger fw-bold'>13.08</td><td class='text-end'>42</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>1,095</td></tr>
+<tr><td>11</td><td><b>2516</b></td><td>新建</td><td>建材營造</td><td class='text-end'>16.25</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-24.5%</td><td class='text-end'>0.36</td><td class='text-end'>15.80</td><td class='text-end text-danger fw-bold'>15.53</td><td class='text-end'>27</td><td class='text-end'><span style="display:inline-block;height:8px;width:4px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>619</td></tr></tbody>
+    </table>
+  </div>
+  
+  <div class="section-title sys1">▲ System 1 — 20 日突破</div>
+  <div class="mt-2 mb-4">
+    <table id="tbl_sys1" class="display table table-bordered table-sm" style="width:100%">
+      <thead><tr>
+        <th>排行</th><th>股票代號</th><th>股票名稱</th><th>產業別</th>
+        <th class="text-end">股價</th>
+        <th class="text-center">評級</th>
+        <th class="text-end">營收YoY</th>
+        <th class="text-end">N值(ATR)</th>
+        <th class="text-end">突破點</th>
+        <th class="text-end">止損</th>
+        <th class="text-end">建議張數</th>
+        <th class="text-end">均量(張)</th>
+      </tr></thead>
+      <tbody><tr><td colspan="12" class="text-center text-muted py-4">目前無突破訊號</td></tr></tbody>
+    </table>
+  </div>
+
+  <p class="text-muted text-center mt-4" style="font-size:.8rem">
+    FinMind V5 · 海龜交易法則策略 · 資料來源：本地 FinMind DB
+    · 僅供研究參考，不構成投資建議
+  </p>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      ['tbl_sys2', 'tbl_sys1'].forEach(function(id) {
+        if ($('#' + id + ' tbody tr td').length > 1) {
+          $('#' + id).DataTable({
+            pageLength: 25,
+            order: [[0, 'asc']],
+            language: { url: '' }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
