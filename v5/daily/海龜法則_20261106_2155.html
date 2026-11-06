@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>海龜交易法則策略 報表</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background:#f8f9fa; padding:20px; }
+    h1 { font-size:1.6rem; font-weight:bold; color:#1a1a2e; }
+    .badge-stat { border-radius:8px; padding:10px 18px; display:inline-block; margin:6px; }
+    .badge-stat .num { font-size:2rem; font-weight:bold; display:block; }
+    .badge-stat .lbl { font-size:.8rem; color:#555; }
+    .section-title { font-size:1.1rem; font-weight:bold; margin-top:28px; padding:6px 14px;
+                      background:#1a1a2e; color:#fff; border-radius:4px; }
+    .section-title.sys2 { background:#7b1c1c; }
+    .section-title.sys1 { background:#1a3a5c; }
+    .criteria-box { background:#fff; border:1px solid #dee2e6; border-radius:6px;
+                     padding:14px; margin-bottom:18px; }
+    .criteria-box li { margin:4px 0; font-size:.9rem; }
+    table td, table th { vertical-align: middle !important; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+  <h1>🐢 海龜交易法則策略 報表</h1>
+  <p class="text-muted">
+    掃描時間：2026-11-06 21:55 &nbsp;｜&nbsp; 資料來源：本地 FinMind DB
+    &nbsp;｜&nbsp; 資料庫最新日期：2026-11-06
+  </p>
+
+  <!-- 摘要統計 -->
+  <div class="my-3">
+    <div class="badge-stat" style="background:#fdedec;color:#7b1c1c">
+      <span class="num">4</span>
+      <span class="lbl">System 2 訊號</span>
+    </div>
+    <div class="badge-stat" style="background:#e3f2fd;color:#0d47a1">
+      <span class="num">0</span>
+      <span class="lbl">System 1 訊號</span>
+    </div>
+    <div class="badge-stat" style="background:#fff3e0;color:#e65100">
+      <span class="num">1</span>
+      <span class="lbl">優質黑馬 (Excellent)</span>
+    </div>
+    <div class="badge-stat" style="background:#e8f5e9;color:#1b5e20">
+      <span class="num">4</span>
+      <span class="lbl">總訊號數</span>
+    </div>
+  </div>
+
+  <!-- 策略說明 -->
+  <div class="criteria-box">
+    <b>基本面評級說明：</b>
+    <span class="badge bg-danger">Excellent</span>: 營收 YoY > 15% 且 MoM 連續成長 | 
+    <span class="badge bg-warning text-dark">Good</span>: 符合任一項 | 
+    <span class="badge bg-light text-muted">Normal</span>: 僅技術突破。
+    <br>
+    <small class="text-muted">排行優先序：評級 > 系統等級 (SYS2優先) > 成交量比。</small>
+  </div>
+    <ul class="mt-2">
+      <li>
+        <b>System 2（強勢訊號）</b>：收盤突破前 55 日最高；
+        出場參考線 = 前 20 日最低
+      </li>
+      <li>
+        <b>System 1</b>：收盤突破前 20 日最高；
+        出場參考線 = 前 10 日最低
+      </li>
+      <li>
+        N 值 = Wilder ATR(20 日)；
+        止損 = 收盤 − 2N；
+        建議張數 = (帳戶 × 1%) ÷ (N × 1000)
+      </li>
+      <li>流動性門檻：近 20 日均量 ≥ 500 張；僅涵蓋四位數字代碼普通股</li>
+    </ul>
+    <small class="text-muted">
+      突破計算：adj_high.shift(1).rolling(N).max()，防未來資訊洩漏。
+      出場參考線僅供參考，實際出場以個人判斷為準。
+    </small>
+  </div>
+
+  
+  <div class="section-title sys2">▲ System 2 — 55 日突破（強勢訊號）</div>
+  <div class="mt-2 mb-4">
+    <table id="tbl_sys2" class="display table table-bordered table-sm" style="width:100%">
+      <thead><tr>
+        <th>排行</th><th>股票代號</th><th>股票名稱</th><th>產業別</th>
+        <th class="text-end">股價</th>
+        <th class="text-center">評級</th>
+        <th class="text-end">營收YoY</th>
+        <th class="text-end">N值(ATR)</th>
+        <th class="text-end">突破點</th>
+        <th class="text-end">止損</th>
+        <th class="text-end">建議張數</th>
+        <th class="text-end">均量(張)</th>
+      </tr></thead>
+      <tbody><tr><td>1</td><td><b>1416</b></td><td>廣豐</td><td>其他</td><td class='text-end'>16.35</td><td class='text-center'><span class='badge bg-danger'>Excellent</span></td><td class='text-end'>32.2%</td><td class='text-end'>0.55</td><td class='text-end'>15.55</td><td class='text-end text-danger fw-bold'>15.26</td><td class='text-end'>18</td><td class='text-end'><span style="display:inline-block;height:8px;width:46px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,776</td></tr>
+<tr><td>2</td><td><b>2254</b></td><td>巨鎧精密-創</td><td>創新板股票</td><td class='text-end'>110.00</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-77.9%</td><td class='text-end'>3.51</td><td class='text-end'>109.00</td><td class='text-end text-danger fw-bold'>102.99</td><td class='text-end'>2</td><td class='text-end'><span style="display:inline-block;height:8px;width:60px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>3,514</td></tr>
+<tr><td>3</td><td><b>1476</b></td><td>儒鴻</td><td>紡織纖維</td><td class='text-end'>346.50</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>5.5%</td><td class='text-end'>10.41</td><td class='text-end'>341.50</td><td class='text-end text-danger fw-bold'>325.69</td><td class='text-end'>1</td><td class='text-end'><span style="display:inline-block;height:8px;width:35px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>2,077</td></tr>
+<tr><td>4</td><td><b>4155</b></td><td>訊映</td><td>化學生技醫療</td><td class='text-end'>17.90</td><td class='text-center'><span class='badge bg-warning text-dark'>Good</span></td><td class='text-end'>-10.4%</td><td class='text-end'>0.76</td><td class='text-end'>17.75</td><td class='text-end text-danger fw-bold'>16.39</td><td class='text-end'>13</td><td class='text-end'><span style="display:inline-block;height:8px;width:15px;background:#1a6fa3;border-radius:4px;vertical-align:middle;margin-right:4px"></span>939</td></tr></tbody>
+    </table>
+  </div>
+  
+  <div class="section-title sys1">▲ System 1 — 20 日突破</div>
+  <div class="mt-2 mb-4">
+    <table id="tbl_sys1" class="display table table-bordered table-sm" style="width:100%">
+      <thead><tr>
+        <th>排行</th><th>股票代號</th><th>股票名稱</th><th>產業別</th>
+        <th class="text-end">股價</th>
+        <th class="text-center">評級</th>
+        <th class="text-end">營收YoY</th>
+        <th class="text-end">N值(ATR)</th>
+        <th class="text-end">突破點</th>
+        <th class="text-end">止損</th>
+        <th class="text-end">建議張數</th>
+        <th class="text-end">均量(張)</th>
+      </tr></thead>
+      <tbody><tr><td colspan="12" class="text-center text-muted py-4">目前無突破訊號</td></tr></tbody>
+    </table>
+  </div>
+
+  <p class="text-muted text-center mt-4" style="font-size:.8rem">
+    FinMind V5 · 海龜交易法則策略 · 資料來源：本地 FinMind DB
+    · 僅供研究參考，不構成投資建議
+  </p>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      ['tbl_sys2', 'tbl_sys1'].forEach(function(id) {
+        if ($('#' + id + ' tbody tr td').length > 1) {
+          $('#' + id).DataTable({
+            pageLength: 25,
+            order: [[0, 'asc']],
+            language: { url: '' }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

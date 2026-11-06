@@ -1,39 +1,39 @@
 # 00709 富邦歐洲 — ETF Intelligence Report
 
-- 資料日期：2026-11-04
-- 產生時間：2026-11-05T22:04:13+08:00
+- 資料日期：2026-11-05
+- 產生時間：2026-11-06T21:56:14+08:00
 - 資料品質：official
 - 來源：富邦富時歐洲ETF證券投資信託基金 官方持股資料
 
 ## 摘要
 
-00709 富邦歐洲 官方資料顯示股票持股 429 檔，股票權重合計約 98.36%，最大持股 ASML NA ASML Holding NV 3.94%，前十大權重 20.61%，HHI 約 0.0082，等效持股數約 122.25 檔。 另有期貨部位約 1.68%，解讀股票權重時需一併留意。
+00709 富邦歐洲 官方資料顯示股票持股 429 檔，股票權重合計約 98.35%，最大持股 ASML NA ASML Holding NV 3.70%，前十大權重 20.44%，HHI 約 0.0080，等效持股數約 124.64 檔。 另有期貨部位約 1.67%，解讀股票權重時需一併留意。
 
 ## 集中度指標
 
 - 成分股檔數：429
-- 股票權重合計：98.36%
-- 期貨權重合計：1.68%
-- 前 10 大權重：20.61%
-- HHI：0.0082
-- 等效持股數：122.25
+- 股票權重合計：98.35%
+- 期貨權重合計：1.67%
+- 前 10 大權重：20.44%
+- HHI：0.0080
+- 等效持股數：124.64
 
 ## 前十大成分股
 
-1. ASML NA ASML Holding NV — 3.94%
-2. ROP SE ROCHE HOLDING AG — 2.31%
-3. NOVN SE Novartis AG — 2.08%
-4. HSBA LN HSBC Holdings PLC — 2.06%
+1. ASML NA ASML Holding NV — 3.70%
+2. ROP SE ROCHE HOLDING AG — 2.30%
+3. NOVN SE Novartis AG — 2.09%
+4. HSBA LN HSBC Holdings PLC — 2.05%
 5. SHEL LN SHELL PLC — 2.02%
-6. AZN LN AstraZeneca PLC — 1.92%
-7. NESN SE Nestle SA — 1.83%
-8. SAP GY SAP SE — 1.59%
-9. SIE GY Siemens AG — 1.52%
-10. ALV GY Allianz SE — 1.33%
+6. AZN LN AstraZeneca PLC — 1.93%
+7. NESN SE Nestle SA — 1.87%
+8. SAP GY SAP SE — 1.61%
+9. SIE GY Siemens AG — 1.51%
+10. ALV GY Allianz SE — 1.35%
 
 ## Gideon 觀察
 
-- [info] 官方資料含期貨部位約 1.68%。
+- [info] 官方資料含期貨部位約 1.67%。
 - 後續累積歷史快照後，再判斷成分股與集中度是否有持續性變化。
 - 歐洲成熟市場曝險；投資組合涵蓋多國與多幣別，需觀察歐股、歐元/英鎊/瑞郎等匯率與區域景氣循環。
 
