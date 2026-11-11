@@ -1,7 +1,7 @@
 # VXUS Vanguard Total International Stock ETF — ETF Intelligence Report
 
 - 資料日期：2026-09-30
-- 產生時間：2026-11-08T22:08:05+08:00
+- 產生時間：2026-11-11T21:58:23+08:00
 - 來源：Vanguard 官方 profile / portfolio-holding API
 - 費用率：0.05%
 
