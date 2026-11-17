@@ -1,7 +1,7 @@
 # VXUS Vanguard Total International Stock ETF — ETF Intelligence Report
 
 - 資料日期：2026-10-31
-- 產生時間：2026-11-15T22:07:56+08:00
+- 產生時間：2026-11-17T21:50:46+08:00
 - 來源：Vanguard 官方 profile / portfolio-holding API
 - 費用率：0.05%
 
@@ -46,7 +46,7 @@ VXUS 目前 Vanguard 官方股票持股 8860 檔，資料日期 2026-10-31。最
 
 - 重疊檔數：4
 - 本 ETF 權重中屬於重疊持股：約 0.15%
-- VTI 權重中屬於重疊持股：約 0.14%
+- VTI 權重中屬於重疊持股：約 0.16%
 
 ## Gideon 觀察
 
