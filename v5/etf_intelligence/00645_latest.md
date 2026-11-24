@@ -1,39 +1,39 @@
 # 00645 富邦日本 — ETF Intelligence Report
 
-- 資料日期：2026-11-20
-- 產生時間：2026-11-23T22:02:15+08:00
+- 資料日期：2026-11-24
+- 產生時間：2026-11-24T21:53:20+08:00
 - 資料品質：official
 - 來源：富邦日本東証證券投資信託基金 官方持股資料
 
 ## 摘要
 
-00645 富邦日本 官方資料顯示股票持股 1038 檔，股票權重合計約 91.36%，最大持股 8306 JP Mitsubishi UFJ Financial Group Inc 3.36%，前十大權重 22.04%，HHI 約 0.0083，等效持股數約 121.09 檔。 另有期貨部位約 8.32%，解讀股票權重時需一併留意。
+00645 富邦日本 官方資料顯示股票持股 1038 檔，股票權重合計約 91.36%，最大持股 8306 JP Mitsubishi UFJ Financial Group Inc 3.43%，前十大權重 22.25%，HHI 約 0.0084，等效持股數約 119.25 檔。 另有期貨部位約 8.25%，解讀股票權重時需一併留意。
 
 ## 集中度指標
 
 - 成分股檔數：1038
 - 股票權重合計：91.36%
-- 期貨權重合計：8.32%
-- 前 10 大權重：22.04%
-- HHI：0.0083
-- 等效持股數：121.09
+- 期貨權重合計：8.25%
+- 前 10 大權重：22.25%
+- HHI：0.0084
+- 等效持股數：119.25
 
 ## 前十大成分股
 
-1. 8306 JP Mitsubishi UFJ Financial Group Inc — 3.36%
-2. 7203 JP Toyota Motor Corp — 2.91%
-3. 6758 JP Sony Corp — 2.58%
-4. 6098 JP Recruit Holdings Co Ltd — 2.32%
-5. 8316 JP Sumitomo Mitsui Financial Group Inc — 2.24%
-6. 6501 JP Hitachi Ltd — 2.17%
-7. 8411 JP Mizuho Financial Group Inc — 1.79%
-8. 8766 JP Tokio Marine Holdings Inc — 1.57%
-9. 8058 JP Mitsubishi Corp — 1.56%
-10. 8035 JP Tokyo Electron Ltd — 1.56%
+1. 8306 JP Mitsubishi UFJ Financial Group Inc — 3.43%
+2. 7203 JP Toyota Motor Corp — 2.85%
+3. 6758 JP Sony Corp — 2.53%
+4. 6098 JP Recruit Holdings Co Ltd — 2.35%
+5. 8316 JP Sumitomo Mitsui Financial Group Inc — 2.27%
+6. 6501 JP Hitachi Ltd — 2.21%
+7. 8411 JP Mizuho Financial Group Inc — 1.85%
+8. 8035 JP Tokyo Electron Ltd — 1.64%
+9. 8766 JP Tokio Marine Holdings Inc — 1.56%
+10. 8058 JP Mitsubishi Corp — 1.55%
 
 ## Gideon 觀察
 
-- [info] 官方資料含期貨部位約 8.32%。
+- [info] 官方資料含期貨部位約 8.25%。
 - 後續累積歷史快照後，再判斷成分股與集中度是否有持續性變化。
 - 日本市場曝險；官方頁顯示本基金採匯率避險，並可能以期貨輔助追蹤，需同時觀察日股與日圓/台幣避險成本。
 
